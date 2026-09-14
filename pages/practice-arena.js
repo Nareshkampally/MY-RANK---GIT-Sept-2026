@@ -59,23 +59,23 @@ LearnlyRouter.register('practice-arena', function() {
         </button>
       </div>
       <!-- Exam Tools Ribbon -->
-      <div class="flex items-center gap-1.5 bg-surface-container-low p-1 rounded-xl">
+      <div class="flex items-center gap-1.5 bg-surface-container-low p-1 rounded-xl flex-wrap">
+        <button id="open-hint-btn" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all hover:opacity-90 cursor-pointer" type="button" title="Open AI Socratic Hint (Shortcut: H)">
+          <span class="material-symbols-outlined text-base">psychology</span><span>AI Hint (H)</span>
+        </button>
+        <button id="toggle-ruler-btn" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm transition-all hover:bg-surface-container" type="button" title="Toggle Reading Focus Ruler">
+          <span class="material-symbols-outlined text-base">horizontal_rule</span><span>Ruler</span>
+        </button>
         <button class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm transition-all" type="button">
           <span class="material-symbols-outlined text-base">strikethrough_s</span><span>Eliminator</span>
-        </button>
-        <button class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md transition-all" type="button">
-          <span class="material-symbols-outlined text-base">ink_highlighter</span><span>Highlight</span>
         </button>
         <button class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md transition-all" data-navigate="mock-scratchpad" type="button">
           <span class="material-symbols-outlined text-base">draw</span><span>Scratchpad</span>
         </button>
         <div class="flex items-center bg-surface-container-lowest rounded-lg p-0.5 shadow-sm">
-          <button class="px-2 py-1 text-on-surface-variant hover:text-primary font-label-md text-label-md" type="button">A-</button>
+          <button id="font-decrease-btn" class="px-2 py-1 text-on-surface-variant hover:text-primary font-label-md text-label-md" type="button">A-</button>
           <span class="text-outline-variant text-xs">|</span>
-          <button class="px-2 py-1 text-on-surface-variant hover:text-primary font-label-md text-label-md" type="button">A+</button>
-        </div>
-        <div class="flex items-center gap-1 px-2.5 py-1.5 rounded-lg text-outline bg-transparent font-label-md text-label-md cursor-not-allowed opacity-60">
-          <span class="material-symbols-outlined text-base">calculate</span><span>No Calc</span>
+          <button id="font-increase-btn" class="px-2 py-1 text-on-surface-variant hover:text-primary font-label-md text-label-md" type="button">A+</button>
         </div>
       </div>
     </section>
@@ -104,9 +104,15 @@ LearnlyRouter.register('practice-arena', function() {
               <span class="material-symbols-outlined text-primary text-xl">menu_book</span>
               <span class="font-label-lg text-label-lg text-on-surface font-bold">Contextual Excerpt</span>
             </div>
-            <span class="text-xs px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md">Passage Ref: #VR-902</span>
+            <div class="flex items-center gap-2">
+              <button id="speak-passage-btn" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-primary text-xs font-bold hover:bg-primary-fixed-dim transition-colors cursor-pointer" type="button" title="Listen to passage read aloud">
+                <span class="material-symbols-outlined text-sm">volume_up</span>
+                <span>Listen Aloud</span>
+              </button>
+              <span class="text-xs px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md">#VR-902</span>
+            </div>
           </div>
-          <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/40 font-body-lg text-body-lg text-on-surface leading-relaxed">
+          <div id="passage-text" class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/40 font-body-lg text-body-lg text-on-surface leading-relaxed">
             <p>The old librarian was known for her <em class="text-primary font-semibold">sagacious</em> advice — her recommendations were never trivial but always insightful, helping students navigate complex literary debates with remarkable clarity.</p>
             <p class="mt-3">In contrast, the young apprentice was often <em class="text-secondary font-semibold">impetuous</em>, making hasty judgments without considering the broader consequences of his literary critiques.</p>
           </div>
@@ -126,9 +132,18 @@ LearnlyRouter.register('practice-arena', function() {
               <span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-md text-label-md font-bold">Question 14</span>
               <span class="text-on-surface-variant font-label-md text-label-md">Pair Matching</span>
             </div>
-            <span class="text-xs font-mono text-outline">QID: VR-L5-0428</span>
+            <div class="flex items-center gap-2">
+              <button id="speak-question-btn" class="flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container-high text-on-surface text-xs font-bold hover:bg-primary-fixed hover:text-primary transition-colors cursor-pointer" type="button" title="Listen to question stem">
+                <span class="material-symbols-outlined text-sm">volume_up</span>
+                <span>Read Stem</span>
+              </button>
+              <button id="question-hint-quick-btn" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold hover:bg-secondary-fixed-dim transition-colors cursor-pointer" type="button">
+                <span class="material-symbols-outlined text-sm">lightbulb</span>
+                <span>Hint</span>
+              </button>
+            </div>
           </div>
-          <h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-md font-bold">
+          <h2 id="question-stem-text" class="font-headline-sm text-headline-sm text-on-surface mb-space-md font-bold">
             Select the word from Group 1 and the word from Group 2 that are most opposite in meaning:
           </h2>
           <!-- Word Groups -->
@@ -158,33 +173,45 @@ LearnlyRouter.register('practice-arena', function() {
               { letter: 'C', text: '3 and C (Reticent & Gregarious)' },
               { letter: 'D', text: '1 and A (Sagacious & Malicious)' },
               { letter: 'E', text: 'Both A and B are antonym pairs' },
-            ].map(opt => `
-              <button class="answer-bubble w-full p-space-md rounded-xl bg-surface-container-lowest border border-outline-variant/40 hover:border-primary flex items-center justify-between transition-all group text-left cursor-pointer" type="button">
+            ].map((opt, i) => `
+              <button class="answer-bubble w-full p-space-md rounded-xl bg-surface-container-lowest border border-outline-variant/40 hover:border-primary flex items-center justify-between transition-all group text-left cursor-pointer ${i===0?'selected border-primary':''}" data-index="${i}" data-key="${opt.letter}" type="button">
                 <div class="flex items-center gap-space-md">
-                  <div class="w-11 h-11 rounded-lg bg-surface-container-high text-on-surface font-headline-sm font-bold flex items-center justify-center transition-all">
+                  <div class="w-11 h-11 rounded-lg ${i===0?'bg-primary-container text-on-primary':'bg-surface-container-high text-on-surface'} font-headline-sm font-bold flex items-center justify-center transition-all">
                     ${opt.letter}
                   </div>
-                  <span class="font-body-md text-body-md text-on-surface font-medium">${opt.text}</span>
+                  <span class="font-body-md text-body-md ${i===0?'text-primary font-semibold':'text-on-surface'}">${opt.text}</span>
                 </div>
+                <kbd class="hidden sm:inline-block px-2 py-0.5 rounded bg-surface-container-high text-outline text-xs font-mono">Key ${opt.letter}</kbd>
               </button>
             `).join('')}
           </div>
         </div>
         <!-- Navigation & Finish Actions -->
         <div class="flex items-center justify-between gap-space-md">
-          <button class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-lg text-label-lg shadow-sm hover:bg-surface-container-high transition-all" type="button">
-            <span class="material-symbols-outlined text-base">chevron_left</span> Previous
+          <button class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-lg text-label-lg shadow-sm hover:bg-surface-container-high transition-all cursor-pointer" type="button">
+            <span class="material-symbols-outlined text-base">chevron_left</span> Previous (←)
           </button>
           <div class="flex items-center gap-space-sm">
-            <button class="px-space-md py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-all" data-navigate="scorecard" type="button">Review All</button>
-            <button id="finish-test-btn" class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-tertiary-container text-on-tertiary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all" type="button">
+            <button class="px-space-md py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-all cursor-pointer" data-navigate="scorecard" type="button">Review All</button>
+            <button id="finish-test-btn" class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-tertiary-container text-on-tertiary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" type="button">
               <span class="material-symbols-outlined text-base">verified</span>
               <span>Finish Test &amp; Record Timecard</span>
             </button>
-            <button class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all" type="button">
-              Next <span class="material-symbols-outlined text-base">chevron_right</span>
+            <button class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" type="button">
+              Next (→) <span class="material-symbols-outlined text-base">chevron_right</span>
             </button>
           </div>
+        </div>
+
+        <!-- Keyboard Shortcut Helper Pill -->
+        <div class="flex items-center justify-center gap-4 text-xs text-on-surface-variant pt-2">
+          <span><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono">A-E</kbd> Select Answer</span>
+          <span>•</span>
+          <span><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono">H</kbd> Socratic Hint</span>
+          <span>•</span>
+          <span><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono">F</kbd> Flag Question</span>
+          <span>•</span>
+          <span><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono">← / →</kbd> Navigate</span>
         </div>
       </section>
     </div>
@@ -229,23 +256,107 @@ LearnlyRouter.register('practice-arena', function() {
     });
   }
 
-  // Answer selection
-  document.querySelectorAll('.answer-bubble').forEach(btn => {
-    btn.addEventListener('click', () => {
-      document.querySelectorAll('.answer-bubble').forEach(b => {
-        b.classList.remove('selected');
-        b.querySelector('.w-11').classList.remove('bg-primary-container','text-on-primary');
-        b.querySelector('.w-11').classList.add('bg-surface-container-high','text-on-surface');
-        const check = b.querySelector('.material-symbols-outlined.text-primary');
-        if (check) check.remove();
-        b.querySelector('.font-body-md').classList.remove('text-primary','font-semibold');
-        b.querySelector('.font-body-md').classList.add('text-on-surface');
-      });
-      btn.classList.add('selected');
-      btn.querySelector('.w-11').classList.remove('bg-surface-container-high','text-on-surface');
-      btn.querySelector('.w-11').classList.add('bg-primary-container','text-on-primary');
-      btn.querySelector('.font-body-md').classList.remove('text-on-surface');
-      btn.querySelector('.font-body-md').classList.add('text-primary','font-semibold');
+  // Select Answer Helper
+  function selectOption(index) {
+    const bubbles = document.querySelectorAll('.answer-bubble');
+    if (!bubbles[index]) return;
+    bubbles.forEach(b => {
+      b.classList.remove('selected', 'border-primary');
+      b.querySelector('.w-11').classList.remove('bg-primary-container','text-on-primary');
+      b.querySelector('.w-11').classList.add('bg-surface-container-high','text-on-surface');
+      b.querySelector('.font-body-md').classList.remove('text-primary','font-semibold');
+      b.querySelector('.font-body-md').classList.add('text-on-surface');
     });
+    const selected = bubbles[index];
+    selected.classList.add('selected', 'border-primary');
+    selected.querySelector('.w-11').classList.remove('bg-surface-container-high','text-on-surface');
+    selected.querySelector('.w-11').classList.add('bg-primary-container','text-on-primary');
+    selected.querySelector('.font-body-md').classList.remove('text-on-surface');
+    selected.querySelector('.font-body-md').classList.add('text-primary','font-semibold');
+  }
+
+  // Answer selection via mouse
+  document.querySelectorAll('.answer-bubble').forEach((btn, idx) => {
+    btn.addEventListener('click', () => selectOption(idx));
   });
+
+  // AI Hint Buttons
+  const hintBtn = document.getElementById('open-hint-btn');
+  const quickHintBtn = document.getElementById('question-hint-quick-btn');
+  if (hintBtn) hintBtn.addEventListener('click', () => window.AIBuddy && window.AIBuddy.openHintModal('VR-L5-0428'));
+  if (quickHintBtn) quickHintBtn.addEventListener('click', () => window.AIBuddy && window.AIBuddy.openHintModal('VR-L5-0428'));
+
+  // Reading Ruler Toggle
+  const rulerBtn = document.getElementById('toggle-ruler-btn');
+  if (rulerBtn) rulerBtn.addEventListener('click', () => window.AIBuddy && window.AIBuddy.toggleReadingRuler());
+
+  // Text to Speech: Passage Read Aloud
+  const speakPassageBtn = document.getElementById('speak-passage-btn');
+  if (speakPassageBtn) {
+    speakPassageBtn.addEventListener('click', () => {
+      const passageEl = document.getElementById('passage-text');
+      if (passageEl && window.AIBuddy) {
+        speakPassageBtn.classList.add('animate-pulse');
+        window.AIBuddy.speakText(passageEl.innerText, null, () => {
+          speakPassageBtn.classList.remove('animate-pulse');
+        });
+      }
+    });
+  }
+
+  // Text to Speech: Question Stem Read Aloud
+  const speakQuestionBtn = document.getElementById('speak-question-btn');
+  if (speakQuestionBtn) {
+    speakQuestionBtn.addEventListener('click', () => {
+      const stemEl = document.getElementById('question-stem-text');
+      if (stemEl && window.AIBuddy) {
+        speakQuestionBtn.classList.add('animate-pulse');
+        window.AIBuddy.speakText(stemEl.innerText, null, () => {
+          speakQuestionBtn.classList.remove('animate-pulse');
+        });
+      }
+    });
+  }
+
+  // Font Scaling Buttons
+  let currentZoom = 100;
+  const decBtn = document.getElementById('font-decrease-btn');
+  const incBtn = document.getElementById('font-increase-btn');
+  if (decBtn) {
+    decBtn.addEventListener('click', () => {
+      currentZoom = Math.max(90, currentZoom - 10);
+      document.querySelector('.grid-cols-12').style.fontSize = `${currentZoom}%`;
+    });
+  }
+  if (incBtn) {
+    incBtn.addEventListener('click', () => {
+      currentZoom = Math.min(130, currentZoom + 10);
+      document.querySelector('.grid-cols-12').style.fontSize = `${currentZoom}%`;
+    });
+  }
+
+  // Global Keyboard Shortcuts
+  const keyHandler = (e) => {
+    // Only listen if practice arena is active
+    if (window.location.hash !== '#practice-arena') return;
+    if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+    const key = e.key.toUpperCase();
+    if (key === 'A' || key === '1') selectOption(0);
+    else if (key === 'B' || key === '2') selectOption(1);
+    else if (key === 'C' || key === '3') selectOption(2);
+    else if (key === 'D' || key === '4') selectOption(3);
+    else if (key === 'E' || key === '5') selectOption(4);
+    else if (key === 'H') {
+      if (window.AIBuddy) window.AIBuddy.openHintModal('VR-L5-0428');
+    } else if (key === 'F') {
+      const flagBtn = document.getElementById('flag-quick-btn');
+      if (flagBtn) flagBtn.click();
+    }
+  };
+
+  window.removeEventListener('keydown', window._practiceArenaKeyHandler);
+  window._practiceArenaKeyHandler = keyHandler;
+  window.addEventListener('keydown', keyHandler);
 });
+

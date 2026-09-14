@@ -442,9 +442,65 @@ html[data-theme="myrank"] .question-dot.current {
   box-shadow: var(--elevation-1);
 }
 
+/* 3D Flip Card Styles for LexiVault */
+.perspective-1000 {
+  perspective: 1000px;
+}
+.transform-style-3d {
+  transform-style: preserve-3d;
+}
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+.vocab-card.flipped {
+  transform: rotateY(180deg);
+}
+
+/* Dyslexia-Friendly High-Readability Mode */
+.dyslexia-mode {
+  letter-spacing: 0.05em !important;
+  word-spacing: 0.1em !important;
+  line-height: 1.85 !important;
+}
+.dyslexia-mode * {
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Comic Sans MS", "Segoe UI", sans-serif !important;
+}
+
+/* 3D Net Fold Simulator Styles */
+.net-3d-scene {
+  perspective: 800px;
+  perspective-origin: 50% 50%;
+}
+.cube-assembly {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  transform-style: preserve-3d;
+  transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.cube-face {
+  position: absolute;
+  width: 140px;
+  height: 140px;
+  border: 2px solid rgba(79, 70, 229, 0.4);
+  background: var(--surface-container-lowest);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  font-weight: 800;
+  transition: transform 0.8s cubic-bezier(0.4, 0, 0.2, 1), background-color 0.3s;
+  box-shadow: inset 0 0 15px rgba(0, 0, 0, 0.04);
+}
+
 /* Print styles for certificate */
 @media print {
   .no-print { display: none !important; }
   body { background: white; }
   .print-only { display: block !important; }
 }
+

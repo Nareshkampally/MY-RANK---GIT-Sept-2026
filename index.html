@@ -69,6 +69,13 @@
           <span class="material-symbols-outlined text-xl text-[#ec4899]">menu_book</span>
           <span>English &amp; SPaG</span>
         </a>
+        <a class="nav-link" data-path="vocab-vault" href="#vocab-vault">
+          <span class="material-symbols-outlined text-xl text-secondary">style</span>
+          <span class="flex items-center justify-between w-full">
+            <span>LexiVault 11+ Flashcards</span>
+            <span class="px-1.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed text-[10px] font-bold">New</span>
+          </span>
+        </a>
 
         <!-- Exam Prep & Mastery Category -->
         <div class="pt-space-md pb-space-xs px-space-md">
@@ -149,6 +156,12 @@
           </button>
         </div>
 
+        <!-- Dyslexia / High-Readability Mode Toggle -->
+        <button id="dyslexia-toggle-btn" class="flex items-center gap-1.5 px-3 py-1.5 bg-surface-container-lowest border border-outline-variant/30 rounded-full text-xs font-bold text-on-surface-variant hover:text-primary hover:border-primary/50 transition-all shadow-[0_2px_8px_rgba(79,70,229,0.05)] cursor-pointer" type="button" title="Toggle Dyslexia-Friendly High-Readability Mode">
+          <span class="material-symbols-outlined text-sm text-primary">spellcheck</span>
+          <span class="hidden md:inline">Dyslexia Mode</span>
+        </button>
+
         <!-- Live Scholar Study Watch Pill (Start/Finish & Login Tracker) -->
         <button data-open-watch-modal type="button" class="group flex items-center gap-space-xs px-3 py-1.5 bg-surface-container-lowest border border-outline-variant/30 rounded-full shadow-[0_2px_8px_rgba(79,70,229,0.07)] hover:border-primary/50 hover:shadow-md transition-all cursor-pointer" title="Click to view Scholar Study Watch, Login Time & Exam Audit">
           <div class="w-6 h-6 rounded-full bg-primary-fixed flex items-center justify-center text-primary group-hover:scale-110 transition-transform">
@@ -196,6 +209,7 @@
 
   <!-- Router & Page Scripts -->
   <script src="js/session-watch.js"></script>
+  <script src="js/ai-buddy.js"></script>
   <script src="js/theme-manager.js"></script>
   <script src="js/router.js"></script>
   <script src="pages/dashboard.js"></script>
@@ -227,11 +241,23 @@
   <script src="pages/subject-quests.js"></script>
   <script src="pages/past-papers.js"></script>
   <script src="pages/leaderboard.js"></script>
+  <script src="pages/vocab-vault.js"></script>
   <script>
-    // Initialize theme and router after all scripts are loaded
+    // Initialize theme, router and accessibility after all scripts are loaded
     document.addEventListener('DOMContentLoaded', () => {
       LearnlyTheme.init();
       LearnlyRouter.init();
+
+      const dyslexiaBtn = document.getElementById('dyslexia-toggle-btn');
+      if (dyslexiaBtn) {
+        dyslexiaBtn.addEventListener('click', () => {
+          if (window.AIBuddy) {
+            window.AIBuddy.toggleDyslexiaMode();
+            dyslexiaBtn.classList.toggle('bg-primary');
+            dyslexiaBtn.classList.toggle('text-on-primary');
+          }
+        });
+      }
     });
   </script>
 </body>
