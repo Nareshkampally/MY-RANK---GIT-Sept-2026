@@ -104,6 +104,30 @@ LearnlyRouter.register('dashboard', function() {
   <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
     <!-- Left 8 Columns -->
     <div class="lg:col-span-8 flex flex-col gap-space-xl">
+      <!-- Daily Streak & Challenge Widget -->
+      <section class="bg-gradient-to-r from-surface-container-highest via-surface-container-low to-surface-container-lowest rounded-3xl p-space-xl shadow-lg border border-outline-variant/50 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-space-lg mb-space-sm">
+        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="flex items-center gap-space-md z-10">
+          <div class="relative">
+            <div class="w-20 h-20 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shadow-md">
+              <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
+            </div>
+            <div class="absolute -bottom-2 -right-2 bg-secondary text-on-secondary font-black text-sm px-2 py-0.5 rounded-full border-2 border-surface">14</div>
+          </div>
+          <div>
+            <h2 class="font-headline-md text-headline-md text-on-surface font-extrabold flex items-center gap-2">
+              Daily Brain Bite <span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-md text-[10px] uppercase tracking-wider font-black">Hot</span>
+            </h2>
+            <p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-sm">Complete today's 3-question targeted micro-drill to extend your streak to 15 days!</p>
+          </div>
+        </div>
+        <div class="z-10 w-full md:w-auto flex flex-col items-end">
+          <button class="w-full md:w-auto px-space-xl py-3 rounded-full bg-secondary text-on-secondary font-label-lg text-label-lg font-black shadow-md hover:scale-105 active:scale-95 transition-all shadow-secondary/30" data-navigate="practice-arena">
+            Play Daily Bite
+          </button>
+          <span class="font-label-sm text-label-sm text-on-surface-variant mt-2 opacity-80">+50 Bonus XP</span>
+        </div>
+      </section>
 
       <!-- Daily Quest Board -->
       <section class="flex flex-col gap-space-md">
