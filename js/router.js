@@ -90,6 +90,7 @@ const LearnlyRouter = {
       'mock-scratchpad-full': 'mock-exams',
       'mock-splitview': 'mock-exams',
       'mastery-certificate': 'trophy-room',
+      'homework-scanner': 'homework-scanner',
     };
 
     const navTarget = pageToNav[activePage] || activePage;
