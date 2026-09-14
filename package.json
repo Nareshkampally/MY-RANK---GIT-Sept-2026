@@ -1,0 +1,20 @@
+{
+  "name": "my-rank-learnly-11plus",
+  "version": "1.0.0",
+  "description": "Learnly 11+ & MyRank 11+ — Production Full-Stack 11+ Exam Prep Portal",
+  "main": "server/server.js",
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server/server.js",
+    "dev": "node --watch server/server.js",
+    "seed": "node server/db/seed.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "sqlite3": "^5.1.7"
+  },
+  "keywords": ["11plus", "grammar-school", "education", "exam-prep", "learnly", "myrank"],
+  "author": "Naresh Kampally",
+  "license": "MIT"
+}

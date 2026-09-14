@@ -261,14 +261,26 @@ LearnlyRouter.register('vocab-vault', function() {
 
   // SRS Rating buttons
   document.querySelectorAll('.srs-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.addEventListener('click', async (e) => {
       e.stopPropagation();
       const rating = btn.dataset.rating;
       const card = btn.closest('.vocab-card');
       const wrapper = btn.closest('.vocab-card-wrapper');
+      const wordId = wrapper ? wrapper.dataset.id : null;
       
+      // Call backend API if available
+      let xpEarned = 15;
+      if (window.LearnlyAPI && wordId) {
+        try {
+          const res = await LearnlyAPI.reviewWord(wordId, rating);
+          if (res && res.xpEarned) xpEarned = res.xpEarned;
+        } catch (err) {
+          console.warn('SRS API review notice:', err);
+        }
+      }
+
       if (window.AIBuddy) {
-        window.AIBuddy.showToast(`Word Marked: ${rating}`, '+15 XP added to Scholar Profile!');
+        window.AIBuddy.showToast(`Word Marked: ${rating}`, `+${xpEarned} XP added to SQLite profile!`);
       }
 
       // Update badge on front

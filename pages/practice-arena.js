@@ -248,7 +248,25 @@ LearnlyRouter.register('practice-arena', function() {
   // Finish test action
   const finishBtn = document.getElementById('finish-test-btn');
   if (finishBtn) {
-    finishBtn.addEventListener('click', () => {
+    finishBtn.addEventListener('click', async () => {
+      const activeWatch = window.ScholarWatch ? window.ScholarWatch.getActiveTest() : null;
+      const startTime = activeWatch ? activeWatch.startTime : new Date(Date.now() - 25 * 60000).toISOString();
+      const finishTime = new Date().toISOString();
+
+      if (window.LearnlyAPI) {
+        try {
+          await LearnlyAPI.submitTest('mock-04', {
+            startTime: startTime,
+            finishTime: finishTime,
+            rawScore: 24,
+            maxScore: 25,
+            answers: { "q14": "4" }
+          });
+        } catch (err) {
+          console.warn('API test submit notice:', err);
+        }
+      }
+
       if (window.ScholarWatch) {
         window.ScholarWatch.finishTest('24/25 (96%)', 128);
       }

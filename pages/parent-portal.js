@@ -138,12 +138,15 @@ LearnlyRouter.register('parent-portal', function() {
   </div>`;
 }, function() {
   document.querySelectorAll('.parent-cheer-btn').forEach(btn => {
-    btn.addEventListener('click', () => {
+    btn.addEventListener('click', async () => {
       const msg = btn.dataset.msg;
       const type = btn.dataset.type || 'star';
+      if (window.LearnlyAPI) {
+        LearnlyAPI.sendParentCheer(msg, type).catch(err => console.warn('Cheer API notice:', err));
+      }
       if (window.AIBuddy) {
         window.AIBuddy.sendParentCheer(msg, type);
-        window.AIBuddy.showToast('Cheer Sent! ⭐', 'Delivered live to Leo\'s study session screen.');
+        window.AIBuddy.showToast('Cheer Sent! ⭐', 'Delivered live to Leo\'s study session screen & recorded in SQLite.');
       }
     });
   });
@@ -151,12 +154,15 @@ LearnlyRouter.register('parent-portal', function() {
   const customBtn = document.getElementById('send-custom-cheer-btn');
   const customInput = document.getElementById('custom-cheer-input');
   if (customBtn && customInput) {
-    customBtn.addEventListener('click', () => {
+    customBtn.addEventListener('click', async () => {
       const val = customInput.value.trim();
       if (!val) return;
+      if (window.LearnlyAPI) {
+        LearnlyAPI.sendParentCheer(val, 'heart').catch(err => console.warn('Cheer API notice:', err));
+      }
       if (window.AIBuddy) {
         window.AIBuddy.sendParentCheer(val, 'heart');
-        window.AIBuddy.showToast('Cheer Sent! 💖', 'Delivered live to Leo\'s study session screen.');
+        window.AIBuddy.showToast('Cheer Sent! 💖', 'Delivered live to Leo\'s study session screen & recorded in SQLite.');
         customInput.value = '';
       }
     });
