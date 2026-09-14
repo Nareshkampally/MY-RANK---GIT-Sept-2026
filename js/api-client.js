@@ -40,6 +40,7 @@ const LearnlyAPI = (function() {
 
     // Tests & Attempts
     getTests: () => request('/api/tests'),
+    getAdaptiveTest: () => request('/api/tests/adaptive'),
     getRecentAttempts: () => request('/api/tests/recent'),
     getAttemptDetails: (attemptId) => request(`/api/tests/attempts/${attemptId}`),
     submitTest: (testId, payload) => request(`/api/tests/${testId}/submit`, {
@@ -49,7 +50,10 @@ const LearnlyAPI = (function() {
 
     // Questions & Socratic Hints
     getQuestion: (questionId) => request(`/api/questions/${questionId}`),
-    getQuestionHints: (questionId) => request(`/api/questions/${questionId}/hints`),
+    getQuestionHints: (questionId, payload = {}) => request(`/api/questions/${questionId}/hints`, {
+      method: 'POST',
+      body: JSON.stringify(payload)
+    }),
 
     // Vocabulary & Spaced Repetition (SRS)
     getVocab: (category = 'all') => request(`/api/vocab${category !== 'all' ? `?category=${encodeURIComponent(category)}` : ''}`),

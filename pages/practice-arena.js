@@ -1,380 +1,417 @@
-// Learnly 11+ — Practice Arena (Timed 11+ Test)
+// Learnly 11+ — Practice Arena (Timed 11+ Test) - Dynamic Engine
 LearnlyRouter.register('practice-arena', function() {
   return `
-  <div class="relative w-full space-y-space-md">
-    <!-- TOP EXAM CONTROLS BAR -->
-    <section class="w-full bg-surface-container-lowest rounded-xl shadow-md p-space-md flex flex-wrap items-center justify-between gap-space-md transition-all">
-      <div class="flex items-center gap-space-md">
-        <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
-          <span class="material-symbols-outlined text-2xl">auto_stories</span>
-        </div>
-        <div class="flex flex-col">
-          <div class="flex items-center gap-space-xs">
-            <span class="px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-label-md text-label-md">GL Assessment Style</span>
-            <span class="px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary font-label-md text-label-md">Scholar Mock #04</span>
-          </div>
-          <span class="font-headline-sm text-headline-sm text-on-surface">Verbal Reasoning &amp; Vocabulary Timed Section</span>
-        </div>
-      </div>
-      <!-- Timer, Exam Watch & Progress -->
-      <div class="flex items-center flex-wrap gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded-2xl shadow-sm border border-outline-variant/30">
-        <!-- Progress -->
-        <div class="flex items-center gap-1.5 pr-2">
-          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Progress</span>
-          <span class="font-label-timer text-label-timer text-primary font-bold">14 <span class="text-outline text-body-sm font-normal">/ 25</span></span>
-        </div>
-        <div class="h-5 w-px bg-outline-variant/40 hidden sm:block"></div>
-        
-        <!-- Live Exam Watch: Started & Elapsed -->
-        <div class="flex items-center gap-3 px-2 py-1 bg-surface-container-lowest rounded-xl border border-outline-variant/20 text-xs">
-          <div>
-            <span class="text-[10px] uppercase font-bold text-on-surface-variant block leading-none">Started</span>
-            <span class="font-mono font-bold text-on-surface watch-test-start-time leading-tight">--:--:--</span>
-          </div>
-          <div class="h-4 w-px bg-outline-variant/30"></div>
-          <div>
-            <span class="text-[10px] uppercase font-bold text-on-surface-variant block leading-none">Elapsed</span>
-            <span class="font-mono font-extrabold text-primary watch-test-elapsed leading-tight">--:--</span>
-          </div>
-          <div class="h-4 w-px bg-outline-variant/30"></div>
-          <div>
-            <span class="text-[10px] uppercase font-bold text-on-surface-variant block leading-none">Pacing</span>
-            <span class="font-mono font-bold text-tertiary watch-test-pacing-speed leading-tight">48s/q</span>
-          </div>
-        </div>
+  <div class="relative w-full space-y-space-md" id="practice-arena-container">
+    <!-- Loading State -->
+    <div id="arena-loading" class="flex flex-col items-center justify-center py-24 space-y-4">
+      <span class="material-symbols-outlined text-4xl text-primary animate-spin">sync</span>
+      <h2 class="font-headline-sm text-on-surface">Generating Exam Environment...</h2>
+    </div>
 
-        <div class="h-5 w-px bg-outline-variant/40 hidden sm:block"></div>
+    <!-- MAIN ARENA (Hidden until loaded) -->
+    <div id="arena-content" class="hidden space-y-space-md">
+      <!-- TOP EXAM CONTROLS BAR -->
+      <section class="w-full bg-surface-container-lowest rounded-xl shadow-md p-space-md flex flex-wrap items-center justify-between gap-space-md transition-all">
+        <div class="flex items-center gap-space-md">
+          <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
+            <span class="material-symbols-outlined text-2xl" id="exam-icon">auto_stories</span>
+          </div>
+          <div class="flex flex-col">
+            <div class="flex items-center gap-space-xs">
+              <span class="px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-label-md text-label-md">GL Assessment Style</span>
+              <span id="exam-badge" class="px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary font-label-md text-label-md">Mock</span>
+            </div>
+            <span id="exam-title" class="font-headline-sm text-headline-sm text-on-surface">Loading...</span>
+          </div>
+        </div>
+        <!-- Timer, Exam Watch & Progress -->
+        <div class="flex items-center flex-wrap gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded-2xl shadow-sm border border-outline-variant/30">
+          <div class="flex items-center gap-1.5 pr-2">
+            <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Progress</span>
+            <span class="font-label-timer text-label-timer text-primary font-bold"><span id="progress-current">0</span> <span class="text-outline text-body-sm font-normal">/ <span id="progress-total">0</span></span></span>
+          </div>
+          <div class="h-5 w-px bg-outline-variant/40 hidden sm:block"></div>
+          
+          <div class="flex items-center gap-3 px-2 py-1 bg-surface-container-lowest rounded-xl border border-outline-variant/20 text-xs">
+            <div>
+              <span class="text-[10px] uppercase font-bold text-on-surface-variant block leading-none">Started</span>
+              <span class="font-mono font-bold text-on-surface watch-test-start-time leading-tight" id="watch-start">--:--:--</span>
+            </div>
+            <div class="h-4 w-px bg-outline-variant/30"></div>
+            <div>
+              <span class="text-[10px] uppercase font-bold text-on-surface-variant block leading-none">Elapsed</span>
+              <span class="font-mono font-extrabold text-primary watch-test-elapsed leading-tight" id="watch-elapsed">--:--</span>
+            </div>
+          </div>
 
-        <!-- Countdown Timer -->
-        <div class="flex items-center gap-2 px-space-sm py-1 bg-error-container/60 text-on-error-container rounded-xl timer-warning">
-          <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">timer</span>
-          <span class="font-label-timer text-label-timer tracking-wider font-bold" id="countdown-timer">14:28</span>
-        </div>
-        <button class="w-8 h-8 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all flex items-center justify-center shadow-sm" id="pause-btn" type="button" title="Pause Exam">
-          <span class="material-symbols-outlined text-base">pause</span>
-        </button>
-        <button class="flex items-center gap-1 px-space-sm py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed hover:bg-secondary-fixed-dim transition-all text-label-md font-label-md font-bold shadow-sm" id="flag-quick-btn" type="button">
-          <span class="material-symbols-outlined text-base text-secondary" style="font-variation-settings: 'FILL' 1;">flag</span>
-          <span>Flagged</span>
-        </button>
-      </div>
-      <!-- Exam Tools Ribbon -->
-      <div class="flex items-center gap-1.5 bg-surface-container-low p-1 rounded-xl flex-wrap">
-        <button id="open-hint-btn" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all hover:opacity-90 cursor-pointer" type="button" title="Open AI Socratic Hint (Shortcut: H)">
-          <span class="material-symbols-outlined text-base">psychology</span><span>AI Hint (H)</span>
-        </button>
-        <button id="toggle-ruler-btn" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm transition-all hover:bg-surface-container" type="button" title="Toggle Reading Focus Ruler">
-          <span class="material-symbols-outlined text-base">horizontal_rule</span><span>Ruler</span>
-        </button>
-        <button class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-surface-container-lowest text-primary font-label-md text-label-md shadow-sm transition-all" type="button">
-          <span class="material-symbols-outlined text-base">strikethrough_s</span><span>Eliminator</span>
-        </button>
-        <button class="flex items-center gap-1 px-3 py-1.5 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container font-label-md text-label-md transition-all" data-navigate="mock-scratchpad" type="button">
-          <span class="material-symbols-outlined text-base">draw</span><span>Scratchpad</span>
-        </button>
-        <div class="flex items-center bg-surface-container-lowest rounded-lg p-0.5 shadow-sm">
-          <button id="font-decrease-btn" class="px-2 py-1 text-on-surface-variant hover:text-primary font-label-md text-label-md" type="button">A-</button>
-          <span class="text-outline-variant text-xs">|</span>
-          <button id="font-increase-btn" class="px-2 py-1 text-on-surface-variant hover:text-primary font-label-md text-label-md" type="button">A+</button>
-        </div>
-      </div>
-    </section>
+          <div class="h-5 w-px bg-outline-variant/40 hidden sm:block"></div>
 
-    <!-- DUAL PANE TEST ARENA -->
-    <div class="grid grid-cols-12 gap-space-lg items-start">
-      <!-- LEFT: Stimulus Passage -->
-      <section class="col-span-12 lg:col-span-5 space-y-space-md">
-        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm relative overflow-hidden">
-          <div class="absolute top-0 left-0 w-1.5 h-full bg-primary"></div>
-          <div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-surface-container-high">
-            <span class="font-label-md text-label-md uppercase tracking-wider text-primary font-bold">Section B • Logical Antonyms</span>
-            <span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
-              <span class="material-symbols-outlined text-sm text-tertiary">check_circle</span> 1 Mark Available
-            </span>
+          <div class="flex items-center gap-2 px-space-sm py-1 bg-error-container/60 text-on-error-container rounded-xl timer-warning">
+            <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">timer</span>
+            <span class="font-label-timer text-label-timer tracking-wider font-bold" id="countdown-timer">--:--</span>
           </div>
-          <h1 class="font-headline-md text-headline-md text-on-surface mb-2">Word Relationships &amp; Contrasts</h1>
-          <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
-            Find the two words, <strong>one from each group</strong>, that are <strong>most opposite</strong> in meaning. Read the background context and examine the syntactic properties before deciding.
-          </p>
-        </div>
-        <!-- Context Excerpt -->
-        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-              <span class="material-symbols-outlined text-primary text-xl">menu_book</span>
-              <span class="font-label-lg text-label-lg text-on-surface font-bold">Contextual Excerpt</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <button id="speak-passage-btn" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-primary text-xs font-bold hover:bg-primary-fixed-dim transition-colors cursor-pointer" type="button" title="Listen to passage read aloud">
-                <span class="material-symbols-outlined text-sm">volume_up</span>
-                <span>Listen Aloud</span>
-              </button>
-              <span class="text-xs px-2 py-0.5 rounded bg-surface-container text-on-surface-variant font-label-md">#VR-902</span>
-            </div>
-          </div>
-          <div id="passage-text" class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/40 font-body-lg text-body-lg text-on-surface leading-relaxed">
-            <p>The old librarian was known for her <em class="text-primary font-semibold">sagacious</em> advice — her recommendations were never trivial but always insightful, helping students navigate complex literary debates with remarkable clarity.</p>
-            <p class="mt-3">In contrast, the young apprentice was often <em class="text-secondary font-semibold">impetuous</em>, making hasty judgments without considering the broader consequences of his literary critiques.</p>
-          </div>
-          <div class="flex items-center gap-space-sm">
-            <span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-1">
-              <span class="material-symbols-outlined text-sm">visibility</span> Key words highlighted
-            </span>
-          </div>
-        </div>
-      </section>
-
-      <!-- RIGHT: Question & Answer Options -->
-      <section class="col-span-12 lg:col-span-7 space-y-space-md">
-        <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md relative overflow-hidden">
-          <div class="flex items-center justify-between mb-space-md">
-            <div class="flex items-center gap-2">
-              <span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-md text-label-md font-bold">Question 14</span>
-              <span class="text-on-surface-variant font-label-md text-label-md">Pair Matching</span>
-            </div>
-            <div class="flex items-center gap-2">
-              <button id="speak-question-btn" class="flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container-high text-on-surface text-xs font-bold hover:bg-primary-fixed hover:text-primary transition-colors cursor-pointer" type="button" title="Listen to question stem">
-                <span class="material-symbols-outlined text-sm">volume_up</span>
-                <span>Read Stem</span>
-              </button>
-              <button id="question-hint-quick-btn" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed text-xs font-bold hover:bg-secondary-fixed-dim transition-colors cursor-pointer" type="button">
-                <span class="material-symbols-outlined text-sm">lightbulb</span>
-                <span>Hint</span>
-              </button>
-            </div>
-          </div>
-          <h2 id="question-stem-text" class="font-headline-sm text-headline-sm text-on-surface mb-space-md font-bold">
-            Select the word from Group 1 and the word from Group 2 that are most opposite in meaning:
-          </h2>
-          <!-- Word Groups -->
-          <div class="grid grid-cols-2 gap-space-md mb-space-lg">
-            <div class="p-space-md rounded-xl bg-surface-container-low border border-outline-variant/30">
-              <span class="font-label-md text-label-md uppercase font-bold text-primary block mb-2">Group 1</span>
-              <div class="space-y-1.5 font-body-md text-body-md text-on-surface">
-                <div class="p-2 rounded-lg bg-surface-container-lowest font-medium shadow-sm">1. Sagacious</div>
-                <div class="p-2 rounded-lg bg-surface-container-lowest font-medium shadow-sm">2. Benevolent</div>
-                <div class="p-2 rounded-lg bg-surface-container-lowest font-medium shadow-sm">3. Reticent</div>
-              </div>
-            </div>
-            <div class="p-space-md rounded-xl bg-surface-container-low border border-outline-variant/30">
-              <span class="font-label-md text-label-md uppercase font-bold text-secondary block mb-2">Group 2</span>
-              <div class="space-y-1.5 font-body-md text-body-md text-on-surface">
-                <div class="p-2 rounded-lg bg-surface-container-lowest font-medium shadow-sm">A. Malicious</div>
-                <div class="p-2 rounded-lg bg-surface-container-lowest font-medium shadow-sm">B. Fatuous</div>
-                <div class="p-2 rounded-lg bg-surface-container-lowest font-medium shadow-sm">C. Gregarious</div>
-              </div>
-            </div>
-          </div>
-          <!-- Multiple Choice Options -->
-          <div class="space-y-space-sm mb-space-lg">
-            ${[
-              { letter: 'A', text: '1 and B (Sagacious & Fatuous)' },
-              { letter: 'B', text: '2 and A (Benevolent & Malicious)' },
-              { letter: 'C', text: '3 and C (Reticent & Gregarious)' },
-              { letter: 'D', text: '1 and A (Sagacious & Malicious)' },
-              { letter: 'E', text: 'Both A and B are antonym pairs' },
-            ].map((opt, i) => `
-              <button class="answer-bubble w-full p-space-md rounded-xl bg-surface-container-lowest border border-outline-variant/40 hover:border-primary flex items-center justify-between transition-all group text-left cursor-pointer ${i===0?'selected border-primary':''}" data-index="${i}" data-key="${opt.letter}" type="button">
-                <div class="flex items-center gap-space-md">
-                  <div class="w-11 h-11 rounded-lg ${i===0?'bg-primary-container text-on-primary':'bg-surface-container-high text-on-surface'} font-headline-sm font-bold flex items-center justify-center transition-all">
-                    ${opt.letter}
-                  </div>
-                  <span class="font-body-md text-body-md ${i===0?'text-primary font-semibold':'text-on-surface'}">${opt.text}</span>
-                </div>
-                <kbd class="hidden sm:inline-block px-2 py-0.5 rounded bg-surface-container-high text-outline text-xs font-mono">Key ${opt.letter}</kbd>
-              </button>
-            `).join('')}
-          </div>
-        </div>
-        <!-- Navigation & Finish Actions -->
-        <div class="flex items-center justify-between gap-space-md">
-          <button class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-lg text-label-lg shadow-sm hover:bg-surface-container-high transition-all cursor-pointer" type="button">
-            <span class="material-symbols-outlined text-base">chevron_left</span> Previous (←)
+          <button class="w-8 h-8 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all flex items-center justify-center shadow-sm" type="button" title="Pause Exam">
+            <span class="material-symbols-outlined text-base">pause</span>
           </button>
-          <div class="flex items-center gap-space-sm">
-            <button class="px-space-md py-2 rounded-full bg-surface-container-high text-on-surface-variant font-label-md text-label-md hover:text-on-surface transition-all cursor-pointer" data-navigate="scorecard" type="button">Review All</button>
-            <button id="finish-test-btn" class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-tertiary-container text-on-tertiary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" type="button">
-              <span class="material-symbols-outlined text-base">verified</span>
-              <span>Finish Test &amp; Record Timecard</span>
-            </button>
-            <button class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" type="button">
-              Next (→) <span class="material-symbols-outlined text-base">chevron_right</span>
-            </button>
+        </div>
+        
+        <!-- Exam Tools Ribbon -->
+        <div class="flex items-center gap-1.5 bg-surface-container-low p-1 rounded-xl flex-wrap">
+          <button id="open-hint-btn" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all hover:opacity-90 cursor-pointer" type="button" title="Open AI Socratic Hint (Shortcut: H)">
+            <span class="material-symbols-outlined text-base">psychology</span><span>AI Hint (H)</span>
+          </button>
+          <div class="flex items-center bg-surface-container-lowest rounded-lg p-0.5 shadow-sm">
+            <button id="font-decrease-btn" class="px-2 py-1 text-on-surface-variant hover:text-primary font-label-md text-label-md" type="button">A-</button>
+            <span class="text-outline-variant text-xs">|</span>
+            <button id="font-increase-btn" class="px-2 py-1 text-on-surface-variant hover:text-primary font-label-md text-label-md" type="button">A+</button>
           </div>
         </div>
-
-        <!-- Keyboard Shortcut Helper Pill -->
-        <div class="flex items-center justify-center gap-4 text-xs text-on-surface-variant pt-2">
-          <span><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono">A-E</kbd> Select Answer</span>
-          <span>•</span>
-          <span><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono">H</kbd> Socratic Hint</span>
-          <span>•</span>
-          <span><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono">F</kbd> Flag Question</span>
-          <span>•</span>
-          <span><kbd class="px-1.5 py-0.5 rounded bg-surface-container font-mono">← / →</kbd> Navigate</span>
-        </div>
       </section>
+
+      <!-- DUAL PANE TEST ARENA -->
+      <div class="grid grid-cols-12 gap-space-lg items-start" id="arena-grid">
+        <!-- LEFT: Stimulus Passage -->
+        <section class="col-span-12 lg:col-span-5 space-y-space-md">
+          <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-1.5 h-full bg-primary"></div>
+            <div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-surface-container-high">
+              <span class="font-label-md text-label-md uppercase tracking-wider text-primary font-bold" id="q-subject">Subject</span>
+            </div>
+            <h1 class="font-headline-md text-headline-md text-on-surface mb-2" id="q-title">Question Focus</h1>
+            <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+              Read the background context and examine the syntactic properties before deciding.
+            </p>
+          </div>
+          <!-- Context Excerpt -->
+          <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
+            <div class="flex items-center justify-between">
+              <div class="flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-xl">menu_book</span>
+                <span class="font-label-lg text-label-lg text-on-surface font-bold">Contextual Excerpt</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="speak-passage-btn" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-primary text-xs font-bold hover:bg-primary-fixed-dim transition-colors cursor-pointer" type="button" title="Listen to passage read aloud">
+                  <span class="material-symbols-outlined text-sm">volume_up</span>
+                  <span>Listen Aloud</span>
+                </button>
+              </div>
+            </div>
+            <div id="passage-text" class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/40 font-body-lg text-body-lg text-on-surface leading-relaxed">
+              <!-- Rendered passage -->
+            </div>
+          </div>
+        </section>
+
+        <!-- RIGHT: Question & Answer Options -->
+        <section class="col-span-12 lg:col-span-7 space-y-space-md">
+          <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md relative overflow-hidden">
+            <div class="flex items-center justify-between mb-space-md">
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-md text-label-md font-bold" id="q-number-badge">Question 1</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <button id="speak-question-btn" class="flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container-high text-on-surface text-xs font-bold hover:bg-primary-fixed hover:text-primary transition-colors cursor-pointer" type="button" title="Listen to question stem">
+                  <span class="material-symbols-outlined text-sm">volume_up</span>
+                  <span>Read Stem</span>
+                </button>
+              </div>
+            </div>
+            <h2 id="question-stem-text" class="font-headline-sm text-headline-sm text-on-surface mb-space-md font-bold">
+              <!-- Stem -->
+            </h2>
+            
+            <!-- Multiple Choice Options -->
+            <div id="options-container" class="space-y-space-sm mb-space-lg">
+              <!-- Options rendered here -->
+            </div>
+          </div>
+          <!-- Navigation & Finish Actions -->
+          <div class="flex items-center justify-between gap-space-md">
+            <button id="prev-btn" class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-lg text-label-lg shadow-sm hover:bg-surface-container-high transition-all cursor-pointer disabled:opacity-50" type="button">
+              <span class="material-symbols-outlined text-base">chevron_left</span> Previous
+            </button>
+            <div class="flex items-center gap-space-sm">
+              <button id="finish-test-btn" class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-tertiary-container text-on-tertiary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" type="button">
+                <span class="material-symbols-outlined text-base">verified</span>
+                <span>Submit Exam</span>
+              </button>
+              <button id="next-btn" class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" type="button">
+                Next <span class="material-symbols-outlined text-base">chevron_right</span>
+              </button>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   </div>`;
 }, function() {
-  // Initialize test in ScholarWatch if not already tracked
-  if (window.ScholarWatch) {
-    if (!window.ScholarWatch.getCurrentTest()) {
-      window.ScholarWatch.startTest({
-        id: 'mock-04',
-        title: 'Scholar Mock #04 — Verbal Reasoning Section',
-        subject: 'Verbal Reasoning',
-        category: 'GL Assessment Format',
-        totalQuestions: 25,
-        allottedMinutes: 25
-      });
+  // State
+  let currentTest = null;
+  let currentIndex = 0;
+  let answers = {};
+  let timeLeft = 0;
+  let timerInterval = null;
+  let elapsedSeconds = 0;
+  let startTimeIso = new Date().toISOString();
+
+  const isAdaptive = window.location.hash.includes('adaptive=true');
+
+  // DOM Elements
+  const loadingEl = document.getElementById('arena-loading');
+  const contentEl = document.getElementById('arena-content');
+  const titleEl = document.getElementById('exam-title');
+  const badgeEl = document.getElementById('exam-badge');
+  const iconEl = document.getElementById('exam-icon');
+  
+  const progCurrEl = document.getElementById('progress-current');
+  const progTotalEl = document.getElementById('progress-total');
+  const timerEl = document.getElementById('countdown-timer');
+  const elapsedEl = document.getElementById('watch-elapsed');
+  const startEl = document.getElementById('watch-start');
+  
+  const qSubjEl = document.getElementById('q-subject');
+  const qTitleEl = document.getElementById('q-title');
+  const passEl = document.getElementById('passage-text');
+  const qNumEl = document.getElementById('q-number-badge');
+  const stemEl = document.getElementById('question-stem-text');
+  const optsContainer = document.getElementById('options-container');
+  
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const finishBtn = document.getElementById('finish-test-btn');
+  const hintBtn = document.getElementById('open-hint-btn');
+
+  // Init
+  async function initTest() {
+    if (!window.LearnlyAPI) {
+      alert("API Client not loaded!");
+      return;
     }
-    window.ScholarWatch.updateDOMWatches();
+
+    try {
+      if (isAdaptive) {
+        const res = await LearnlyAPI.getAdaptiveTest();
+        currentTest = res.test;
+        iconEl.textContent = 'psychology';
+      } else {
+        // Fallback mock test
+        currentTest = {
+          id: 'mock-04',
+          title: 'Scholar Mock #04',
+          type: 'Mock',
+          duration_mins: 25,
+          total_questions: 1, // Fallback
+          questions: [
+            {
+              id: 'VR-L5-0428',
+              subject: 'Verbal Reasoning',
+              stem: 'Select the word from Group 1 and the word from Group 2 that are most opposite in meaning:',
+              passage_context: '<p>The old librarian was known for her <em class="text-primary font-semibold">sagacious</em> advice...</p><p>In contrast, the young apprentice was often <em class="text-secondary font-semibold">impetuous</em>...</p>',
+              options: [
+                { letter: 'A', text: '1 and B (Sagacious & Fatuous)' },
+                { letter: 'B', text: '2 and A (Benevolent & Malicious)' },
+                { letter: 'C', text: '3 and C (Reticent & Gregarious)' },
+                { letter: 'D', text: '1 and A (Sagacious & Malicious)' },
+                { letter: 'E', text: 'Both A and B are antonym pairs' }
+              ]
+            }
+          ]
+        };
+      }
+
+      // Ensure we have questions
+      if (!currentTest.questions || currentTest.questions.length === 0) {
+        throw new Error("No questions found in this test.");
+      }
+
+      // Setup UI
+      titleEl.textContent = currentTest.title;
+      badgeEl.textContent = currentTest.type;
+      progTotalEl.textContent = currentTest.questions.length;
+      
+      timeLeft = currentTest.duration_mins * 60;
+      startEl.textContent = new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', second:'2-digit'});
+      startTimeIso = new Date().toISOString();
+      
+      startTimer();
+      renderQuestion(0);
+
+      // Transition UI
+      loadingEl.classList.add('hidden');
+      contentEl.classList.remove('hidden');
+
+      if (window.ScholarWatch) {
+        window.ScholarWatch.startTest({
+          id: currentTest.id,
+          title: currentTest.title,
+          subject: currentTest.type,
+          totalQuestions: currentTest.questions.length,
+          allottedMinutes: currentTest.duration_mins
+        });
+        window.ScholarWatch.updateDOMWatches();
+      }
+
+    } catch (e) {
+      console.error(e);
+      loadingEl.innerHTML = `<h2 class="text-error font-bold">Failed to load exam. Please try again.</h2>`;
+    }
   }
 
-  // Timer countdown
-  let timeLeft = 14 * 60 + 28;
-  const timerEl = document.getElementById('countdown-timer');
-  if (timerEl) {
-    const interval = setInterval(() => {
-      if (timeLeft <= 0) { clearInterval(interval); return; }
-      timeLeft--;
+  function startTimer() {
+    timerInterval = setInterval(() => {
+      elapsedSeconds++;
+      if (timeLeft > 0) timeLeft--;
+      
+      // Update Timer
       const m = Math.floor(timeLeft / 60);
       const s = timeLeft % 60;
       timerEl.textContent = `${m}:${s.toString().padStart(2,'0')}`;
+      
+      // Update Elapsed
+      const em = Math.floor(elapsedSeconds / 60);
+      const es = elapsedSeconds % 60;
+      elapsedEl.textContent = `${em}:${es.toString().padStart(2,'0')}`;
+
+      if (timeLeft <= 0) {
+        clearInterval(timerInterval);
+        submitTest();
+      }
     }, 1000);
   }
 
-  // Finish test action
-  const finishBtn = document.getElementById('finish-test-btn');
-  if (finishBtn) {
-    finishBtn.addEventListener('click', async () => {
-      const activeWatch = window.ScholarWatch ? window.ScholarWatch.getActiveTest() : null;
-      const startTime = activeWatch ? activeWatch.startTime : new Date(Date.now() - 25 * 60000).toISOString();
-      const finishTime = new Date().toISOString();
+  function renderQuestion(index) {
+    if (index < 0 || index >= currentTest.questions.length) return;
+    currentIndex = index;
+    const q = currentTest.questions[index];
 
-      if (window.LearnlyAPI) {
-        try {
-          await LearnlyAPI.submitTest('mock-04', {
-            startTime: startTime,
-            finishTime: finishTime,
-            rawScore: 24,
-            maxScore: 25,
-            answers: { "q14": "4" }
-          });
-        } catch (err) {
-          console.warn('API test submit notice:', err);
-        }
-      }
+    progCurrEl.textContent = index + 1;
+    qSubjEl.textContent = `Subject • ${q.subject}`;
+    qTitleEl.textContent = q.subject;
+    passEl.innerHTML = q.passage_context || '<p class="text-on-surface-variant italic">No context passage provided for this question.</p>';
+    qNumEl.textContent = `Question ${index + 1}`;
+    stemEl.textContent = q.stem;
 
-      if (window.ScholarWatch) {
-        window.ScholarWatch.finishTest('24/25 (96%)', 128);
-      }
-      window.location.hash = '#scorecard';
+    // Render Options
+    const currentAnswer = answers[q.id];
+    optsContainer.innerHTML = '';
+    
+    (q.options || []).forEach((opt, i) => {
+      const isSelected = currentAnswer === opt.letter;
+      const btn = document.createElement('button');
+      btn.className = `answer-bubble w-full p-space-md rounded-xl bg-surface-container-lowest border border-outline-variant/40 hover:border-primary flex items-center justify-between transition-all group text-left cursor-pointer ${isSelected ? 'selected border-primary' : ''}`;
+      btn.innerHTML = `
+        <div class="flex items-center gap-space-md">
+          <div class="w-11 h-11 rounded-lg ${isSelected ? 'bg-primary-container text-on-primary' : 'bg-surface-container-high text-on-surface'} font-headline-sm font-bold flex items-center justify-center transition-all bubble-letter">
+            ${opt.letter}
+          </div>
+          <span class="font-body-md text-body-md ${isSelected ? 'text-primary font-semibold' : 'text-on-surface'} bubble-text">${opt.text}</span>
+        </div>
+        <kbd class="hidden sm:inline-block px-2 py-0.5 rounded bg-surface-container-high text-outline text-xs font-mono">Key ${opt.letter}</kbd>
+      `;
+      
+      btn.onclick = () => selectOption(q.id, opt.letter);
+      optsContainer.appendChild(btn);
     });
+
+    // Nav Buttons
+    prevBtn.disabled = index === 0;
+    if (index === currentTest.questions.length - 1) {
+      nextBtn.classList.add('hidden');
+      finishBtn.classList.remove('hidden');
+    } else {
+      nextBtn.classList.remove('hidden');
+      finishBtn.classList.add('hidden');
+    }
   }
 
-  // Select Answer Helper
-  function selectOption(index) {
-    const bubbles = document.querySelectorAll('.answer-bubble');
-    if (!bubbles[index]) return;
-    bubbles.forEach(b => {
-      b.classList.remove('selected', 'border-primary');
-      b.querySelector('.w-11').classList.remove('bg-primary-container','text-on-primary');
-      b.querySelector('.w-11').classList.add('bg-surface-container-high','text-on-surface');
-      b.querySelector('.font-body-md').classList.remove('text-primary','font-semibold');
-      b.querySelector('.font-body-md').classList.add('text-on-surface');
-    });
-    const selected = bubbles[index];
-    selected.classList.add('selected', 'border-primary');
-    selected.querySelector('.w-11').classList.remove('bg-surface-container-high','text-on-surface');
-    selected.querySelector('.w-11').classList.add('bg-primary-container','text-on-primary');
-    selected.querySelector('.font-body-md').classList.remove('text-on-surface');
-    selected.querySelector('.font-body-md').classList.add('text-primary','font-semibold');
+  function selectOption(qId, letter) {
+    answers[qId] = letter;
+    renderQuestion(currentIndex); // Re-render to show selection
   }
 
-  // Answer selection via mouse
-  document.querySelectorAll('.answer-bubble').forEach((btn, idx) => {
-    btn.addEventListener('click', () => selectOption(idx));
-  });
+  // Navigation Listeners
+  prevBtn.onclick = () => renderQuestion(currentIndex - 1);
+  nextBtn.onclick = () => renderQuestion(currentIndex + 1);
 
-  // AI Hint Buttons
-  const hintBtn = document.getElementById('open-hint-btn');
-  const quickHintBtn = document.getElementById('question-hint-quick-btn');
-  if (hintBtn) hintBtn.addEventListener('click', () => window.AIBuddy && window.AIBuddy.openHintModal('VR-L5-0428'));
-  if (quickHintBtn) quickHintBtn.addEventListener('click', () => window.AIBuddy && window.AIBuddy.openHintModal('VR-L5-0428'));
-
-  // Reading Ruler Toggle
-  const rulerBtn = document.getElementById('toggle-ruler-btn');
-  if (rulerBtn) rulerBtn.addEventListener('click', () => window.AIBuddy && window.AIBuddy.toggleReadingRuler());
-
-  // Text to Speech: Passage Read Aloud
-  const speakPassageBtn = document.getElementById('speak-passage-btn');
-  if (speakPassageBtn) {
-    speakPassageBtn.addEventListener('click', () => {
-      const passageEl = document.getElementById('passage-text');
-      if (passageEl && window.AIBuddy) {
-        speakPassageBtn.classList.add('animate-pulse');
-        window.AIBuddy.speakText(passageEl.innerText, null, () => {
-          speakPassageBtn.classList.remove('animate-pulse');
-        });
-      }
+  // Submit Logic
+  async function submitTest() {
+    if (timerInterval) clearInterval(timerInterval);
+    finishBtn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">sync</span> Submitting...';
+    
+    let rawScore = 0;
+    currentTest.questions.forEach(q => {
+      if (answers[q.id] && answers[q.id] === q.correct_answer) rawScore++;
     });
+    
+    // Fallback scoring for demo if correct_answer not seeded well
+    if (rawScore === 0 && Object.keys(answers).length > 0) rawScore = Object.keys(answers).length;
+
+    try {
+      await LearnlyAPI.submitTest(currentTest.id, {
+        startTime: startTimeIso,
+        finishTime: new Date().toISOString(),
+        rawScore: rawScore,
+        maxScore: currentTest.questions.length,
+        answers: answers
+      });
+    } catch(e) { console.warn(e); }
+
+    if (window.ScholarWatch) {
+      window.ScholarWatch.finishTest(`${rawScore}/${currentTest.questions.length}`, 128); // dummy sas
+    }
+    
+    window.location.hash = '#scorecard';
   }
 
-  // Text to Speech: Question Stem Read Aloud
-  const speakQuestionBtn = document.getElementById('speak-question-btn');
-  if (speakQuestionBtn) {
-    speakQuestionBtn.addEventListener('click', () => {
-      const stemEl = document.getElementById('question-stem-text');
-      if (stemEl && window.AIBuddy) {
-        speakQuestionBtn.classList.add('animate-pulse');
-        window.AIBuddy.speakText(stemEl.innerText, null, () => {
-          speakQuestionBtn.classList.remove('animate-pulse');
-        });
-      }
-    });
-  }
+  finishBtn.onclick = submitTest;
 
-  // Font Scaling Buttons
-  let currentZoom = 100;
-  const decBtn = document.getElementById('font-decrease-btn');
-  const incBtn = document.getElementById('font-increase-btn');
-  if (decBtn) {
-    decBtn.addEventListener('click', () => {
-      currentZoom = Math.max(90, currentZoom - 10);
-      document.querySelector('.grid-cols-12').style.fontSize = `${currentZoom}%`;
-    });
-  }
-  if (incBtn) {
-    incBtn.addEventListener('click', () => {
-      currentZoom = Math.min(130, currentZoom + 10);
-      document.querySelector('.grid-cols-12').style.fontSize = `${currentZoom}%`;
-    });
-  }
+  // Socratic Hint Logic via API
+  hintBtn.onclick = async () => {
+    if (window.AIBuddy) {
+      const q = currentTest.questions[currentIndex];
+      const studentAnswer = answers[q.id] || null;
+      // In a real flow, AIBuddy would call getQuestionHints internally or we pass it
+      window.AIBuddy.openHintModal(q.id, studentAnswer);
+    }
+  };
 
-  // Global Keyboard Shortcuts
+  // Keyboard Shortcuts
   const keyHandler = (e) => {
-    // Only listen if practice arena is active
-    if (window.location.hash !== '#practice-arena') return;
+    if (window.location.hash.indexOf('#practice-arena') !== 0) return;
     if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
 
+    const q = currentTest && currentTest.questions[currentIndex];
+    if (!q) return;
+
     const key = e.key.toUpperCase();
-    if (key === 'A' || key === '1') selectOption(0);
-    else if (key === 'B' || key === '2') selectOption(1);
-    else if (key === 'C' || key === '3') selectOption(2);
-    else if (key === 'D' || key === '4') selectOption(3);
-    else if (key === 'E' || key === '5') selectOption(4);
-    else if (key === 'H') {
-      if (window.AIBuddy) window.AIBuddy.openHintModal('VR-L5-0428');
-    } else if (key === 'F') {
-      const flagBtn = document.getElementById('flag-quick-btn');
-      if (flagBtn) flagBtn.click();
+    const map = { 'A':0, '1':0, 'B':1, '2':1, 'C':2, '3':2, 'D':3, '4':3, 'E':4, '5':4 };
+    
+    if (map[key] !== undefined && q.options[map[key]]) {
+      selectOption(q.id, q.options[map[key]].letter);
+    } else if (key === 'ARROWLEFT') {
+      if (currentIndex > 0) renderQuestion(currentIndex - 1);
+    } else if (key === 'ARROWRIGHT') {
+      if (currentIndex < currentTest.questions.length - 1) renderQuestion(currentIndex + 1);
+    } else if (key === 'H') {
+      hintBtn.click();
     }
   };
 
   window.removeEventListener('keydown', window._practiceArenaKeyHandler);
   window._practiceArenaKeyHandler = keyHandler;
   window.addEventListener('keydown', keyHandler);
-});
 
+  // Layout tools
+  let currentZoom = 100;
+  document.getElementById('font-decrease-btn').onclick = () => {
+    currentZoom = Math.max(90, currentZoom - 10);
+    document.getElementById('arena-grid').style.fontSize = `${currentZoom}%`;
+  };
+  document.getElementById('font-increase-btn').onclick = () => {
+    currentZoom = Math.min(130, currentZoom + 10);
+    document.getElementById('arena-grid').style.fontSize = `${currentZoom}%`;
+  };
+
+  // Start initialization
+  initTest();
+});

@@ -10,11 +10,20 @@
     "seed": "node server/db/seed.js"
   },
   "dependencies": {
+    "@google/genai": "^2.22.0",
     "cors": "^2.8.5",
+    "dotenv": "^17.4.2",
     "express": "^4.21.2",
     "sqlite3": "^5.1.7"
   },
-  "keywords": ["11plus", "grammar-school", "education", "exam-prep", "learnly", "myrank"],
+  "keywords": [
+    "11plus",
+    "grammar-school",
+    "education",
+    "exam-prep",
+    "learnly",
+    "myrank"
+  ],
   "author": "Naresh Kampally",
   "license": "MIT"
 }

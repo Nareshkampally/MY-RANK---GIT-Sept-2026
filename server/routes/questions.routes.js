@@ -2,6 +2,7 @@
 const express = require('express');
 const router = express.Router();
 const { queryGet } = require('../db/database');
+const { generateSocraticHints } = require('../services/aiTutor');
 
 // GET /api/questions/:id — fetch question stem, options, and passage
 router.get('/:id', async (req, res) => {
@@ -28,23 +29,36 @@ router.get('/:id', async (req, res) => {
   }
 });
 
-// GET /api/questions/:id/hints — 3-tier Socratic scaffolding hints
-router.get('/:id/hints', async (req, res) => {
+// GET /api/questions/:id/hints — 3-tier Socratic scaffolding hints via AI
+router.post('/:id/hints', async (req, res) => {
   try {
-    const q = await queryGet('SELECT socratic_hints_json, stem FROM questions WHERE id = ?', [req.params.id]);
-    if (!q || !q.socratic_hints_json) {
-      return res.json({
-        hints: {
-          tier1: 'Break the problem down and identify the main relationship between the items.',
-          tier2: 'Eliminate two obvious wrong answers using contextual clues.',
-          tier3: 'Compare the remaining two options against the grammatical structure.'
-        }
-      });
+    const q = await queryGet('SELECT * FROM questions WHERE id = ?', [req.params.id]);
+    if (!q) {
+      return res.status(404).json({ error: 'Question not found' });
     }
 
-    res.json({ hints: JSON.parse(q.socratic_hints_json) });
+    const { studentSAS, studentAnswer } = req.body;
+    
+    // Parse options and hints for fallback context
+    const parsedOptions = JSON.parse(q.options_json || '[]');
+    const staticHints = q.socratic_hints_json ? JSON.parse(q.socratic_hints_json) : null;
+    
+    // Construct question details for AI
+    const questionDetails = {
+      subject: q.subject,
+      passage: q.passage_context,
+      question_text: q.stem,
+      correct_answer: q.correct_answer,
+      hint_1: staticHints?.tier1,
+      hint_2: staticHints?.tier2,
+      hint_3: staticHints?.tier3
+    };
+
+    const hints = await generateSocraticHints(questionDetails, studentSAS || 100, studentAnswer);
+    res.json({ hints });
   } catch (err) {
-    res.status(500).json({ error: 'Failed to fetch hints' });
+    console.error(err);
+    res.status(500).json({ error: 'Failed to fetch AI hints' });
   }
 });
 

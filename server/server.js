@@ -1,4 +1,5 @@
 // Learnly 11+ / MyRank 11+ — Production Express Server
+require('dotenv').config();
 const path = require('path');
 const express = require('express');
 const cors = require('cors');

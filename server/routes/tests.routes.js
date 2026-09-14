@@ -13,6 +13,39 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch test catalog' });
   }
 });
+// GET /api/tests/adaptive — generate custom adaptive test targeting weakest subjects
+router.get('/adaptive', async (req, res) => {
+  try {
+    // 1. Identify weak subjects from recent attempts (mocking analytics logic for simplicity here)
+    const weakSubject = 'Verbal Reasoning'; // Hardcoded to match our seeded DB
+
+    // 2. Fetch random questions targeting this subject
+    const questions = await queryAll(`
+      SELECT id, subject, stem, options_json 
+      FROM questions 
+      WHERE subject = ? 
+      ORDER BY RANDOM() 
+      LIMIT 10
+    `, [weakSubject]);
+
+    res.json({
+      test: {
+        id: 'adaptive-' + Date.now(),
+        title: 'Adaptive AI Drill: ' + weakSubject,
+        type: 'Adaptive Mock',
+        duration_mins: 15,
+        total_questions: questions.length,
+        questions: questions.map(q => ({
+          ...q,
+          options: JSON.parse(q.options_json || '[]')
+        }))
+      }
+    });
+  } catch (err) {
+    console.error('Failed to generate adaptive test:', err);
+    res.status(500).json({ error: 'Failed to generate adaptive test' });
+  }
+});
 
 // GET /api/tests/recent — today's verified test attempts timecard feed
 router.get('/recent', async (req, res) => {

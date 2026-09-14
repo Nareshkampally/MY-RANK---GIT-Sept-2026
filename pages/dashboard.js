@@ -139,9 +139,14 @@ LearnlyRouter.register('dashboard', function() {
               <div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
                 <span class="material-symbols-outlined text-sm">schedule</span> 10 mins
               </div>
-              <button class="px-space-md py-2 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5" data-navigate="practice-arena" type="button">
-                <span class="material-symbols-outlined text-base">play_arrow</span> In Progress
-              </button>
+              <div class="flex flex-wrap gap-2">
+                <button class="px-space-md py-2 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5" data-navigate="practice-arena" type="button">
+                  <span class="material-symbols-outlined text-base">play_arrow</span> In Progress
+                </button>
+                <button id="adaptive-drill-btn" class="px-space-md py-2 rounded-full bg-secondary text-on-secondary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5" type="button">
+                  <span class="material-symbols-outlined text-base">psychology</span> Adaptive AI Drill
+                </button>
+              </div>
             </div>
           </div>
           <!-- Card 2: Math Mastery -->
@@ -479,6 +484,29 @@ LearnlyRouter.register('dashboard', function() {
 }, function() {
   if (window.ScholarWatch) {
     window.ScholarWatch.updateDOMWatches();
+  }
+
+  const adaptiveBtn = document.getElementById('adaptive-drill-btn');
+  if (adaptiveBtn) {
+    adaptiveBtn.addEventListener('click', async () => {
+      if (window.LearnlyAPI) {
+        adaptiveBtn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">sync</span> Generating...';
+        try {
+          const res = await LearnlyAPI.getAdaptiveTest();
+          console.log('Adaptive Test Generated:', res.test);
+          if (window.AIBuddy) {
+            window.AIBuddy.showToast('AI Drill Ready! 🎯', `Generated a ${res.test.duration_mins}-min drill targeting ${res.test.title.split(': ')[1]}.`);
+          }
+          // Navigate to practice arena after brief delay to show toast
+          setTimeout(() => {
+            window.location.hash = '#practice-arena?adaptive=true';
+          }, 1500);
+        } catch (e) {
+          console.error(e);
+          adaptiveBtn.innerHTML = '<span class="material-symbols-outlined text-base">psychology</span> Adaptive AI Drill';
+        }
+      }
+    });
   }
 });
 

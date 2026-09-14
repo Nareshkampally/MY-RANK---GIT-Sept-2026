@@ -79,8 +79,8 @@ const AIBuddy = (function() {
   }
 
   // Open Socratic AI Hint Drawer
-  function openHintModal(questionId = 'VR-L5-0428') {
-    const hintData = QUESTION_HINTS[questionId] || QUESTION_HINTS['VR-L5-0428'];
+  // Open Socratic AI Hint Drawer
+  async function openHintModal(questionId = 'VR-L5-0428', studentAnswer = null) {
     let modal = document.getElementById('ai-hint-modal');
     if (!modal) {
       modal = document.createElement('div');
@@ -91,46 +91,64 @@ const AIBuddy = (function() {
 
     modal.innerHTML = `
       <div class="relative w-full max-w-xl bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-2xl border border-outline-variant/30 text-on-surface animate-in fade-in zoom-in-95 duration-200">
-        <!-- Close Button -->
-        <button id="close-hint-modal" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant flex items-center justify-center transition-colors">
-          <span class="material-symbols-outlined text-lg">close</span>
-        </button>
-
-        <!-- Header -->
-        <div class="flex items-center gap-3 mb-6">
-          <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-primary to-primary-container text-on-primary flex items-center justify-center shadow-lg">
-            <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">neurology</span>
-          </div>
-          <div>
-            <div class="flex items-center gap-2">
-              <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider">AI Socratic Tutor</span>
-              <span class="text-xs font-semibold text-tertiary flex items-center gap-1">
-                <span class="w-2 h-2 rounded-full bg-tertiary"></span> Active Scaffolding
-              </span>
-            </div>
-            <h2 class="text-xl font-extrabold text-on-surface tracking-tight mt-0.5">Need a hint? Let's solve it together!</h2>
-          </div>
+        <div class="flex flex-col items-center justify-center py-12">
+          <span class="material-symbols-outlined text-4xl text-primary animate-spin mb-4">sync</span>
+          <h2 class="text-xl font-extrabold text-on-surface tracking-tight mt-0.5">AI Tutor is analyzing your context...</h2>
         </div>
+      </div>
+    `;
+    modal.classList.remove('hidden');
 
-        <p class="text-xs font-medium text-on-surface-variant mb-4 bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/20">
-          💡 <strong>Learnly Socratic Rule:</strong> We don't just give the answer. Use progressive hint levels to train your cognitive intuition for the real exam.
-        </p>
+    try {
+      const res = await LearnlyAPI.getQuestionHints(questionId, { studentSAS: 100, studentAnswer });
+      const hintData = {
+        tier1: { icon: 'lightbulb', badge: 'Context Clue', text: res.hints.tier1 },
+        tier2: { icon: 'psychology', badge: 'Elimination', text: res.hints.tier2 },
+        tier3: { icon: 'target', badge: 'Final Push', text: res.hints.tier3 }
+      };
 
-        <!-- Progressive Hint Tiers Accordion -->
-        <div class="space-y-3 mb-6">
-          <!-- Tier 1 -->
-          <div class="p-4 rounded-2xl bg-surface-container-low border border-primary/20 transition-all">
-            <div class="flex items-center justify-between">
-              <div class="flex items-center gap-2">
-                <span class="w-7 h-7 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
-                  <span class="material-symbols-outlined text-base">${hintData.tier1.icon}</span>
-                </span>
-                <span class="text-xs font-bold uppercase tracking-wider text-primary">${hintData.tier1.badge}</span>
-              </div>
-              <span class="text-xs text-outline font-semibold">Step 1</span>
+      modal.innerHTML = `
+        <div class="relative w-full max-w-xl bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-2xl border border-outline-variant/30 text-on-surface animate-in fade-in zoom-in-95 duration-200">
+          <!-- Close Button -->
+          <button id="close-hint-modal" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant flex items-center justify-center transition-colors">
+            <span class="material-symbols-outlined text-lg">close</span>
+          </button>
+
+          <!-- Header -->
+          <div class="flex items-center gap-3 mb-6">
+            <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-primary to-primary-container text-on-primary flex items-center justify-center shadow-lg">
+              <span class="material-symbols-outlined text-2xl" style="font-variation-settings: 'FILL' 1;">neurology</span>
             </div>
-            <p class="text-sm text-on-surface mt-2.5 leading-relaxed">${hintData.tier1.text}</p>
+            <div>
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider">AI Socratic Tutor</span>
+                <span class="text-xs font-semibold text-tertiary flex items-center gap-1">
+                  <span class="w-2 h-2 rounded-full bg-tertiary"></span> Active Scaffolding
+                </span>
+              </div>
+              <h2 class="text-xl font-extrabold text-on-surface tracking-tight mt-0.5">Need a hint? Let's solve it together!</h2>
+            </div>
           </div>
+
+          <p class="text-xs font-medium text-on-surface-variant mb-4 bg-surface-container-low p-2.5 rounded-xl border border-outline-variant/20">
+            💡 <strong>Learnly Socratic Rule:</strong> We don't just give the answer. Use progressive hint levels to train your cognitive intuition for the real exam.
+          </p>
+
+          <!-- Progressive Hint Tiers Accordion -->
+          <div class="space-y-3 mb-6">
+            <!-- Tier 1 -->
+            <div class="p-4 rounded-2xl bg-surface-container-low border border-primary/20 transition-all">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                  <span class="w-7 h-7 rounded-lg bg-primary/10 text-primary flex items-center justify-center">
+                    <span class="material-symbols-outlined text-base">${hintData.tier1.icon}</span>
+                  </span>
+                  <span class="text-xs font-bold uppercase tracking-wider text-primary">${hintData.tier1.badge}</span>
+                </div>
+                <span class="text-xs text-outline font-semibold">Step 1</span>
+              </div>
+              <p class="text-sm text-on-surface mt-2.5 leading-relaxed">${hintData.tier1.text}</p>
+            </div>
 
           <!-- Tier 2 (Unlockable) -->
           <div id="hint-tier-2-box" class="p-4 rounded-2xl bg-surface-container-low/60 border border-outline-variant/30 transition-all">
@@ -205,6 +223,23 @@ const AIBuddy = (function() {
         unlockT3.classList.add('hidden');
         document.getElementById('hint-tier-3-box').classList.add('border-tertiary/40', 'bg-surface-container-low');
       });
+    }
+
+    } catch (e) {
+      console.error(e);
+      modal.innerHTML = `
+        <div class="relative w-full max-w-xl bg-surface-container-lowest rounded-3xl p-6 sm:p-8 shadow-2xl border border-outline-variant/30 text-on-surface animate-in fade-in zoom-in-95 duration-200">
+          <button id="close-error-modal" class="absolute top-6 right-6 w-9 h-9 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant flex items-center justify-center transition-colors">
+            <span class="material-symbols-outlined text-lg">close</span>
+          </button>
+          <div class="flex flex-col items-center justify-center py-12">
+            <span class="material-symbols-outlined text-4xl text-error mb-4">error</span>
+            <h2 class="text-xl font-extrabold text-on-surface tracking-tight mt-0.5">Failed to load AI Hint.</h2>
+            <p class="text-on-surface-variant mt-2 text-center text-sm">Please try again later.</p>
+          </div>
+        </div>
+      `;
+      document.getElementById('close-error-modal')?.addEventListener('click', () => modal.classList.add('hidden'));
     }
   }
 
