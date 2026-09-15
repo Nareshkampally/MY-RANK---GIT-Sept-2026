@@ -16,28 +16,32 @@ router.get('/', async (req, res) => {
 // GET /api/tests/adaptive — generate custom adaptive test targeting weakest subjects
 router.get('/adaptive', async (req, res) => {
   try {
-    // 1. Identify weak subjects from recent attempts (mocking analytics logic for simplicity here)
-    const weakSubject = 'Verbal Reasoning'; // Hardcoded to match our seeded DB
-
-    // 2. Fetch random questions targeting this subject
+    // Fetch all questions from mock-04 (our main 10-question paper)
     const questions = await queryAll(`
-      SELECT id, subject, stem, options_json 
+      SELECT id, question_number, subject, stem, passage_context, options_json, correct_answer, explanation
       FROM questions 
-      WHERE subject = ? 
-      ORDER BY RANDOM() 
-      LIMIT 10
-    `, [weakSubject]);
+      WHERE test_paper_id = 'mock-04'
+      ORDER BY question_number ASC
+    `);
+
+    // Fallback to any questions if mock-04 is empty
+    const allQuestions = questions.length > 0 ? questions : await queryAll(`
+      SELECT id, question_number, subject, stem, passage_context, options_json, correct_answer, explanation
+      FROM questions 
+      ORDER BY RANDOM() LIMIT 10
+    `);
 
     res.json({
       test: {
         id: 'adaptive-' + Date.now(),
-        title: 'Adaptive AI Drill: ' + weakSubject,
+        title: 'Scholar Mock #04 — Adaptive Practice Session',
         type: 'Adaptive Mock',
-        duration_mins: 15,
-        total_questions: questions.length,
-        questions: questions.map(q => ({
+        duration_mins: 25,
+        total_questions: allQuestions.length,
+        questions: allQuestions.map(q => ({
           ...q,
-          options: JSON.parse(q.options_json || '[]')
+          options: JSON.parse(q.options_json || '[]'),
+          passage_context: q.passage_context || ''
         }))
       }
     });
@@ -46,6 +50,7 @@ router.get('/adaptive', async (req, res) => {
     res.status(500).json({ error: 'Failed to generate adaptive test' });
   }
 });
+
 
 // GET /api/tests/recent — today's verified test attempts timecard feed
 router.get('/recent', async (req, res) => {

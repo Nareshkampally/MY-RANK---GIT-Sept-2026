@@ -4,38 +4,44 @@ LearnlyRouter.register('clinic-booking', function() {
   <div class="space-y-space-xl">
     <section class="flex items-center gap-space-md">
       <a href="#parent-portal" class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">arrow_back</span></a>
-      <div><h1 class="font-headline-lg text-headline-lg text-on-surface">Book a 1-on-1 Strategy Clinic</h1><p class="font-body-md text-body-md text-on-surface-variant">Personalized sessions with expert 11+ tutors</p></div>
+      <div><h1 class="font-headline-lg text-headline-lg text-on-surface">Book a 1-on-1 Strategy Clinic</h1><p class="font-body-md text-body-md text-on-surface-variant">Personalised sessions with expert 11+ tutors</p></div>
     </section>
     <div class="grid grid-cols-12 gap-space-lg">
       <div class="col-span-12 lg:col-span-7">
-        <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md">
-          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Select Subject Focus</h3>
-          <div class="grid grid-cols-2 gap-space-sm mb-space-lg">
-            ${[{subj:'NVR Spatial Strategy',icon:'view_in_ar',color:'secondary',selected:true},{subj:'Verbal Reasoning',icon:'psychology',color:'primary'},{subj:'Mathematics',icon:'functions',color:'tertiary-container'},{subj:'English & Comprehension',icon:'menu_book',color:'primary'}].map(s=>`
-            <button class="p-space-md rounded-xl border-2 ${s.selected?'border-primary bg-primary-fixed/30':'border-surface-container-high bg-surface-container-lowest'} text-left transition-all hover:border-primary" type="button">
-              <span class="material-symbols-outlined text-${s.color} text-2xl">${s.icon}</span>
-              <span class="font-label-lg text-label-lg text-on-surface font-bold block mt-space-xs">${s.subj}</span>
-            </button>`).join('')}
+        <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md space-y-space-lg">
+          <div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Select Subject Focus</h3>
+            <div class="grid grid-cols-2 gap-space-sm" id="subject-selector">
+              ${[{subj:'NVR Spatial Strategy',icon:'view_in_ar',color:'secondary'},{subj:'Verbal Reasoning',icon:'psychology',color:'primary'},{subj:'Mathematics',icon:'functions',color:'tertiary-container'},{subj:'English & Comprehension',icon:'menu_book',color:'primary'}].map((s,i)=>`
+              <button class="clinic-subject-btn p-space-md rounded-xl border-2 ${i===0?'border-primary bg-primary-fixed/30':'border-surface-container-high bg-surface-container-lowest'} text-left transition-all hover:border-primary" type="button" data-subject="${s.subj}">
+                <span class="material-symbols-outlined text-${s.color} text-2xl">${s.icon}</span>
+                <span class="font-label-lg text-label-lg text-on-surface font-bold block mt-space-xs">${s.subj}</span>
+              </button>`).join('')}
+            </div>
           </div>
-          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Choose a Tutor</h3>
-          <div class="space-y-space-sm mb-space-lg">
-            ${[{name:'Mr. Thompson',spec:'NVR & Spatial Reasoning Specialist',rating:'4.9',sessions:120,selected:true},{name:'Ms. Patel',spec:'English & VR Expert',rating:'4.8',sessions:95}].map(t=>`
-            <div class="p-space-md rounded-xl border-2 ${t.selected?'border-primary bg-primary-fixed/10':'border-surface-container-high'} flex items-center justify-between cursor-pointer hover:border-primary transition-all">
-              <div class="flex items-center gap-space-md">
-                <div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-xl">person</span></div>
-                <div><span class="font-label-lg text-label-lg text-on-surface font-bold">${t.name}</span><br><span class="font-body-sm text-body-sm text-on-surface-variant">${t.spec}</span></div>
-              </div>
-              <div class="text-right"><span class="font-label-lg text-label-lg text-secondary font-bold">★ ${t.rating}</span><br><span class="font-label-md text-label-md text-on-surface-variant">${t.sessions} sessions</span></div>
-            </div>`).join('')}
+          <div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Choose a Tutor</h3>
+            <div class="space-y-space-sm" id="tutor-selector">
+              ${[{name:'Mr. Thompson',spec:'NVR & Spatial Reasoning Specialist',rating:'4.9',sessions:120},{name:'Ms. Patel',spec:'English & VR Expert',rating:'4.8',sessions:95},{name:'Dr. Khan',spec:'Mathematics & Sequences',rating:'4.9',sessions:78}].map((t,i)=>`
+              <div class="clinic-tutor-btn p-space-md rounded-xl border-2 ${i===0?'border-primary bg-primary-fixed/10':'border-surface-container-high'} flex items-center justify-between cursor-pointer hover:border-primary transition-all" data-tutor="${t.name}">
+                <div class="flex items-center gap-space-md">
+                  <div class="w-12 h-12 rounded-full bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-xl">person</span></div>
+                  <div><span class="font-label-lg text-label-lg text-on-surface font-bold">${t.name}</span><br><span class="font-body-sm text-body-sm text-on-surface-variant">${t.spec}</span></div>
+                </div>
+                <div class="text-right"><span class="font-label-lg text-label-lg text-secondary font-bold">★ ${t.rating}</span><br><span class="font-label-md text-label-md text-on-surface-variant">${t.sessions} sessions</span></div>
+              </div>`).join('')}
+            </div>
           </div>
-          <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Select Date & Time</h3>
-          <div class="grid grid-cols-3 gap-space-sm mb-space-md">
-            ${['Mon 15','Tue 16','Wed 17','Thu 18','Fri 19','Sat 20'].map((d,i)=>`
-            <button class="p-space-sm rounded-lg ${i===0?'bg-primary-container text-on-primary':'bg-surface-container-low text-on-surface'} font-label-lg text-label-lg font-bold text-center" type="button">${d}</button>`).join('')}
-          </div>
-          <div class="grid grid-cols-4 gap-space-sm">
-            ${['3:00 PM','3:30 PM','4:00 PM','4:30 PM','5:00 PM','5:30 PM','6:00 PM','6:30 PM'].map((t,i)=>`
-            <button class="p-space-sm rounded-lg ${i===2?'bg-primary-container text-on-primary':'bg-surface-container-low text-on-surface'} font-label-md text-label-md font-bold text-center" type="button">${t}</button>`).join('')}
+          <div>
+            <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Select Date & Time</h3>
+            <div class="grid grid-cols-3 gap-space-sm mb-space-md" id="date-selector">
+              ${['Mon 15','Tue 16','Wed 17','Thu 18','Fri 19','Sat 20'].map((d,i)=>`
+              <button class="clinic-date-btn p-space-sm rounded-lg ${i===0?'bg-primary-container text-on-primary':'bg-surface-container-low text-on-surface'} font-label-lg text-label-lg font-bold text-center" type="button" data-date="${d} Sep">${d}</button>`).join('')}
+            </div>
+            <div class="grid grid-cols-4 gap-space-sm" id="time-selector">
+              ${['3:00 PM','3:30 PM','4:00 PM','4:30 PM','5:00 PM','5:30 PM','6:00 PM','6:30 PM'].map((t,i)=>`
+              <button class="clinic-time-btn p-space-sm rounded-lg ${i===2?'bg-primary-container text-on-primary':'bg-surface-container-low text-on-surface'} font-label-md text-label-md font-bold text-center" type="button" data-time="${t}">${t}</button>`).join('')}
+            </div>
           </div>
         </div>
       </div>
@@ -43,19 +49,92 @@ LearnlyRouter.register('clinic-booking', function() {
         <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md sticky top-24">
           <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Booking Summary</h3>
           <div class="space-y-space-sm p-space-md rounded-xl bg-surface-container-low mb-space-lg">
-            <div class="flex justify-between"><span class="font-label-md text-label-md text-on-surface-variant">Subject</span><span class="font-label-lg text-label-lg text-on-surface font-bold">NVR Spatial Strategy</span></div>
-            <div class="flex justify-between"><span class="font-label-md text-label-md text-on-surface-variant">Tutor</span><span class="font-label-lg text-label-lg text-on-surface font-bold">Mr. Thompson</span></div>
-            <div class="flex justify-between"><span class="font-label-md text-label-md text-on-surface-variant">Date</span><span class="font-label-lg text-label-lg text-on-surface font-bold">Mon 15 Sep, 4:00 PM</span></div>
+            <div class="flex justify-between"><span class="font-label-md text-label-md text-on-surface-variant">Subject</span><span id="summary-subject" class="font-label-lg text-label-lg text-on-surface font-bold">NVR Spatial Strategy</span></div>
+            <div class="flex justify-between"><span class="font-label-md text-label-md text-on-surface-variant">Tutor</span><span id="summary-tutor" class="font-label-lg text-label-lg text-on-surface font-bold">Mr. Thompson</span></div>
+            <div class="flex justify-between"><span class="font-label-md text-label-md text-on-surface-variant">Date & Time</span><span id="summary-datetime" class="font-label-lg text-label-lg text-on-surface font-bold">Mon 15 Sep, 4:00 PM</span></div>
             <div class="flex justify-between"><span class="font-label-md text-label-md text-on-surface-variant">Duration</span><span class="font-label-lg text-label-lg text-on-surface font-bold">45 minutes</span></div>
           </div>
-          <button class="w-full px-space-lg py-3 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-lg hover:scale-105 transition-all text-lg" data-navigate="clinic-confirmation" type="button">Confirm Booking</button>
+          <button id="confirm-booking-btn" class="w-full px-space-lg py-3 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-lg hover:scale-105 transition-all text-lg" data-navigate="clinic-confirmation" type="button">Confirm Booking</button>
+          <p class="text-center font-label-md text-label-md text-on-surface-variant mt-space-sm">Free cancellation up to 2 hours before</p>
         </div>
       </div>
     </div>
   </div>`;
+}, function() {
+  // Clinic Booking Interactivity
+  let selectedSubject = 'NVR Spatial Strategy';
+  let selectedTutor = 'Mr. Thompson';
+  let selectedDate = 'Mon 15 Sep';
+  let selectedTime = '4:00 PM';
+
+  function updateSummary() {
+    const subEl = document.getElementById('summary-subject');
+    const tutEl = document.getElementById('summary-tutor');
+    const dtEl = document.getElementById('summary-datetime');
+    if (subEl) subEl.textContent = selectedSubject;
+    if (tutEl) tutEl.textContent = selectedTutor;
+    if (dtEl) dtEl.textContent = `${selectedDate}, ${selectedTime}`;
+  }
+
+  // Subject selector
+  document.querySelectorAll('.clinic-subject-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.clinic-subject-btn').forEach(b => {
+        b.classList.remove('border-primary', 'bg-primary-fixed/30');
+        b.classList.add('border-surface-container-high', 'bg-surface-container-lowest');
+      });
+      btn.classList.add('border-primary', 'bg-primary-fixed/30');
+      btn.classList.remove('border-surface-container-high', 'bg-surface-container-lowest');
+      selectedSubject = btn.dataset.subject;
+      updateSummary();
+    });
+  });
+
+  // Tutor selector
+  document.querySelectorAll('.clinic-tutor-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.clinic-tutor-btn').forEach(b => {
+        b.classList.remove('border-primary', 'bg-primary-fixed/10');
+        b.classList.add('border-surface-container-high');
+      });
+      btn.classList.add('border-primary', 'bg-primary-fixed/10');
+      btn.classList.remove('border-surface-container-high');
+      selectedTutor = btn.dataset.tutor;
+      updateSummary();
+    });
+  });
+
+  // Date selector
+  document.querySelectorAll('.clinic-date-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.clinic-date-btn').forEach(b => {
+        b.classList.remove('bg-primary-container', 'text-on-primary');
+        b.classList.add('bg-surface-container-low', 'text-on-surface');
+      });
+      btn.classList.add('bg-primary-container', 'text-on-primary');
+      btn.classList.remove('bg-surface-container-low', 'text-on-surface');
+      selectedDate = btn.dataset.date;
+      updateSummary();
+    });
+  });
+
+  // Time selector
+  document.querySelectorAll('.clinic-time-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.clinic-time-btn').forEach(b => {
+        b.classList.remove('bg-primary-container', 'text-on-primary');
+        b.classList.add('bg-surface-container-low', 'text-on-surface');
+      });
+      btn.classList.add('bg-primary-container', 'text-on-primary');
+      btn.classList.remove('bg-surface-container-low', 'text-on-surface');
+      selectedTime = btn.dataset.time;
+      updateSummary();
+    });
+  });
 });
 
 // Booking Confirmation
+
 LearnlyRouter.register('clinic-confirmation', function() {
   return `
   <div class="flex items-center justify-center min-h-[70vh]">

@@ -234,68 +234,173 @@ LearnlyRouter.register('vocab-vault', function() {
     `).join('')}
   </div>
   `;
-}, function() {
-  // Flip card handler
-  document.querySelectorAll('.vocab-card-wrapper').forEach(wrapper => {
-    const card = wrapper.querySelector('.vocab-card');
-    wrapper.addEventListener('click', (e) => {
-      // Don't flip if clicking the speech or SRS button
-      if (e.target.closest('.speak-vocab-btn') || e.target.closest('.srs-btn')) return;
-      card.classList.toggle('flipped');
-    });
-  });
+}, async function() {
+  // ── LOAD LIVE VOCAB DATA FROM API ──────────────────────────────────────
+  const cardGrid = document.getElementById('vocab-cards-grid');
 
-  // Speech pronunciation handler
-  document.querySelectorAll('.speak-vocab-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const word = btn.dataset.word;
-      if (window.AIBuddy) {
-        btn.classList.add('animate-pulse');
-        window.AIBuddy.speakText(word, null, () => {
-          btn.classList.remove('animate-pulse');
-        });
-      }
-    });
-  });
+  function renderCards(words) {
+    if (!cardGrid || !words || words.length === 0) return;
+    cardGrid.innerHTML = words.map(v => `
+      <div class="vocab-card-wrapper group perspective-1000" data-id="${v.id}" data-category="${v.category || 'All'}">
+        <div class="vocab-card relative w-full h-[400px] rounded-3xl transition-transform duration-500 transform-style-3d cursor-pointer shadow-lg hover:shadow-2xl">
+          <!-- FRONT -->
+          <div class="card-face card-front absolute inset-0 w-full h-full rounded-3xl p-6 bg-surface-container-lowest border-2 border-outline-variant/30 flex flex-col justify-between backface-hidden">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <span class="px-2.5 py-0.5 rounded-full bg-surface-container-high text-primary font-label-md text-label-md font-bold uppercase tracking-wider">${v.category || 'Vocabulary'}</span>
+                <span class="px-2 py-0.5 rounded-full text-xs font-bold ${v.status==='Mastered'?'bg-tertiary-fixed text-on-tertiary-fixed':v.status==='Getting There'?'bg-secondary-fixed text-on-secondary-fixed':'bg-error-container text-on-error-container'}">
+                  ${v.status || 'New'}
+                </span>
+              </div>
+              <div class="flex items-center justify-between">
+                <div>
+                  <h2 class="text-3xl font-black text-on-surface tracking-tight">${v.word}</h2>
+                  <span class="text-xs font-mono text-outline">${v.phonetic || ''} • <em class="text-on-surface-variant">${v.part_of_speech || 'Adjective'}</em></span>
+                </div>
+                <button class="speak-vocab-btn w-10 h-10 rounded-full bg-primary-fixed hover:bg-primary-fixed-dim text-primary flex items-center justify-center transition-colors shadow-sm" data-word="${v.word}" type="button" title="Listen with British pronunciation">
+                  <span class="material-symbols-outlined text-xl">volume_up</span>
+                </button>
+              </div>
+              <div class="mt-6 p-4 rounded-2xl bg-surface-container-low border border-outline-variant/20">
+                <span class="text-[10px] font-bold uppercase tracking-wider text-primary block mb-1">11+ Consortium Exam Stem</span>
+                <p class="text-sm font-medium text-on-surface italic leading-relaxed">"${v.stem || ''}"</p>
+              </div>
+            </div>
+            <div class="text-center text-xs text-on-surface-variant font-medium mt-2 flex items-center justify-center gap-1">
+              <span class="material-symbols-outlined text-sm">touch_app</span> Tap to reveal definition
+            </div>
+          </div>
+          <!-- BACK -->
+          <div class="card-face card-back absolute inset-0 w-full h-full rounded-3xl p-6 bg-surface-container-low border-2 border-primary/20 flex flex-col justify-between backface-hidden rotate-y-180">
+            <div>
+              <div class="flex items-center gap-2 mb-3">
+                <span class="material-symbols-outlined text-primary text-xl">psychology</span>
+                <span class="font-headline-sm text-headline-sm text-on-surface font-black">${v.word}</span>
+              </div>
+              <div class="p-3 rounded-xl bg-surface-container-lowest mb-3">
+                <span class="text-[10px] font-bold uppercase text-primary block mb-1">Definition</span>
+                <p class="text-sm text-on-surface leading-relaxed">${v.definition || ''}</p>
+              </div>
+              <div class="p-3 rounded-xl bg-surface-container-lowest border border-outline-variant/20 mb-3 text-xs">
+                <span class="font-bold text-secondary block mb-1">🧠 Mnemonic</span>
+                <p class="text-on-surface-variant italic">${v.mnemonic || ''}</p>
+              </div>
+              <div class="grid grid-cols-2 gap-2 text-xs mb-3">
+                <div class="p-2 rounded-lg bg-surface-container-lowest border border-outline-variant/20">
+                  <strong class="text-tertiary block font-bold mb-1">Synonyms:</strong>
+                  <span class="text-on-surface-variant">${(v.synonyms || []).join(', ')}</span>
+                </div>
+                <div class="p-2 rounded-lg bg-surface-container-lowest border border-outline-variant/20">
+                  <strong class="text-error block font-bold mb-1">Antonyms:</strong>
+                  <span class="text-on-surface-variant">${(v.antonyms || []).join(', ')}</span>
+                </div>
+              </div>
+            </div>
+            <div class="pt-3 border-t border-outline-variant/20">
+              <span class="text-[10px] font-bold uppercase text-on-surface-variant block text-center mb-2">How well do you know this word?</span>
+              <div class="grid grid-cols-3 gap-1.5 text-xs font-bold">
+                <button class="srs-btn py-1.5 px-1 rounded-xl bg-error-container text-on-error-container hover:scale-105 transition-transform" data-id="${v.id}" data-rating="Needs Practice" type="button">To Drill 🔄</button>
+                <button class="srs-btn py-1.5 px-1 rounded-xl bg-secondary-fixed text-on-secondary-fixed hover:scale-105 transition-transform" data-id="${v.id}" data-rating="Getting There" type="button">Almost 💡</button>
+                <button class="srs-btn py-1.5 px-1 rounded-xl bg-tertiary-fixed text-on-tertiary-fixed hover:scale-105 transition-transform" data-id="${v.id}" data-rating="Mastered" type="button">Mastered ⭐</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `).join('');
+    // Re-attach event listeners after re-render
+    attachEventListeners();
+  }
 
-  // SRS Rating buttons
-  document.querySelectorAll('.srs-btn').forEach(btn => {
-    btn.addEventListener('click', async (e) => {
-      e.stopPropagation();
-      const rating = btn.dataset.rating;
-      const card = btn.closest('.vocab-card');
-      const wrapper = btn.closest('.vocab-card-wrapper');
-      const wordId = wrapper ? wrapper.dataset.id : null;
-      
-      // Call backend API if available
-      let xpEarned = 15;
-      if (window.LearnlyAPI && wordId) {
-        try {
-          const res = await LearnlyAPI.reviewWord(wordId, rating);
-          if (res && res.xpEarned) xpEarned = res.xpEarned;
-        } catch (err) {
-          console.warn('SRS API review notice:', err);
+  function updateStats(words) {
+    const mastered = words.filter(w => w.status === 'Mastered').length;
+    const learning = words.filter(w => w.status === 'Getting There').length;
+    const practice = words.filter(w => w.status === 'Needs Practice').length;
+    const mc = document.getElementById('mastered-count');
+    const lc = document.getElementById('learning-count');
+    const pc = document.getElementById('practice-count');
+    if (mc) mc.textContent = mastered;
+    if (lc) lc.textContent = learning;
+    if (pc) pc.textContent = practice;
+  }
+
+  // Try API load
+  try {
+    const res = await LearnlyAPI.getVocab('all');
+    if (res && res.words && res.words.length > 0) {
+      renderCards(res.words);
+      updateStats(res.words);
+    }
+  } catch (err) {
+    console.warn('Vocab API unavailable, using default cards');
+  }
+
+  // ── ATTACH ALL EVENT LISTENERS ─────────────────────────────────────────
+  function attachEventListeners() {
+    // Flip card handler
+    document.querySelectorAll('.vocab-card-wrapper').forEach(wrapper => {
+      const card = wrapper.querySelector('.vocab-card');
+      wrapper.addEventListener('click', (e) => {
+        if (e.target.closest('.speak-vocab-btn') || e.target.closest('.srs-btn')) return;
+        card.classList.toggle('flipped');
+      });
+    });
+
+    // Speech pronunciation handler
+    document.querySelectorAll('.speak-vocab-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const word = btn.dataset.word;
+        if (window.AIBuddy) {
+          btn.classList.add('animate-pulse');
+          window.AIBuddy.speakText(word, null, () => {
+            btn.classList.remove('animate-pulse');
+          });
+        } else if (window.speechSynthesis) {
+          const utt = new SpeechSynthesisUtterance(word);
+          utt.lang = 'en-GB';
+          speechSynthesis.speak(utt);
         }
-      }
-
-      if (window.AIBuddy) {
-        window.AIBuddy.showToast(`Word Marked: ${rating}`, `+${xpEarned} XP added to SQLite profile!`);
-      }
-
-      // Update badge on front
-      const badge = wrapper.querySelector('.card-front .rounded-full.text-xs');
-      if (badge) {
-        badge.textContent = rating;
-        badge.className = `px-2 py-0.5 rounded-full text-xs font-bold ${rating==='Mastered'?'bg-tertiary-fixed text-on-tertiary-fixed':rating==='Getting There'?'bg-secondary-fixed text-on-secondary-fixed':'bg-error-container text-on-error-container'}`;
-      }
-
-      // Flip back to front with smooth delay
-      setTimeout(() => {
-        card.classList.remove('flipped');
-      }, 400);
+      });
     });
-  });
+
+    // SRS Rating buttons
+    document.querySelectorAll('.srs-btn').forEach(btn => {
+      btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        const rating = btn.dataset.rating;
+        const card = btn.closest('.vocab-card');
+        const wrapper = btn.closest('.vocab-card-wrapper');
+        const wordId = btn.dataset.id || (wrapper ? wrapper.dataset.id : null);
+        
+        let xpEarned = 15;
+        if (window.LearnlyAPI && wordId) {
+          try {
+            const res = await LearnlyAPI.reviewWord(wordId, rating);
+            if (res && res.srs && res.srs.xpEarned) xpEarned = res.srs.xpEarned;
+          } catch (err) {
+            console.warn('SRS API review:', err);
+          }
+        }
+
+        if (window.AIBuddy) {
+          window.AIBuddy.showToast(`Word Marked: ${rating}`, `+${xpEarned} XP earned!`);
+        }
+
+        // Update status badge on front
+        const badge = wrapper && wrapper.querySelector('.card-front .rounded-full.text-xs');
+        if (badge) {
+          badge.textContent = rating;
+          badge.className = `px-2 py-0.5 rounded-full text-xs font-bold ${rating==='Mastered'?'bg-tertiary-fixed text-on-tertiary-fixed':rating==='Getting There'?'bg-secondary-fixed text-on-secondary-fixed':'bg-error-container text-on-error-container'}`;
+        }
+
+        setTimeout(() => { if (card) card.classList.remove('flipped'); }, 400);
+      });
+    });
+  }
+
+  // Initial attach
+  attachEventListeners();
 
   // Category filter
   document.querySelectorAll('.vocab-filter-btn').forEach(btn => {
@@ -318,3 +423,4 @@ LearnlyRouter.register('vocab-vault', function() {
     });
   });
 });
+
