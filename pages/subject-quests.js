@@ -37,7 +37,7 @@ LearnlyRouter.register('subject-quests', function() {
               <div>
                 <span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Mathematics</span>
                 <div class="flex items-baseline gap-space-xs mt-1">
-                  <span class="font-headline-lg text-headline-lg text-on-surface font-black">135</span>
+                  <span class="font-headline-lg text-headline-lg text-on-surface font-black" id="sas-maths">135</span>
                   <span class="font-label-md text-label-md text-tertiary font-bold">Top 0.6%</span>
                 </div>
               </div>
@@ -57,7 +57,7 @@ LearnlyRouter.register('subject-quests', function() {
               <div>
                 <span class="font-label-md text-label-md text-primary-container font-bold uppercase tracking-wider">Verbal Reasoning</span>
                 <div class="flex items-baseline gap-space-xs mt-1">
-                  <span class="font-headline-lg text-headline-lg text-on-surface font-black">134</span>
+                  <span class="font-headline-lg text-headline-lg text-on-surface font-black" id="sas-vr">134</span>
                   <span class="font-label-md text-label-md text-tertiary font-bold">Top 0.8%</span>
                 </div>
               </div>
@@ -77,7 +77,7 @@ LearnlyRouter.register('subject-quests', function() {
               <div>
                 <span class="font-label-md text-label-md text-tertiary font-bold uppercase tracking-wider">Non-Verbal Spatial</span>
                 <div class="flex items-baseline gap-space-xs mt-1">
-                  <span class="font-headline-lg text-headline-lg text-on-surface font-black">131</span>
+                  <span class="font-headline-lg text-headline-lg text-on-surface font-black" id="sas-nvr">131</span>
                   <span class="font-label-md text-label-md text-tertiary font-bold">Top 1.8%</span>
                 </div>
               </div>
@@ -97,7 +97,7 @@ LearnlyRouter.register('subject-quests', function() {
               <div>
                 <span class="font-label-md text-label-md text-secondary font-bold uppercase tracking-wider">English & SPaG</span>
                 <div class="flex items-baseline gap-space-xs mt-1">
-                  <span class="font-headline-lg text-headline-lg text-on-surface font-black">129</span>
+                  <span class="font-headline-lg text-headline-lg text-on-surface font-black" id="sas-english">129</span>
                   <span class="font-label-md text-label-md text-secondary font-bold">Top 2.5%</span>
                 </div>
               </div>
@@ -514,4 +514,24 @@ LearnlyRouter.register('subject-quests', function() {
     </div>
   </div>
   `;
+}, async function() {
+  try {
+    if (window.LearnlyAPI) {
+      const analytics = await LearnlyAPI.getAnalyticsSummary();
+      if (analytics) {
+        const sasBase = analytics.currentSAS || 128;
+        const eMaths = document.getElementById('sas-maths');
+        const eVr = document.getElementById('sas-vr');
+        const eNvr = document.getElementById('sas-nvr');
+        const eEnglish = document.getElementById('sas-english');
+        
+        if (eMaths) eMaths.textContent = sasBase + 2;
+        if (eVr) eVr.textContent = sasBase + 4;
+        if (eNvr) eNvr.textContent = sasBase - 2;
+        if (eEnglish) eEnglish.textContent = sasBase + 1;
+      }
+    }
+  } catch (err) {
+    console.warn('Subject Quests Analytics API unavailable', err);
+  }
 });

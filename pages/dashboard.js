@@ -22,7 +22,7 @@ LearnlyRouter.register('dashboard', function() {
           <span>Target: <strong class="text-on-surface">11+ Grammar Consortium</strong> (GL &amp; CEM format)</span>
         </p>
       </div>
-      <!-- Quick Summary Stats Mosaic -->
+    <!-- Quick Summary Stats Mosaic -->
       <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm w-full xl:w-auto">
         <div class="bg-surface-container-low rounded-2xl p-space-md flex flex-col justify-between shadow-sm hover:scale-[1.02] transition-transform">
           <div class="flex items-center justify-between">
@@ -31,11 +31,11 @@ LearnlyRouter.register('dashboard', function() {
           </div>
           <div class="mt-2">
             <div class="flex items-baseline gap-1">
-              <span class="font-headline-md text-headline-md text-on-surface font-extrabold">3</span>
-              <span class="font-label-lg text-label-lg text-on-surface-variant">/ 4 done</span>
+              <span class="font-headline-md text-headline-md text-on-surface font-extrabold" id="dash-daily-val">3</span>
+              <span class="font-label-lg text-label-lg text-on-surface-variant" id="dash-daily-total">/ 4 done</span>
             </div>
             <div class="w-full bg-surface-container-highest rounded-full h-1.5 mt-2 overflow-hidden">
-              <div class="bg-primary h-full rounded-full" style="width: 75%;"></div>
+              <div class="bg-primary h-full rounded-full" id="dash-daily-bar" style="width: 75%;"></div>
             </div>
           </div>
         </div>
@@ -45,7 +45,7 @@ LearnlyRouter.register('dashboard', function() {
             <span class="material-symbols-outlined text-secondary text-base" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
           </div>
           <div class="mt-2">
-            <div class="font-headline-md text-headline-md text-on-secondary-fixed font-extrabold">14 Days</div>
+            <div class="font-headline-md text-headline-md text-on-secondary-fixed font-extrabold" id="dash-streak">14 Days</div>
             <span class="font-label-md text-label-md text-secondary font-semibold">On Absolute Fire!</span>
           </div>
         </div>
@@ -55,7 +55,7 @@ LearnlyRouter.register('dashboard', function() {
             <span class="material-symbols-outlined text-tertiary-container text-base">verified</span>
           </div>
           <div class="mt-2">
-            <div class="font-headline-md text-headline-md text-tertiary-container font-extrabold">94.2%</div>
+            <div class="font-headline-md text-headline-md text-tertiary-container font-extrabold" id="dash-accuracy">94.2%</div>
             <span class="font-label-md text-label-md text-tertiary font-semibold">+2.8% this week</span>
           </div>
         </div>
@@ -66,7 +66,7 @@ LearnlyRouter.register('dashboard', function() {
           </div>
           <div class="mt-2">
             <div class="flex items-baseline gap-1">
-              <span class="font-headline-md text-headline-md text-primary font-extrabold">128</span>
+              <span class="font-headline-md text-headline-md text-primary font-extrabold" id="dash-sas">128</span>
               <span class="font-label-md text-label-md text-on-surface-variant">/ 141</span>
             </div>
             <span class="inline-block px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md font-bold mt-1">High Readiness</span>
@@ -505,9 +505,30 @@ LearnlyRouter.register('dashboard', function() {
       </div>
     </div>
   </div>`;
-}, function() {
+}, async function() {
   if (window.ScholarWatch) {
     window.ScholarWatch.updateDOMWatches();
+  }
+
+  try {
+    const analytics = await LearnlyAPI.getAnalyticsSummary();
+    if (analytics) {
+      const dashDailyVal = document.getElementById('dash-daily-val');
+      const dashDailyTotal = document.getElementById('dash-daily-total');
+      const dashDailyBar = document.getElementById('dash-daily-bar');
+      const dashStreak = document.getElementById('dash-streak');
+      const dashAccuracy = document.getElementById('dash-accuracy');
+      const dashSas = document.getElementById('dash-sas');
+
+      if (dashDailyVal) dashDailyVal.textContent = Math.min(analytics.testsCompleted, 4);
+      if (dashDailyTotal) dashDailyTotal.textContent = '/ 4 done';
+      if (dashDailyBar) dashDailyBar.style.width = Math.min((analytics.testsCompleted / 4) * 100, 100) + '%';
+      if (dashStreak) dashStreak.textContent = (analytics.streakDays || 0) + ' Days';
+      if (dashAccuracy) dashAccuracy.textContent = (analytics.overallAccuracy || 0).toFixed(1) + '%';
+      if (dashSas) dashSas.textContent = analytics.currentSAS || 100;
+    }
+  } catch (err) {
+    console.warn('Dashboard Analytics API unavailable', err);
   }
 
   const adaptiveBtn = document.getElementById('adaptive-drill-btn');
