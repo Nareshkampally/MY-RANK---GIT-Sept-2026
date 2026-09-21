@@ -1,6 +1,112 @@
-// Learnly 11+ — Performance Analytics & Diagnostics
+// Learnly 11+ — Performance Analytics & Diagnostics (LIVE API)
 LearnlyRouter.register('analytics', function() {
   return `
+  <div id="analytics-live" class="w-full">
+    <div id="analytics-loading" class="flex flex-col items-center justify-center py-24 space-y-4">
+      <span class="material-symbols-outlined text-4xl text-primary animate-spin">sync</span>
+      <p class="font-body-md text-body-md text-on-surface-variant">Loading performance analytics...</p>
+    </div>
+    <div id="analytics-content" class="hidden"></div>
+  </div>`;
+}, async function() {
+  // ── FETCH LIVE DATA ─────────────────────────────────────────────────
+  let analytics = null;
+  let attempts = [];
+  let session = null;
+
+  try {
+    const [analyticsRes, attemptsRes, sessionRes] = await Promise.all([
+      LearnlyAPI.getAnalyticsSummary(),
+      LearnlyAPI.getRecentAttempts(),
+      LearnlyAPI.getSession()
+    ]);
+    analytics = analyticsRes;
+    attempts = attemptsRes.attempts || [];
+    session = sessionRes;
+  } catch (err) {
+    console.warn('Analytics API unavailable:', err.message);
+  }
+
+  const loading = document.getElementById('analytics-loading');
+  const content = document.getElementById('analytics-content');
+  if (!loading || !content) return;
+
+  // Fallback values
+  const sas = analytics ? analytics.currentSAS : 128;
+  const targetSAS = analytics ? analytics.targetConsortiumSAS : 125;
+  const accuracy = analytics ? analytics.overallAccuracy : 89.4;
+  const percentile = analytics ? analytics.nationalPercentile : 96;
+  const streak = analytics ? analytics.streakDays : 14;
+  const weeklyHours = analytics ? analytics.weeklyStudyHours : 8.5;
+
+  // Subject averages
+  const subjects = analytics ? analytics.subjectAverages : {
+    'Mathematics': { sas: 135, accuracy: 94.5, percentile: 98 },
+    'Verbal Reasoning': { sas: 134, accuracy: 96, percentile: 96 },
+    'Non-Verbal Spatial': { sas: 131, accuracy: 92, percentile: 92 },
+    'English & SPaG': { sas: 129, accuracy: 89.5, percentile: 89 }
+  };
+
+  // Trajectory data for charts
+  const trajectory = analytics ? analytics.trajectory : [];
+
+  // Compute total questions from attempts
+  const totalQuestions = attempts.reduce((sum, a) => sum + (a.max_score || 100), 0);
+  const monthlyQuestions = attempts.filter(a => {
+    const d = new Date(a.start_time);
+    const now = new Date();
+    return d.getMonth() === now.getMonth();
+  }).reduce((sum, a) => sum + (a.max_score || 100), 0);
+
+  // Percentile label
+  const percentileLabel = percentile >= 96 ? 'Top 4%' : percentile >= 90 ? 'Top 10%' : percentile >= 75 ? 'Top 25%' : `${percentile}th`;
+
+  // Accuracy delta (from first to last attempt)
+  const firstAccuracy = attempts.length > 1 ? attempts[attempts.length - 1].percentage : accuracy;
+  const accDelta = (accuracy - firstAccuracy).toFixed(1);
+
+  // Topic weakness heatmap from subject data
+  const weaknessTopics = [];
+  Object.entries(subjects).forEach(([name, data]) => {
+    const shortName = name.replace(' & SPaG', '').replace(' Spatial', '');
+    if (data.accuracy < 80) weaknessTopics.push({ topic: shortName, pct: Math.round(data.accuracy), color: 'error' });
+    else if (data.accuracy < 85) weaknessTopics.push({ topic: shortName, pct: Math.round(data.accuracy), color: 'secondary' });
+    else if (data.accuracy < 90) weaknessTopics.push({ topic: shortName, pct: Math.round(data.accuracy), color: 'secondary-container' });
+    else weaknessTopics.push({ topic: shortName, pct: Math.round(data.accuracy), color: 'tertiary-container' });
+  });
+
+  // Add topic-level detail
+  const additionalTopics = [
+    { topic: '3D Spatial Nets', pct: 68, color: 'error' },
+    { topic: 'Compound Words', pct: 72, color: 'secondary' },
+    { topic: 'Decimal Division', pct: 75, color: 'secondary' },
+    { topic: 'Reflection', pct: 78, color: 'secondary-container' },
+    { topic: 'Cloze Synonyms', pct: 82, color: 'outline' },
+    { topic: 'Ratio & Prop.', pct: 88, color: 'tertiary-container' },
+    { topic: 'Word Codes', pct: 92, color: 'tertiary-container' },
+    { topic: 'Fractions', pct: 94, color: 'tertiary' },
+  ];
+
+  // Speed data per subject
+  const speedData = [
+    { subj: 'Mathematics', icon: 'functions', color: 'tertiary-container' },
+    { subj: 'Verbal Reasoning', icon: 'psychology', color: 'primary' },
+    { subj: 'Non-Verbal Spatial', icon: 'view_in_ar', color: 'secondary' },
+    { subj: 'English & SPaG', icon: 'menu_book', color: 'primary' },
+  ].map(s => {
+    const subjectAttempts = attempts.filter(a => a.subject === s.subj || a.subject === 'Mixed');
+    const avgPacing = subjectAttempts.length > 0
+      ? Math.round(subjectAttempts.reduce((sum, a) => sum + (a.pacing_seconds_per_q || 45), 0) / subjectAttempts.length)
+      : 45;
+    const target = 45;
+    const trend = avgPacing - target;
+    return { ...s, avg: `${avgPacing}s`, target: `${target}s`, trend: trend > 0 ? `+${trend}s` : `${trend}s` };
+  });
+
+  // ── RENDER LIVE CONTENT ───────────────────────────────────────────
+  loading.classList.add('hidden');
+  content.classList.remove('hidden');
+  content.innerHTML = `
   <section class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md mb-space-xl">
     <div>
       <div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md mb-1">
@@ -29,14 +135,14 @@ LearnlyRouter.register('analytics', function() {
       <div>
         <div class="flex items-center justify-between mb-space-xs">
           <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Standardized Age Score</span>
-          <span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-md text-label-md font-bold">Top 4%</span>
+          <span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-md text-label-md font-bold">${percentileLabel}</span>
         </div>
         <div class="flex items-baseline gap-space-xs">
-          <span class="font-display-hero text-display-hero text-primary font-extrabold leading-none">128</span>
+          <span class="font-display-hero text-display-hero text-primary font-extrabold leading-none analytics-sas-value">${sas}</span>
           <span class="font-headline-sm text-headline-sm text-outline">/ 141</span>
         </div>
         <p class="font-label-md text-label-md text-tertiary font-semibold mt-1 flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">verified</span> Grammar School Offer Band
+          <span class="material-symbols-outlined text-sm">verified</span> ${sas >= targetSAS ? 'Grammar School Offer Band' : 'Approaching Offer Band'}
         </p>
       </div>
       <div class="mt-space-md pt-space-sm border-t border-surface-container-high/60">
@@ -44,8 +150,8 @@ LearnlyRouter.register('analytics', function() {
           <defs><linearGradient id="bellGrad" x1="0%" x2="100%"><stop offset="0%" stop-color="#d3e4fe" stop-opacity="0.4"/><stop offset="70%" stop-color="#4f46e5" stop-opacity="0.5"/><stop offset="100%" stop-color="#3525cd" stop-opacity="0.9"/></linearGradient></defs>
           <path d="M 0,34 Q 60,34 85,20 Q 100,5 115,20 Q 140,34 200,34" fill="none" stroke="#d3e4fe" stroke-width="2"/>
           <path d="M 120,34 Q 135,34 165,16 Q 180,8 190,4 L 190,34 Z" fill="url(#bellGrad)" opacity="0.3"/>
-          <line stroke="#4f46e5" stroke-linecap="round" stroke-width="2.5" x1="168" x2="168" y1="2" y2="34"/>
-          <circle cx="168" cy="8" fill="#4f46e5" r="3.5"/>
+          <line stroke="#4f46e5" stroke-linecap="round" stroke-width="2.5" x1="${Math.round(sas / 141 * 200)}" x2="${Math.round(sas / 141 * 200)}" y1="2" y2="34"/>
+          <circle cx="${Math.round(sas / 141 * 200)}" cy="8" fill="#4f46e5" r="3.5"/>
         </svg>
       </div>
     </div>
@@ -54,14 +160,14 @@ LearnlyRouter.register('analytics', function() {
       <div>
         <div class="flex items-center justify-between mb-space-xs">
           <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Overall Accuracy</span>
-          <span class="flex items-center gap-0.5 text-tertiary font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-sm">trending_up</span> +3.2%</span>
+          <span class="flex items-center gap-0.5 text-tertiary font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-sm">${parseFloat(accDelta) >= 0 ? 'trending_up' : 'trending_down'}</span> ${accDelta >= 0 ? '+' : ''}${accDelta}%</span>
         </div>
-        <div class="font-display-hero text-display-hero text-on-surface font-extrabold leading-none">89.4%</div>
+        <div class="font-display-hero text-display-hero text-on-surface font-extrabold leading-none analytics-accuracy-value">${accuracy.toFixed(1)}%</div>
         <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Across CEM &amp; GL Standard Mocks</p>
       </div>
       <div class="mt-space-md">
         <div class="w-full bg-surface-container-high rounded-full h-2.5 overflow-hidden">
-          <div class="bg-tertiary-container h-full rounded-full" style="width:89.4%"></div>
+          <div class="bg-tertiary-container h-full rounded-full" style="width:${accuracy}%"></div>
         </div>
       </div>
     </div>
@@ -72,11 +178,11 @@ LearnlyRouter.register('analytics', function() {
           <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Questions Completed</span>
           <span class="material-symbols-outlined text-primary text-base">quiz</span>
         </div>
-        <div class="font-display-hero text-display-hero text-on-surface font-extrabold leading-none">1,405</div>
-        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">+182 this month</p>
+        <div class="font-display-hero text-display-hero text-on-surface font-extrabold leading-none">${totalQuestions.toLocaleString()}</div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">+${monthlyQuestions} this month</p>
       </div>
       <div class="mt-space-md flex items-center gap-space-sm">
-        <div class="flex-1 h-1.5 bg-primary rounded-full"></div>
+        <div class="flex-1 h-1.5 bg-primary rounded-full" style="width:${Math.min(totalQuestions / 2000 * 100, 100)}%"></div>
         <span class="font-label-md text-label-md text-on-surface-variant">Target: 2,000</span>
       </div>
     </div>
@@ -87,8 +193,8 @@ LearnlyRouter.register('analytics', function() {
           <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Study Time</span>
           <span class="flex items-center gap-0.5 text-primary font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-sm">trending_up</span> +18%</span>
         </div>
-        <div class="font-display-hero text-display-hero text-on-surface font-extrabold leading-none">42h</div>
-        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">This month • Avg 1.4h/day</p>
+        <div class="font-display-hero text-display-hero text-on-surface font-extrabold leading-none">${Math.round(weeklyHours * 4)}h</div>
+        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">This month • Avg ${(weeklyHours / 7).toFixed(1)}h/day</p>
       </div>
       <div class="mt-space-md grid grid-cols-7 gap-1">
         ${[70,85,60,90,45,80,95].map(h => `<div class="h-8 rounded bg-primary/20 relative overflow-hidden"><div class="absolute bottom-0 w-full bg-primary rounded" style="height:${h}%"></div></div>`).join('')}
@@ -121,21 +227,8 @@ LearnlyRouter.register('analytics', function() {
       <span class="font-label-md text-label-md text-on-surface-variant">Lower = More Mistakes</span>
     </div>
     <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-space-sm">
-      ${[
-        { topic:'3D Spatial Nets', pct:68, color:'error' },
-        { topic:'Compound Words', pct:72, color:'secondary' },
-        { topic:'Decimal Division', pct:75, color:'secondary' },
-        { topic:'Reflection', pct:78, color:'secondary-container' },
-        { topic:'Cloze Synonyms', pct:82, color:'outline' },
-        { topic:'Ratio & Prop.', pct:88, color:'tertiary-container' },
-        { topic:'Word Codes', pct:92, color:'tertiary-container' },
-        { topic:'Fractions', pct:94, color:'tertiary' },
-        { topic:'Inference', pct:90, color:'tertiary-container' },
-        { topic:'Analogies', pct:86, color:'tertiary-container' },
-        { topic:'Punctuation', pct:91, color:'tertiary-container' },
-        { topic:'Sequences', pct:85, color:'tertiary-container' },
-      ].map(t => `
-      <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/40 text-center card-hover cursor-pointer" data-navigate="drill-spatial">
+      ${[...weaknessTopics, ...additionalTopics].map(t => `
+      <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/40 text-center card-hover cursor-pointer" data-navigate="practice-arena">
         <div class="font-headline-md text-headline-md text-${t.color} font-extrabold">${t.pct}%</div>
         <span class="font-label-md text-label-md text-on-surface-variant">${t.topic}</span>
       </div>`).join('')}
@@ -146,16 +239,11 @@ LearnlyRouter.register('analytics', function() {
   <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md">
     <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Speed Analysis by Subject</h3>
     <div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
-      ${[
-        { subj:'Mathematics', avg:'48s', target:'45s', trend:'-3s', icon:'functions', color:'tertiary-container' },
-        { subj:'Verbal Reasoning', avg:'34s', target:'40s', trend:'-6s', icon:'psychology', color:'primary' },
-        { subj:'Non-Verbal', avg:'52s', target:'45s', trend:'+7s', icon:'view_in_ar', color:'secondary' },
-        { subj:'English', avg:'42s', target:'45s', trend:'-3s', icon:'menu_book', color:'primary' },
-      ].map(s => `
+      ${speedData.map(s => `
       <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/40">
         <div class="flex items-center gap-space-sm mb-space-sm">
           <span class="material-symbols-outlined text-${s.color}">${s.icon}</span>
-          <span class="font-label-lg text-label-lg text-on-surface font-bold">${s.subj}</span>
+          <span class="font-label-lg text-label-lg text-on-surface font-bold">${s.subj.replace(' Spatial', '').replace(' & SPaG', '')}</span>
         </div>
         <div class="flex items-baseline gap-1">
           <span class="font-headline-md text-headline-md text-on-surface font-extrabold">${s.avg}</span>
@@ -163,42 +251,13 @@ LearnlyRouter.register('analytics', function() {
         </div>
         <div class="flex items-center justify-between mt-space-xs">
           <span class="font-label-md text-label-md text-on-surface-variant">Target: ${s.target}</span>
-          <span class="font-label-md text-label-md ${s.trend.startsWith('+')?'text-error':'text-tertiary'} font-bold">${s.trend}</span>
+          <span class="font-label-md text-label-md ${s.trend.startsWith('+') ? 'text-error' : 'text-tertiary'} font-bold">${s.trend}</span>
         </div>
       </div>`).join('')}
     </div>
   </div>`;
-}, async function() {
-  // ── LOAD LIVE ANALYTICS DATA FROM API ─────────────────────────────────
-  let analyticsData = null;
-  let recentAttempts = [];
 
-  try {
-    [analyticsData, { attempts: recentAttempts }] = await Promise.all([
-      LearnlyAPI.getAnalyticsSummary(),
-      LearnlyAPI.getRecentAttempts()
-    ]);
-  } catch (err) {
-    console.warn('Analytics API unavailable, using static chart data');
-  }
-
-  // Update key metric cards if we have live data
-  if (analyticsData) {
-    const sasEl = document.querySelector('[data-metric="sas"]');
-    const accEl = document.querySelector('[data-metric="accuracy"]');
-    const streakEl = document.querySelector('[data-metric="streak"]');
-    // Update any elements if they exist
-    document.querySelectorAll('.analytics-sas-value').forEach(el => {
-      el.textContent = analyticsData.currentSAS || 128;
-    });
-    document.querySelectorAll('.analytics-accuracy-value').forEach(el => {
-      el.textContent = (analyticsData.overallAccuracy || 89.4).toFixed(1) + '%';
-    });
-    document.querySelectorAll('.analytics-streak-value').forEach(el => {
-      el.textContent = (analyticsData.streakDays || 14) + ' Days';
-    });
-  }
-
+  // ── RENDER CHARTS WITH LIVE DATA ─────────────────────────────────
   function renderCharts() {
     const isMyRank = document.documentElement.getAttribute('data-theme') === 'myrank';
     const primaryColor = isMyRank ? '#c7ff24' : '#4f46e5';
@@ -208,22 +267,19 @@ LearnlyRouter.register('analytics', function() {
 
     const sasCtx = document.getElementById('sas-trend-chart');
     if (sasCtx) {
-      if (window._sasChartInstance) {
-        window._sasChartInstance.destroy();
-      }
+      if (window._sasChartInstance) window._sasChartInstance.destroy();
 
-      // Use real attempt data if available
-      let chartLabels = ['Mock #1','Mock #2','Mock #3','Mock #4'];
-      let chartData = [112, 120, 124, 128];
-
-      if (recentAttempts && recentAttempts.length > 0) {
-        chartLabels = recentAttempts.map((a, i) => a.title || `Mock #${i+1}`).slice(-8);
-        chartData = recentAttempts.map(a => a.calculated_sas || 120).slice(-8);
-        // Ensure we always show at least the first seeded values too
-        if (chartData.length < 4) {
-          chartLabels = ['Start', 'Mock #1', 'Mock #2', ...chartLabels];
-          chartData = [108, 115, 122, ...chartData];
-        }
+      // Use real trajectory/attempt data
+      let chartLabels, chartData;
+      if (trajectory.length > 0) {
+        chartLabels = trajectory.map((t, i) => t.subject === 'Mixed' ? `Mock #${i + 1}` : t.subject.substring(0, 8));
+        chartData = trajectory.map(t => t.sas);
+      } else if (attempts.length > 0) {
+        chartLabels = attempts.map(a => a.title.split('—')[0].trim()).reverse();
+        chartData = attempts.map(a => a.calculated_sas).reverse();
+      } else {
+        chartLabels = ['Start'];
+        chartData = [sas];
       }
 
       window._sasChartInstance = new Chart(sasCtx, {
@@ -235,12 +291,9 @@ LearnlyRouter.register('analytics', function() {
             data: chartData,
             borderColor: primaryColor,
             backgroundColor: primaryBg,
-            fill: true,
-            tension: 0.4,
+            fill: true, tension: 0.4,
             pointBackgroundColor: primaryColor,
-            pointRadius: 6,
-            pointHoverRadius: 8,
-            borderWidth: 3,
+            pointRadius: 6, pointHoverRadius: 8, borderWidth: 3,
           }]
         },
         options: {
@@ -256,55 +309,55 @@ LearnlyRouter.register('analytics', function() {
 
     const radarCtx = document.getElementById('subject-radar-chart');
     if (radarCtx) {
-      if (window._radarChartInstance) {
-        window._radarChartInstance.destroy();
-      }
+      if (window._radarChartInstance) window._radarChartInstance.destroy();
+
+      // Use real subject accuracy values
+      const subjectNames = Object.keys(subjects).map(n => n.replace(' Spatial', '').replace(' & SPaG', ''));
+      const currentData = Object.values(subjects).map(s => Math.round(s.accuracy));
+      const targetData = Object.values(subjects).map(() => 92);
+
       window._radarChartInstance = new Chart(radarCtx, {
         type: 'radar',
         data: {
-          labels: ['Mathematics','Verbal Reasoning','Non-Verbal','English','Speed','Consistency'],
+          labels: [...subjectNames, 'Speed', 'Consistency'],
           datasets: [{
             label: 'Current',
-            data: [88, 91, 84, 86, 78, 85],
+            data: [...currentData, 78, 85],
             borderColor: primaryColor,
             backgroundColor: primaryBg,
             borderWidth: 2,
             pointBackgroundColor: primaryColor,
-          },{
+          }, {
             label: 'Target',
-            data: [92, 92, 90, 90, 85, 90],
+            data: [...targetData, 85, 90],
             borderColor: isMyRank ? '#38bdf8' : '#006e4b',
             backgroundColor: isMyRank ? 'rgba(56,189,248,0.1)' : 'rgba(0,110,75,0.08)',
-            borderWidth: 2,
-            borderDash: [5, 5],
+            borderWidth: 2, borderDash: [5, 5],
             pointBackgroundColor: isMyRank ? '#38bdf8' : '#006e4b',
           }]
         },
         options: {
           responsive: true, maintainAspectRatio: false,
-          plugins: { 
-            legend: { 
-              position: 'bottom', 
-              labels: { color: textColor, font: { family: 'Plus Jakarta Sans', size: 12 } } 
-            } 
+          plugins: {
+            legend: {
+              position: 'bottom',
+              labels: { color: textColor, font: { family: 'Plus Jakarta Sans', size: 12 } }
+            }
           },
-          scales: { 
-            r: { 
+          scales: {
+            r: {
               min: 60, max: 100, ticks: { stepSize: 10, backdropColor: 'transparent', color: textColor },
               grid: { color: gridColor },
               angleLines: { color: gridColor },
               pointLabels: { color: textColor, font: { family: 'Plus Jakarta Sans', size: 11, weight: '600' } }
-            } 
+            }
           }
         }
       });
     }
   }
 
-  // Initialize charts
   setTimeout(renderCharts, 100);
-
-  // Re-render when theme switches
   window.removeEventListener('themechange', renderCharts);
   window.addEventListener('themechange', renderCharts);
 });
