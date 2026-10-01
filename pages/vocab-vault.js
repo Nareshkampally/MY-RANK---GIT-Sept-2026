@@ -95,24 +95,27 @@ LearnlyRouter.register('vocab-vault', function() {
 
   return `
   <!-- LexiVault Header -->
-  <section class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md mb-space-xl">
-    <div>
-      <div class="flex items-center gap-space-xs">
-        <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed font-label-md text-label-md font-bold uppercase tracking-wider">Spaced Repetition Engine</span>
-        <span class="text-xs font-semibold text-secondary flex items-center gap-1">
+  <section class="relative flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 rounded-3xl overflow-hidden shadow-md mb-8" style="background: linear-gradient(135deg, #a855f7 0%, #7e22ce 100%);">
+    <div class="absolute -right-12 -top-12 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute left-1/4 bottom-0 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+    
+    <div class="relative z-10 text-white">
+      <div class="flex items-center gap-2 text-xs font-bold text-white/80 uppercase tracking-widest mb-1">
+        <span class="px-2.5 py-0.5 rounded-full bg-white/20 backdrop-blur-md text-white font-label-md text-[10px] font-bold uppercase tracking-wider">Spaced Repetition Engine</span>
+        <span class="text-xs font-semibold text-yellow-300 flex items-center gap-1">
           <span class="material-symbols-outlined text-sm">bolt</span> Streak Active (14 Days)
         </span>
       </div>
-      <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight mt-1">LexiVault 11+ — Vocabulary Power Trainer</h1>
-      <p class="font-body-md text-body-md text-on-surface-variant mt-1">
+      <h1 class="text-3xl font-extrabold tracking-tight mt-1">LexiVault 11+ — Vocabulary Power Trainer</h1>
+      <p class="text-white/80 text-sm mt-1 max-w-2xl">
         Master high-frequency GL &amp; CEM vocabulary with interactive 3D flipcards, native UK voice pronunciation, and memory mnemonics.
       </p>
     </div>
     <!-- Quick Stats Bar -->
-    <div class="flex items-center gap-3 bg-surface-container-lowest p-2 rounded-2xl border border-outline-variant/30 shadow-sm">
-      <div class="px-3 py-1.5 rounded-xl bg-tertiary-fixed text-center">
-        <span class="text-[10px] uppercase font-bold text-on-tertiary-fixed block">Mastered</span>
-        <strong class="text-lg font-black text-on-tertiary-fixed font-mono" id="mastered-count">2</strong>
+    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 rounded-[2.5rem] border border-white/20 shadow-sm relative z-10">
+      <div class="px-3 py-1.5 rounded-xl bg-white text-center">
+        <span class="text-[10px] uppercase font-bold text-purple-700 block">Mastered</span>
+        <strong class="text-lg font-black text-purple-700 font-mono" id="mastered-count">2</strong>
       </div>
       <div class="px-3 py-1.5 rounded-xl bg-secondary-fixed text-center">
         <span class="text-[10px] uppercase font-bold text-on-secondary-fixed block">Learning</span>
@@ -168,7 +171,7 @@ LearnlyRouter.register('vocab-vault', function() {
               </div>
 
               <!-- Exam Stem with Context -->
-              <div class="mt-6 p-4 rounded-2xl bg-surface-container-low border border-outline-variant/20">
+              <div class="mt-6 p-4 rounded-[2.5rem] bg-surface-container-low border border-outline-variant/20">
                 <span class="text-[10px] font-bold uppercase tracking-wider text-primary block mb-1">11+ Consortium Exam Stem</span>
                 <p class="text-sm font-medium text-on-surface italic leading-relaxed">"${v.stem}"</p>
               </div>
@@ -261,7 +264,7 @@ LearnlyRouter.register('vocab-vault', function() {
                   <span class="material-symbols-outlined text-xl">volume_up</span>
                 </button>
               </div>
-              <div class="mt-6 p-4 rounded-2xl bg-surface-container-low border border-outline-variant/20">
+              <div class="mt-6 p-4 rounded-[2.5rem] bg-surface-container-low border border-outline-variant/20">
                 <span class="text-[10px] font-bold uppercase tracking-wider text-primary block mb-1">11+ Consortium Exam Stem</span>
                 <p class="text-sm font-medium text-on-surface italic leading-relaxed">"${v.stem || ''}"</p>
               </div>

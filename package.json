@@ -11,9 +11,15 @@
   },
   "dependencies": {
     "@google/genai": "^2.22.0",
+    "acorn": "^8.18.0",
+    "compression": "^1.8.2",
     "cors": "^2.8.5",
     "dotenv": "^17.4.2",
+    "esprima": "^4.0.1",
     "express": "^4.21.2",
+    "express-rate-limit": "^8.7.0",
+    "firebase-admin": "^14.5.0",
+    "helmet": "^8.3.0",
     "sqlite3": "^5.1.7"
   },
   "keywords": [
@@ -25,5 +31,13 @@
     "myrank"
   ],
   "author": "Naresh Kampally",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Nareshkampally/MY-RANK---GIT-Sept-2026.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Nareshkampally/MY-RANK---GIT-Sept-2026/issues"
+  },
+  "homepage": "https://github.com/Nareshkampally/MY-RANK---GIT-Sept-2026#readme"
 }

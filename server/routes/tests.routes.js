@@ -1,35 +1,40 @@
 // Learnly 11+ / MyRank 11+ — Test Papers & Attempt Execution Routes
 const express = require('express');
 const router = express.Router();
-const { queryAll, queryGet, queryRun } = require('../db/database');
+const { getFirestoreDb } = require('../db/firebase');
+const { FieldValue } = require('firebase-admin/firestore');
 const { calculateSAS } = require('../services/sasEngine');
 
 // GET /api/tests — catalog of mock papers and drills
 router.get('/', async (req, res) => {
   try {
-    const papers = await queryAll('SELECT * FROM test_papers ORDER BY id ASC');
+    const db = getFirestoreDb();
+    const snapshot = await db.collection('test_papers').orderBy('__name__', 'asc').get();
+    const papers = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     res.json({ tests: papers });
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch test catalog' });
   }
 });
+
 // GET /api/tests/adaptive — generate custom adaptive test targeting weakest subjects
 router.get('/adaptive', async (req, res) => {
   try {
+    const db = getFirestoreDb();
+    
     // Fetch all questions from mock-04 (our main 10-question paper)
-    const questions = await queryAll(`
-      SELECT id, question_number, subject, stem, passage_context, options_json, correct_answer, explanation
-      FROM questions 
-      WHERE test_paper_id = 'mock-04'
-      ORDER BY question_number ASC
-    `);
+    let snapshot = await db.collection('questions')
+      .where('test_paper_id', '==', 'mock-04')
+      .orderBy('question_number', 'asc')
+      .get();
+      
+    let questions = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
 
     // Fallback to any questions if mock-04 is empty
-    const allQuestions = questions.length > 0 ? questions : await queryAll(`
-      SELECT id, question_number, subject, stem, passage_context, options_json, correct_answer, explanation
-      FROM questions 
-      ORDER BY RANDOM() LIMIT 10
-    `);
+    if (questions.length === 0) {
+      const allSnapshot = await db.collection('questions').limit(10).get();
+      questions = allSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    }
 
     res.json({
       test: {
@@ -37,10 +42,10 @@ router.get('/adaptive', async (req, res) => {
         title: 'Scholar Mock #04 — Adaptive Practice Session',
         type: 'Adaptive Mock',
         duration_mins: 25,
-        total_questions: allQuestions.length,
-        questions: allQuestions.map(q => ({
+        total_questions: questions.length,
+        questions: questions.map(q => ({
           ...q,
-          options: JSON.parse(q.options_json || '[]'),
+          options: q.options || [],
           passage_context: q.passage_context || ''
         }))
       }
@@ -51,16 +56,17 @@ router.get('/adaptive', async (req, res) => {
   }
 });
 
-
 // GET /api/tests/recent — today's verified test attempts timecard feed
 router.get('/recent', async (req, res) => {
   try {
-    const attempts = await queryAll(`
-      SELECT * FROM test_attempts 
-      WHERE user_id = 'student-leo-01' 
-      ORDER BY finish_time DESC 
-      LIMIT 10
-    `);
+    const db = getFirestoreDb();
+    const snapshot = await db.collection('test_attempts')
+      .where('user_id', '==', req.user.uid)
+      .orderBy('finish_time', 'desc')
+      .limit(10)
+      .get();
+      
+    const attempts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     res.json({ attempts });
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch recent attempts' });
@@ -70,13 +76,24 @@ router.get('/recent', async (req, res) => {
 // GET /api/tests/attempts/:id — specific scorecard record
 router.get('/attempts/:id', async (req, res) => {
   try {
-    const attempt = await queryGet('SELECT * FROM test_attempts WHERE id = ?', [req.params.id]);
-    if (!attempt) {
+    const db = getFirestoreDb();
+    const doc = await db.collection('test_attempts').doc(req.params.id).get();
+    
+    if (!doc.exists) {
       // Return latest attempt as fallback
-      const latest = await queryGet('SELECT * FROM test_attempts ORDER BY finish_time DESC LIMIT 1');
-      return res.json({ attempt: latest });
+      const latestSnapshot = await db.collection('test_attempts')
+        .orderBy('finish_time', 'desc')
+        .limit(1)
+        .get();
+        
+      if (!latestSnapshot.empty) {
+        const latestDoc = latestSnapshot.docs[0];
+        return res.json({ attempt: { id: latestDoc.id, ...latestDoc.data() } });
+      }
+      return res.status(404).json({ error: 'Attempt not found' });
     }
-    res.json({ attempt });
+    
+    res.json({ attempt: { id: doc.id, ...doc.data() } });
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch attempt details' });
   }
@@ -95,11 +112,18 @@ router.post('/:id/submit', async (req, res) => {
       subject = 'Verbal Reasoning'
     } = req.body;
 
-    const paper = await queryGet('SELECT * FROM test_papers WHERE id = ?', [testId]) || {
+    const db = getFirestoreDb();
+    const paperDoc = await db.collection('test_papers').doc(testId).get();
+    
+    let paper = {
       id: testId,
       title: 'Scholar Mock #04 — Verbal Reasoning Timed Section',
       subject: subject
     };
+    
+    if (paperDoc.exists) {
+      paper = { id: paperDoc.id, ...paperDoc.data() };
+    }
 
     const start = startTime ? new Date(startTime) : new Date(Date.now() - 25 * 60 * 1000);
     const finish = new Date(finishTime);
@@ -108,35 +132,30 @@ router.post('/:id/submit', async (req, res) => {
 
     // Compute standard 11+ SAS & percentile
     const sasResult = calculateSAS(rawScore, maxScore, studentAgeMonths, paper.subject);
-
     const attemptId = 'attempt-' + Date.now();
 
-    await queryRun(`
-      INSERT INTO test_attempts (
-        id, user_id, test_paper_id, title, subject, start_time, finish_time,
-        duration_seconds, raw_score, max_score, percentage, calculated_sas,
-        percentile, pacing_seconds_per_q, proctor_status
-      ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    `, [
-      attemptId,
-      'student-leo-01',
-      paper.id,
-      paper.title,
-      paper.subject,
-      start.toISOString(),
-      finish.toISOString(),
-      durationSeconds,
-      rawScore,
-      maxScore,
-      sasResult.percentage,
-      sasResult.sas,
-      sasResult.percentile,
-      pacingSecondsPerQ,
-      'Verified by AI Proctor Engine'
-    ]);
+    await db.collection('test_attempts').doc(attemptId).set({
+      user_id: req.user.uid,
+      test_paper_id: paper.id,
+      title: paper.title,
+      subject: paper.subject,
+      start_time: start.toISOString(),
+      finish_time: finish.toISOString(),
+      duration_seconds: durationSeconds,
+      raw_score: rawScore,
+      max_score: maxScore,
+      percentage: sasResult.percentage,
+      calculated_sas: sasResult.sas,
+      percentile: sasResult.percentile,
+      pacing_seconds_per_q: pacingSecondsPerQ,
+      proctor_status: 'Verified by AI Proctor Engine',
+      created_at: new Date().toISOString()
+    });
 
     // Update user XP (+100 XP for mock completion)
-    await queryRun('UPDATE users SET xp = xp + 100 WHERE id = ?', ['student-leo-01']);
+    await db.collection('users').doc(req.user.uid).update({
+      xp: FieldValue.increment(100)
+    });
 
     res.json({
       success: true,

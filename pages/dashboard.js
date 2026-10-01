@@ -1,557 +1,365 @@
-// Learnly 11+ — Student Dashboard Page
+// Learnly 11+ — Premium AI Dashboard with XP System, Adaptive Recommendations, and Live Stats
 LearnlyRouter.register('dashboard', function() {
   return `
-  <!-- Dynamic Atmospheric Glow Hero -->
-  <div class="relative w-full mb-space-xl overflow-hidden rounded-3xl bg-surface-container-lowest p-space-xl shadow-xl">
-    <div class="absolute -right-16 -top-16 w-80 h-80 bg-primary/10 rounded-full blur-3xl pointer-events-none"></div>
-    <div class="absolute right-1/3 -bottom-20 w-64 h-64 bg-secondary-container/10 rounded-full blur-2xl pointer-events-none"></div>
-    <div class="relative z-10 flex flex-col xl:flex-row xl:items-center xl:justify-between gap-space-lg">
-      <div class="max-w-2xl">
-        <div class="inline-flex items-center gap-space-xs px-3 py-1 rounded-full bg-primary-fixed text-on-primary-fixed mb-space-sm shadow-sm">
-          <span class="material-symbols-outlined text-sm font-bold" style="font-variation-settings: 'FILL' 1;">bolt</span>
-          <span class="font-label-md text-label-md uppercase tracking-wider">Exam Sprint Mode</span>
-        </div>
-        <h1 class="font-display-hero text-display-hero text-on-surface tracking-tight">
-          Welcome back, Leo! Ready for today's quest?
-        </h1>
-        <p class="font-body-lg text-body-lg text-on-surface-variant mt-space-xs flex items-center gap-2 flex-wrap">
-          <span class="inline-flex items-center gap-1 font-label-lg text-label-lg text-primary font-bold">
-            <span class="material-symbols-outlined text-base">event</span> Next Mock Exam in 18 days
+  <div class="flex flex-col xl:flex-row gap-6 w-full">
+    
+    <!-- ══ LEFT MAIN CONTENT ══ -->
+    <div class="flex-1 flex flex-col gap-6 min-w-0">
+
+      <!-- HERO WELCOME BANNER -->
+      <section class="relative rounded-3xl overflow-hidden p-8" style="background: linear-gradient(135deg, #3525cd 0%, #4f46e5 50%, #6366f1 100%);">
+        <!-- Decorative elements -->
+        <div class="absolute -right-12 -top-12 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute right-32 bottom-0 w-32 h-32 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+        
+        <!-- Live Badge -->
+        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 border border-white/20 backdrop-blur-md mb-4">
+          <span class="relative flex h-2 w-2">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
           </span>
-          <span class="text-outline">•</span>
-          <span>Target: <strong class="text-on-surface">11+ Grammar Consortium</strong> (GL &amp; CEM format)</span>
-        </p>
-      </div>
-    <!-- Quick Summary Stats Mosaic -->
-      <div class="grid grid-cols-2 sm:grid-cols-4 gap-space-sm w-full xl:w-auto">
-        <div class="bg-surface-container-low rounded-2xl p-space-md flex flex-col justify-between shadow-sm hover:scale-[1.02] transition-transform">
-          <div class="flex items-center justify-between">
-            <span class="font-label-md text-label-md uppercase text-on-surface-variant tracking-wider">Daily Goal</span>
-            <span class="material-symbols-outlined text-primary text-base">checklist</span>
-          </div>
-          <div class="mt-2">
-            <div class="flex items-baseline gap-1">
-              <span class="font-headline-md text-headline-md text-on-surface font-extrabold" id="dash-daily-val">3</span>
-              <span class="font-label-lg text-label-lg text-on-surface-variant" id="dash-daily-total">/ 4 done</span>
-            </div>
-            <div class="w-full bg-surface-container-highest rounded-full h-1.5 mt-2 overflow-hidden">
-              <div class="bg-primary h-full rounded-full" id="dash-daily-bar" style="width: 75%;"></div>
-            </div>
-          </div>
+          <span class="text-white/90 text-xs font-bold uppercase tracking-wider">Exam Countdown Active</span>
         </div>
-        <div class="bg-secondary-fixed/40 rounded-2xl p-space-md flex flex-col justify-between shadow-sm hover:scale-[1.02] transition-transform streak-pulse">
-          <div class="flex items-center justify-between">
-            <span class="font-label-md text-label-md uppercase text-secondary font-bold tracking-wider">Streak</span>
-            <span class="material-symbols-outlined text-secondary text-base" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
-          </div>
-          <div class="mt-2">
-            <div class="font-headline-md text-headline-md text-on-secondary-fixed font-extrabold" id="dash-streak">14 Days</div>
-            <span class="font-label-md text-label-md text-secondary font-semibold">On Absolute Fire!</span>
-          </div>
-        </div>
-        <div class="bg-surface-container-low rounded-2xl p-space-md flex flex-col justify-between shadow-sm hover:scale-[1.02] transition-transform">
-          <div class="flex items-center justify-between">
-            <span class="font-label-md text-label-md uppercase text-on-surface-variant tracking-wider">Accuracy</span>
-            <span class="material-symbols-outlined text-tertiary-container text-base">verified</span>
-          </div>
-          <div class="mt-2">
-            <div class="font-headline-md text-headline-md text-tertiary-container font-extrabold" id="dash-accuracy">94.2%</div>
-            <span class="font-label-md text-label-md text-tertiary font-semibold">+2.8% this week</span>
-          </div>
-        </div>
-        <div class="bg-surface-container-high rounded-2xl p-space-md flex flex-col justify-between shadow-sm hover:scale-[1.02] transition-transform">
-          <div class="flex items-center justify-between">
-            <span class="font-label-md text-label-md uppercase text-on-surface-variant tracking-wider">SAS Index</span>
-            <span class="material-symbols-outlined text-primary text-base">auto_graph</span>
-          </div>
-          <div class="mt-2">
-            <div class="flex items-baseline gap-1">
-              <span class="font-headline-md text-headline-md text-primary font-extrabold" id="dash-sas">128</span>
-              <span class="font-label-md text-label-md text-on-surface-variant">/ 141</span>
-            </div>
-            <span class="inline-block px-2 py-0.5 rounded-full bg-primary-fixed text-on-primary-fixed-variant font-label-md text-label-md font-bold mt-1">High Readiness</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
 
-  <!-- AI Recommended Daily Pathway Banner (Stitch Engine) -->
-  <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md p-space-lg rounded-2xl bg-gradient-to-r from-primary-fixed/60 via-surface-container to-secondary-fixed/40 border border-primary/20 shadow-sm mb-space-xl">
-    <div class="flex items-center gap-space-md">
-      <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm flex-shrink-0">
-        <span class="material-symbols-outlined text-2xl">neurology</span>
-      </div>
-      <div>
-        <div class="flex items-center gap-space-xs">
-          <span class="font-label-md text-label-md text-primary font-bold uppercase">Dynamic AI Pathway Active</span>
-          <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold">High Yield</span>
-        </div>
-        <p class="font-headline-sm text-headline-sm text-on-surface mt-0.5 font-bold">
-          Today's AI Hyper-Focus: 3D Spatial Hexagonal Rotations + Archaic Register Contrast
-        </p>
-      </div>
-    </div>
-    <div class="flex items-center gap-space-sm w-full lg:w-auto justify-end">
-      <a href="#subject-quests" class="px-space-lg py-2.5 bg-primary text-on-primary rounded-full font-label-lg text-label-lg font-bold shadow-md hover:opacity-95 transition-all flex items-center gap-space-xs">
-        <span class="material-symbols-outlined text-base">play_arrow</span>
-        <span>Explore AI Quests Hub</span>
-      </a>
-    </div>
-  </div>
-
-  <!-- Primary Dynamic Content Split -->
-  <div class="grid grid-cols-1 lg:grid-cols-12 gap-space-xl">
-    <!-- Left 8 Columns -->
-    <div class="lg:col-span-8 flex flex-col gap-space-xl">
-      <!-- Daily Streak & Challenge Widget -->
-      <section class="bg-gradient-to-r from-surface-container-highest via-surface-container-low to-surface-container-lowest rounded-3xl p-space-xl shadow-lg border border-outline-variant/50 relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-space-lg mb-space-sm">
-        <div class="absolute -right-10 -bottom-10 w-48 h-48 bg-secondary/10 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="flex items-center gap-space-md z-10">
-          <div class="relative">
-            <div class="w-20 h-20 rounded-full bg-secondary-container flex items-center justify-center text-on-secondary-container shadow-md">
-              <span class="material-symbols-outlined text-4xl" style="font-variation-settings: 'FILL' 1;">local_fire_department</span>
-            </div>
-            <div class="absolute -bottom-2 -right-2 bg-secondary text-on-secondary font-black text-sm px-2 py-0.5 rounded-full border-2 border-surface">14</div>
-          </div>
-          <div>
-            <h2 class="font-headline-md text-headline-md text-on-surface font-extrabold flex items-center gap-2">
-              Daily Brain Bite <span class="px-2 py-0.5 rounded-full bg-error-container text-on-error-container font-label-md text-[10px] uppercase tracking-wider font-black">Hot</span>
-            </h2>
-            <p class="font-body-md text-body-md text-on-surface-variant mt-1 max-w-sm">Complete today's 3-question targeted micro-drill to extend your streak to 15 days!</p>
-          </div>
-        </div>
-        <div class="z-10 w-full md:w-auto flex flex-col items-end">
-          <button class="w-full md:w-auto px-space-xl py-3 rounded-full bg-secondary text-on-secondary font-label-lg text-label-lg font-black shadow-md hover:scale-105 active:scale-95 transition-all shadow-secondary/30" data-navigate="practice-arena">
-            Play Daily Bite
-          </button>
-          <span class="font-label-sm text-label-sm text-on-surface-variant mt-2 opacity-80">+50 Bonus XP</span>
-        </div>
-      </section>
-
-      <!-- Daily Quest Board -->
-      <section class="flex flex-col gap-space-md">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-space-sm">
-            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-primary-fixed text-primary">
-              <span class="material-symbols-outlined text-lg">flag</span>
-            </span>
-            <h2 class="font-headline-md text-headline-md text-on-surface font-bold">Daily Quest Board</h2>
-            <span class="font-label-md text-label-md text-on-surface-variant bg-surface-container-high px-2.5 py-0.5 rounded-full">Resets in 6h 40m</span>
-          </div>
-          <a href="#subject-quests" class="text-primary font-label-lg text-label-lg hover:underline transition-colors flex items-center gap-1 font-bold">
-            View All AI Quests <span class="material-symbols-outlined text-sm">arrow_forward</span>
-          </a>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-          <!-- Card 1: VR Timed Drill -->
-          <div class="relative bg-surface-container-lowest rounded-2xl p-space-lg shadow-md card-hover flex flex-col justify-between group overflow-hidden">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
-            <div>
-              <div class="flex items-center justify-between mb-space-sm">
-                <span class="px-2.5 py-1 rounded-full bg-surface-container-high text-primary font-label-md text-label-md font-bold flex items-center gap-1">
-                  <span class="material-symbols-outlined text-sm">psychology</span> Verbal Reasoning
-                </span>
-                <span class="text-secondary font-label-lg text-label-lg font-bold flex items-center gap-1">
-                  <span class="material-symbols-outlined text-base">stars</span> +50 XP
-                </span>
-              </div>
-              <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Synonyms &amp; Antonyms in Context</h3>
-              <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">GL Exam pattern drill: 15 timed lexical comparison queries with distractor analysis.</p>
-            </div>
-            <div class="flex items-center justify-between mt-space-lg pt-space-sm">
-              <div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
-                <span class="material-symbols-outlined text-sm">schedule</span> 10 mins
-              </div>
-              <div class="flex flex-wrap gap-2">
-                <button class="px-space-md py-2 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5" data-navigate="practice-arena" type="button">
-                  <span class="material-symbols-outlined text-base">play_arrow</span> In Progress
-                </button>
-                <button id="adaptive-drill-btn" class="px-space-md py-2 rounded-full bg-secondary text-on-secondary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all flex items-center gap-1.5" type="button">
-                  <span class="material-symbols-outlined text-base">psychology</span> Adaptive AI Drill
-                </button>
-              </div>
-            </div>
-          </div>
-          <!-- Card 2: Math Mastery -->
-          <div class="relative bg-surface-container-lowest rounded-2xl p-space-lg shadow-md card-hover flex flex-col justify-between group overflow-hidden">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-tertiary-container/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
-            <div>
-              <div class="flex items-center justify-between mb-space-sm">
-                <span class="px-2.5 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md font-bold flex items-center gap-1">
-                  <span class="material-symbols-outlined text-sm">calculate</span> Mathematics
-                </span>
-                <span class="text-secondary font-label-lg text-label-lg font-bold flex items-center gap-1">
-                  <span class="material-symbols-outlined text-base">stars</span> +80 XP
-                </span>
-              </div>
-              <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">Algebraic Sequences &amp; Multi-step</h3>
-              <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Linear progressions, nth term calculations, and multi-tier word challenges.</p>
-            </div>
-            <div class="flex items-center justify-between mt-space-lg pt-space-sm">
-              <div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
-                <span class="material-symbols-outlined text-sm">schedule</span> 15 mins
-              </div>
-              <button class="px-space-md py-2 rounded-full bg-surface-container-high text-primary font-label-lg text-label-lg font-bold hover:bg-primary-container hover:text-on-primary transition-all flex items-center gap-1.5" data-navigate="drill-spatial" type="button">Start Challenge</button>
-            </div>
-          </div>
-          <!-- Card 3: NVR -->
-          <div class="relative bg-surface-container-lowest rounded-2xl p-space-lg shadow-md card-hover flex flex-col justify-between group overflow-hidden">
-            <div class="absolute top-0 right-0 w-24 h-24 bg-secondary-container/10 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
-            <div>
-              <div class="flex items-center justify-between mb-space-sm">
-                <span class="px-2.5 py-1 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md font-bold flex items-center gap-1">
-                  <span class="material-symbols-outlined text-sm">view_in_ar</span> NVR Spatial
-                </span>
-                <span class="text-secondary font-label-lg text-label-lg font-bold flex items-center gap-1">
-                  <span class="material-symbols-outlined text-base">stars</span> +60 XP
-                </span>
-              </div>
-              <h3 class="font-headline-sm text-headline-sm text-on-surface group-hover:text-primary transition-colors">3D Cube Nets &amp; Spatial Rotations</h3>
-              <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Visualizing folded surfaces, isometric turns, and opposite face deduction.</p>
-            </div>
-            <div class="flex items-center justify-between mt-space-lg pt-space-sm">
-              <div class="flex items-center gap-1 text-on-surface-variant font-label-md text-label-md">
-                <span class="material-symbols-outlined text-sm">schedule</span> 12 mins
-              </div>
-              <button class="px-space-md py-2 rounded-full bg-surface-container-high text-primary font-label-lg text-label-lg font-bold hover:bg-primary-container hover:text-on-primary transition-all flex items-center gap-1.5" data-navigate="drill-spatial" type="button">Start Challenge</button>
-            </div>
-          </div>
-          <!-- Card 4: Vocab -->
-          <div class="relative bg-gradient-to-br from-primary-container to-primary text-on-primary rounded-2xl p-space-lg shadow-md flex flex-col justify-between overflow-hidden cursor-pointer select-none group" id="vocab-card">
-            <div class="flex items-center justify-between mb-space-sm">
-              <span class="px-2.5 py-1 rounded-full bg-primary-fixed/20 text-on-primary font-label-md text-label-md font-bold flex items-center gap-1 backdrop-blur-md">
-                <span class="material-symbols-outlined text-sm">auto_stories</span> 11+ Daily Lexicon
-              </span>
-              <button class="w-8 h-8 rounded-full bg-on-primary/10 hover:bg-on-primary/20 flex items-center justify-center transition-colors" id="pronounce-btn" type="button">
-                <span class="material-symbols-outlined text-sm text-on-primary">volume_up</span>
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+          <div class="max-w-xl">
+            <h2 class="text-3xl font-extrabold text-white mb-2 leading-tight">Welcome back, Leo! 🚀</h2>
+            <p class="text-white/80 text-base leading-relaxed mb-5">
+              You're in the <strong class="text-white">Top 4%</strong> nationally. Today's AI recommendation: target 
+              <strong class="text-yellow-300">3D Spatial Nets</strong> — your weakest topic at 68%.
+            </p>
+            <div class="flex flex-wrap gap-3">
+              <button class="px-6 py-3 rounded-xl bg-white text-primary font-bold hover:bg-gray-50 transition-colors shadow-lg flex items-center gap-2 text-sm" data-navigate="practice-arena">
+                <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">sports_esports</span>
+                Continue Studying
+              </button>
+              <button class="px-6 py-3 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-colors flex items-center gap-2 text-sm backdrop-blur-md" data-navigate="study-planner">
+                <span class="material-symbols-outlined text-lg">calendar_month</span>
+                View Plan
               </button>
             </div>
-            <div class="my-auto transition-all duration-300" id="vocab-front">
-              <div class="flex items-baseline gap-2">
-                <span class="font-headline-lg text-headline-lg font-extrabold tracking-tight">Sagacious</span>
-                <span class="font-label-md text-label-md opacity-80 italic">/səˈɡeɪ.ʃəs/ (adj.)</span>
-              </div>
-              <p class="font-body-md text-body-md mt-2 opacity-95 line-clamp-2">
-                Having or showing keen mental discernment and good judgment; wise or shrewd.
-              </p>
-              <div class="mt-space-sm px-space-md py-2 rounded-xl bg-on-primary/10 font-body-sm text-body-sm italic border-none">
-                "The sagacious scholar deduced the missing sequence before time elapsed."
-              </div>
-            </div>
-            <div class="flex items-center justify-between mt-space-md pt-space-xs text-on-primary/80 font-label-md text-label-md">
-              <span class="flex items-center gap-1">
-                <span class="material-symbols-outlined text-sm">swap_horiz</span> Tap card to view Antonym
-              </span>
-              <span class="font-bold text-secondary-fixed">Mastered ✓</span>
+          </div>
+          <!-- Countdown Widget -->
+          <div class="shrink-0 text-center bg-white/10 backdrop-blur-md rounded-[2.5rem] p-5 border border-white/20">
+            <div class="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">Days to Exam</div>
+            <div class="text-5xl font-black text-white leading-none mb-1" id="dash-countdown">--</div>
+            <div class="text-white/60 text-xs">Jan 15, 2027</div>
+            <div class="mt-3 w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
+              <div class="h-full bg-yellow-300 rounded-full" id="dash-countdown-bar" style="width:0%"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Subject Readiness & Mastery Grid -->
-      <section class="flex flex-col gap-space-md">
-        <div class="flex items-center justify-between">
-          <div class="flex items-center gap-space-sm">
-            <span class="flex items-center justify-center w-8 h-8 rounded-full bg-tertiary-fixed text-tertiary-container">
-              <span class="material-symbols-outlined text-lg">track_changes</span>
-            </span>
-            <h2 class="font-headline-md text-headline-md text-on-surface">Subject Readiness &amp; Mastery</h2>
-          </div>
-          <span class="font-label-md text-label-md text-on-surface-variant">CEM &amp; GL Target Benchmarks</span>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-space-md">
-          ${['Mathematics','Verbal Reasoning','Non-Verbal Reasoning','English & Comprehension'].map((subj, i) => {
-            const data = [
-              { icon:'functions', pct:88, solved:420, level:'Grandmaster', color:'tertiary-container', fixedBg:'tertiary-fixed/50', str:'Fractions, Ratio & Proportion', focus:'Decimals & Algebraic Word Problems', speed:'48s' },
-              { icon:'psychology', pct:91, solved:380, level:'Elite Scholar', color:'primary', fixedBg:'primary-fixed', str:'Word Codes, Complex Anagrams', focus:'Hidden Compound Words', speed:'34s' },
-              { icon:'view_in_ar', pct:84, solved:295, level:'Proficient', color:'secondary', fixedBg:'secondary-fixed/60', str:'Shape Analogies & Matrices', focus:'Reflection & 3D Rotations', speed:'52s' },
-              { icon:'menu_book', pct:86, solved:310, level:'Master', color:'primary', fixedBg:'surface-container-highest', str:'Subtle Inference & Punctuation', focus:'Creative Writing Under Timed Pressure', speed:'42s' },
-            ][i];
-            return `
-            <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md card-hover flex flex-col justify-between">
-              <div>
-                <div class="flex items-center justify-between">
-                  <div class="flex items-center gap-space-sm">
-                    <div class="w-10 h-10 rounded-xl bg-${data.fixedBg} flex items-center justify-center text-${data.color}">
-                      <span class="material-symbols-outlined text-xl">${data.icon}</span>
-                    </div>
-                    <div>
-                      <h3 class="font-headline-sm text-headline-sm text-on-surface">${subj}</h3>
-                      <span class="font-label-md text-label-md text-on-surface-variant">${data.solved} Questions solved</span>
-                    </div>
-                  </div>
-                  <div class="text-right">
-                    <span class="font-headline-md text-headline-md text-${data.color} font-extrabold">${data.pct}%</span>
-                    <div class="px-2 py-0.5 rounded-md bg-${data.fixedBg} text-${data.color} font-label-md text-label-md font-bold mt-0.5">${data.level}</div>
-                  </div>
-                </div>
-                <div class="w-full bg-surface-container-high rounded-full h-2 mt-space-md overflow-hidden">
-                  <div class="bg-${data.color} h-full rounded-full" style="width:${data.pct}%"></div>
-                </div>
-                <div class="mt-space-md flex flex-col gap-space-xs font-body-sm text-body-sm">
-                  <div class="flex items-center justify-between">
-                    <span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-sm text-${data.color}">check_circle</span> Strengths:</span>
-                    <span class="font-label-md text-label-md text-on-surface font-semibold">${data.str}</span>
-                  </div>
-                  <div class="flex items-center justify-between">
-                    <span class="text-on-surface-variant flex items-center gap-1"><span class="material-symbols-outlined text-sm text-secondary">adjust</span> Focus Target:</span>
-                    <span class="font-label-md text-label-md text-secondary font-semibold">${data.focus}</span>
-                  </div>
-                </div>
-              </div>
-              <div class="mt-space-md pt-space-sm flex items-center justify-between">
-                <span class="font-label-md text-label-md text-on-surface-variant">Avg Speed: ${data.speed} / question</span>
-                <a class="font-label-lg text-label-lg text-primary font-bold hover:underline flex items-center gap-0.5" href="#subject-quests?subject=${['maths','vr','nvr','english'][i]}">Open AI Quest <span class="material-symbols-outlined text-sm">chevron_right</span></a>
-              </div>
-            </div>`;
-          }).join('')}
-        </div>
+      <!-- STATS ROW -->
+      <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
+        ${[
+          { label: 'SAS Score', value: '131', sub: '↑ +13 from start', icon: 'emoji_events', color: 'from-primary to-indigo-500', textColor: 'text-on-primary' },
+          { label: 'National Rank', value: 'Top 4%', sub: '96th percentile', icon: 'leaderboard', color: 'from-emerald-500 to-teal-500', textColor: 'text-white' },
+          { label: 'Accuracy', value: '89%', sub: '+4.2% this month', icon: 'verified', color: 'from-amber-500 to-orange-400', textColor: 'text-white' },
+          { label: 'Study Streak', value: '14 🔥', sub: 'Personal best!', icon: 'local_fire_department', color: 'from-rose-500 to-pink-500', textColor: 'text-white' },
+        ].map(s => `
+        <div class="relative rounded-[2.5rem] p-5 bg-gradient-to-br ${s.color} shadow-lg overflow-hidden group hover:scale-[1.02] transition-transform cursor-pointer">
+          <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-white/10 rounded-full"></div>
+          <span class="material-symbols-outlined ${s.textColor} text-2xl mb-2 block opacity-80" style="font-variation-settings:'FILL' 1">${s.icon}</span>
+          <div class="text-2xl font-extrabold ${s.textColor} leading-tight">${s.value}</div>
+          <div class="text-xs ${s.textColor} font-bold opacity-80 mt-0.5">${s.label}</div>
+          <div class="text-[10px] ${s.textColor} opacity-60 mt-0.5">${s.sub}</div>
+        </div>`).join('')}
       </section>
-    </div>
 
-    <!-- Right 4 Columns: Sidebar widgets -->
-    <div class="lg:col-span-4 flex flex-col gap-space-xl">
-      <!-- Scholar Focus Watch & Daily Timecard Widget -->
-      <div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-xl border border-outline-variant/30 overflow-hidden relative">
-        <div class="absolute -right-8 -top-8 w-36 h-36 bg-primary/10 rounded-full blur-2xl pointer-events-none"></div>
-        <div class="flex items-center justify-between mb-space-md">
-          <div class="flex items-center gap-space-sm">
-            <div class="w-10 h-10 rounded-2xl bg-primary text-on-primary flex items-center justify-center shadow-md">
-              <span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">schedule</span>
-            </div>
-            <div>
-              <h3 class="font-headline-sm text-headline-sm text-on-surface font-extrabold leading-tight">Scholar Focus Watch</h3>
-              <span class="font-label-md text-label-md text-primary font-bold">Real-time Test &amp; Login Audit</span>
-            </div>
+      <!-- TWO-COLUMN: Today's Quests + Subject Mastery -->
+      <section class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+
+        <!-- TODAY'S QUESTS -->
+        <div class="bg-surface-container-lowest rounded-3xl p-6 border border-outline-variant/20 shadow-sm flex flex-col">
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="font-bold text-on-surface text-base flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings:'FILL' 1">task_alt</span>
+              Today's Quests
+            </h3>
+            <span class="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-bold">2/4 done</span>
           </div>
-          <button data-open-watch-modal type="button" class="w-8 h-8 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface-variant flex items-center justify-center transition-colors shadow-sm" title="Expand Full Timecard Modal">
-            <span class="material-symbols-outlined text-base">open_in_full</span>
+          <div class="flex flex-col gap-3 flex-grow">
+            ${[
+              { icon: 'psychology', color: 'bg-blue-100 text-blue-600', subject: 'Verbal Reasoning', task: 'Synonyms & Antonyms Drill', duration: '10m', xp: '+30 XP', done: true },
+              { icon: 'functions', color: 'bg-emerald-100 text-emerald-600', subject: 'Mathematics', task: 'Algebraic Sequences', duration: '15m', xp: '+50 XP', done: true },
+              { icon: 'view_in_ar', color: 'bg-purple-100 text-purple-600', subject: 'NVR', task: '3D Spatial Nets — Focus Drill', duration: '12m', xp: '+45 XP', done: false },
+              { icon: 'menu_book', color: 'bg-rose-100 text-rose-600', subject: 'English', task: 'Comprehension: Fiction Passage', duration: '20m', xp: '+60 XP', done: false },
+            ].map(q => `
+            <div class="flex items-center gap-3 p-3 rounded-xl ${q.done ? 'bg-surface-container-low opacity-70' : 'bg-surface-container-low hover:bg-surface-container-high hover:border-primary'} border border-outline-variant/20 transition-all cursor-pointer group">
+              <div class="w-9 h-9 rounded-xl ${q.color} flex items-center justify-center shrink-0 ${q.done ? 'grayscale' : ''}">
+                <span class="material-symbols-outlined text-base">${q.done ? 'check' : q.icon}</span>
+              </div>
+              <div class="flex-1 min-w-0">
+                <div class="text-xs font-bold text-on-surface-variant">${q.subject}</div>
+                <div class="text-sm font-bold text-on-surface truncate ${q.done ? 'line-through' : ''}">${q.task}</div>
+              </div>
+              <div class="text-right shrink-0">
+                <div class="text-[10px] font-bold text-on-surface-variant">${q.duration}</div>
+                <div class="text-[10px] font-bold text-primary">${q.xp}</div>
+              </div>
+            </div>`).join('')}
+          </div>
+          <button class="mt-4 w-full py-2.5 rounded-xl border border-primary/30 text-primary font-bold text-sm hover:bg-primary/5 transition-colors flex items-center justify-center gap-2" data-navigate="subject-quests">
+            <span class="material-symbols-outlined text-base">expand_more</span> View All Quests
           </button>
         </div>
 
-        <!-- Real-Time Digital Watchface -->
-        <div class="p-space-md rounded-2xl bg-surface-container-low border border-outline-variant/20 shadow-inner mb-space-md text-center relative overflow-hidden">
-          <div class="flex items-center justify-between text-[11px] font-bold uppercase tracking-wider text-on-surface-variant mb-1">
-            <span>UK Time (BST)</span>
-            <span class="inline-flex items-center gap-1 text-tertiary font-bold"><span class="w-2 h-2 rounded-full bg-tertiary animate-pulse"></span> Proctor Active</span>
+        <!-- SUBJECT MASTERY RADARS -->
+        <div class="bg-surface-container-lowest rounded-3xl p-6 border border-outline-variant/20 shadow-sm">
+          <div class="flex items-center justify-between mb-5">
+            <h3 class="font-bold text-on-surface text-base flex items-center gap-2">
+              <span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings:'FILL' 1">donut_small</span>
+              Subject Mastery
+            </h3>
+            <button class="text-xs font-bold text-primary hover:underline" data-navigate="analytics">Full Report →</button>
           </div>
-          <div class="font-mono text-3xl font-black text-primary tracking-tight watch-live-time py-1">
-            --:--:--
-          </div>
-          <div class="grid grid-cols-2 gap-2 pt-space-xs border-t border-outline-variant/20 mt-space-xs text-left text-xs">
-            <div class="bg-surface-container-lowest/80 p-2 rounded-xl">
-              <span class="text-on-surface-variant block text-[10px] font-bold uppercase">Logged In At</span>
-              <strong class="text-on-surface font-bold watch-login-time">08:30 AM</strong>
-            </div>
-            <div class="bg-surface-container-lowest/80 p-2 rounded-xl">
-              <span class="text-on-surface-variant block text-[10px] font-bold uppercase">Active Focus</span>
-              <strong class="text-primary font-extrabold watch-session-duration">--m</strong>
-            </div>
-          </div>
-          <!-- Daily Goal Progress -->
-          <div class="mt-3 text-left">
-            <div class="flex items-center justify-between text-xs mb-1">
-              <span class="font-semibold text-on-surface-variant">Daily Focus Target (2h 30m)</span>
-              <span class="font-bold text-tertiary">96%</span>
-            </div>
-            <div class="w-full bg-surface-container-highest rounded-full h-1.5 overflow-hidden">
-              <div class="bg-tertiary h-full rounded-full" style="width: 96%"></div>
-            </div>
+          <div class="grid grid-cols-2 gap-4">
+            ${[
+              { name: 'Maths', pct: 82, color: '#10B981', track: '#D1FAE5' },
+              { name: 'English', pct: 94, color: '#EC4899', track: '#FCE7F3' },
+              { name: 'VR', pct: 76, color: '#6366F1', track: '#E0E7FF' },
+              { name: 'NVR', pct: 68, color: '#F59E0B', track: '#FEF3C7' },
+            ].map(s => {
+              const r = 30, circ = 2 * Math.PI * r;
+              const offset = circ - (s.pct / 100) * circ;
+              const label = s.pct >= 90 ? '🏆' : s.pct >= 80 ? '⭐' : s.pct >= 70 ? '📈' : '⚠️';
+              return `
+              <div class="flex flex-col items-center p-4 rounded-[2.5rem] bg-surface-container-low hover:bg-surface-container-high transition-colors cursor-pointer border border-outline-variant/20">
+                <div class="relative w-20 h-20 mb-2">
+                  <svg class="w-full h-full -rotate-90" viewBox="0 0 72 72">
+                    <circle cx="36" cy="36" r="${r}" fill="none" stroke="${s.track}" stroke-width="6"/>
+                    <circle cx="36" cy="36" r="${r}" fill="none" stroke="${s.color}" stroke-width="6" 
+                            stroke-dasharray="${circ}" stroke-dashoffset="${offset}" stroke-linecap="round"
+                            class="transition-all duration-1000"/>
+                  </svg>
+                  <div class="absolute inset-0 flex flex-col items-center justify-center">
+                    <span class="text-base font-black text-on-surface leading-none">${s.pct}%</span>
+                    <span class="text-base leading-none">${label}</span>
+                  </div>
+                </div>
+                <span class="text-xs font-bold text-on-surface">${s.name}</span>
+                <span class="text-[10px] text-on-surface-variant">${s.pct >= 90 ? 'Mastered' : s.pct >= 80 ? 'Strong' : s.pct >= 70 ? 'Growing' : 'Needs Work'}</span>
+              </div>`;
+            }).join('')}
           </div>
         </div>
+      </section>
 
-        <!-- Today's Test Start & Finish Timecard Feed -->
-        <div class="mb-space-md">
-          <div class="flex items-center justify-between mb-2">
-            <span class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant font-bold">Today's Tests Timecard</span>
-            <span class="text-[11px] font-bold text-primary bg-primary-fixed px-2 py-0.5 rounded-full">3 Verified</span>
-          </div>
-          <div class="space-y-2">
-            <!-- Test 1 -->
-            <div class="p-2.5 rounded-xl bg-surface-container-low/70 border border-outline-variant/15 hover:border-primary/30 transition-colors text-xs">
-              <div class="flex items-center justify-between font-bold text-on-surface">
-                <span class="truncate max-w-[180px]">Mock #04 — Verbal Reasoning</span>
-                <span class="text-tertiary font-extrabold">24/25 (96%)</span>
-              </div>
-              <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
-                <span class="font-mono text-outline">Start: <strong>09:15 AM</strong> ➔ Finish: <strong class="text-primary">09:42 AM</strong></span>
-                <span class="bg-surface-container px-1.5 py-0.5 rounded font-medium">27m 30s</span>
-              </div>
-            </div>
-            <!-- Test 2 -->
-            <div class="p-2.5 rounded-xl bg-surface-container-low/70 border border-outline-variant/15 hover:border-primary/30 transition-colors text-xs">
-              <div class="flex items-center justify-between font-bold text-on-surface">
-                <span class="truncate max-w-[180px]">Rapid Cloze Drill #02</span>
-                <span class="text-tertiary font-extrabold">15/15 (100%)</span>
-              </div>
-              <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
-                <span class="font-mono text-outline">Start: <strong>10:30 AM</strong> ➔ Finish: <strong class="text-primary">10:43 AM</strong></span>
-                <span class="bg-surface-container px-1.5 py-0.5 rounded font-medium">13m 15s</span>
-              </div>
-            </div>
-            <!-- Test 3 -->
-            <div class="p-2.5 rounded-xl bg-surface-container-low/70 border border-outline-variant/15 hover:border-primary/30 transition-colors text-xs">
-              <div class="flex items-center justify-between font-bold text-on-surface">
-                <span class="truncate max-w-[180px]">3D Spatial Net Rapid Practice</span>
-                <span class="text-tertiary font-extrabold">18/20 (90%)</span>
-              </div>
-              <div class="flex items-center justify-between text-[11px] text-on-surface-variant mt-1">
-                <span class="font-mono text-outline">Start: <strong>11:20 AM</strong> ➔ Finish: <strong class="text-primary">11:35 AM</strong></span>
-                <span class="bg-surface-container px-1.5 py-0.5 rounded font-medium">15m 10s</span>
-              </div>
-            </div>
-          </div>
+      <!-- RECENT ACTIVITY FEED -->
+      <section class="bg-surface-container-lowest rounded-3xl p-6 border border-outline-variant/20 shadow-sm">
+        <div class="flex items-center justify-between mb-5">
+          <h3 class="font-bold text-on-surface text-base flex items-center gap-2">
+            <span class="material-symbols-outlined text-primary text-lg">history</span>
+            Recent Activity
+          </h3>
+          <button class="text-xs font-bold text-primary hover:underline" data-navigate="analytics">View All</button>
         </div>
-
-        <button data-open-watch-modal type="button" class="w-full py-2.5 rounded-xl bg-surface-container-high hover:bg-primary-fixed text-primary font-label-md text-label-md font-bold transition-all flex items-center justify-center gap-1.5 shadow-sm">
-          <span class="material-symbols-outlined text-base">receipt_long</span>
-          <span>View Detailed Pacing Ledger</span>
-        </button>
-      </div>
-
-      <!-- AI Smart Revision Suggestion -->
-      <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md overflow-hidden relative">
-        <div class="absolute -right-8 -top-8 w-32 h-32 bg-primary/5 rounded-full blur-2xl pointer-events-none"></div>
-        <div class="flex items-center gap-space-sm mb-space-md">
-          <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center">
-            <span class="material-symbols-outlined text-on-primary text-xl">auto_awesome</span>
-          </div>
-          <div>
-            <h3 class="font-headline-sm text-headline-sm text-on-surface">AI Revision Coach</h3>
-            <span class="font-label-md text-label-md text-primary font-bold">Powered by LearnlyAI</span>
-          </div>
-        </div>
-        <div class="space-y-space-sm">
-          <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/60">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="material-symbols-outlined text-sm text-secondary">priority_high</span>
-              <span class="font-label-lg text-label-lg text-on-surface font-bold">Weakness Detected</span>
-            </div>
-            <p class="font-body-sm text-body-sm text-on-surface-variant">Your NVR reflection accuracy dropped 12% in the last 3 sessions. Try the targeted micro-drill below.</p>
-            <button class="mt-space-sm px-space-md py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md font-bold shadow-sm hover:opacity-90 transition-opacity" data-navigate="drill-spatial" type="button">Start Micro-Drill (5 min)</button>
-          </div>
-          <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/60">
-            <div class="flex items-center gap-2 mb-1">
-              <span class="material-symbols-outlined text-sm text-tertiary-container">trending_up</span>
-              <span class="font-label-lg text-label-lg text-on-surface font-bold">Momentum Insight</span>
-            </div>
-            <p class="font-body-sm text-body-sm text-on-surface-variant">VR Word Codes: 96% accuracy across 40 questions. You're exam-ready for this category!</p>
-          </div>
-        </div>
-      </div>
-
-      <!-- Recent Activity Timeline -->
-      <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md">
-        <div class="flex items-center justify-between mb-space-md">
-          <h3 class="font-headline-sm text-headline-sm text-on-surface">Recent Activity</h3>
-          <span class="font-label-md text-label-md text-on-surface-variant">Today</span>
-        </div>
-        <div class="space-y-space-md">
+        <div class="space-y-3">
           ${[
-            { icon:'check_circle', color:'tertiary-container', title:'Completed VR Drill', desc:'Synonyms & Antonyms — 14/15 correct', time:'2h ago', xp:'+50 XP' },
-            { icon:'emoji_events', color:'secondary-container', title:'Badge Earned: VR Virtuoso', desc:'Achieved 95%+ in Verbal Reasoning 3 times', time:'3h ago', xp:'+100 XP' },
-            { icon:'assignment_turned_in', color:'primary', title:'Mock Exam Submitted', desc:'GL Full Paper #4 — Score: 92/100', time:'Yesterday', xp:'+200 XP' },
-            { icon:'school', color:'tertiary-container', title:'1-on-1 Clinic Completed', desc:'NVR Strategy Session with Ms. Patel', time:'2 days ago', xp:'+75 XP' },
+            { icon: 'check_circle', color: 'text-tertiary', title: 'Completed Mock #05', sub: 'SAS 131 · 89% accuracy', time: '2h ago', xp: '+500 XP' },
+            { icon: 'military_tech', color: 'text-amber-500', title: 'Badge Earned: Speed Demon', sub: 'Average < 40s per question', time: 'Yesterday', xp: '+100 XP' },
+            { icon: 'psychology', color: 'text-blue-500', title: 'Verbal Reasoning Drill', sub: '28/30 correct · New high score', time: 'Yesterday', xp: '+80 XP' },
+            { icon: 'auto_stories', color: 'text-violet-500', title: 'Vocab Vault Set 6 Mastered', sub: '20 words mastered via SRS', time: '2 days ago', xp: '+60 XP' },
           ].map(a => `
-          <div class="flex gap-space-sm">
-            <div class="flex flex-col items-center">
-              <div class="w-8 h-8 rounded-full bg-${a.color}/10 flex items-center justify-center flex-shrink-0">
-                <span class="material-symbols-outlined text-${a.color} text-base">${a.icon}</span>
-              </div>
-              <div class="w-px h-full bg-surface-container-high mt-1"></div>
+          <div class="flex items-center gap-3 p-3 rounded-xl hover:bg-surface-container-low transition-colors cursor-pointer group">
+            <span class="material-symbols-outlined ${a.color} text-xl shrink-0" style="font-variation-settings:'FILL' 1">${a.icon}</span>
+            <div class="flex-1 min-w-0">
+              <div class="text-sm font-bold text-on-surface">${a.title}</div>
+              <div class="text-xs text-on-surface-variant">${a.sub}</div>
             </div>
-            <div class="pb-space-md">
-              <div class="flex items-center justify-between">
-                <span class="font-label-lg text-label-lg text-on-surface font-bold">${a.title}</span>
-                <span class="font-label-md text-label-md text-secondary font-bold">${a.xp}</span>
-              </div>
-              <p class="font-body-sm text-body-sm text-on-surface-variant">${a.desc}</p>
-              <span class="font-label-md text-label-md text-outline mt-0.5">${a.time}</span>
+            <div class="text-right shrink-0">
+              <div class="text-[10px] text-on-surface-variant">${a.time}</div>
+              <div class="text-[10px] font-bold text-primary">${a.xp}</div>
+            </div>
+          </div>`).join('')}
+        </div>
+      </section>
+
+    </div>
+
+    <!-- ══ RIGHT SIDEBAR ══ -->
+    <div class="xl:w-80 flex flex-col gap-5 shrink-0">
+
+      <!-- AI TUTOR CARD -->
+      <div class="rounded-3xl p-6 text-white shadow-xl relative overflow-hidden" style="background: linear-gradient(160deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);">
+        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-400/20 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="relative z-10">
+          <div class="flex items-center gap-3 mb-4">
+            <div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
+              <span class="material-symbols-outlined text-indigo-300 text-xl" style="font-variation-settings:'FILL' 1">smart_toy</span>
+            </div>
+            <div>
+              <div class="font-bold text-sm">AI Tutor Insight</div>
+              <div class="text-xs text-white/50">Personalized for you</div>
+            </div>
+          </div>
+          <div class="bg-white/5 rounded-[2.5rem] p-4 border border-white/10 mb-4">
+            <p class="text-white/90 text-sm leading-relaxed">
+              📊 <strong class="text-yellow-300">3D Spatial Nets</strong> is costing you ~6 SAS points. A focused 3-session drill programme this week could push your score past <strong class="text-green-300">135</strong>.
+            </p>
+          </div>
+          <button class="w-full py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-xl font-bold text-sm transition-colors flex items-center justify-center gap-2" data-navigate="drill-spatial">
+            <span class="material-symbols-outlined text-lg">play_arrow</span> Start NVR Drill
+          </button>
+        </div>
+      </div>
+
+      <!-- QUICK STUDY TIMER -->
+      <div class="bg-surface-container-lowest rounded-3xl p-6 border border-outline-variant/20 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-bold text-on-surface flex items-center gap-2 text-sm">
+            <span class="material-symbols-outlined text-primary text-lg">timer</span>
+            Study Timer
+          </h3>
+          <span class="text-xs text-on-surface-variant font-bold">Pomodoro 25min</span>
+        </div>
+        <div class="text-center mb-4">
+          <div class="relative inline-block">
+            <svg class="w-28 h-28 -rotate-90" viewBox="0 0 100 100">
+              <circle cx="50" cy="50" r="42" fill="none" stroke="var(--surface-container-high)" stroke-width="8"/>
+              <circle cx="50" cy="50" r="42" fill="none" stroke="var(--primary)" stroke-width="8" stroke-linecap="round"
+                      stroke-dasharray="264" stroke-dashoffset="66" id="timer-ring" class="transition-all duration-1000"/>
+            </svg>
+            <div class="absolute inset-0 flex flex-col items-center justify-center">
+              <div class="text-2xl font-black text-on-surface font-mono" id="dash-timer">25:00</div>
+              <div class="text-[10px] text-on-surface-variant font-bold uppercase">remaining</div>
+            </div>
+          </div>
+        </div>
+        <div class="flex gap-2">
+          <button id="dash-timer-start" class="flex-1 py-2 rounded-xl bg-primary text-on-primary font-bold text-sm hover:bg-primary/90 transition-colors flex items-center justify-center gap-1">
+            <span class="material-symbols-outlined text-base" id="dash-timer-icon">play_arrow</span>
+            <span id="dash-timer-label">Start</span>
+          </button>
+          <button id="dash-timer-reset" class="w-10 h-10 rounded-xl border border-outline-variant/30 text-on-surface-variant hover:text-primary hover:border-primary transition-colors flex items-center justify-center">
+            <span class="material-symbols-outlined text-base">restart_alt</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- UPCOMING EVENTS -->
+      <div class="bg-surface-container-lowest rounded-3xl p-6 border border-outline-variant/20 shadow-sm">
+        <div class="flex items-center justify-between mb-4">
+          <h3 class="font-bold text-on-surface flex items-center gap-2 text-sm">
+            <span class="material-symbols-outlined text-primary text-lg" style="font-variation-settings:'FILL' 1">event</span>
+            Upcoming
+          </h3>
+          <button class="text-xs font-bold text-primary hover:underline" data-navigate="study-planner">Calendar →</button>
+        </div>
+        <div class="space-y-4">
+          ${[
+            { dot: 'bg-primary', dateLabel: 'Tomorrow 9:00 AM', title: 'Mock Exam #6', sub: 'GL + CEM Format · 100Q · 60min', urgent: true },
+            { dot: 'bg-secondary', dateLabel: 'Friday 4:00 PM', title: '1-on-1 Tutor Clinic', sub: 'Review spatial reasoning with Mr. T', urgent: false },
+            { dot: 'bg-tertiary', dateLabel: 'This Weekend', title: 'Past Paper Session', sub: 'CEM 2024 full paper', urgent: false },
+          ].map(e => `
+          <div class="flex gap-3 ${e.urgent ? 'p-2.5 rounded-xl bg-primary/5 border border-primary/20' : ''}">
+            <div class="mt-1.5 w-2.5 h-2.5 rounded-full ${e.dot} shrink-0 ${e.urgent ? 'ring-2 ring-primary/30' : ''}"></div>
+            <div>
+              <div class="text-xs font-bold ${e.urgent ? 'text-primary' : 'text-on-surface-variant'}">${e.dateLabel}</div>
+              <div class="text-sm font-bold text-on-surface">${e.title}</div>
+              <div class="text-xs text-on-surface-variant">${e.sub}</div>
             </div>
           </div>`).join('')}
         </div>
       </div>
 
-      <!-- Upcoming Schedule -->
-      <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md">
-        <div class="flex items-center justify-between mb-space-md">
-          <h3 class="font-headline-sm text-headline-sm text-on-surface">Upcoming Schedule</h3>
-          <button class="font-label-lg text-label-lg text-primary font-bold" data-navigate="clinic-booking">+ Book</button>
-        </div>
-        <div class="space-y-space-sm">
-          <div class="p-space-md rounded-xl bg-primary-fixed/30 border border-primary-fixed">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-label-lg text-label-lg text-primary font-bold">Mock Exam #5</span>
-              <span class="font-label-md text-label-md text-on-surface-variant">In 18 days</span>
-            </div>
-            <p class="font-body-sm text-body-sm text-on-surface-variant">Full Consortium Simulation — GL + CEM composite format</p>
-          </div>
-          <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/60">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-label-lg text-label-lg text-on-surface font-bold">1-on-1 Clinic</span>
-              <span class="font-label-md text-label-md text-on-surface-variant">Tomorrow 4pm</span>
-            </div>
-            <p class="font-body-sm text-body-sm text-on-surface-variant">NVR 3D Spatial Strategy — with Mr. Thompson</p>
-          </div>
-          <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/60">
-            <div class="flex items-center justify-between mb-1">
-              <span class="font-label-lg text-label-lg text-on-surface font-bold">Revision Sprint</span>
-              <span class="font-label-md text-label-md text-on-surface-variant">Fri 5pm</span>
-            </div>
-            <p class="font-body-sm text-body-sm text-on-surface-variant">English Comprehension — Inference & Deduction focus</p>
-          </div>
+      <!-- QUICK LINKS -->
+      <div class="bg-surface-container-lowest rounded-3xl p-5 border border-outline-variant/20 shadow-sm">
+        <h3 class="font-bold text-on-surface text-sm mb-3">Quick Access</h3>
+        <div class="grid grid-cols-3 gap-2">
+          ${[
+            { icon: 'auto_stories', label: 'Vocab', nav: 'vocab-vault', color: 'text-violet-600 bg-violet-50' },
+            { icon: 'document_scanner', label: 'Scanner', nav: 'homework-scanner', color: 'text-blue-600 bg-blue-50' },
+            { icon: 'folder_open', label: 'Papers', nav: 'past-papers', color: 'text-teal-600 bg-teal-50' },
+            { icon: 'emoji_events', label: 'Rankings', nav: 'leaderboard', color: 'text-orange-600 bg-orange-50' },
+            { icon: 'military_tech', label: 'Trophies', nav: 'trophy-room', color: 'text-amber-600 bg-amber-50' },
+            { icon: 'summarize', label: 'Report', nav: 'progress-report', color: 'text-rose-600 bg-rose-50' },
+          ].map(l => `
+          <button class="flex flex-col items-center gap-1 p-3 rounded-xl ${l.color} hover:opacity-80 transition-opacity cursor-pointer" data-navigate="${l.nav}">
+            <span class="material-symbols-outlined text-xl">${l.icon}</span>
+            <span class="text-[10px] font-bold">${l.label}</span>
+          </button>`).join('')}
         </div>
       </div>
+
     </div>
   </div>`;
-}, async function() {
-  if (window.ScholarWatch) {
-    window.ScholarWatch.updateDOMWatches();
-  }
+}, function() {
+  // Exam countdown
+  const examDate = new Date('2027-01-15');
+  const startDate = new Date('2026-07-01');
+  const now = new Date();
+  const daysLeft = Math.ceil((examDate - now) / (1000 * 60 * 60 * 24));
+  const totalDays = Math.ceil((examDate - startDate) / (1000 * 60 * 60 * 24));
+  const pctElapsed = Math.max(0, Math.min(100, ((now - startDate) / (examDate - startDate)) * 100));
 
-  try {
-    const analytics = await LearnlyAPI.getAnalyticsSummary();
-    if (analytics) {
-      const dashDailyVal = document.getElementById('dash-daily-val');
-      const dashDailyTotal = document.getElementById('dash-daily-total');
-      const dashDailyBar = document.getElementById('dash-daily-bar');
-      const dashStreak = document.getElementById('dash-streak');
-      const dashAccuracy = document.getElementById('dash-accuracy');
-      const dashSas = document.getElementById('dash-sas');
+  const cdEl = document.getElementById('dash-countdown');
+  const barEl = document.getElementById('dash-countdown-bar');
+  if (cdEl) cdEl.textContent = daysLeft;
+  if (barEl) barEl.style.width = `${pctElapsed}%`;
 
-      if (dashDailyVal) dashDailyVal.textContent = Math.min(analytics.testsCompleted, 4);
-      if (dashDailyTotal) dashDailyTotal.textContent = '/ 4 done';
-      if (dashDailyBar) dashDailyBar.style.width = Math.min((analytics.testsCompleted / 4) * 100, 100) + '%';
-      if (dashStreak) dashStreak.textContent = (analytics.streakDays || 0) + ' Days';
-      if (dashAccuracy) dashAccuracy.textContent = (analytics.overallAccuracy || 0).toFixed(1) + '%';
-      if (dashSas) dashSas.textContent = analytics.currentSAS || 100;
+  // Pomodoro Timer
+  let timerSeconds = 25 * 60;
+  let timerRunning = false;
+  let timerInterval = null;
+  const timerEl = document.getElementById('dash-timer');
+  const timerIcon = document.getElementById('dash-timer-icon');
+  const timerLabel = document.getElementById('dash-timer-label');
+  const timerRing = document.getElementById('timer-ring');
+  const startBtn = document.getElementById('dash-timer-start');
+  const resetBtn = document.getElementById('dash-timer-reset');
+  const totalSeconds = 25 * 60;
+  const circumference = 2 * Math.PI * 42;
+
+  function updateTimerDisplay() {
+    const m = Math.floor(timerSeconds / 60).toString().padStart(2, '0');
+    const s = (timerSeconds % 60).toString().padStart(2, '0');
+    if (timerEl) timerEl.textContent = `${m}:${s}`;
+    if (timerRing) {
+      const offset = circumference - (timerSeconds / totalSeconds) * circumference;
+      timerRing.style.strokeDashoffset = offset;
     }
-  } catch (err) {
-    console.warn('Dashboard Analytics API unavailable', err);
   }
 
-  const adaptiveBtn = document.getElementById('adaptive-drill-btn');
-  if (adaptiveBtn) {
-    adaptiveBtn.addEventListener('click', async () => {
-      if (window.LearnlyAPI) {
-        adaptiveBtn.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">sync</span> Generating...';
-        try {
-          const res = await LearnlyAPI.getAdaptiveTest();
-          console.log('Adaptive Test Generated:', res.test);
-          if (window.AIBuddy) {
-            window.AIBuddy.showToast('AI Drill Ready! 🎯', `Generated a ${res.test.duration_mins}-min drill targeting ${res.test.title.split(': ')[1]}.`);
+  if (startBtn) {
+    startBtn.addEventListener('click', () => {
+      if (timerRunning) {
+        clearInterval(timerInterval);
+        timerRunning = false;
+        if (timerIcon) timerIcon.textContent = 'play_arrow';
+        if (timerLabel) timerLabel.textContent = 'Resume';
+      } else {
+        timerRunning = true;
+        if (timerIcon) timerIcon.textContent = 'pause';
+        if (timerLabel) timerLabel.textContent = 'Pause';
+        timerInterval = setInterval(() => {
+          if (timerSeconds > 0) {
+            timerSeconds--;
+            updateTimerDisplay();
+          } else {
+            clearInterval(timerInterval);
+            timerRunning = false;
+            if (timerIcon) timerIcon.textContent = 'play_arrow';
+            if (timerLabel) timerLabel.textContent = 'Start';
+            if (timerEl) timerEl.textContent = 'Time\'s up!';
           }
-          // Navigate to practice arena after brief delay to show toast
-          setTimeout(() => {
-            window.location.hash = '#practice-arena?adaptive=true';
-          }, 1500);
-        } catch (e) {
-          console.error(e);
-          adaptiveBtn.innerHTML = '<span class="material-symbols-outlined text-base">psychology</span> Adaptive AI Drill';
-        }
+        }, 1000);
       }
     });
   }
-});
 
+  if (resetBtn) {
+    resetBtn.addEventListener('click', () => {
+      clearInterval(timerInterval);
+      timerRunning = false;
+      timerSeconds = 25 * 60;
+      if (timerIcon) timerIcon.textContent = 'play_arrow';
+      if (timerLabel) timerLabel.textContent = 'Start';
+      updateTimerDisplay();
+    });
+  }
+
+  updateTimerDisplay();
+});

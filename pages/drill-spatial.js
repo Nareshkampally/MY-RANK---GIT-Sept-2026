@@ -2,15 +2,19 @@
 LearnlyRouter.register('drill-spatial', function() {
   return `
   <div class="space-y-space-md">
-    <section class="bg-surface-container-lowest rounded-2xl p-space-md shadow-md flex flex-wrap items-center justify-between gap-space-md border border-outline-variant/30">
-      <div class="flex items-center gap-space-md">
-        <a href="#dashboard" class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-primary transition-colors cursor-pointer"><span class="material-symbols-outlined">arrow_back</span></a>
-        <div>
-          <div class="flex items-center gap-space-xs">
-            <span class="px-2.5 py-0.5 rounded-full bg-secondary-fixed text-on-secondary-fixed font-label-md text-label-md font-bold uppercase">Non-Verbal Spatial</span>
-            <span class="px-2.5 py-0.5 rounded-full bg-primary-fixed text-primary font-label-md text-label-md font-bold">Interactive 3D Fold Studio</span>
+    <section class="relative flex flex-wrap items-center justify-between gap-4 p-8 rounded-[2.5rem] overflow-hidden shadow-md mb-4" style="background: linear-gradient(135deg, #1d4ed8 0%, #1e3a8a 100%);">
+      <div class="absolute -right-12 -top-12 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+      
+      <div class="flex items-center gap-4 relative z-10">
+        <a href="#dashboard" class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white hover:bg-white/20 transition-colors cursor-pointer border border-white/20 backdrop-blur-md">
+          <span class="material-symbols-outlined text-sm">arrow_back</span>
+        </a>
+        <div class="text-white">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="px-2.5 py-0.5 rounded-full bg-white/20 font-bold text-[10px] uppercase tracking-widest backdrop-blur-md">Non-Verbal Spatial</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-sky-500/20 text-sky-200 font-bold text-[10px] uppercase border border-sky-500/30">Interactive 3D Fold Studio</span>
           </div>
-          <h1 class="font-headline-sm text-headline-sm text-on-surface mt-0.5 font-extrabold">Drill #1: 3D Isometric Net Folding Rapid-Fire</h1>
+          <h1 class="text-2xl font-extrabold tracking-tight">Drill #1: 3D Isometric Net Folding</h1>
         </div>
       </div>
       <div class="flex items-center gap-space-sm">
@@ -47,7 +51,7 @@ LearnlyRouter.register('drill-spatial', function() {
           </div>
 
           <!-- 2D Net Canvas -->
-          <div id="net-2d-view" class="bg-surface-container-low rounded-2xl p-space-lg flex flex-col items-center justify-center min-h-[320px] relative">
+          <div id="net-2d-view" class="bg-surface-container-low rounded-[2.5rem] p-space-lg flex flex-col items-center justify-center min-h-[320px] relative">
             <svg viewBox="0 0 300 250" class="w-full max-w-sm drop-shadow-sm">
               <!-- Grid Net with clean symbols -->
               <rect x="100" y="50" width="50" height="50" fill="#e2dfff" stroke="#4f46e5" stroke-width="2" rx="4"/>
@@ -68,7 +72,7 @@ LearnlyRouter.register('drill-spatial', function() {
           </div>
 
           <!-- 3D Interactive Fold Canvas (Hidden by default) -->
-          <div id="fold-3d-view" class="hidden bg-surface-container-low rounded-2xl p-space-lg flex flex-col items-center justify-center min-h-[320px] relative overflow-hidden">
+          <div id="fold-3d-view" class="hidden bg-surface-container-low rounded-[2.5rem] p-space-lg flex flex-col items-center justify-center min-h-[320px] relative overflow-hidden">
             <div class="net-3d-scene flex items-center justify-center h-48 w-full">
               <div id="simulated-cube" class="cube-assembly" style="transform: rotateX(-25deg) rotateY(35deg);">
                 <!-- 6 Faces -->
@@ -93,7 +97,7 @@ LearnlyRouter.register('drill-spatial', function() {
           </div>
 
           <!-- Socratic Spatial Intuition Tip -->
-          <div class="mt-4 p-3 rounded-2xl bg-surface-container-low border border-outline-variant/20 flex items-start gap-2.5 text-xs text-on-surface">
+          <div class="mt-4 p-3 rounded-[2.5rem] bg-surface-container-low border border-outline-variant/20 flex items-start gap-2.5 text-xs text-on-surface">
             <span class="material-symbols-outlined text-primary text-lg flex-shrink-0 mt-0.5">psychology</span>
             <div>
               <strong class="text-primary font-bold block">11+ Opposing Face Golden Rule:</strong>
@@ -119,13 +123,13 @@ LearnlyRouter.register('drill-spatial', function() {
               { letter: 'C', top: '▲', front: '●', right: '◆', correct: false, desc: 'Impossible: ▲ & ● are opposite!' },
               { letter: 'D', top: '◆', front: '○', right: '★', correct: false, desc: 'Impossible: ◆ & ○ are opposite!' }
             ].map((opt, i) => `
-              <button class="spatial-option-btn p-space-md rounded-2xl border-2 border-outline-variant/30 hover:border-primary bg-surface-container-lowest flex flex-col items-center gap-2 transition-all cursor-pointer ${i===0?'border-primary selected bg-primary-fixed/20':''}" data-index="${i}">
+              <button class="spatial-option-btn p-space-md rounded-[2.5rem] border-2 border-outline-variant/30 hover:border-primary bg-surface-container-lowest flex flex-col items-center gap-2 transition-all cursor-pointer ${i===0?'border-primary selected bg-primary-fixed/20':''}" data-index="${i}">
                 <div class="flex items-center justify-between w-full">
                   <span class="w-8 h-8 rounded-lg ${i===0?'bg-primary text-on-primary':'bg-surface-container-high text-on-surface'} font-bold flex items-center justify-center text-sm">${opt.letter}</span>
                   <span class="text-[10px] font-bold ${opt.correct?'text-tertiary':'text-outline'}">${opt.correct?'Verified Match':'Trap'}</span>
                 </div>
                 <!-- Isometric Miniature Preview -->
-                <div class="w-24 h-24 bg-surface-container-low rounded-xl border border-outline-variant/20 flex items-center justify-center relative p-1 text-center">
+                <div class="w-24 h-24 bg-surface-container-low rounded-3xl border border-outline-variant/20 flex items-center justify-center relative p-1 text-center">
                   <div class="font-mono text-xs font-bold leading-tight">
                     <div class="text-primary">${opt.top} (Top)</div>
                     <div class="text-secondary">${opt.front} (Front)</div>

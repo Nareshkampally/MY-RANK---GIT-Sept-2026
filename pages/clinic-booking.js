@@ -8,7 +8,7 @@ LearnlyRouter.register('clinic-booking', function() {
     </section>
     <div class="grid grid-cols-12 gap-space-lg">
       <div class="col-span-12 lg:col-span-7">
-        <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md space-y-space-lg">
+        <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-lg shadow-md space-y-space-lg">
           <div>
             <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Select Subject Focus</h3>
             <div class="grid grid-cols-2 gap-space-sm" id="subject-selector">
@@ -46,7 +46,7 @@ LearnlyRouter.register('clinic-booking', function() {
         </div>
       </div>
       <div class="col-span-12 lg:col-span-5">
-        <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md sticky top-24">
+        <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-lg shadow-md sticky top-24">
           <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Booking Summary</h3>
           <div class="space-y-space-sm p-space-md rounded-xl bg-surface-container-low mb-space-lg">
             <div class="flex justify-between"><span class="font-label-md text-label-md text-on-surface-variant">Subject</span><span id="summary-subject" class="font-label-lg text-label-lg text-on-surface font-bold">NVR Spatial Strategy</span></div>
@@ -161,7 +161,7 @@ LearnlyRouter.register('clinic-confirmation', function() {
 LearnlyRouter.register('clinic-live', function() {
   return `
   <div class="space-y-space-md">
-    <section class="bg-surface-container-lowest rounded-xl p-space-md shadow-md flex items-center justify-between">
+    <section class="bg-surface-container-lowest rounded-3xl p-space-md shadow-md flex items-center justify-between">
       <div class="flex items-center gap-space-md">
         <div class="w-10 h-10 rounded-xl bg-tertiary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-tertiary text-xl">videocam</span></div>
         <div><h1 class="font-headline-sm text-headline-sm text-on-surface">Live 1-on-1: NVR Spatial Strategy</h1><span class="font-label-md text-label-md text-on-surface-variant">with Mr. Thompson • 45 min session</span></div>
@@ -173,7 +173,7 @@ LearnlyRouter.register('clinic-live', function() {
       </div>
     </section>
     <div class="grid grid-cols-12 gap-space-md" style="height:calc(100vh - 200px)">
-      <div class="col-span-9 bg-surface-container-lowest rounded-2xl shadow-md flex flex-col overflow-hidden">
+      <div class="col-span-9 bg-surface-container-lowest rounded-[2.5rem] shadow-md flex flex-col overflow-hidden">
         <div class="flex-1 bg-surface-container-low flex items-center justify-center"><div class="text-center"><span class="material-symbols-outlined text-8xl text-outline/30">draw</span><p class="font-body-md text-body-md text-on-surface-variant mt-space-md">Shared Whiteboard — Draw, annotate, and collaborate</p></div></div>
         <div class="p-space-sm flex items-center justify-center gap-space-sm bg-surface-container-lowest border-t border-surface-container-high">
           ${['edit','straighten','circle','text_fields','undo','redo','delete'].map(t=>`<button class="w-10 h-10 rounded-lg bg-surface-container-low text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all flex items-center justify-center" type="button"><span class="material-symbols-outlined text-lg">${t}</span></button>`).join('')}
@@ -182,13 +182,13 @@ LearnlyRouter.register('clinic-live', function() {
         </div>
       </div>
       <div class="col-span-3 flex flex-col gap-space-md">
-        <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-md flex-1 flex flex-col">
+        <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-md shadow-md flex-1 flex flex-col">
           <div class="flex items-center gap-space-sm mb-space-md"><div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-lg">person</span></div><div><span class="font-label-lg text-label-lg text-on-surface font-bold">Mr. Thompson</span><br><span class="font-label-md text-label-md text-tertiary-container">Tutor</span></div></div>
-          <div class="flex-1 bg-surface-container-low rounded-xl p-space-md overflow-hidden flex items-center justify-center"><span class="material-symbols-outlined text-5xl text-outline/30">videocam</span></div>
+          <div class="flex-1 bg-surface-container-low rounded-3xl p-space-md overflow-hidden flex items-center justify-center"><span class="material-symbols-outlined text-5xl text-outline/30">videocam</span></div>
         </div>
-        <div class="bg-surface-container-lowest rounded-2xl p-space-md shadow-md flex-1 flex flex-col">
+        <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-md shadow-md flex-1 flex flex-col">
           <span class="font-label-lg text-label-lg text-on-surface font-bold mb-space-sm">Chat</span>
-          <div class="flex-1 bg-surface-container-low rounded-xl p-space-sm overflow-y-auto space-y-space-sm">
+          <div class="flex-1 bg-surface-container-low rounded-3xl p-space-sm overflow-y-auto space-y-space-sm">
             <div class="p-2 rounded-lg bg-primary-fixed/30 text-sm"><strong>Mr. T:</strong> Let's start with the hexagonal net from Q11.</div>
             <div class="p-2 rounded-lg bg-surface-container-lowest text-sm"><strong>Leo:</strong> I always get confused with opposite faces!</div>
           </div>
@@ -207,7 +207,7 @@ LearnlyRouter.register('clinic-summary', function() {
       <a href="#parent-portal" class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined">arrow_back</span></a>
       <div><h1 class="font-headline-lg text-headline-lg text-on-surface">Post-Clinic Summary</h1><p class="font-body-md text-body-md text-on-surface-variant">NVR Spatial Strategy Session with Mr. Thompson • Sep 15</p></div>
     </section>
-    <div class="bg-surface-container-lowest rounded-2xl p-space-xl shadow-md">
+    <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-xl shadow-md">
       <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md flex items-center gap-2"><span class="material-symbols-outlined text-tertiary-container">summarize</span>Session Summary</h3>
       <div class="space-y-space-md font-body-md text-body-md text-on-surface">
         <p>Today's session focused on <strong>3D Net Folding</strong> — Leo's primary weakness area in NVR. We covered:</p>
@@ -220,7 +220,7 @@ LearnlyRouter.register('clinic-summary', function() {
         <p>Leo showed significant improvement during the session, correctly solving 7/8 practice problems compared to his baseline of 4/8.</p>
       </div>
     </div>
-    <div class="bg-surface-container-lowest rounded-2xl p-space-xl shadow-md">
+    <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-xl shadow-md">
       <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md flex items-center gap-2"><span class="material-symbols-outlined text-primary">assignment</span>Homework Protocol</h3>
       <div class="space-y-space-sm">
         ${[

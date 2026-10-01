@@ -107,42 +107,46 @@ LearnlyRouter.register('analytics', function() {
   loading.classList.add('hidden');
   content.classList.remove('hidden');
   content.innerHTML = `
-  <section class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md mb-space-xl">
-    <div>
-      <div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md mb-1">
-        <span>SCHOLAR REVISION TRACKER</span><span class="text-outline-variant">•</span>
-        <span class="text-primary font-bold">CEM &amp; GL SYLLABUS ALIGNED</span>
+  <section class="relative flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md mb-8 p-8 rounded-3xl overflow-hidden shadow-md" style="background: linear-gradient(135deg, #1e1b4b 0%, #4f46e5 50%, #3525cd 100%);">
+    <!-- Decorative elements -->
+    <div class="absolute -right-12 -top-12 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute right-32 bottom-0 w-32 h-32 bg-indigo-400/20 rounded-full blur-2xl pointer-events-none"></div>
+
+    <div class="relative z-10 text-white">
+      <div class="flex items-center gap-space-xs font-label-md text-label-md mb-2">
+        <span class="text-white/80">SCHOLAR REVISION TRACKER</span><span class="text-white/50">•</span>
+        <span class="text-yellow-300 font-bold px-2 py-0.5 rounded-full bg-white/10 border border-white/20 backdrop-blur-md">CEM &amp; GL SYLLABUS ALIGNED</span>
       </div>
-      <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Performance Analytics &amp; Diagnostics</h1>
+      <h1 class="text-4xl font-extrabold tracking-tight">Performance Analytics</h1>
     </div>
-    <div class="flex flex-wrap items-center gap-space-sm">
-      <div class="inline-flex p-1 bg-surface-container-high rounded-full shadow-sm">
-        <button class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant">Last 7 Days</button>
-        <button class="px-space-md py-1.5 rounded-full font-label-md text-label-md bg-surface-container-lowest text-primary font-bold shadow-sm">Last 30 Days</button>
-        <button class="px-space-md py-1.5 rounded-full font-label-md text-label-md text-on-surface-variant">Mock Series</button>
+    <div class="flex flex-wrap items-center gap-4 relative z-10">
+      <div class="inline-flex p-1 bg-white/10 rounded-full border border-white/20 shadow-sm backdrop-blur-md">
+        <button class="px-6 py-2 rounded-full font-bold text-sm text-white/80 hover:text-white transition-colors">Last 7 Days</button>
+        <button class="px-6 py-2 rounded-full font-bold text-sm bg-white text-primary shadow-sm">Last 30 Days</button>
+        <button class="px-6 py-2 rounded-full font-bold text-sm text-white/80 hover:text-white transition-colors">Mock Series</button>
       </div>
-      <button class="flex items-center gap-space-xs px-space-lg py-2 bg-primary text-on-primary rounded-full font-label-lg text-label-lg shadow-[0_4px_14px_0_rgba(79,70,229,0.3)] hover:opacity-95 active:scale-95 transition-all" type="button">
-        <span class="material-symbols-outlined text-base">download</span> Export Tutor Report (PDF)
+      <button class="flex items-center gap-2 px-6 py-2.5 bg-white/10 border border-white/30 text-white font-bold rounded-full shadow-sm hover:bg-white/20 transition-all backdrop-blur-md" type="button">
+        <span class="material-symbols-outlined text-lg">download</span> Export PDF
       </button>
     </div>
   </section>
 
   <!-- Key Metrics Banner -->
-  <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md mb-space-xl">
+  <section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mb-8">
     <!-- SAS Card -->
-    <div class="p-space-lg bg-surface-container-lowest rounded-xl elevation-1 flex flex-col justify-between relative overflow-hidden">
-      <div class="absolute -right-6 -bottom-6 w-28 h-28 bg-primary/5 rounded-full pointer-events-none"></div>
-      <div>
-        <div class="flex items-center justify-between mb-space-xs">
-          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Standardized Age Score</span>
-          <span class="px-2 py-0.5 rounded-full bg-tertiary-fixed text-on-tertiary-fixed-variant font-label-md text-label-md font-bold">${percentileLabel}</span>
+    <div class="p-8 bg-surface-container-lowest border border-outline-variant/30 rounded-3xl shadow-sm flex flex-col justify-between relative overflow-hidden group hover:border-primary/50 transition-colors">
+      <div class="absolute -right-8 -bottom-8 w-32 h-32 bg-primary/5 rounded-full group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+      <div class="relative z-10">
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Standardized Age Score</span>
+          <span class="px-3 py-1 rounded-lg bg-tertiary/10 text-tertiary font-bold text-xs border border-tertiary/20">${percentileLabel}</span>
         </div>
-        <div class="flex items-baseline gap-space-xs">
-          <span class="font-display-hero text-display-hero text-primary font-extrabold leading-none analytics-sas-value">${sas}</span>
-          <span class="font-headline-sm text-headline-sm text-outline">/ 141</span>
+        <div class="flex items-baseline gap-2">
+          <span class="text-5xl font-extrabold text-primary leading-none analytics-sas-value tracking-tighter">${sas}</span>
+          <span class="text-xl font-bold text-outline-variant">/ 141</span>
         </div>
-        <p class="font-label-md text-label-md text-tertiary font-semibold mt-1 flex items-center gap-1">
-          <span class="material-symbols-outlined text-sm">verified</span> ${sas >= targetSAS ? 'Grammar School Offer Band' : 'Approaching Offer Band'}
+        <p class="text-sm text-tertiary font-bold mt-2 flex items-center gap-1.5">
+          <span class="material-symbols-outlined text-base">verified</span> ${sas >= targetSAS ? 'Grammar School Offer Band' : 'Approaching Offer Band'}
         </p>
       </div>
       <div class="mt-space-md pt-space-sm border-t border-surface-container-high/60">
@@ -154,16 +158,17 @@ LearnlyRouter.register('analytics', function() {
           <circle cx="${Math.round(sas / 141 * 200)}" cy="8" fill="#4f46e5" r="3.5"/>
         </svg>
       </div>
+      </div>
     </div>
     <!-- Accuracy -->
-    <div class="p-space-lg bg-surface-container-lowest rounded-xl elevation-1 flex flex-col justify-between">
+    <div class="p-8 bg-surface-container-lowest border border-outline-variant/30 rounded-3xl shadow-sm flex flex-col justify-between hover:border-primary/50 transition-colors">
       <div>
-        <div class="flex items-center justify-between mb-space-xs">
-          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Overall Accuracy</span>
-          <span class="flex items-center gap-0.5 text-tertiary font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-sm">${parseFloat(accDelta) >= 0 ? 'trending_up' : 'trending_down'}</span> ${accDelta >= 0 ? '+' : ''}${accDelta}%</span>
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Overall Accuracy</span>
+          <span class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-tertiary/10 text-tertiary text-xs font-bold border border-tertiary/20"><span class="material-symbols-outlined text-sm">${parseFloat(accDelta) >= 0 ? 'trending_up' : 'trending_down'}</span> ${accDelta >= 0 ? '+' : ''}${accDelta}%</span>
         </div>
-        <div class="font-display-hero text-display-hero text-on-surface font-extrabold leading-none analytics-accuracy-value">${accuracy.toFixed(1)}%</div>
-        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">Across CEM &amp; GL Standard Mocks</p>
+        <div class="text-5xl text-on-surface font-extrabold leading-none tracking-tighter analytics-accuracy-value">${accuracy.toFixed(1)}%</div>
+        <p class="text-sm font-semibold text-on-surface-variant mt-2">Across CEM &amp; GL Standard Mocks</p>
       </div>
       <div class="mt-space-md">
         <div class="w-full bg-surface-container-high rounded-full h-2.5 overflow-hidden">
@@ -172,48 +177,48 @@ LearnlyRouter.register('analytics', function() {
       </div>
     </div>
     <!-- Questions Completed -->
-    <div class="p-space-lg bg-surface-container-lowest rounded-xl elevation-1 flex flex-col justify-between">
+    <div class="p-8 bg-surface-container-lowest border border-outline-variant/30 rounded-3xl shadow-sm flex flex-col justify-between hover:border-primary/50 transition-colors">
       <div>
-        <div class="flex items-center justify-between mb-space-xs">
-          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Questions Completed</span>
-          <span class="material-symbols-outlined text-primary text-base">quiz</span>
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Questions Completed</span>
+          <span class="material-symbols-outlined text-primary text-xl">quiz</span>
         </div>
-        <div class="font-display-hero text-display-hero text-on-surface font-extrabold leading-none">${totalQuestions.toLocaleString()}</div>
-        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">+${monthlyQuestions} this month</p>
+        <div class="text-5xl text-on-surface font-extrabold leading-none tracking-tighter">${totalQuestions.toLocaleString()}</div>
+        <p class="text-sm font-semibold text-on-surface-variant mt-2">+${monthlyQuestions} this month</p>
       </div>
-      <div class="mt-space-md flex items-center gap-space-sm">
-        <div class="flex-1 h-1.5 bg-primary rounded-full" style="width:${Math.min(totalQuestions / 2000 * 100, 100)}%"></div>
-        <span class="font-label-md text-label-md text-on-surface-variant">Target: 2,000</span>
+      <div class="mt-8 flex items-center gap-3">
+        <div class="flex-1 h-2 bg-primary rounded-full" style="width:${Math.min(totalQuestions / 2000 * 100, 100)}%"></div>
+        <span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Target: 2k</span>
       </div>
     </div>
     <!-- Study Time -->
-    <div class="p-space-lg bg-surface-container-lowest rounded-xl elevation-1 flex flex-col justify-between">
+    <div class="p-8 bg-surface-container-lowest border border-outline-variant/30 rounded-3xl shadow-sm flex flex-col justify-between hover:border-primary/50 transition-colors">
       <div>
-        <div class="flex items-center justify-between mb-space-xs">
-          <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Study Time</span>
-          <span class="flex items-center gap-0.5 text-primary font-label-md text-label-md font-bold"><span class="material-symbols-outlined text-sm">trending_up</span> +18%</span>
+        <div class="flex items-center justify-between mb-4">
+          <span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">Study Time</span>
+          <span class="flex items-center gap-1 px-2.5 py-1 rounded-lg bg-primary/10 text-primary text-xs font-bold border border-primary/20"><span class="material-symbols-outlined text-sm">trending_up</span> +18%</span>
         </div>
-        <div class="font-display-hero text-display-hero text-on-surface font-extrabold leading-none">${Math.round(weeklyHours * 4)}h</div>
-        <p class="font-body-sm text-body-sm text-on-surface-variant mt-1">This month • Avg ${(weeklyHours / 7).toFixed(1)}h/day</p>
+        <div class="text-5xl text-on-surface font-extrabold leading-none tracking-tighter">${Math.round(weeklyHours * 4)}h</div>
+        <p class="text-sm font-semibold text-on-surface-variant mt-2">This month • Avg ${(weeklyHours / 7).toFixed(1)}h/day</p>
       </div>
-      <div class="mt-space-md grid grid-cols-7 gap-1">
-        ${[70,85,60,90,45,80,95].map(h => `<div class="h-8 rounded bg-primary/20 relative overflow-hidden"><div class="absolute bottom-0 w-full bg-primary rounded" style="height:${h}%"></div></div>`).join('')}
+      <div class="mt-8 grid grid-cols-7 gap-2">
+        ${[70,85,60,90,45,80,95].map(h => `<div class="h-10 rounded-md bg-primary/10 relative overflow-hidden"><div class="absolute bottom-0 w-full bg-primary rounded-md" style="height:${h}%"></div></div>`).join('')}
       </div>
     </div>
   </section>
 
   <!-- Charts Section -->
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-space-xl mb-space-xl">
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
     <!-- SAS Trend Chart -->
-    <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md">
-      <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">SAS Score Trend</h3>
+    <div class="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-8 shadow-sm">
+      <h3 class="text-xl font-bold text-on-surface mb-6">SAS Score Trend</h3>
       <div class="chart-container" style="height:240px">
         <canvas id="sas-trend-chart"></canvas>
       </div>
     </div>
     <!-- Subject Accuracy Radar -->
-    <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md">
-      <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Subject Accuracy Breakdown</h3>
+    <div class="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-8 shadow-sm">
+      <h3 class="text-xl font-bold text-on-surface mb-6">Subject Accuracy Breakdown</h3>
       <div class="chart-container" style="height:240px">
         <canvas id="subject-radar-chart"></canvas>
       </div>
@@ -221,37 +226,37 @@ LearnlyRouter.register('analytics', function() {
   </div>
 
   <!-- Weakness Heatmap -->
-  <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md mb-space-xl">
-    <div class="flex items-center justify-between mb-space-md">
-      <h3 class="font-headline-sm text-headline-sm text-on-surface">Topic Weakness Heatmap</h3>
-      <span class="font-label-md text-label-md text-on-surface-variant">Lower = More Mistakes</span>
+  <div class="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-8 shadow-sm mb-8">
+    <div class="flex items-center justify-between mb-6">
+      <h3 class="text-xl font-bold text-on-surface">Topic Weakness Heatmap</h3>
+      <span class="text-sm font-bold text-on-surface-variant border border-outline-variant/30 px-3 py-1 rounded-full bg-surface">Lower = More Mistakes</span>
     </div>
-    <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-space-sm">
+    <div class="grid grid-cols-2 md:grid-cols-4 xl:grid-cols-6 gap-4">
       ${[...weaknessTopics, ...additionalTopics].map(t => `
-      <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/40 text-center card-hover cursor-pointer" data-navigate="practice-arena">
-        <div class="font-headline-md text-headline-md text-${t.color} font-extrabold">${t.pct}%</div>
-        <span class="font-label-md text-label-md text-on-surface-variant">${t.topic}</span>
+      <div class="p-6 rounded-[2.5rem] bg-surface border border-outline-variant/20 text-center hover:border-primary/50 hover:shadow-sm transition-all cursor-pointer group" data-navigate="practice-arena">
+        <div class="text-3xl text-${t.color} font-black mb-1 group-hover:scale-105 transition-transform tracking-tight">${t.pct}%</div>
+        <span class="text-xs font-bold text-on-surface-variant uppercase tracking-widest">${t.topic}</span>
       </div>`).join('')}
     </div>
   </div>
 
   <!-- Speed Analysis -->
-  <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md">
-    <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Speed Analysis by Subject</h3>
-    <div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+  <div class="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-8 shadow-sm">
+    <h3 class="text-xl font-bold text-on-surface mb-6">Speed Analysis by Subject</h3>
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
       ${speedData.map(s => `
-      <div class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/40">
-        <div class="flex items-center gap-space-sm mb-space-sm">
-          <span class="material-symbols-outlined text-${s.color}">${s.icon}</span>
-          <span class="font-label-lg text-label-lg text-on-surface font-bold">${s.subj.replace(' Spatial', '').replace(' & SPaG', '')}</span>
+      <div class="p-6 rounded-[2.5rem] bg-surface border border-outline-variant/20 relative overflow-hidden group hover:border-primary/50 transition-colors">
+        <div class="flex items-center gap-3 mb-4">
+          <span class="material-symbols-outlined text-${s.color} bg-${s.color}/10 p-2 rounded-xl text-xl">${s.icon}</span>
+          <span class="font-bold text-sm text-on-surface uppercase tracking-widest">${s.subj.replace(' Spatial', '').replace(' & SPaG', '')}</span>
         </div>
-        <div class="flex items-baseline gap-1">
-          <span class="font-headline-md text-headline-md text-on-surface font-extrabold">${s.avg}</span>
-          <span class="font-label-md text-label-md text-on-surface-variant">/ question</span>
+        <div class="flex items-baseline gap-2">
+          <span class="text-3xl text-on-surface font-black tracking-tighter">${s.avg}</span>
+          <span class="text-xs font-bold text-on-surface-variant">/ question</span>
         </div>
-        <div class="flex items-center justify-between mt-space-xs">
-          <span class="font-label-md text-label-md text-on-surface-variant">Target: ${s.target}</span>
-          <span class="font-label-md text-label-md ${s.trend.startsWith('+') ? 'text-error' : 'text-tertiary'} font-bold">${s.trend}</span>
+        <div class="flex items-center justify-between mt-4 pt-4 border-t border-outline-variant/20">
+          <span class="text-xs font-bold text-on-surface-variant">Target: ${s.target}</span>
+          <span class="text-xs ${s.trend.startsWith('+') ? 'text-error' : 'text-tertiary'} font-bold bg-${s.trend.startsWith('+') ? 'error' : 'tertiary'}/10 px-2 py-0.5 rounded">${s.trend}</span>
         </div>
       </div>`).join('')}
     </div>

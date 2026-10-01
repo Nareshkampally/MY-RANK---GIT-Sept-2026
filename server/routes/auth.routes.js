@@ -1,15 +1,30 @@
 // Learnly 11+ / MyRank 11+ — Auth & Scholar Session Routes
 const express = require('express');
 const router = express.Router();
-const { queryGet, queryRun } = require('../db/database');
+const { getFirestoreDb } = require('../db/firebase');
 
 // GET /api/auth/session — returns current logged-in scholar and session watch metrics
 router.get('/session', async (req, res) => {
   try {
-    const user = await queryGet('SELECT * FROM users WHERE id = ?', ['student-leo-01']);
-    if (!user) {
-      return res.status(404).json({ error: 'User not found' });
+    const db = getFirestoreDb();
+    let doc = await db.collection('users').doc(req.user.uid).get();
+    
+    if (!doc.exists) {
+      // Auto-create a default profile for new users based on Leo Sharma template
+      const defaultProfile = {
+        name: req.user.email ? req.user.email.split('@')[0] : 'New Scholar',
+        avatar_url: 'https://api.dicebear.com/7.x/avataaars/svg?seed=' + req.user.uid,
+        level: 1,
+        xp: 0,
+        streak_days: 1,
+        target_exam_date: '2027-09-01',
+        created_at: new Date().toISOString()
+      };
+      await db.collection('users').doc(req.user.uid).set(defaultProfile);
+      doc = await db.collection('users').doc(req.user.uid).get();
     }
+    
+    const user = { id: doc.id, ...doc.data() };
 
     // Default morning login time (08:30:00 AM)
     const todayMorning = new Date();

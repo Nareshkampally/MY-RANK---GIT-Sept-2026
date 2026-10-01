@@ -1,12 +1,19 @@
 // Learnly 11+ / MyRank 11+ — Parent Portal & Live Cheer Routes
 const express = require('express');
 const router = express.Router();
-const { queryAll, queryRun } = require('../db/database');
+const { getFirestoreDb } = require('../db/firebase');
 
 // GET /api/parent/cheers — retrieve delivered cheer messages
 router.get('/cheers', async (req, res) => {
   try {
-    const cheers = await queryAll('SELECT * FROM parent_cheers WHERE user_id = ? ORDER BY created_at DESC LIMIT 10', ['student-leo-01']);
+    const db = getFirestoreDb();
+    const snapshot = await db.collection('parent_cheers')
+      .where('user_id', '==', req.user.uid)
+      .orderBy('created_at', 'desc')
+      .limit(10)
+      .get();
+      
+    const cheers = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     res.json({ cheers });
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch parent cheers' });
@@ -22,10 +29,15 @@ router.post('/cheer', async (req, res) => {
     }
 
     const cheerId = 'cheer-' + Date.now();
-    await queryRun(`
-      INSERT INTO parent_cheers (id, user_id, message, cheer_type, delivered)
-      VALUES (?, ?, ?, ?, 1)
-    `, [cheerId, 'student-leo-01', message, cheerType]);
+    const db = getFirestoreDb();
+    
+    await db.collection('parent_cheers').doc(cheerId).set({
+      user_id: req.user.uid,
+      message: message,
+      cheer_type: cheerType,
+      delivered: 1,
+      created_at: new Date().toISOString()
+    });
 
     res.json({
       success: true,

@@ -13,6 +13,16 @@ const LearnlyAPI = (function() {
       'Accept': 'application/json'
     };
 
+    // Inject Firebase Auth Token if available
+    if (window.firebase && window.firebase.auth().currentUser) {
+      try {
+        const token = await window.firebase.auth().currentUser.getIdToken();
+        defaultHeaders['Authorization'] = `Bearer ${token}`;
+      } catch (err) {
+        console.warn('Failed to get Firebase Auth token:', err);
+      }
+    }
+
     // Cache GET requests only
     const method = (options.method || 'GET').toUpperCase();
     if (method === 'GET') {

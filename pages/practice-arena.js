@@ -9,135 +9,132 @@ LearnlyRouter.register('practice-arena', function() {
     </div>
 
     <!-- MAIN ARENA (Hidden until loaded) -->
-    <div id="arena-content" class="hidden space-y-space-md">
+    <div id="arena-content" class="hidden flex flex-col h-[calc(100vh-8rem)]">
       <!-- TOP EXAM CONTROLS BAR -->
-      <section class="w-full bg-surface-container-lowest rounded-xl shadow-md p-space-md flex flex-wrap items-center justify-between gap-space-md transition-all">
-        <div class="flex items-center gap-space-md">
-          <div class="w-10 h-10 rounded-xl bg-primary-container flex items-center justify-center text-on-primary shadow-sm">
+      <section class="relative flex flex-col md:flex-row md:items-center justify-between gap-4 p-6 rounded-3xl overflow-hidden shadow-md shrink-0 mb-4" style="background: linear-gradient(135deg, #ec4899 0%, #e11d48 100%);">
+        <!-- Decorative elements -->
+        <div class="absolute -right-12 -top-12 w-32 h-32 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute left-1/4 bottom-0 w-24 h-24 bg-indigo-500/10 rounded-full blur-xl pointer-events-none"></div>
+        
+        <div class="flex items-center gap-space-md relative z-10">
+          <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center text-white border border-white/20 shadow-sm backdrop-blur-md">
             <span class="material-symbols-outlined text-2xl" id="exam-icon">auto_stories</span>
           </div>
           <div class="flex flex-col">
             <div class="flex items-center gap-space-xs">
-              <span class="px-2 py-0.5 rounded-full bg-surface-container-high text-primary font-label-md text-label-md">GL Assessment Style</span>
-              <span id="exam-badge" class="px-2 py-0.5 rounded-full bg-tertiary/10 text-tertiary font-label-md text-label-md">Mock</span>
+              <span class="px-2 py-0.5 rounded-full bg-white/10 text-white font-label-md text-label-md border border-white/10 backdrop-blur-md">GL Assessment Style</span>
+              <span id="exam-badge" class="px-2 py-0.5 rounded-full bg-indigo-400/20 text-indigo-200 border border-indigo-400/30 font-label-md text-label-md">Mock</span>
             </div>
-            <span id="exam-title" class="font-headline-sm text-headline-sm text-on-surface">Loading...</span>
+            <span id="exam-title" class="font-headline-sm text-headline-sm text-white">Loading...</span>
           </div>
         </div>
         <!-- Timer, Exam Watch & Progress -->
-        <div class="flex items-center flex-wrap gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded-2xl shadow-sm border border-outline-variant/30">
-          <div class="flex items-center gap-1.5 pr-2">
-            <span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider">Progress</span>
-            <span class="font-label-timer text-label-timer text-primary font-bold"><span id="progress-current">0</span> <span class="text-outline text-body-sm font-normal">/ <span id="progress-total">0</span></span></span>
+        <div class="flex items-center flex-wrap gap-4 relative z-10">
+          <div class="flex items-center gap-1.5 px-4 py-2 bg-white/10 rounded-full border border-white/10 shadow-sm backdrop-blur-md">
+            <span class="font-bold text-sm text-white/70 uppercase tracking-wider">Q</span>
+            <span class="font-bold text-white"><span id="progress-current">0</span> <span class="text-white/50 text-xs">/ <span id="progress-total">0</span></span></span>
           </div>
-          <div class="h-5 w-px bg-outline-variant/40 hidden sm:block"></div>
           
-          <div class="flex items-center gap-3 px-2 py-1 bg-surface-container-lowest rounded-xl border border-outline-variant/20 text-xs">
+          <div class="flex items-center gap-3 px-4 py-2 bg-white/10 rounded-full border border-white/10 text-xs shadow-sm backdrop-blur-md text-white">
             <div>
-              <span class="text-[10px] uppercase font-bold text-on-surface-variant block leading-none">Started</span>
-              <span class="font-mono font-bold text-on-surface watch-test-start-time leading-tight" id="watch-start">--:--:--</span>
+              <span class="text-[10px] uppercase font-bold text-white/70 block leading-none">Started</span>
+              <span class="font-mono font-bold leading-tight" id="watch-start">--:--:--</span>
             </div>
-            <div class="h-4 w-px bg-outline-variant/30"></div>
+            <div class="h-4 w-px bg-white/20"></div>
             <div>
-              <span class="text-[10px] uppercase font-bold text-on-surface-variant block leading-none">Elapsed</span>
-              <span class="font-mono font-extrabold text-primary watch-test-elapsed leading-tight" id="watch-elapsed">--:--</span>
+              <span class="text-[10px] uppercase font-bold text-white/70 block leading-none">Elapsed</span>
+              <span class="font-mono font-extrabold text-yellow-300 leading-tight" id="watch-elapsed">--:--</span>
             </div>
           </div>
 
-          <div class="h-5 w-px bg-outline-variant/40 hidden sm:block"></div>
-
-          <div class="flex items-center gap-2 px-space-sm py-1 bg-error-container/60 text-on-error-container rounded-xl timer-warning">
+          <div class="flex items-center gap-2 px-4 py-2 bg-rose-500/20 text-rose-300 rounded-full timer-warning font-mono shadow-sm border border-rose-500/30 backdrop-blur-md">
             <span class="material-symbols-outlined text-lg" style="font-variation-settings: 'FILL' 1;">timer</span>
-            <span class="font-label-timer text-label-timer tracking-wider font-bold" id="countdown-timer">--:--</span>
+            <span class="text-base tracking-wider font-extrabold" id="countdown-timer">--:--</span>
           </div>
-          <button class="w-8 h-8 rounded-full bg-surface-container-lowest text-on-surface-variant hover:text-primary hover:bg-surface-container transition-all flex items-center justify-center shadow-sm" type="button" title="Pause Exam">
-            <span class="material-symbols-outlined text-base">pause</span>
+          <button class="w-10 h-10 rounded-full bg-white/5 text-white hover:bg-white/20 transition-all flex items-center justify-center shadow-sm border border-white/10 backdrop-blur-md" type="button" title="Pause Exam">
+            <span class="material-symbols-outlined text-lg">pause</span>
           </button>
         </div>
         
         <!-- Exam Tools Ribbon -->
-        <div class="flex items-center gap-1.5 bg-surface-container-low p-1 rounded-xl flex-wrap">
-          <button id="open-hint-btn" class="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-primary text-on-primary font-label-md text-label-md shadow-sm transition-all hover:opacity-90 cursor-pointer" type="button" title="Open AI Socratic Hint (Shortcut: H)">
-            <span class="material-symbols-outlined text-base">psychology</span><span>AI Hint (H)</span>
+        <div class="flex items-center gap-2 relative z-10">
+          <button id="open-hint-btn" class="flex items-center gap-1.5 px-4 py-2 rounded-full bg-indigo-500/30 text-indigo-100 font-bold text-sm shadow-sm transition-all hover:bg-indigo-500/50 border border-indigo-500/40 backdrop-blur-md cursor-pointer" type="button" title="Open AI Socratic Hint (Shortcut: H)">
+            <span class="material-symbols-outlined text-lg">psychology</span><span>Hint (H)</span>
           </button>
-          <div class="flex items-center bg-surface-container-lowest rounded-lg p-0.5 shadow-sm">
-            <button id="font-decrease-btn" class="px-2 py-1 text-on-surface-variant hover:text-primary font-label-md text-label-md" type="button">A-</button>
-            <span class="text-outline-variant text-xs">|</span>
-            <button id="font-increase-btn" class="px-2 py-1 text-on-surface-variant hover:text-primary font-label-md text-label-md" type="button">A+</button>
+          <div class="flex items-center bg-white/5 rounded-full px-1 py-1 shadow-sm border border-white/10 backdrop-blur-md text-white">
+            <button id="font-decrease-btn" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 font-bold transition-colors" type="button">A-</button>
+            <button id="font-increase-btn" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-white/10 font-bold transition-colors" type="button">A+</button>
           </div>
         </div>
       </section>
 
       <!-- DUAL PANE TEST ARENA -->
-      <div class="grid grid-cols-12 gap-space-lg items-start" id="arena-grid">
+      <div class="flex-grow grid grid-cols-12 gap-8 items-start w-full pt-8 pb-12 overflow-y-auto" id="arena-grid">
         <!-- LEFT: Stimulus Passage -->
-        <section class="col-span-12 lg:col-span-5 space-y-space-md">
-          <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm relative overflow-hidden">
-            <div class="absolute top-0 left-0 w-1.5 h-full bg-primary"></div>
-            <div class="flex items-center justify-between pb-space-sm mb-space-sm border-b border-surface-container-high">
-              <span class="font-label-md text-label-md uppercase tracking-wider text-primary font-bold" id="q-subject">Subject</span>
+        <section class="col-span-12 lg:col-span-5 flex flex-col h-full gap-6">
+          <div class="bg-surface border border-outline-variant/30 rounded-3xl p-6 shadow-sm relative overflow-hidden">
+            <div class="absolute top-0 left-0 w-2 h-full bg-primary"></div>
+            <div class="flex items-center justify-between pb-3 mb-3 border-b border-outline-variant/20">
+              <span class="text-xs uppercase tracking-widest text-primary font-extrabold" id="q-subject">Subject</span>
             </div>
-            <h1 class="font-headline-md text-headline-md text-on-surface mb-2" id="q-title">Question Focus</h1>
-            <p class="font-body-md text-body-md text-on-surface-variant leading-relaxed">
+            <h1 class="text-2xl font-extrabold text-on-surface mb-3" id="q-title">Question Focus</h1>
+            <p class="text-base text-on-surface-variant leading-relaxed">
               Read the background context and examine the syntactic properties before deciding.
             </p>
           </div>
           <!-- Context Excerpt -->
-          <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm space-y-space-md">
-            <div class="flex items-center justify-between">
+          <div class="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-6 shadow-sm flex-grow flex flex-col">
+            <div class="flex items-center justify-between mb-4">
               <div class="flex items-center gap-2">
                 <span class="material-symbols-outlined text-primary text-xl">menu_book</span>
-                <span class="font-label-lg text-label-lg text-on-surface font-bold">Contextual Excerpt</span>
+                <span class="font-bold text-lg text-on-surface">Contextual Excerpt</span>
               </div>
-              <div class="flex items-center gap-2">
-                <button id="speak-passage-btn" class="flex items-center gap-1 px-2.5 py-1 rounded-full bg-primary-fixed text-primary text-xs font-bold hover:bg-primary-fixed-dim transition-colors cursor-pointer" type="button" title="Listen to passage read aloud">
-                  <span class="material-symbols-outlined text-sm">volume_up</span>
-                  <span>Listen Aloud</span>
-                </button>
-              </div>
+              <button id="speak-passage-btn" class="flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface text-primary border border-primary/20 text-xs font-bold hover:bg-primary/10 transition-colors cursor-pointer" type="button" title="Listen to passage read aloud">
+                <span class="material-symbols-outlined text-sm">volume_up</span>
+                <span>Listen Aloud</span>
+              </button>
             </div>
-            <div id="passage-text" class="p-space-md rounded-xl bg-surface-container-low border border-surface-container-high/40 font-body-lg text-body-lg text-on-surface leading-relaxed">
+            <div id="passage-text" class="flex-grow p-6 rounded-[2.5rem] bg-surface border border-outline-variant/20 text-lg text-on-surface leading-relaxed overflow-y-auto">
               <!-- Rendered passage -->
             </div>
           </div>
         </section>
 
         <!-- RIGHT: Question & Answer Options -->
-        <section class="col-span-12 lg:col-span-7 space-y-space-md">
-          <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-md relative overflow-hidden">
-            <div class="flex items-center justify-between mb-space-md">
+        <section class="col-span-12 lg:col-span-7 flex flex-col h-full">
+          <div class="bg-surface-container-lowest border border-outline-variant/30 rounded-3xl p-8 shadow-sm relative overflow-hidden flex-grow flex flex-col">
+            <div class="flex items-center justify-between mb-6">
               <div class="flex items-center gap-2">
-                <span class="px-2.5 py-1 rounded-full bg-primary-container text-on-primary font-label-md text-label-md font-bold" id="q-number-badge">Question 1</span>
+                <span class="px-4 py-1.5 rounded-full bg-primary text-on-primary text-sm font-extrabold" id="q-number-badge">Question 1</span>
               </div>
-              <div class="flex items-center gap-2">
-                <button id="speak-question-btn" class="flex items-center gap-1 px-2 py-1 rounded-full bg-surface-container-high text-on-surface text-xs font-bold hover:bg-primary-fixed hover:text-primary transition-colors cursor-pointer" type="button" title="Listen to question stem">
-                  <span class="material-symbols-outlined text-sm">volume_up</span>
-                  <span>Read Stem</span>
-                </button>
-              </div>
+              <button id="speak-question-btn" class="flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-surface border border-outline-variant/30 text-on-surface text-xs font-bold hover:bg-primary/10 hover:text-primary transition-colors cursor-pointer" type="button" title="Listen to question stem">
+                <span class="material-symbols-outlined text-sm">volume_up</span>
+                <span>Read Stem</span>
+              </button>
             </div>
-            <h2 id="question-stem-text" class="font-headline-sm text-headline-sm text-on-surface mb-space-md font-bold">
+            <h2 id="question-stem-text" class="text-2xl text-on-surface mb-8 font-extrabold leading-snug">
               <!-- Stem -->
             </h2>
             
             <!-- Multiple Choice Options -->
-            <div id="options-container" class="space-y-space-sm mb-space-lg">
+            <div id="options-container" class="space-y-3 mb-8 flex-grow">
               <!-- Options rendered here -->
             </div>
-          </div>
-          <!-- Navigation & Finish Actions -->
-          <div class="flex items-center justify-between gap-space-md">
-            <button id="prev-btn" class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-surface-container-lowest text-on-surface-variant font-label-lg text-label-lg shadow-sm hover:bg-surface-container-high transition-all cursor-pointer disabled:opacity-50" type="button">
-              <span class="material-symbols-outlined text-base">chevron_left</span> Previous
-            </button>
-            <div class="flex items-center gap-space-sm">
-              <button id="finish-test-btn" class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-tertiary-container text-on-tertiary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" type="button">
-                <span class="material-symbols-outlined text-base">verified</span>
-                <span>Submit Exam</span>
+
+            <!-- Navigation & Finish Actions -->
+            <div class="flex items-center justify-between pt-6 border-t border-outline-variant/30 mt-auto">
+              <button id="prev-btn" class="flex items-center gap-2 px-6 py-3 rounded-full bg-surface border border-outline-variant/30 text-on-surface-variant font-bold shadow-sm hover:bg-surface-container transition-all cursor-pointer disabled:opacity-50" type="button">
+                <span class="material-symbols-outlined text-lg">chevron_left</span> Previous
               </button>
-              <button id="next-btn" class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" type="button">
-                Next <span class="material-symbols-outlined text-base">chevron_right</span>
-              </button>
+              <div class="flex items-center gap-4">
+                <button id="finish-test-btn" class="flex items-center gap-2 px-8 py-3 rounded-full bg-tertiary text-on-tertiary font-extrabold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" type="button">
+                  <span class="material-symbols-outlined text-lg">verified</span>
+                  <span>Submit Exam</span>
+                </button>
+                <button id="next-btn" class="flex items-center gap-2 px-8 py-3 rounded-full bg-primary text-on-primary font-extrabold shadow-md hover:scale-105 active:scale-95 transition-all cursor-pointer" type="button">
+                  Next <span class="material-symbols-outlined text-lg">chevron_right</span>
+                </button>
+              </div>
             </div>
           </div>
         </section>
@@ -301,15 +298,15 @@ LearnlyRouter.register('practice-arena', function() {
     (q.options || []).forEach((opt, i) => {
       const isSelected = currentAnswer === opt.letter;
       const btn = document.createElement('button');
-      btn.className = `answer-bubble w-full p-space-md rounded-xl bg-surface-container-lowest border border-outline-variant/40 hover:border-primary flex items-center justify-between transition-all group text-left cursor-pointer ${isSelected ? 'selected border-primary' : ''}`;
+      btn.className = `answer-bubble w-full p-4 rounded-[2.5rem] bg-surface border-2 transition-all group text-left cursor-pointer flex items-center justify-between ${isSelected ? 'selected border-primary bg-primary/5 shadow-sm' : 'border-outline-variant/30 hover:border-primary/50'}`;
       btn.innerHTML = `
-        <div class="flex items-center gap-space-md">
-          <div class="w-11 h-11 rounded-lg ${isSelected ? 'bg-primary-container text-on-primary' : 'bg-surface-container-high text-on-surface'} font-headline-sm font-bold flex items-center justify-center transition-all bubble-letter">
+        <div class="flex items-center gap-4">
+          <div class="w-12 h-12 rounded-xl ${isSelected ? 'bg-surface text-primary' : 'bg-surface-container-high text-on-surface-variant'} font-extrabold text-lg flex items-center justify-center transition-all bubble-letter">
             ${opt.letter}
           </div>
-          <span class="font-body-md text-body-md ${isSelected ? 'text-primary font-semibold' : 'text-on-surface'} bubble-text">${opt.text}</span>
+          <span class="text-lg ${isSelected ? 'text-on-primary font-extrabold' : 'text-on-surface font-semibold'} bubble-text">${opt.text}</span>
         </div>
-        <kbd class="hidden sm:inline-block px-2 py-0.5 rounded bg-surface-container-high text-outline text-xs font-mono">Key ${opt.letter}</kbd>
+        <kbd class="hidden sm:inline-block px-2.5 py-1 rounded-md bg-surface-container-high text-outline font-bold text-xs">Key ${opt.letter}</kbd>
       `;
       
       btn.onclick = () => selectOption(q.id, opt.letter);

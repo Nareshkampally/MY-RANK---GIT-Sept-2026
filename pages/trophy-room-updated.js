@@ -13,7 +13,7 @@ LearnlyRouter.register('trophy-room-updated', function() {
   </section>
 
   <!-- Podium -->
-  <div class="bg-surface-container-lowest rounded-2xl p-space-xl shadow-md mb-space-xl">
+  <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-xl shadow-md mb-space-xl">
     <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-lg text-center">Weekly Top Scholars</h3>
     <div class="flex items-end justify-center gap-space-lg">
       <!-- 2nd Place -->
@@ -49,7 +49,7 @@ LearnlyRouter.register('trophy-room-updated', function() {
   </div>
 
   <!-- Full Leaderboard Table -->
-  <div class="bg-surface-container-lowest rounded-2xl shadow-md overflow-hidden">
+  <div class="bg-surface-container-lowest rounded-[2.5rem] shadow-md overflow-hidden">
     <div class="p-space-md bg-surface-container-low flex items-center justify-between">
       <h3 class="font-headline-sm text-headline-sm text-on-surface">Full Rankings</h3>
       <span class="font-label-md text-label-md text-on-surface-variant">Updated weekly</span>

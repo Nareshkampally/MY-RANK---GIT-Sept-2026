@@ -72,13 +72,16 @@ LearnlyRouter.register('parent-portal', function() {
   loading.classList.add('hidden');
   content.classList.remove('hidden');
   content.innerHTML = `
-  <section class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md mb-space-xl">
-    <div>
-      <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Parent &amp; Tutor Portal</h1>
-      <p class="font-body-md text-body-md text-on-surface-variant mt-1">Monitor ${user.name}'s progress, book clinics, and manage study plans</p>
+  <section class="relative flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 rounded-3xl overflow-hidden shadow-md mb-8" style="background: linear-gradient(135deg, #14b8a6 0%, #0d9488 100%);">
+    <div class="absolute -right-12 -top-12 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute left-1/4 bottom-0 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+    
+    <div class="relative z-10 text-white">
+      <h1 class="text-3xl font-extrabold tracking-tight">Parent &amp; Tutor Portal</h1>
+      <p class="text-white/80 text-sm mt-1">Monitor ${user.name}'s progress, book clinics, and manage study plans</p>
     </div>
-    <div class="flex items-center gap-space-sm">
-      <button class="flex items-center gap-2 px-space-lg py-2.5 rounded-full bg-primary text-on-primary font-label-lg text-label-lg font-bold shadow-md hover:scale-105 transition-all" data-navigate="clinic-booking" type="button">
+    <div class="flex items-center gap-space-sm relative z-10">
+      <button class="flex items-center gap-2 px-6 py-2.5 rounded-full bg-white text-teal-700 font-bold shadow-md hover:bg-white/90 transition-all" data-navigate="clinic-booking" type="button">
         <span class="material-symbols-outlined text-base">calendar_month</span> Book 1-on-1 Clinic
       </button>
     </div>
@@ -86,7 +89,7 @@ LearnlyRouter.register('parent-portal', function() {
 
   <!-- Child Overview Cards -->
   <div class="grid grid-cols-1 md:grid-cols-3 gap-space-md mb-space-xl">
-    <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md elevation-1">
+    <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-lg shadow-md elevation-1">
       <div class="flex items-center gap-space-sm mb-space-md">
         <img alt="${user.name}" class="w-12 h-12 rounded-full object-cover" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC1Qc3G-0J8L9rm3gGyiGaPyqDHos_pYWjGOp9OUrxYQBOKEFee0wgAEVlh16TfmQNiWxt-NqWOA9qqDRvl1k4fL5wg1wUsStC9xvru1w7bUYvb8xBvFL3_5_N7dxiPrOLddmAE88mzYlHc_u2zguBI01dtegvKb9IikVtYlF2Qgf5MYRiedEBTFiJvBQrG2IgC7oZDgySOe_JrXyvQgSm1X0DHDgM09DGe70xqKgqN2-8FOuRaWwWZ8A"/>
         <div>
@@ -100,7 +103,7 @@ LearnlyRouter.register('parent-portal', function() {
         <div class="flex justify-between"><span class="font-label-md text-label-md text-on-surface-variant">Study Streak</span><span class="font-label-lg text-label-lg text-secondary font-bold">${streakDays} days</span></div>
       </div>
     </div>
-    <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md elevation-1">
+    <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-lg shadow-md elevation-1">
       <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md flex items-center gap-2"><span class="material-symbols-outlined text-primary">schedule</span>Study Activity</h3>
       <div class="space-y-space-sm">
         <div class="flex justify-between"><span class="font-label-md text-label-md text-on-surface-variant">This Week</span><span class="font-label-lg text-label-lg text-on-surface font-bold">${weeklyHours} hours</span></div>
@@ -109,7 +112,7 @@ LearnlyRouter.register('parent-portal', function() {
         <div class="flex justify-between"><span class="font-label-md text-label-md text-on-surface-variant">Daily Goal</span><span class="font-label-lg text-label-lg text-on-surface font-bold">${goalPct}% Complete</span></div>
       </div>
     </div>
-    <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md elevation-1">
+    <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-lg shadow-md elevation-1">
       <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md flex items-center gap-2"><span class="material-symbols-outlined text-secondary">priority_high</span>Areas of Focus</h3>
       <div class="space-y-space-sm">
         ${areasOfFocus.length > 0 ? areasOfFocus.map(t => `
@@ -127,7 +130,7 @@ LearnlyRouter.register('parent-portal', function() {
     <div class="absolute -right-8 -top-8 w-36 h-36 bg-secondary/10 rounded-full blur-2xl pointer-events-none"></div>
     <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-4">
       <div class="flex items-center gap-3">
-        <div class="w-12 h-12 rounded-2xl bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center text-2xl shadow-md">
+        <div class="w-12 h-12 rounded-[2.5rem] bg-secondary-fixed text-on-secondary-fixed flex items-center justify-center text-2xl shadow-md">
           ⭐
         </div>
         <div>
@@ -171,7 +174,7 @@ LearnlyRouter.register('parent-portal', function() {
   <h3 class="font-headline-md text-headline-md text-on-surface mb-space-md">Upcoming Bookings</h3>
   <div class="space-y-space-md mb-space-xl">
     ${clinics.length > 0 ? clinics.map(b => `
-    <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm flex items-center justify-between">
+    <div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm flex items-center justify-between">
       <div class="flex items-center gap-space-md">
         <div class="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center"><span class="material-symbols-outlined text-on-primary text-xl">person</span></div>
         <div>
@@ -184,7 +187,7 @@ LearnlyRouter.register('parent-portal', function() {
         <span class="px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-md text-label-md font-bold">${b.status}</span>
       </div>
     </div>`).join('') : `
-    <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm text-center">
+    <div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm text-center">
       <span class="material-symbols-outlined text-3xl text-outline mb-2">event_busy</span>
       <p class="font-body-md text-body-md text-on-surface-variant">No upcoming bookings. <a href="#clinic-booking" class="text-primary font-bold">Book a clinic session</a></p>
     </div>`}
@@ -199,7 +202,7 @@ LearnlyRouter.register('parent-portal', function() {
       { title: 'Target Schools', desc: 'Manage school preferences and exam formats', icon: 'school' },
       { title: 'Account', desc: 'Profile, subscription, and billing', icon: 'settings' },
     ].map(s => `
-    <div class="bg-surface-container-lowest rounded-xl p-space-lg shadow-sm card-hover flex items-center gap-space-md cursor-pointer">
+    <div class="bg-surface-container-lowest rounded-3xl p-space-lg shadow-sm card-hover flex items-center gap-space-md cursor-pointer">
       <div class="w-10 h-10 rounded-xl bg-surface-container-high flex items-center justify-center"><span class="material-symbols-outlined text-primary text-xl">${s.icon}</span></div>
       <div class="flex-1"><h4 class="font-label-lg text-label-lg text-on-surface font-bold">${s.title}</h4><p class="font-body-sm text-body-sm text-on-surface-variant">${s.desc}</p></div>
       <span class="material-symbols-outlined text-outline">chevron_right</span>

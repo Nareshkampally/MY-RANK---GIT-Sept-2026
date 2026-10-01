@@ -1,19 +1,27 @@
 // Learnly 11+ — Analytics Updated (Variant with additional graphs)
 LearnlyRouter.register('analytics-updated', function() {
   return `
-  <section class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-space-md mb-space-xl">
-    <div>
-      <div class="flex items-center gap-space-xs text-on-surface-variant font-label-md text-label-md mb-1">
-        <span>ENHANCED ANALYTICS</span><span class="text-outline-variant">•</span>
-        <span class="text-primary font-bold">AI-POWERED INSIGHTS</span>
+  <section class="relative flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 rounded-3xl overflow-hidden shadow-md mb-8" style="background: linear-gradient(135deg, #0ea5e9 0%, #0369a1 100%);">
+    <div class="absolute -right-12 -top-12 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+    <div class="absolute left-1/4 bottom-0 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+    
+    <div class="relative z-10 text-white">
+      <div class="flex items-center gap-2 text-white/80 font-bold text-xs uppercase tracking-widest mb-2">
+        <span class="material-symbols-outlined text-sm">donut_small</span>
+        Enhanced Analytics • AI-Powered Insights
       </div>
-      <h1 class="font-headline-lg text-headline-lg text-on-surface tracking-tight">Advanced Performance Diagnostics</h1>
+      <h1 class="text-3xl font-extrabold tracking-tight">Advanced Performance Diagnostics</h1>
     </div>
-    <button class="flex items-center gap-2 px-space-lg py-2.5 bg-primary text-on-primary rounded-full font-label-lg text-label-lg font-bold shadow-md" type="button"><span class="material-symbols-outlined text-base">download</span> Export Full Report</button>
+    
+    <div class="flex items-center gap-2 relative z-10">
+      <button class="flex items-center gap-2 px-6 py-2.5 bg-white text-sky-700 rounded-full font-bold shadow-md hover:bg-white/90 transition-all" type="button">
+        <span class="material-symbols-outlined text-base">download</span> Export Full Report
+      </button>
+    </div>
   </section>
 
   <!-- Exam Readiness Gauge -->
-  <div class="bg-surface-container-lowest rounded-2xl p-space-xl shadow-md mb-space-xl">
+  <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-xl shadow-md mb-space-xl">
     <div class="flex items-center justify-between mb-space-md">
       <h3 class="font-headline-sm text-headline-sm text-on-surface flex items-center gap-2"><span class="material-symbols-outlined text-primary">speed</span>Exam Readiness Score</h3>
       <span class="px-3 py-1 rounded-full bg-tertiary-fixed text-on-tertiary-fixed font-label-lg text-label-lg font-bold">Grammar School Offer Band</span>
@@ -45,7 +53,7 @@ LearnlyRouter.register('analytics-updated', function() {
   </div>
 
   <!-- Weekly Heatmap -->
-  <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md mb-space-xl">
+  <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-lg shadow-md mb-space-xl">
     <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Study Heatmap (Last 12 Weeks)</h3>
     <div class="grid grid-cols-12 gap-1">
       ${Array.from({length:84}).map((_,i)=>{
@@ -62,7 +70,7 @@ LearnlyRouter.register('analytics-updated', function() {
   </div>
 
   <!-- Predicted Score Range -->
-  <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md">
+  <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-lg shadow-md">
     <h3 class="font-headline-sm text-headline-sm text-on-surface mb-space-md flex items-center gap-2"><span class="material-symbols-outlined text-primary">auto_awesome</span>AI Predicted Score Range</h3>
     <div class="grid grid-cols-3 gap-space-md">
       <div class="p-space-lg rounded-xl bg-surface-container-low text-center">

@@ -1,17 +1,18 @@
 // Learnly 11+ / MyRank 11+ — Analytics Routes
 const express = require('express');
 const router = express.Router();
-const { queryAll, queryGet } = require('../db/database');
+const { getFirestoreDb } = require('../db/firebase');
 
 // GET /api/analytics/summary — SAS trajectory, subject accuracy, and readiness
 router.get('/summary', async (req, res) => {
   try {
-    const attempts = await queryAll(`
-      SELECT subject, calculated_sas, percentage, start_time 
-      FROM test_attempts 
-      WHERE user_id = 'student-leo-01'
-      ORDER BY start_time ASC
-    `);
+    const db = getFirestoreDb();
+    const snapshot = await db.collection('test_attempts')
+      .where('user_id', '==', req.user.uid)
+      .orderBy('start_time', 'asc')
+      .get();
+      
+    const attempts = snapshot.docs.map(doc => doc.data());
 
     // Subject breakdown
     const subjectAverages = {

@@ -1,39 +1,51 @@
 // Learnly 11+ / MyRank 11+ — LexiVault Spaced Repetition Routes
 const express = require('express');
 const router = express.Router();
-const { queryAll, queryGet, queryRun } = require('../db/database');
+const { getFirestoreDb } = require('../db/firebase');
+const { FieldValue } = require('firebase-admin/firestore');
 const { processWordReview } = require('../services/srsEngine');
 
 // GET /api/vocab — retrieve vocabulary words
 router.get('/', async (req, res) => {
   try {
     const category = req.query.category;
-    let sql = 'SELECT * FROM vocab_words';
-    let params = [];
+    const db = getFirestoreDb();
+    let query = db.collection('vocab_words');
 
     if (category && category !== 'all') {
-      sql += ' WHERE category = ?';
-      params.push(category);
+      query = query.where('category', '==', category);
     }
-    sql += ' ORDER BY srs_box ASC, word ASC';
+    
+    // Note: Firestore requires a composite index for where() and orderBy() on different fields.
+    // If not created, it will throw an error with a URL to create it.
+    // So we just sort client side or omit orderBy here if we hit index errors.
+    // For now we will just use get() and sort locally to avoid forcing the user to build indexes.
+    const snapshot = await query.get();
+    
+    let words = snapshot.docs.map(doc => {
+      const r = doc.data();
+      return {
+        id: doc.id,
+        word: r.word,
+        phonetic: r.phonetic,
+        part_of_speech: r.part_of_speech,
+        category: r.category,
+        stem: r.stem,
+        definition: r.definition,
+        etymology: r.etymology,
+        mnemonic: r.mnemonic,
+        synonyms: r.synonyms || [],
+        antonyms: r.antonyms || [],
+        srs_box: r.srs_box,
+        status: r.status
+      };
+    });
 
-    const rows = await queryAll(sql, params);
-
-    const words = rows.map(r => ({
-      id: r.id,
-      word: r.word,
-      phonetic: r.phonetic,
-      part_of_speech: r.part_of_speech,
-      category: r.category,
-      stem: r.stem,
-      definition: r.definition,
-      etymology: r.etymology,
-      mnemonic: r.mnemonic,
-      synonyms: JSON.parse(r.synonyms_json || '[]'),
-      antonyms: JSON.parse(r.antonyms_json || '[]'),
-      srs_box: r.srs_box,
-      status: r.status
-    }));
+    // Local sort to avoid index requirements
+    words.sort((a, b) => {
+      if (a.srs_box === b.srs_box) return a.word.localeCompare(b.word);
+      return a.srs_box - b.srs_box;
+    });
 
     // Calculate box summary
     const masteredCount = words.filter(w => w.status === 'Mastered').length;
@@ -60,22 +72,27 @@ router.post('/:id/review', async (req, res) => {
   try {
     const wordId = req.params.id;
     const { rating = 'Mastered' } = req.body;
+    const db = getFirestoreDb();
 
-    const word = await queryGet('SELECT * FROM vocab_words WHERE id = ?', [wordId]);
-    if (!word) {
+    const wordDoc = await db.collection('vocab_words').doc(wordId).get();
+    if (!wordDoc.exists) {
       return res.status(404).json({ error: 'Word not found' });
     }
+    const word = wordDoc.data();
 
     const srsResult = processWordReview(word.srs_box, rating);
 
-    await queryRun(`
-      UPDATE vocab_words 
-      SET srs_box = ?, status = ?, review_count = review_count + 1, last_reviewed = CURRENT_TIMESTAMP
-      WHERE id = ?
-    `, [srsResult.newBox, srsResult.status, wordId]);
+    await db.collection('vocab_words').doc(wordId).update({
+      srs_box: srsResult.newBox,
+      status: srsResult.status,
+      review_count: FieldValue.increment(1),
+      last_reviewed: new Date().toISOString()
+    });
 
     // Award XP to user
-    await queryRun('UPDATE users SET xp = xp + ? WHERE id = ?', [srsResult.xpEarned, 'student-leo-01']);
+    await db.collection('users').doc(req.user.uid).update({
+      xp: FieldValue.increment(srsResult.xpEarned)
+    });
 
     res.json({
       success: true,

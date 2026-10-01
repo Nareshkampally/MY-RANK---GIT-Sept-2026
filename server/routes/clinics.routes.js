@@ -1,16 +1,18 @@
 // Learnly 11+ / MyRank 11+ — 1-on-1 Tutor Clinic Booking Routes
 const express = require('express');
 const router = express.Router();
-const { queryAll, queryRun } = require('../db/database');
+const { getFirestoreDb } = require('../db/firebase');
 
 // GET /api/clinics — retrieve upcoming & past bookings
 router.get('/', async (req, res) => {
   try {
-    const bookings = await queryAll(`
-      SELECT * FROM clinic_bookings 
-      WHERE user_id = 'student-leo-01' 
-      ORDER BY created_at DESC
-    `);
+    const db = getFirestoreDb();
+    const snapshot = await db.collection('clinic_bookings')
+      .where('user_id', '==', req.user.uid)
+      .orderBy('created_at', 'desc')
+      .get();
+    
+    const bookings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     res.json({ bookings });
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch clinic bookings' });
@@ -22,20 +24,18 @@ router.post('/book', async (req, res) => {
   try {
     const { tutorName, tutorSubject, dateTime, notes } = req.body;
     const bookingId = 'clinic-' + Date.now();
+    const db = getFirestoreDb();
 
-    await queryRun(`
-      INSERT INTO clinic_bookings (id, user_id, tutor_name, tutor_subject, avatar_url, date_time, status, notes)
-      VALUES (?, ?, ?, ?, ?, ?, ?, ?)
-    `, [
-      bookingId,
-      'student-leo-01',
-      tutorName || 'Ms. Elena Rostova',
-      tutorSubject || '11+ Mathematics Problem Solving',
-      'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&h=120&q=80',
-      dateTime || 'Saturday, 10:00 AM BST',
-      'Confirmed',
-      notes || 'Speed enhancement and multi-step ratio word problems.'
-    ]);
+    await db.collection('clinic_bookings').doc(bookingId).set({
+      user_id: req.user.uid,
+      tutor_name: tutorName || 'Ms. Elena Rostova',
+      tutor_subject: tutorSubject || '11+ Mathematics Problem Solving',
+      avatar_url: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=120&h=120&q=80',
+      date_time: dateTime || 'Saturday, 10:00 AM BST',
+      status: 'Confirmed',
+      notes: notes || 'Speed enhancement and multi-step ratio word problems.',
+      created_at: new Date().toISOString()
+    });
 
     res.json({
       success: true,

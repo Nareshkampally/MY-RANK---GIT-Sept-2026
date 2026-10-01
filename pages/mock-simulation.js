@@ -18,7 +18,7 @@ LearnlyRouter.register('mock-simulation', function() {
         <div class="w-full bg-on-primary/20 rounded-full h-2 overflow-hidden"><div class="bg-on-primary h-full rounded-full" style="width:0%"></div></div>
       </div>
     </section>
-    <div class="bg-surface-container-lowest rounded-2xl p-space-2xl shadow-xl text-center">
+    <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-2xl shadow-xl text-center">
       <div class="max-w-2xl mx-auto">
         <span class="material-symbols-outlined text-8xl text-primary mb-space-lg">assignment</span>
         <h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-sm">Mock Exam Ready to Begin</h2>
@@ -27,7 +27,7 @@ LearnlyRouter.register('mock-simulation', function() {
           ${[{subj:'Verbal Reasoning',qs:25,icon:'psychology'},{subj:'Mathematics',qs:25,icon:'functions'},{subj:'Non-Verbal',qs:25,icon:'view_in_ar'},{subj:'English',qs:25,icon:'menu_book'}].map(s=>`
           <div class="p-space-md rounded-xl bg-surface-container-low"><span class="material-symbols-outlined text-primary text-2xl mb-2">${s.icon}</span><br><span class="font-label-lg text-label-lg text-on-surface font-bold">${s.subj}</span><br><span class="font-label-md text-label-md text-on-surface-variant">${s.qs} questions</span></div>`).join('')}
         </div>
-        <div class="bg-surface-container-low rounded-xl p-space-md mb-space-xl">
+        <div class="bg-surface-container-low rounded-3xl p-space-md mb-space-xl">
           <div class="flex items-center justify-center gap-space-xl">
             <div><span class="font-headline-md text-headline-md text-primary font-bold">60:00</span><br><span class="font-label-md text-label-md text-on-surface-variant">Time Limit</span></div>
             <div class="h-8 w-px bg-outline-variant/40"></div>
@@ -58,7 +58,7 @@ LearnlyRouter.register('mock-scratchpad', function() {
         <button class="px-space-md py-1.5 rounded-full bg-primary text-on-primary font-label-md text-label-md font-bold" data-navigate="mock-scratchpad-full" type="button">Expand Full</button>
       </div>
     </section>
-    <div class="bg-surface-container-lowest rounded-2xl shadow-md overflow-hidden" style="height:calc(100vh - 200px)">
+    <div class="bg-surface-container-lowest rounded-[2.5rem] shadow-md overflow-hidden" style="height:calc(100vh - 200px)">
       <div class="h-full bg-surface-container-low flex items-center justify-center relative">
         <div class="absolute top-4 left-4 flex gap-2 whiteboard-toolbar">
           ${['edit','straighten','circle','text_fields','undo','redo'].map(t=>`<button class="w-9 h-9 rounded-lg hover:bg-surface-container text-on-surface-variant hover:text-primary transition-all flex items-center justify-center" type="button"><span class="material-symbols-outlined text-base">${t}</span></button>`).join('')}
@@ -109,7 +109,7 @@ LearnlyRouter.register('mock-splitview', function() {
       </div>
     </section>
     <div class="grid grid-cols-2 gap-space-md" style="height:calc(100vh - 180px)">
-      <div class="bg-surface-container-lowest rounded-2xl p-space-lg shadow-md overflow-y-auto">
+      <div class="bg-surface-container-lowest rounded-[2.5rem] p-space-lg shadow-md overflow-y-auto">
         <span class="flex items-center justify-center w-9 h-9 rounded-lg bg-primary-container text-on-primary font-label-lg text-label-lg font-bold mb-space-sm">Q14</span>
         <h2 class="font-headline-sm text-headline-sm text-on-surface mb-space-md">Select the pair of words that are most opposite in meaning:</h2>
         <div class="space-y-space-sm">
@@ -120,7 +120,7 @@ LearnlyRouter.register('mock-splitview', function() {
           </button>`).join('')}
         </div>
       </div>
-      <div class="bg-surface-container-lowest rounded-2xl shadow-md overflow-hidden flex flex-col">
+      <div class="bg-surface-container-lowest rounded-[2.5rem] shadow-md overflow-hidden flex flex-col">
         <div class="px-space-md py-space-sm flex items-center justify-between border-b border-surface-container-high bg-surface-container-low">
           <span class="font-label-lg text-label-lg text-on-surface font-bold">Scratchpad</span>
           <div class="flex gap-1">

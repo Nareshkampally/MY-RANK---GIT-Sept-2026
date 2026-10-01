@@ -1,12 +1,17 @@
 // Learnly 11+ / MyRank 11+ — Cohort Leaderboard Routes
 const express = require('express');
 const router = express.Router();
-const { queryAll } = require('../db/database');
+const { getFirestoreDb } = require('../db/firebase');
 
 // GET /api/leaderboard — retrieve cohort rankings and podium
 router.get('/', async (req, res) => {
   try {
-    const ranks = await queryAll('SELECT * FROM cohort_leaderboard ORDER BY rank ASC');
+    const db = getFirestoreDb();
+    const snapshot = await db.collection('cohort_leaderboard')
+      .orderBy('rank', 'asc')
+      .get();
+      
+    const ranks = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     
     // Compute podium (top 3)
     const podium = ranks.slice(0, 3);
@@ -39,6 +44,5 @@ router.get('/', async (req, res) => {
     res.status(500).json({ error: 'Failed to fetch leaderboard' });
   }
 });
-
 
 module.exports = router;

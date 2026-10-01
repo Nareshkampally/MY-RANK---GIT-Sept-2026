@@ -1,12 +1,19 @@
 // Learnly 11+ / MyRank 11+ — Mistake Vault Routes
 const express = require('express');
 const router = express.Router();
-const { queryAll, queryRun } = require('../db/database');
+const { getFirestoreDb } = require('../db/firebase');
+const { FieldValue } = require('firebase-admin/firestore');
 
 // GET /api/mistakes — all recorded errors & traps
 router.get('/', async (req, res) => {
   try {
-    const mistakes = await queryAll('SELECT * FROM mistake_vault WHERE user_id = ? ORDER BY created_at DESC', ['student-leo-01']);
+    const db = getFirestoreDb();
+    const snapshot = await db.collection('mistake_vault')
+      .where('user_id', '==', req.user.uid)
+      .orderBy('created_at', 'desc')
+      .get();
+      
+    const mistakes = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     res.json({ mistakes });
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch mistake vault' });
@@ -16,13 +23,19 @@ router.get('/', async (req, res) => {
 // POST /api/mistakes/:id/resolve — mark error as mastered on retry
 router.post('/:id/resolve', async (req, res) => {
   try {
-    await queryRun(`
-      UPDATE mistake_vault 
-      SET retried_count = retried_count + 1, resolved = 1 
-      WHERE id = ?
-    `, [req.params.id]);
+    const db = getFirestoreDb();
+    const mistakeRef = db.collection('mistake_vault').doc(req.params.id);
+    
+    await mistakeRef.update({
+      retried_count: FieldValue.increment(1),
+      resolved: 1
+    });
 
-    await queryRun('UPDATE users SET xp = xp + 35 WHERE id = ?', ['student-leo-01']);
+    const userRef = db.collection('users').doc(req.user.uid);
+    await userRef.update({
+      xp: FieldValue.increment(35)
+    });
+    
     res.json({ success: true, message: 'Mistake mastered on retry' });
   } catch (err) {
     res.status(500).json({ error: 'Failed to resolve mistake' });

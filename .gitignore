@@ -2,3 +2,7 @@
 Thumbs.db
 node_modules/
 *.log
+.env
+serviceAccountKey.json
+server/db/*.sqlite
+server/db/*.sqlite-*

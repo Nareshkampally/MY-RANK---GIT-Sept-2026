@@ -4,13 +4,17 @@ LearnlyRouter.register('homework-scanner', function() {
   <div class="space-y-space-xl min-h-screen relative" id="scanner-container">
     
     <!-- HEADER -->
-    <section class="flex items-center justify-between">
-      <div>
-        <h1 class="font-headline-lg text-headline-lg text-on-surface flex items-center gap-2">
-          <span class="material-symbols-outlined text-primary text-4xl">document_scanner</span>
-          Smart Homework Scanner
-        </h1>
-        <p class="font-body-md text-body-md text-on-surface-variant">Upload worksheets or snap a photo. Our AI will digitize it instantly.</p>
+    <section class="relative flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 rounded-3xl overflow-hidden shadow-md mb-4" style="background: linear-gradient(135deg, #10b981 0%, #047857 100%);">
+      <div class="absolute -right-12 -top-12 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
+      <div class="absolute left-1/4 bottom-0 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
+      
+      <div class="relative z-10 text-white">
+        <div class="flex items-center gap-2 text-white/80 font-bold text-xs uppercase tracking-widest mb-2">
+          <span class="material-symbols-outlined text-sm">document_scanner</span>
+          AI Vision Integration
+        </div>
+        <h1 class="text-3xl font-extrabold tracking-tight">Smart Homework Scanner</h1>
+        <p class="text-white/80 text-sm mt-1 max-w-xl">Upload worksheets or snap a photo. Our AI will digitize it instantly.</p>
       </div>
     </section>
 
@@ -49,7 +53,7 @@ LearnlyRouter.register('homework-scanner', function() {
       <div class="absolute top-0 left-0 w-full h-1 bg-primary shadow-[0_0_20px_#4f46e5,0_0_40px_#4f46e5] animate-[scan_2s_ease-in-out_infinite_alternate] z-20"></div>
 
       <!-- AI Analysis UI -->
-      <div class="relative z-30 flex flex-col items-center justify-center backdrop-blur-md bg-surface/80 p-space-xl rounded-2xl border border-outline-variant/30 shadow-xl">
+      <div class="relative z-30 flex flex-col items-center justify-center backdrop-blur-md bg-surface/80 p-space-xl rounded-[2.5rem] border border-outline-variant/30 shadow-xl">
         <span class="material-symbols-outlined text-primary text-6xl animate-pulse mb-space-md">view_in_ar</span>
         <h2 class="font-headline-md text-headline-md text-on-surface mb-2">Learnly AI Vision Active</h2>
         <p id="scan-status-text" class="font-mono text-sm text-primary font-bold">Extracting text & geometry...</p>
@@ -65,7 +69,7 @@ LearnlyRouter.register('homework-scanner', function() {
     <div id="scanner-stage-3" class="hidden grid grid-cols-12 gap-space-lg h-[calc(100vh-200px)]">
       
       <!-- Left: Source Image (Faux) -->
-      <div class="col-span-12 lg:col-span-5 bg-surface-container-lowest rounded-2xl shadow-sm border border-surface-container-high overflow-hidden flex flex-col relative group">
+      <div class="col-span-12 lg:col-span-5 bg-surface-container-lowest rounded-[2.5rem] shadow-sm border border-surface-container-high overflow-hidden flex flex-col relative group">
         <div class="p-3 bg-surface-container-low border-b border-surface-container-high flex justify-between items-center z-10">
           <span class="font-label-md text-label-md text-on-surface-variant flex items-center gap-2"><span class="material-symbols-outlined text-sm">image</span> Original Upload</span>
           <button class="text-on-surface-variant hover:text-primary"><span class="material-symbols-outlined text-sm">zoom_in</span></button>
@@ -97,7 +101,7 @@ LearnlyRouter.register('homework-scanner', function() {
       </div>
 
       <!-- Right: Interactive Fields -->
-      <div class="col-span-12 lg:col-span-7 bg-surface-container-lowest rounded-2xl shadow-sm flex flex-col h-full">
+      <div class="col-span-12 lg:col-span-7 bg-surface-container-lowest rounded-[2.5rem] shadow-sm flex flex-col h-full">
         <!-- Action Bar -->
         <div class="p-space-md border-b border-surface-container-high flex items-center justify-between shrink-0">
           <div class="flex items-center gap-2">
@@ -190,7 +194,7 @@ LearnlyRouter.register('homework-scanner', function() {
       100% { top: 100%; opacity: 0.8; }
     }
   </style>
-  \`;
+  `;
 }, function() {
   
   // DOM Elements
@@ -229,7 +233,7 @@ LearnlyRouter.register('homework-scanner', function() {
       progress += Math.random() * 15;
       if (progress > 100) progress = 100;
       
-      progressBar.style.width = \`\${progress}%\`;
+      progressBar.style.width = `${progress}%`;
       
       if (progress > (statusIndex * 16) && statusIndex < statuses.length) {
         statusText.textContent = statuses[statusIndex];

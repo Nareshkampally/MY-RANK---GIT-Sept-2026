@@ -3,135 +3,136 @@
 
 LearnlyRouter.register('subject-quests', function() {
   const params = LearnlyRouter.getParams();
-  const filterSubject = params.subject || 'all';
+  const filterSubject = (params.subject || 'all').toLowerCase();
 
   return `
   <div class="flex flex-col w-full space-y-space-xl">
     <!-- AI Tutor Intelligence Hub: Top Diagnostic Panel -->
-    <section class="relative rounded-2xl bg-surface-container-lowest p-space-xl elevation-1 overflow-hidden">
-      <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-primary/10 blur-3xl pointer-events-none"></div>
-      <div class="absolute right-1/3 -bottom-28 w-80 h-80 rounded-full bg-secondary-container/10 blur-3xl pointer-events-none"></div>
-      <div class="relative z-10 flex flex-col space-y-space-lg">
+    <section class="relative rounded-[2.5rem] bg-gradient-to-br from-indigo-900 to-violet-900 p-10 shadow-lg overflow-hidden mb-8 text-white">
+      <div class="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-white/10 blur-3xl pointer-events-none"></div>
+      <div class="absolute right-1/3 -bottom-28 w-80 h-80 rounded-full bg-white/10 blur-3xl pointer-events-none"></div>
+      <div class="relative z-10 flex flex-col space-y-8">
         <!-- Live Engine Calibration Ribbon -->
-        <div class="flex flex-wrap items-center justify-between gap-space-md pb-space-md border-b border-outline-variant/30">
-          <div class="flex items-center gap-space-sm">
+        <div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-white/20">
+          <div class="flex items-center gap-3">
             <span class="relative flex h-3 w-3">
-              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-tertiary-fixed-dim opacity-75"></span>
-              <span class="relative inline-flex rounded-full h-3 w-3 bg-[#10b981]"></span>
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-3 w-3 bg-emerald-500"></span>
             </span>
-            <span class="font-label-lg text-label-lg text-primary font-bold tracking-wide uppercase">Adaptive AI Engine Active</span>
-            <span class="text-outline-variant">•</span>
-            <span class="font-label-md text-label-md text-on-surface-variant">11+ Consortium Calibrated (GL Assessment, CEM, ISEB, CSSE)</span>
+            <span class="text-xs text-white/90 font-bold tracking-widest uppercase">Adaptive AI Engine Active</span>
+            <span class="text-white/50">•</span>
+            <span class="text-xs font-bold text-white/80">11+ Consortium Calibrated</span>
           </div>
-          <div class="flex items-center gap-space-sm bg-surface-container-low px-space-md py-1.5 rounded-full">
-            <span class="material-symbols-outlined text-primary text-base">school</span>
-            <span class="font-label-md text-label-md text-on-surface font-semibold">Target Standard: QE Boys, Henrietta Barnett, St. Olave's, Wilson's</span>
+          <div class="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/20 shadow-sm">
+            <span class="material-symbols-outlined text-white text-base">school</span>
+            <span class="text-xs text-white font-bold">Target Standard: QE Boys, St. Olave's</span>
           </div>
         </div>
 
         <!-- Core Predictive SAS Matrix -->
         <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-space-md">
           <!-- SAS Math -->
-          <div class="p-space-lg rounded-xl bg-surface-container-low/80 flex flex-col justify-between hover:elevation-2 transition-all">
+          <div class="p-space-lg rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex flex-col justify-between hover:elevation-2 transition-all">
             <div class="flex items-start justify-between">
               <div>
-                <span class="font-label-md text-label-md text-primary font-bold uppercase tracking-wider">Mathematics</span>
+                <span class="font-label-md text-label-md text-indigo-200 font-bold uppercase tracking-wider">Mathematics</span>
                 <div class="flex items-baseline gap-space-xs mt-1">
-                  <span class="font-headline-lg text-headline-lg text-on-surface font-black" id="sas-maths">135</span>
-                  <span class="font-label-md text-label-md text-tertiary font-bold">Top 0.6%</span>
+                  <span class="font-headline-lg text-headline-lg text-white font-black" id="sas-maths">135</span>
+                  <span class="font-label-md text-label-md text-emerald-300 font-bold">Top 0.6%</span>
                 </div>
               </div>
-              <div class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center text-primary">
+              <div class="w-10 h-10 rounded-xl bg-indigo-500/30 flex items-center justify-center text-indigo-200">
                 <span class="material-symbols-outlined text-xl">calculate</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs">
-              <span class="font-label-md text-label-md text-outline block mb-1 font-semibold uppercase">AI Diagnostic Niche</span>
-              <p class="font-body-sm text-body-sm text-on-surface font-medium leading-snug">Advanced Number Theory & Remainder Algebra</p>
+              <span class="font-label-md text-label-md text-white/60 block mb-1 font-semibold uppercase">AI Diagnostic Niche</span>
+              <p class="font-body-sm text-body-sm text-white font-medium leading-snug">Advanced Number Theory & Remainder Algebra</p>
             </div>
           </div>
 
           <!-- SAS Verbal -->
-          <div class="p-space-lg rounded-xl bg-surface-container-low/80 flex flex-col justify-between hover:elevation-2 transition-all">
+          <div class="p-space-lg rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex flex-col justify-between hover:elevation-2 transition-all">
             <div class="flex items-start justify-between">
               <div>
-                <span class="font-label-md text-label-md text-primary-container font-bold uppercase tracking-wider">Verbal Reasoning</span>
+                <span class="font-label-md text-label-md text-indigo-200 font-bold uppercase tracking-wider">Verbal Reasoning</span>
                 <div class="flex items-baseline gap-space-xs mt-1">
-                  <span class="font-headline-lg text-headline-lg text-on-surface font-black" id="sas-vr">134</span>
-                  <span class="font-label-md text-label-md text-tertiary font-bold">Top 0.8%</span>
+                  <span class="font-headline-lg text-headline-lg text-white font-black" id="sas-vr">134</span>
+                  <span class="font-label-md text-label-md text-emerald-300 font-bold">Top 0.8%</span>
                 </div>
               </div>
-              <div class="w-10 h-10 rounded-xl bg-primary-container/10 flex items-center justify-center text-primary-container">
+              <div class="w-10 h-10 rounded-xl bg-indigo-500/30 flex items-center justify-center text-indigo-200">
                 <span class="material-symbols-outlined text-xl">psychology</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs">
-              <span class="font-label-md text-label-md text-outline block mb-1 font-semibold uppercase">AI Diagnostic Niche</span>
-              <p class="font-body-sm text-body-sm text-on-surface font-medium leading-snug">Correlative Cloze & Inversion Logic Markers</p>
+              <span class="font-label-md text-label-md text-white/60 block mb-1 font-semibold uppercase">AI Diagnostic Niche</span>
+              <p class="font-body-sm text-body-sm text-white font-medium leading-snug">Correlative Cloze & Inversion Logic Markers</p>
             </div>
           </div>
 
           <!-- SAS Non-Verbal -->
-          <div class="p-space-lg rounded-xl bg-surface-container-low/80 flex flex-col justify-between hover:elevation-2 transition-all">
+          <div class="p-space-lg rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex flex-col justify-between hover:elevation-2 transition-all">
             <div class="flex items-start justify-between">
               <div>
-                <span class="font-label-md text-label-md text-tertiary font-bold uppercase tracking-wider">Non-Verbal Spatial</span>
+                <span class="font-label-md text-label-md text-emerald-300 font-bold uppercase tracking-wider">Non-Verbal Reasoning</span>
                 <div class="flex items-baseline gap-space-xs mt-1">
-                  <span class="font-headline-lg text-headline-lg text-on-surface font-black" id="sas-nvr">131</span>
-                  <span class="font-label-md text-label-md text-tertiary font-bold">Top 1.8%</span>
+                  <span class="font-headline-lg text-headline-lg text-white font-black" id="sas-nvr">131</span>
+                  <span class="font-label-md text-label-md text-emerald-300 font-bold">Top 1.8%</span>
                 </div>
               </div>
-              <div class="w-10 h-10 rounded-xl bg-tertiary/10 flex items-center justify-center text-tertiary">
+              <div class="w-10 h-10 rounded-xl bg-emerald-500/30 flex items-center justify-center text-emerald-300">
                 <span class="material-symbols-outlined text-xl">view_in_ar</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs">
-              <span class="font-label-md text-label-md text-outline block mb-1 font-semibold uppercase">AI Diagnostic Niche</span>
-              <p class="font-body-sm text-body-sm text-on-surface font-medium leading-snug">3D Net Folding & Isometric Matrix Rotations</p>
+              <span class="font-label-md text-label-md text-white/60 block mb-1 font-semibold uppercase">AI Diagnostic Niche</span>
+              <p class="font-body-sm text-body-sm text-white font-medium leading-snug">3D Net Folding & Isometric Matrix Rotations</p>
             </div>
           </div>
 
           <!-- SAS English -->
-          <div class="p-space-lg rounded-xl bg-surface-container-low/80 flex flex-col justify-between hover:elevation-2 transition-all">
+          <div class="p-space-lg rounded-xl bg-white/10 backdrop-blur-md border border-white/20 flex flex-col justify-between hover:elevation-2 transition-all">
             <div class="flex items-start justify-between">
               <div>
-                <span class="font-label-md text-label-md text-secondary font-bold uppercase tracking-wider">English & SPaG</span>
+                <span class="font-label-md text-label-md text-purple-300 font-bold uppercase tracking-wider">English & SPaG</span>
                 <div class="flex items-baseline gap-space-xs mt-1">
-                  <span class="font-headline-lg text-headline-lg text-on-surface font-black" id="sas-english">129</span>
-                  <span class="font-label-md text-label-md text-secondary font-bold">Top 2.5%</span>
+                  <span class="font-headline-lg text-headline-lg text-white font-black" id="sas-english">129</span>
+                  <span class="font-label-md text-label-md text-purple-300 font-bold">Top 2.5%</span>
                 </div>
               </div>
-              <div class="w-10 h-10 rounded-xl bg-secondary/15 flex items-center justify-center text-secondary">
+              <div class="w-10 h-10 rounded-xl bg-purple-500/30 flex items-center justify-center text-purple-300">
                 <span class="material-symbols-outlined text-xl">menu_book</span>
               </div>
             </div>
             <div class="mt-space-md pt-space-xs">
-              <span class="font-label-md text-label-md text-outline block mb-1 font-semibold uppercase">AI Diagnostic Niche</span>
-              <p class="font-body-sm text-body-sm text-on-surface font-medium leading-snug">Archaic Vocab & Evaluative Inferences</p>
+              <span class="font-label-md text-label-md text-white/60 block mb-1 font-semibold uppercase">AI Diagnostic Niche</span>
+              <p class="font-body-sm text-body-sm text-white font-medium leading-snug">Archaic Vocab & Evaluative Inferences</p>
             </div>
           </div>
         </div>
 
         <!-- AI Recommended Daily Pathway Pill Banner -->
-        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-md p-space-lg rounded-2xl bg-gradient-to-r from-primary-fixed/60 via-surface-container to-secondary-fixed/40 border border-primary/20 shadow-sm">
-          <div class="flex items-center gap-space-md">
-            <div class="w-12 h-12 rounded-full bg-primary flex items-center justify-center text-on-primary shadow-sm flex-shrink-0">
-              <span class="material-symbols-outlined text-2xl">neurology</span>
+        <div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-6 p-6 rounded-3xl bg-white/20 border border-primary/20 shadow-sm relative overflow-hidden">
+          <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full translate-x-16 -translate-y-16 pointer-events-none"></div>
+          <div class="flex items-center gap-4 relative z-10">
+            <div class="w-14 h-14 rounded-[2.5rem] bg-primary text-on-primary flex items-center justify-center shadow-md flex-shrink-0">
+              <span class="material-symbols-outlined text-3xl">neurology</span>
             </div>
             <div>
-              <div class="flex items-center gap-space-xs">
-                <span class="font-label-md text-label-md text-primary font-bold uppercase">Dynamic 30-Minute Pathway</span>
-                <span class="px-2 py-0.5 rounded-full bg-secondary-container text-on-secondary-container font-label-md text-label-md font-bold">High Yield</span>
+              <div class="flex items-center gap-2 mb-1">
+                <span class="text-xs text-indigo-200 font-bold uppercase tracking-widest">Dynamic 30-Minute Pathway</span>
+                <span class="px-2 py-0.5 rounded-md bg-secondary/10 text-purple-300 text-xs font-bold border border-secondary/20">High Yield</span>
               </div>
-              <p class="font-headline-sm text-headline-sm text-on-surface mt-0.5 font-bold">
-                Today's AI Hyper-Focus: 3D Spatial Hexagonal Rotations + Archaic Register Contrast
+              <p class="text-xl text-white font-extrabold">
+                Today's AI Focus: 3D Spatial + Archaic Register
               </p>
             </div>
           </div>
-          <div class="flex items-center gap-space-sm w-full lg:w-auto justify-end">
-            <a href="#drill-spatial" class="px-space-lg py-2.5 bg-primary text-on-primary rounded-full font-label-lg text-label-lg font-bold shadow-md hover:opacity-95 transition-all flex items-center gap-space-xs">
-              <span class="material-symbols-outlined text-base">play_arrow</span>
-              <span>Begin Pathway (30m)</span>
+          <div class="flex items-center w-full lg:w-auto justify-end relative z-10">
+            <a href="#drill-spatial" class="px-8 py-3 bg-primary text-on-primary rounded-full font-bold shadow-md hover:bg-primary/90 transition-all flex items-center gap-2 border border-primary/20">
+              <span class="material-symbols-outlined text-xl">play_arrow</span>
+              Begin Pathway (30m)
             </a>
           </div>
         </div>
@@ -139,106 +140,92 @@ LearnlyRouter.register('subject-quests', function() {
     </section>
 
     <!-- Subject Filter Tabs -->
-    <div class="flex items-center gap-2 overflow-x-auto pb-1">
-      <a href="#subject-quests" class="px-space-md py-2 rounded-full font-label-lg text-label-lg ${filterSubject === 'all' ? 'bg-primary text-on-primary shadow-sm' : 'bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container'} transition-all whitespace-nowrap">
-        All 4 Subjects (16 Quests)
+    <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-4">
+      <a href="#subject-quests" class="px-6 py-2.5 rounded-full font-bold text-sm ${filterSubject === 'all' ? 'bg-primary text-on-primary shadow-sm' : 'bg-surface-container-low text-on-surface-variant hover:text-primary border border-outline-variant/30'} transition-all whitespace-nowrap flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">apps</span> All Quests
       </a>
-      <a href="#subject-quests?subject=maths" class="px-space-md py-2 rounded-full font-label-lg text-label-lg ${filterSubject === 'maths' ? 'bg-primary text-on-primary shadow-sm' : 'bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container'} transition-all whitespace-nowrap flex items-center gap-1.5">
-        <span class="material-symbols-outlined text-sm">calculate</span> Mathematics
+      <a href="#subject-quests?subject=maths" class="px-6 py-2.5 rounded-full font-bold text-sm ${filterSubject === 'maths' ? 'bg-primary text-on-primary shadow-sm' : 'bg-surface-container-low text-on-surface-variant hover:text-primary border border-outline-variant/30'} transition-all whitespace-nowrap flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">calculate</span> Mathematics
       </a>
-      <a href="#subject-quests?subject=vr" class="px-space-md py-2 rounded-full font-label-lg text-label-lg ${filterSubject === 'vr' ? 'bg-primary text-on-primary shadow-sm' : 'bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container'} transition-all whitespace-nowrap flex items-center gap-1.5">
-        <span class="material-symbols-outlined text-sm">psychology</span> Verbal Reasoning
+      <a href="#subject-quests?subject=vr" class="px-6 py-2.5 rounded-full font-bold text-sm ${filterSubject === 'vr' ? 'bg-primary text-on-primary shadow-sm' : 'bg-surface-container-low text-on-surface-variant hover:text-primary border border-outline-variant/30'} transition-all whitespace-nowrap flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">psychology</span> Verbal Reasoning
       </a>
-      <a href="#subject-quests?subject=nvr" class="px-space-md py-2 rounded-full font-label-lg text-label-lg ${filterSubject === 'nvr' ? 'bg-primary text-on-primary shadow-sm' : 'bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container'} transition-all whitespace-nowrap flex items-center gap-1.5">
-        <span class="material-symbols-outlined text-sm">view_in_ar</span> Non-Verbal Spatial
+      <a href="#subject-quests?subject=nvr" class="px-6 py-2.5 rounded-full font-bold text-sm ${filterSubject === 'nvr' ? 'bg-primary text-on-primary shadow-sm' : 'bg-surface-container-low text-on-surface-variant hover:text-primary border border-outline-variant/30'} transition-all whitespace-nowrap flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">view_in_ar</span> Non-Verbal Reasoning
       </a>
-      <a href="#subject-quests?subject=english" class="px-space-md py-2 rounded-full font-label-lg text-label-lg ${filterSubject === 'english' ? 'bg-primary text-on-primary shadow-sm' : 'bg-surface-container-low text-on-surface-variant hover:text-on-surface hover:bg-surface-container'} transition-all whitespace-nowrap flex items-center gap-1.5">
-        <span class="material-symbols-outlined text-sm">menu_book</span> English Comprehension & SPaG
+      <a href="#subject-quests?subject=english" class="px-6 py-2.5 rounded-full font-bold text-sm ${filterSubject === 'english' ? 'bg-primary text-on-primary shadow-sm' : 'bg-surface-container-low text-on-surface-variant hover:text-primary border border-outline-variant/30'} transition-all whitespace-nowrap flex items-center gap-2">
+        <span class="material-symbols-outlined text-base">menu_book</span> English
       </a>
     </div>
 
-    <!-- 4 Deep Subject Interactive Diagnostic Hub Modules (Stitch Screen 454f23ef522c4d498003d5084cb26a0e) -->
-    <div class="grid grid-cols-1 xl:grid-cols-2 gap-space-xl">
+    <!-- 4 Deep Subject Interactive Diagnostic Hub Modules -->
+    <div class="grid grid-cols-1 xl:grid-cols-2 gap-8">
       <!-- Card 1: Mathematics -->
       ${(filterSubject === 'all' || filterSubject === 'maths') ? `
-      <article class="bg-surface-container-lowest rounded-2xl p-space-xl elevation-1 flex flex-col justify-between hover:elevation-2 transition-shadow relative overflow-hidden group border border-outline-variant/30">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
-        <div class="flex flex-col space-y-space-lg">
+      <article class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/30 flex flex-col justify-between hover:border-primary/50 transition-colors relative overflow-hidden group shadow-sm">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+        <div class="flex flex-col space-y-6 relative z-10">
           <!-- Header -->
           <div class="flex items-start justify-between">
-            <div class="flex items-center gap-space-md">
-              <div class="w-14 h-14 rounded-2xl bg-primary/10 text-primary flex items-center justify-center">
-                <span class="material-symbols-outlined text-3xl">functions</span>
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-[2.5rem] bg-primary/10 text-primary flex items-center justify-center border border-primary/20">
+                <span class="material-symbols-outlined text-4xl">functions</span>
               </div>
               <div>
-                <div class="flex items-center gap-space-xs">
-                  <span class="px-2.5 py-0.5 rounded-full bg-primary/15 text-primary font-label-md text-label-md font-bold">GL & CEM Spec</span>
-                  <span class="font-label-md text-label-md text-outline font-semibold">Stage 4 Mastery</span>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="px-3 py-1 rounded-lg bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest border border-primary/20">GL & CEM Spec</span>
+                  <span class="text-xs font-bold text-outline-variant">Stage 4 Mastery</span>
                 </div>
-                <h2 class="font-headline-md text-headline-md text-on-surface font-bold mt-1">Mathematics & Numerical Logic</h2>
+                <h2 class="text-2xl text-on-surface font-extrabold tracking-tight">Mathematics</h2>
               </div>
             </div>
             <div class="text-right">
-              <span class="font-headline-md text-headline-md text-primary font-black leading-none">8.8<span class="text-body-sm font-normal text-outline">/10</span></span>
-              <span class="block font-label-md text-label-md text-tertiary font-bold mt-0.5">Exceeding Benchmark</span>
+              <span class="text-4xl text-primary font-black leading-none">8.8<span class="text-lg font-bold text-outline-variant">/10</span></span>
+              <span class="block text-xs text-tertiary font-bold mt-1 tracking-widest uppercase">Exceeding Benchmark</span>
             </div>
           </div>
 
           <!-- AI Diagnostic Insight -->
-          <div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
-            <div class="flex items-center gap-1.5 text-primary font-label-md text-label-md font-bold uppercase">
-              <span class="material-symbols-outlined text-base">auto_graph</span>
-              <span>AI Real-time Diagnosis</span>
+          <div class="p-4 rounded-[2.5rem] bg-surface border border-outline-variant/20 flex flex-col gap-2">
+            <div class="flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest">
+              <span class="material-symbols-outlined text-lg">auto_graph</span>
+              <span>AI Diagnosis</span>
             </div>
-            <p class="font-body-md text-body-md text-on-surface">
+            <p class="text-sm text-on-surface">
               <strong>Strengths:</strong> Multi-ratio scaling, algebraic substitution, kinematics.
             </p>
-            <p class="font-body-sm text-body-sm text-error font-medium">
-              <strong>AI Target Focus:</strong> Multi-Step Remainder Theoretic Problems under timed exam conditions (&lt;45s).
+            <p class="text-sm text-error font-bold">
+              <strong>Target Focus:</strong> Multi-Step Remainder Theoretic Problems (&lt;45s).
             </p>
           </div>
 
           <!-- Active Quest Box -->
-          <div class="p-space-md rounded-xl bg-surface-container-low/70 border border-outline-variant/30 flex flex-col space-y-space-sm">
+          <div class="p-4 rounded-[2.5rem] bg-surface border border-outline-variant/20 flex flex-col space-y-3">
             <div class="flex items-center justify-between">
-              <span class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-secondary text-base">military_tech</span>
-                The Prime Factorisation & Cryptic Arithmetic Quest
+              <span class="text-sm text-on-surface font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary text-lg">military_tech</span>
+                The Prime Factorisation Quest
               </span>
-              <span class="font-label-md text-label-md text-primary font-bold">10 / 12 Complete (83%)</span>
+              <span class="text-xs text-primary font-bold">83%</span>
             </div>
-            <div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+            <div class="w-full bg-surface-container-high rounded-full h-2 overflow-hidden">
               <div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 83%"></div>
             </div>
-          </div>
-
-          <!-- Daily AI Challenge Micro-Card -->
-          <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between border border-outline-variant/20">
-            <div class="flex items-center gap-space-md">
-              <div class="w-10 h-10 rounded-full bg-secondary-fixed/40 flex items-center justify-center text-secondary">
-                <span class="material-symbols-outlined text-xl">timer</span>
-              </div>
-              <div>
-                <span class="font-label-md text-label-md text-secondary font-bold uppercase">Daily Micro-Sprint</span>
-                <p class="font-body-md text-body-md text-on-surface font-semibold">3-Step Kinematics with Variable Headwind</p>
-              </div>
-            </div>
-            <span class="px-space-md py-1 rounded-full bg-surface-container-high font-label-md text-label-md text-on-surface font-bold">40s Target</span>
           </div>
         </div>
 
         <!-- Action Cluster -->
-        <div class="pt-space-lg mt-space-md flex flex-wrap items-center justify-between gap-space-sm border-t border-outline-variant/20">
-          <a href="#practice-arena" class="px-space-lg py-2.5 rounded-full bg-primary text-on-primary font-label-lg text-label-lg font-bold shadow-sm hover:opacity-95 transition-all flex items-center gap-space-xs">
-            <span>Launch AI Adaptive Session</span>
-            <span class="px-1.5 py-0.5 rounded-full bg-on-primary/20 text-on-primary font-label-md text-label-md">+35 XP</span>
+        <div class="pt-6 mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-outline-variant/20 relative z-10">
+          <a href="#practice-arena" class="flex-1 py-3 rounded-full bg-primary text-on-primary text-sm font-bold shadow-md hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+            <span>Launch AI Session</span>
+            <span class="px-2 py-0.5 rounded-md bg-white/20 text-xs">+35 XP</span>
           </a>
-          <div class="flex items-center gap-space-xs">
-            <a href="#scorecard" class="px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container font-label-md text-label-md text-on-surface font-semibold transition-all">
-              Topic Mastery Map
+          <div class="flex items-center gap-2">
+            <a href="#scorecard" class="px-4 py-3 rounded-full bg-surface border border-outline-variant/30 hover:border-primary/50 text-xs text-on-surface font-bold transition-all text-center">
+              Topic Map
             </a>
-            <a href="#mock-scratchpad" class="px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container font-label-md text-label-md text-on-surface font-semibold transition-all">
-              Formula Vault
+            <a href="#mock-scratchpad" class="px-4 py-3 rounded-full bg-surface border border-outline-variant/30 hover:border-primary/50 text-xs text-on-surface font-bold transition-all text-center">
+              Formulas
             </a>
           </div>
         </div>
@@ -246,83 +233,69 @@ LearnlyRouter.register('subject-quests', function() {
 
       <!-- Card 2: Verbal Reasoning -->
       ${(filterSubject === 'all' || filterSubject === 'vr') ? `
-      <article class="bg-surface-container-lowest rounded-2xl p-space-xl elevation-1 flex flex-col justify-between hover:elevation-2 transition-shadow relative overflow-hidden group border border-outline-variant/30">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-primary-container/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
-        <div class="flex flex-col space-y-space-lg">
+      <article class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/30 flex flex-col justify-between hover:border-primary/50 transition-colors relative overflow-hidden group shadow-sm">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-primary-container/5 rounded-full translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+        <div class="flex flex-col space-y-6 relative z-10">
           <!-- Header -->
           <div class="flex items-start justify-between">
-            <div class="flex items-center gap-space-md">
-              <div class="w-14 h-14 rounded-2xl bg-primary-container/10 text-primary-container flex items-center justify-center">
-                <span class="material-symbols-outlined text-3xl">psychology</span>
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-[2.5rem] bg-primary-container/10 text-primary-container flex items-center justify-center border border-primary-container/20">
+                <span class="material-symbols-outlined text-4xl">psychology</span>
               </div>
               <div>
-                <div class="flex items-center gap-space-xs">
-                  <span class="px-2.5 py-0.5 rounded-full bg-primary/15 text-primary font-label-md text-label-md font-bold">Consortium Standard</span>
-                  <span class="font-label-md text-label-md text-outline font-semibold">Stage 4 Mastery</span>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="px-3 py-1 rounded-lg bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest border border-primary/20">Consortium Standard</span>
+                  <span class="text-xs font-bold text-outline-variant">Stage 4 Mastery</span>
                 </div>
-                <h2 class="font-headline-md text-headline-md text-on-surface font-bold mt-1">Verbal Reasoning & Semantics</h2>
+                <h2 class="text-2xl text-on-surface font-extrabold tracking-tight">Verbal Reasoning</h2>
               </div>
             </div>
             <div class="text-right">
-              <span class="font-headline-md text-headline-md text-primary font-black leading-none">8.6<span class="text-body-sm font-normal text-outline">/10</span></span>
-              <span class="block font-label-md text-label-md text-tertiary font-bold mt-0.5">Selective Grammar Tier</span>
+              <span class="text-4xl text-primary font-black leading-none">8.6<span class="text-lg font-bold text-outline-variant">/10</span></span>
+              <span class="block text-xs text-tertiary font-bold mt-1 tracking-widest uppercase">Selective Grammar Tier</span>
             </div>
           </div>
 
           <!-- AI Diagnostic Insight -->
-          <div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
-            <div class="flex items-center gap-1.5 text-primary font-label-md text-label-md font-bold uppercase">
-              <span class="material-symbols-outlined text-base">psychology_alt</span>
-              <span>AI Real-time Diagnosis</span>
+          <div class="p-4 rounded-[2.5rem] bg-surface border border-outline-variant/20 flex flex-col gap-2">
+            <div class="flex items-center gap-2 text-primary text-xs font-bold uppercase tracking-widest">
+              <span class="material-symbols-outlined text-lg">psychology_alt</span>
+              <span>AI Diagnosis</span>
             </div>
-            <p class="font-body-md text-body-md text-on-surface">
+            <p class="text-sm text-on-surface">
               <strong>Strengths:</strong> Compound words, shuffled sentences, word ladders.
             </p>
-            <p class="font-body-sm text-body-sm text-secondary font-medium">
-              <strong>AI Target Focus:</strong> Correlative Clause Markers, Inversion Logic & Classical Latin Morphemes.
+            <p class="text-sm text-secondary font-bold">
+              <strong>Target Focus:</strong> Correlative Clause Markers, Inversion Logic & Classical Latin Morphemes.
             </p>
           </div>
 
           <!-- Active Quest Box -->
-          <div class="p-space-md rounded-xl bg-surface-container-low/70 border border-outline-variant/30 flex flex-col space-y-space-sm">
+          <div class="p-4 rounded-[2.5rem] bg-surface border border-outline-variant/20 flex flex-col space-y-3">
             <div class="flex items-center justify-between">
-              <span class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-primary text-base">auto_awesome</span>
-                Archaic Etymology & Contextual Cloze Decryption
+              <span class="text-sm text-on-surface font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-primary text-lg">auto_awesome</span>
+                Archaic Etymology
               </span>
-              <span class="font-label-md text-label-md text-primary font-bold">8 / 10 Complete (80%)</span>
+              <span class="text-xs text-primary font-bold">80%</span>
             </div>
-            <div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
+            <div class="w-full bg-surface-container-high rounded-full h-2 overflow-hidden">
               <div class="bg-primary h-full rounded-full transition-all duration-500" style="width: 80%"></div>
             </div>
-          </div>
-
-          <!-- Daily AI Challenge Micro-Card -->
-          <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between border border-outline-variant/20">
-            <div class="flex items-center gap-space-md">
-              <div class="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center text-primary">
-                <span class="material-symbols-outlined text-xl">bolt</span>
-              </div>
-              <div>
-                <span class="font-label-md text-label-md text-primary font-bold uppercase">Daily Trap Buster</span>
-                <p class="font-body-md text-body-md text-on-surface font-semibold">Qualifier & Double Negation (Untoward vs Unseemly)</p>
-              </div>
-            </div>
-            <span class="px-space-md py-1 rounded-full bg-surface-container-high font-label-md text-label-md text-on-surface font-bold">1 Mark / 35s</span>
           </div>
         </div>
 
         <!-- Action Cluster -->
-        <div class="pt-space-lg mt-space-md flex flex-wrap items-center justify-between gap-space-sm border-t border-outline-variant/20">
-          <a href="#drill-cloze" class="px-space-lg py-2.5 rounded-full bg-primary text-on-primary font-label-lg text-label-lg font-bold shadow-sm hover:opacity-95 transition-all flex items-center gap-space-xs">
-            <span>Launch AI Adaptive Session</span>
-            <span class="px-1.5 py-0.5 rounded-full bg-on-primary/20 text-on-primary font-label-md text-label-md">+35 XP</span>
+        <div class="pt-6 mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-outline-variant/20 relative z-10">
+          <a href="#drill-cloze" class="flex-1 py-3 rounded-full bg-primary text-on-primary text-sm font-bold shadow-md hover:bg-primary/90 transition-all flex items-center justify-center gap-2">
+            <span>Launch AI Session</span>
+            <span class="px-2 py-0.5 rounded-md bg-white/20 text-xs">+35 XP</span>
           </a>
-          <div class="flex items-center gap-space-xs">
-            <a href="#mistake-vault-lexical" class="px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container font-label-md text-label-md text-on-surface font-semibold transition-all">
-              Vocabulary Builder
+          <div class="flex items-center gap-2">
+            <a href="#mistake-vault-lexical" class="px-4 py-3 rounded-full bg-surface border border-outline-variant/30 hover:border-primary/50 text-xs text-on-surface font-bold transition-all text-center">
+              Vocab Builder
             </a>
-            <a href="#mistake-mastery" class="px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container font-label-md text-label-md text-on-surface font-semibold transition-all">
+            <a href="#mistake-mastery" class="px-4 py-3 rounded-full bg-surface border border-outline-variant/30 hover:border-primary/50 text-xs text-on-surface font-bold transition-all text-center">
               Mistake Vault
             </a>
           </div>
@@ -331,97 +304,73 @@ LearnlyRouter.register('subject-quests', function() {
 
       <!-- Card 3: Non-Verbal & Spatial Reasoning -->
       ${(filterSubject === 'all' || filterSubject === 'nvr') ? `
-      <article class="bg-surface-container-lowest rounded-2xl p-space-xl elevation-1 flex flex-col justify-between hover:elevation-2 transition-shadow relative overflow-hidden group border border-outline-variant/30">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-tertiary/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
-        <div class="flex flex-col space-y-space-lg">
+      <article class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/30 flex flex-col justify-between hover:border-primary/50 transition-colors relative overflow-hidden group shadow-sm">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-tertiary/5 rounded-full translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+        <div class="flex flex-col space-y-6 relative z-10">
           <!-- Header -->
           <div class="flex items-start justify-between">
-            <div class="flex items-center gap-space-md">
-              <div class="w-14 h-14 rounded-2xl bg-tertiary/10 text-tertiary flex items-center justify-center">
-                <span class="material-symbols-outlined text-3xl">view_in_ar</span>
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-[2.5rem] bg-tertiary/10 text-tertiary flex items-center justify-center border border-tertiary/20">
+                <span class="material-symbols-outlined text-4xl">view_in_ar</span>
               </div>
               <div>
-                <div class="flex items-center gap-space-xs">
-                  <span class="px-2.5 py-0.5 rounded-full bg-tertiary/15 text-tertiary font-label-md text-label-md font-bold">Spatial 3D Engine</span>
-                  <span class="font-label-md text-label-md text-outline font-semibold">Stage 3 Mastery</span>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="px-3 py-1 rounded-lg bg-tertiary/10 text-tertiary text-xs font-bold uppercase tracking-widest border border-tertiary/20">Spatial 3D Engine</span>
+                  <span class="text-xs font-bold text-outline-variant">Stage 3 Mastery</span>
                 </div>
-                <h2 class="font-headline-md text-headline-md text-on-surface font-bold mt-1">Non-Verbal & Spatial Reasoning</h2>
+                <h2 class="text-2xl text-on-surface font-extrabold tracking-tight">Non-Verbal Reasoning</h2>
               </div>
             </div>
             <div class="text-right">
-              <span class="font-headline-md text-headline-md text-tertiary font-black leading-none">8.2<span class="text-body-sm font-normal text-outline">/10</span></span>
-              <span class="block font-label-md text-label-md text-tertiary font-bold mt-0.5">Top Decile Standing</span>
+              <span class="text-4xl text-tertiary font-black leading-none">8.2<span class="text-lg font-bold text-outline-variant">/10</span></span>
+              <span class="block text-xs text-tertiary font-bold mt-1 tracking-widest uppercase">Top Decile Standing</span>
             </div>
           </div>
 
           <!-- AI Diagnostic Insight -->
-          <div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
-            <div class="flex items-center gap-1.5 text-tertiary font-label-md text-label-md font-bold uppercase">
-              <span class="material-symbols-outlined text-base">architecture</span>
-              <span>AI Real-time Diagnosis</span>
+          <div class="p-4 rounded-[2.5rem] bg-surface border border-outline-variant/20 flex flex-col gap-2">
+            <div class="flex items-center gap-2 text-tertiary text-xs font-bold uppercase tracking-widest">
+              <span class="material-symbols-outlined text-lg">architecture</span>
+              <span>AI Diagnosis</span>
             </div>
-            <p class="font-body-md text-body-md text-on-surface">
+            <p class="text-sm text-on-surface">
               <strong>Strengths:</strong> Sequential analogies, bilateral reflections, perimeter rules.
             </p>
-            <p class="font-body-sm text-body-sm text-primary font-medium">
-              <strong>AI Target Focus:</strong> Hexagonal Net 1-Skip Pairing & Multi-Plane Layer Superimposition.
+            <p class="text-sm text-primary font-bold">
+              <strong>Target Focus:</strong> Hexagonal Net 1-Skip Pairing & Multi-Plane Layer Superimposition.
             </p>
           </div>
 
           <!-- 3D Unfolded Cube Net Diagnostic Preview & Quest -->
-          <div class="grid grid-cols-1 sm:grid-cols-3 gap-space-sm p-space-md rounded-xl bg-surface-container-low/70 border border-outline-variant/30 items-center">
-            <div class="sm:col-span-2 flex flex-col space-y-space-xs">
-              <span class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-tertiary text-base">view_in_ar</span>
-                3D Spatial Architect: Net Folding
+          <div class="flex items-center justify-between p-4 rounded-[2.5rem] bg-surface border border-outline-variant/20 gap-4">
+            <div class="flex flex-col space-y-2 w-full">
+              <span class="text-sm text-on-surface font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-tertiary text-lg">view_in_ar</span>
+                Net Folding Architect
               </span>
-              <p class="font-body-sm text-body-sm text-outline">Stage 6 of 10 Mastered (60%)</p>
-              <div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden mt-1">
+              <div class="flex items-center justify-between">
+                 <span class="text-xs font-bold text-outline-variant">Stage 6 of 10</span>
+                 <span class="text-xs text-tertiary font-bold">60%</span>
+              </div>
+              <div class="w-full bg-surface-container-high rounded-full h-2 overflow-hidden mt-1">
                 <div class="bg-tertiary h-full rounded-full transition-all duration-500" style="width: 60%"></div>
               </div>
             </div>
-            <!-- 3D Vector Net Preview Thumbnail from Stitch -->
-            <div class="h-20 bg-surface-container-lowest rounded-xl flex items-center justify-center p-2 shadow-inner border border-outline-variant/20">
-              <svg class="w-24 h-16 text-tertiary" fill="none" viewbox="0 0 120 80" xmlns="http://www.w3.org/2000/svg">
-                <rect class="fill-surface-container stroke-tertiary" height="24" rx="2" stroke-width="1.5" width="24" x="10" y="28"></rect>
-                <rect class="fill-tertiary/20 stroke-tertiary" height="24" rx="2" stroke-width="1.5" width="24" x="34" y="28"></rect>
-                <rect class="fill-surface-container stroke-tertiary" height="24" rx="2" stroke-width="1.5" width="24" x="58" y="28"></rect>
-                <rect class="fill-surface-container stroke-tertiary" height="24" rx="2" stroke-width="1.5" width="24" x="82" y="28"></rect>
-                <rect class="fill-surface-container stroke-tertiary" height="24" rx="2" stroke-width="1.5" width="24" x="34" y="4"></rect>
-                <rect class="fill-surface-container stroke-tertiary" height="24" rx="2" stroke-width="1.5" width="24" x="34" y="52"></rect>
-                <circle class="fill-tertiary" cx="46" cy="40" r="4"></circle>
-                <line stroke="currentColor" stroke-width="1.5" x1="16" x2="28" y1="34" y2="46"></line>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Daily AI Challenge Micro-Card -->
-          <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between border border-outline-variant/20">
-            <div class="flex items-center gap-space-md">
-              <div class="w-10 h-10 rounded-full bg-tertiary/15 flex items-center justify-center text-tertiary">
-                <span class="material-symbols-outlined text-xl">grid_4x4</span>
-              </div>
-              <div>
-                <span class="font-label-md text-label-md text-tertiary font-bold uppercase">Daily Spatial Challenge</span>
-                <p class="font-body-md text-body-md text-on-surface font-semibold">Compound Spatial Matrices & Dot Code Logic</p>
-              </div>
-            </div>
-            <span class="px-space-md py-1 rounded-full bg-surface-container-high font-label-md text-label-md text-on-surface font-bold">1 Mark / 30s</span>
           </div>
         </div>
 
         <!-- Action Cluster -->
-        <div class="pt-space-lg mt-space-md flex flex-wrap items-center justify-between gap-space-sm border-t border-outline-variant/20">
-          <a href="#drill-spatial" class="px-space-lg py-2.5 rounded-full bg-tertiary text-on-tertiary font-label-lg text-label-lg font-bold shadow-sm hover:opacity-95 transition-all flex items-center gap-space-xs">
-            <span>Launch AI Spatial Lab</span>
-            <span class="px-1.5 py-0.5 rounded-full bg-on-tertiary/20 text-on-tertiary font-label-md text-label-md">+40 XP</span>
+        <div class="pt-6 mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-outline-variant/20 relative z-10">
+          <a href="#drill-spatial" class="flex-1 py-3 rounded-full bg-tertiary text-on-primary text-sm font-bold shadow-md hover:bg-tertiary/90 transition-all flex items-center justify-center gap-2">
+            <span>Launch Spatial Lab</span>
+            <span class="px-2 py-0.5 rounded-md bg-white/20 text-xs">+40 XP</span>
           </a>
-          <div class="flex items-center gap-space-xs">
-            <a href="#mistake-vault-3d" class="px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container font-label-md text-label-md text-on-surface font-semibold transition-all">
+          <div class="flex items-center gap-2">
+            <a href="#mistake-vault-3d" class="px-4 py-3 rounded-full bg-surface border border-outline-variant/30 hover:border-primary/50 text-xs text-on-surface font-bold transition-all text-center">
               3D Sandbox
             </a>
-            <a href="#mock-splitview" class="px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container font-label-md text-label-md text-on-surface font-semibold transition-all">
-              Visual Net Stencils
+            <a href="#mock-splitview" class="px-4 py-3 rounded-full bg-surface border border-outline-variant/30 hover:border-primary/50 text-xs text-on-surface font-bold transition-all text-center">
+              Stencils
             </a>
           </div>
         </div>
@@ -429,84 +378,70 @@ LearnlyRouter.register('subject-quests', function() {
 
       <!-- Card 4: English Comprehension & SPaG -->
       ${(filterSubject === 'all' || filterSubject === 'english') ? `
-      <article class="bg-surface-container-lowest rounded-2xl p-space-xl elevation-1 flex flex-col justify-between hover:elevation-2 transition-shadow relative overflow-hidden group border border-outline-variant/30">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-secondary/5 rounded-bl-full pointer-events-none group-hover:scale-110 transition-transform"></div>
-        <div class="flex flex-col space-y-space-lg">
+      <article class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/30 flex flex-col justify-between hover:border-primary/50 transition-colors relative overflow-hidden group shadow-sm">
+        <div class="absolute top-0 right-0 w-48 h-48 bg-secondary/5 rounded-full translate-x-16 -translate-y-16 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
+        <div class="flex flex-col space-y-6 relative z-10">
           <!-- Header -->
           <div class="flex items-start justify-between">
-            <div class="flex items-center gap-space-md">
-              <div class="w-14 h-14 rounded-2xl bg-secondary/15 text-secondary flex items-center justify-center">
-                <span class="material-symbols-outlined text-3xl">menu_book</span>
+            <div class="flex items-center gap-4">
+              <div class="w-16 h-16 rounded-[2.5rem] bg-secondary/15 text-secondary flex items-center justify-center border border-secondary/20">
+                <span class="material-symbols-outlined text-4xl">menu_book</span>
               </div>
               <div>
-                <div class="flex items-center gap-space-xs">
-                  <span class="px-2.5 py-0.5 rounded-full bg-secondary/20 text-secondary font-label-md text-label-md font-bold">ISEB & CSSE Rigour</span>
-                  <span class="font-label-md text-label-md text-outline font-semibold">Stage 3 Mastery</span>
+                <div class="flex items-center gap-2 mb-1">
+                  <span class="px-3 py-1 rounded-lg bg-secondary/20 text-secondary text-xs font-bold uppercase tracking-widest border border-secondary/30">ISEB & CSSE Rigour</span>
+                  <span class="text-xs font-bold text-outline-variant">Stage 3 Mastery</span>
                 </div>
-                <h2 class="font-headline-md text-headline-md text-on-surface font-bold mt-1">English Comprehension & SPaG</h2>
+                <h2 class="text-2xl text-on-surface font-extrabold tracking-tight">English & SPaG</h2>
               </div>
             </div>
             <div class="text-right">
-              <span class="font-headline-md text-headline-md text-secondary font-black leading-none">7.9<span class="text-body-sm font-normal text-outline">/10</span></span>
-              <span class="block font-label-md text-label-md text-secondary font-bold mt-0.5">High Focus Potential</span>
+              <span class="text-4xl text-secondary font-black leading-none">7.9<span class="text-lg font-bold text-outline-variant">/10</span></span>
+              <span class="block text-xs text-secondary font-bold mt-1 tracking-widest uppercase">High Focus Potential</span>
             </div>
           </div>
 
           <!-- AI Diagnostic Insight -->
-          <div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
-            <div class="flex items-center gap-1.5 text-secondary font-label-md text-label-md font-bold uppercase">
-              <span class="material-symbols-outlined text-base">translate</span>
-              <span>AI Real-time Diagnosis</span>
+          <div class="p-4 rounded-[2.5rem] bg-surface border border-outline-variant/20 flex flex-col gap-2">
+            <div class="flex items-center gap-2 text-secondary text-xs font-bold uppercase tracking-widest">
+              <span class="material-symbols-outlined text-lg">translate</span>
+              <span>AI Diagnosis</span>
             </div>
-            <p class="font-body-md text-body-md text-on-surface">
+            <p class="text-sm text-on-surface">
               <strong>Strengths:</strong> Punctuation syntax, parenthetical commas, direct fact retrieval.
             </p>
-            <p class="font-body-sm text-body-sm text-error font-medium">
-              <strong>AI Target Focus:</strong> Implicit Tone Shifts, Victorian Prose Register & Poetic Devices.
+            <p class="text-sm text-error font-bold">
+              <strong>Target Focus:</strong> Implicit Tone Shifts, Victorian Prose Register & Poetic Devices.
             </p>
           </div>
 
           <!-- Active Quest Box -->
-          <div class="p-space-md rounded-xl bg-surface-container-low/70 border border-outline-variant/30 flex flex-col space-y-space-sm">
+          <div class="p-4 rounded-[2.5rem] bg-surface border border-outline-variant/20 flex flex-col space-y-3">
             <div class="flex items-center justify-between">
-              <span class="font-label-lg text-label-lg text-on-surface font-bold flex items-center gap-space-xs">
-                <span class="material-symbols-outlined text-secondary text-base">history_edu</span>
-                19th Century Expedition Prose & Evaluative Analysis
+              <span class="text-sm text-on-surface font-bold flex items-center gap-2">
+                <span class="material-symbols-outlined text-secondary text-lg">history_edu</span>
+                19th Century Prose Analysis
               </span>
-              <span class="font-label-md text-label-md text-secondary font-bold">5 / 10 Complete (50%)</span>
+              <span class="text-xs text-secondary font-bold">50%</span>
             </div>
-            <div class="w-full bg-surface-container-highest rounded-full h-2 overflow-hidden">
-              <div class="bg-secondary-container h-full rounded-full transition-all duration-500" style="width: 50%"></div>
+            <div class="w-full bg-surface-container-high rounded-full h-2 overflow-hidden">
+              <div class="bg-secondary h-full rounded-full transition-all duration-500" style="width: 50%"></div>
             </div>
-          </div>
-
-          <!-- Daily AI Challenge Micro-Card -->
-          <div class="p-space-md rounded-xl bg-surface-container-lowest shadow-sm flex items-center justify-between border border-outline-variant/20">
-            <div class="flex items-center gap-space-md">
-              <div class="w-10 h-10 rounded-full bg-secondary-fixed/40 flex items-center justify-center text-secondary">
-                <span class="material-symbols-outlined text-xl">draw</span>
-              </div>
-              <div>
-                <span class="font-label-md text-label-md text-secondary font-bold uppercase">Daily Syntax Challenge</span>
-                <p class="font-body-md text-body-md text-on-surface font-semibold">Subordinate Inversion & Archaic Idiom Nuance</p>
-              </div>
-            </div>
-            <span class="px-space-md py-1 rounded-full bg-surface-container-high font-label-md text-label-md text-on-surface font-bold">2 Marks / 60s</span>
           </div>
         </div>
 
         <!-- Action Cluster -->
-        <div class="pt-space-lg mt-space-md flex flex-wrap items-center justify-between gap-space-sm border-t border-outline-variant/20">
-          <a href="#drill-timed" class="px-space-lg py-2.5 rounded-full bg-secondary text-on-secondary font-label-lg text-label-lg font-bold shadow-sm hover:opacity-95 transition-all flex items-center gap-space-xs">
-            <span>Launch AI Adaptive Session</span>
-            <span class="px-1.5 py-0.5 rounded-full bg-on-secondary/20 text-on-secondary font-label-md text-label-md">+30 XP</span>
+        <div class="pt-6 mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-outline-variant/20 relative z-10">
+          <a href="#drill-timed" class="flex-1 py-3 rounded-full bg-secondary text-on-primary text-sm font-bold shadow-md hover:bg-secondary/90 transition-all flex items-center justify-center gap-2">
+            <span>Launch AI Session</span>
+            <span class="px-2 py-0.5 rounded-md bg-white/20 text-xs">+30 XP</span>
           </a>
-          <div class="flex items-center gap-space-xs">
-            <a href="#practice-arena" class="px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container font-label-md text-label-md text-on-surface font-semibold transition-all">
-              Passage Archive
+          <div class="flex items-center gap-2">
+            <a href="#practice-arena" class="px-4 py-3 rounded-full bg-surface border border-outline-variant/30 hover:border-primary/50 text-xs text-on-surface font-bold transition-all text-center">
+              Passages
             </a>
-            <a href="#scorecard" class="px-space-md py-2 rounded-full bg-surface-container-low hover:bg-surface-container font-label-md text-label-md text-on-surface font-semibold transition-all">
-              Mark Scheme Guide
+            <a href="#scorecard" class="px-4 py-3 rounded-full bg-surface border border-outline-variant/30 hover:border-primary/50 text-xs text-on-surface font-bold transition-all text-center">
+              Mark Schemes
             </a>
           </div>
         </div>

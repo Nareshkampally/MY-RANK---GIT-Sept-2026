@@ -17,7 +17,24 @@ const LearnlyRouter = {
         window.location.hash = link.dataset.navigate;
       }
     });
-    this.navigate();
+
+    // Wait for Firebase auth to initialize
+    if (window.firebase) {
+      window.firebase.auth().onAuthStateChanged((user) => {
+        this.currentUser = user;
+        
+        // Update user profile UI if available
+        if (user) {
+          const profileName = document.getElementById('user-profile-name');
+          if (profileName) profileName.textContent = user.email.split('@')[0];
+        }
+
+        // Trigger initial navigation after auth is determined
+        this.navigate();
+      });
+    } else {
+      this.navigate();
+    }
   },
 
   navigate() {
@@ -29,6 +46,33 @@ const LearnlyRouter = {
   loadPage(name) {
     const container = document.getElementById('page-content');
     if (!container) return;
+
+    // DEV BYPASS: Mock auth state so user can view all UI changes without logging in
+    this.currentUser = { email: 'dev@learnly.com' };
+
+    // Check Auth State
+    if (window.firebase) {
+      const isLoggedIn = !!this.currentUser;
+      if (!isLoggedIn && name !== 'login') {
+        window.location.hash = 'login';
+        return;
+      }
+      if (isLoggedIn && name === 'login') {
+        window.location.hash = 'dashboard';
+        return;
+      }
+    }
+
+    // Toggle app shell visibility
+    const sidebar = document.getElementById('main-sidebar');
+    const header = document.querySelector('header');
+    if (name === 'login') {
+      if (sidebar) sidebar.style.display = 'none';
+      if (header) header.style.display = 'none';
+    } else {
+      if (sidebar) sidebar.style.display = '';
+      if (header) header.style.display = '';
+    }
 
     // Check if page exists
     const page = this.pages[name];
@@ -43,13 +87,53 @@ const LearnlyRouter = {
     // Update active nav
     this.updateNav(name);
 
-    // Render page content
-    container.innerHTML = `<div class="page-enter flex flex-col w-full">${page.render()}</div>`;
-    this.currentPage = name;
+    // Update page title
+    const titleEl = document.getElementById('page-title');
+    if (titleEl) {
+      const titles = {
+        'dashboard': 'Dashboard',
+        'practice-arena': 'Practice Arena',
+        'mock-exams': 'Mock Exams',
+        'analytics': 'Performance Analytics',
+        'scorecard': 'Diagnostic Scorecard',
+        'trophy-room': 'Trophy Room',
+        'parent-portal': 'Parent Portal',
+        'mistake-mastery': 'Mistake Mastery',
+        'subject-quests': 'Subject Quests',
+        'past-papers': 'Past Papers',
+        'leaderboard': 'Leaderboard',
+        'homework-scanner': 'Homework Scanner',
+        'ai-learning': 'AI Learning',
+        'study-planner': 'Study Planner',
+        'progress-report': 'Progress Report',
+        'vocab-vault': 'Vocab Vault',
+        'clinic-booking': 'Tutor Clinic',
+        'past-papers': 'Past Papers',
+        'trophy-room': 'Trophy Room',
+        'parent-portal': 'Parent Portal',
+      };
+      titleEl.textContent = titles[name] || name.split('-').map(w => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+    }
 
-    // Run page init (attach event handlers, start timers, etc.)
-    if (page.init) {
-      requestAnimationFrame(() => page.init());
+    // Render page content with basic error boundary
+    try {
+      container.innerHTML = `<div class="page-enter flex flex-col w-full">${page.render()}</div>`;
+      this.currentPage = name;
+
+      // Run page init (attach event handlers, start timers, etc.)
+      if (page.init) {
+        requestAnimationFrame(() => page.init());
+      }
+    } catch (err) {
+      console.error(`Error rendering page ${name}:`, err);
+      container.innerHTML = `
+        <div class="flex flex-col items-center justify-center py-20 px-4 text-center">
+          <span class="material-symbols-outlined text-5xl text-error mb-4">error</span>
+          <h2 class="text-2xl font-bold text-on-surface mb-2">Oops! Something went wrong.</h2>
+          <p class="text-on-surface-variant max-w-md mb-6">We encountered an unexpected error while loading this section. Our team has been notified.</p>
+          <button onclick="window.location.hash='dashboard'" class="px-6 py-2.5 bg-primary text-white font-bold rounded-full hover:opacity-90">Return to Dashboard</button>
+        </div>
+      `;
     }
 
     // Scroll to top
@@ -91,6 +175,13 @@ const LearnlyRouter = {
       'mock-splitview': 'mock-exams',
       'mastery-certificate': 'trophy-room',
       'homework-scanner': 'homework-scanner',
+      'ai-learning': 'ai-learning',
+      'study-planner': 'study-planner',
+      'progress-report': 'progress-report',
+      'vocab-vault': 'vocab-vault',
+      'battle-arena': 'battle-arena',
+      'school-predictor': 'school-predictor',
+      'lofi-study': 'lofi-study',
     };
 
     const navTarget = pageToNav[activePage] || activePage;
