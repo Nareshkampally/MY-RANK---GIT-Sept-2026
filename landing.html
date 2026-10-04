@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en" class="scroll-smooth bg-white text-[#1d1d1f]">
+<html lang="en" class="scroll-smooth">
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Learnly 11+ — The Modern Standard for Grammar School Preparation</title>
-  <meta name="description" content="The gold standard in 11+ preparation. Age-standardised SAS diagnostic engine, 10,000+ adaptive items, LexiVault vocabulary power, and GL/CEM simulation for top UK grammar school entry."/>
+  <title>Learnly 11+ — The Modern Standard for UK Grammar School Preparation</title>
+  <meta name="description" content="Precision 11+ exam preparation platform. Adaptive practice arena, Standard Age Score (SAS) diagnostic predictions, LexiVault vocabulary mastery, and mock simulations for GL Assessment, CEM Select & CSSE."/>
 
-  <!-- Fonts: Plus Jakarta Sans / SF Pro aesthetic & Instrument Serif -->
+  <!-- Fonts: Plus Jakarta Sans, Instrument Serif, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   
   <!-- Material Symbols Outlined -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@100..700,0..1,-50..200,20..48&display=swap" rel="stylesheet"/>
@@ -18,30 +18,71 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
-      darkMode: 'class',
       theme: {
         extend: {
           fontFamily: {
-            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', '"SF Pro Display"', '"SF Pro Text"', 'sans-serif'],
+            sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
             serif: ['"Instrument Serif"', 'Georgia', 'serif'],
             mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            apple: {
-              blue: '#0071e3',
-              blueHover: '#0077ed',
-              dark: '#1d1d1f',
-              body: '#424245',
-              gray: '#f5f5f7',
-              grayLight: '#fbfbfd',
-              border: '#d2d2d7',
-              muted: '#86868b',
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b',
             }
           },
-          letterSpacing: {
-            'apple-display': '-0.038em',
-            'apple-title': '-0.025em',
-            'apple-sub': '-0.012em',
+          animation: {
+            'float-1': 'floatOne 7s ease-in-out infinite',
+            'float-2': 'floatTwo 8s ease-in-out infinite 1s',
+            'float-3': 'floatThree 9s ease-in-out infinite 2s',
+            'float-4': 'floatFour 7.5s ease-in-out infinite 1.5s',
+            'pulse-subtle': 'pulseSubtle 4s ease-in-out infinite',
+            'marquee': 'marquee 32s linear infinite',
+            'marquee-reverse': 'marqueeRev 32s linear infinite',
+            'shimmer-fast': 'shimmer 2.5s infinite linear',
+          },
+          keyframes: {
+            floatOne: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(-1.5deg)' },
+              '50%': { transform: 'translateY(-14px) rotate(-0.5deg)' },
+            },
+            floatTwo: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(1.5deg)' },
+              '50%': { transform: 'translateY(-16px) rotate(2.5deg)' },
+            },
+            floatThree: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(-1deg)' },
+              '50%': { transform: 'translateY(-12px) rotate(0.5deg)' },
+            },
+            floatFour: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(1deg)' },
+              '50%': { transform: 'translateY(-15px) rotate(0deg)' },
+            },
+            pulseSubtle: {
+              '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+              '50%': { opacity: '1', transform: 'scale(1.05)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            marqueeRev: {
+              '0%': { transform: 'translateX(-50%)' },
+              '100%': { transform: 'translateX(0%)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
+            }
           }
         }
       }
@@ -49,37 +90,61 @@
   </script>
 
   <style>
-    /* Precision Apple Light Typography & Physics */
     :root {
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
       text-rendering: optimizeLegibility;
-      color-scheme: light;
-      background-color: #ffffff;
-      color: #1d1d1f;
     }
 
-    /* Apple-style Deep Slate Headline Gradient */
-    .text-apple-headline {
-      background: linear-gradient(180deg, #1d1d1f 0%, #3a3a3c 85%, #6e6e73 100%);
+    /* Vibrant Multi-Color Gradients */
+    .gradient-hero-title {
+      background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 30%, #7c3aed 65%, #ec4899 90%, #f97316 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
     }
 
-    /* Apple Critically Damped Button Physics */
-    .apple-btn {
-      transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), background-color 120ms ease, box-shadow 120ms ease;
-    }
-    .apple-btn:active {
-      transform: scale(0.975);
+    .gradient-accent-blue {
+      background: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    /* Hardware Bezel Silver Finish */
-    .silver-hardware-bezel {
+    .gradient-accent-amber {
+      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 50%, #dc2626 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* Rich Glassmorphism with Colorful Border Glow */
+    .glass-floating-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
       box-shadow: 
-        0 0 0 1px rgba(0, 0, 0, 0.06),
-        0 12px 32px -8px rgba(0, 0, 0, 0.06),
-        0 32px 72px -16px rgba(0, 0, 0, 0.08);
+        0 10px 30px -5px rgba(79, 70, 229, 0.12),
+        0 25px 60px -15px rgba(15, 23, 42, 0.08),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+    .glass-floating-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 
+        0 20px 40px -5px rgba(79, 70, 229, 0.2),
+        0 30px 70px -10px rgba(15, 23, 42, 0.12);
+    }
+
+    /* Tactile button physics */
+    .btn-tactile {
+      transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms ease, filter 120ms ease;
+    }
+    .btn-tactile:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
+    }
+    .btn-tactile:active {
+      transform: translateY(1px) scale(0.98);
+      filter: brightness(0.95);
     }
 
     /* 3D Flip Card for LexiVault */
@@ -101,249 +166,567 @@
       transform: rotateY(180deg);
     }
 
-    /* Subtle custom scrollbar */
-    ::-webkit-scrollbar {
-      width: 6px;
+    /* Giant Company Name Display Typography */
+    .giant-footer-title {
+      font-size: clamp(3.2rem, 13vw, 15rem);
+      letter-spacing: -0.05em;
+      line-height: 0.85;
+      text-transform: uppercase;
+      font-weight: 950;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.05) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      user-select: none;
     }
-    ::-webkit-scrollbar-track {
-      background: #f5f5f7;
+
+    /* Subtle Rainbow Glow Ring */
+    .rainbow-border {
+      background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899, #f97316);
+      padding: 1.5px;
+      border-radius: 1.5rem;
     }
-    ::-webkit-scrollbar-thumb {
-      background: #d2d2d7;
+
+    /* Ambient Mesh Orbs */
+    .ambient-orb {
+      filter: blur(120px);
+      opacity: 0.55;
+      pointer-events: none;
+      position: absolute;
       border-radius: 9999px;
-    }
-    ::-webkit-scrollbar-thumb:hover {
-      background: #86868b;
     }
   </style>
 </head>
-<body class="bg-white text-[#1d1d1f] selection:bg-apple-blue selection:text-white antialiased">
+<body class="bg-[#fcfdfe] text-slate-900 selection:bg-brand-500 selection:text-white antialiased overflow-x-hidden">
 
-  <!-- ================= TOP GLOBAL NAVIGATION ================= -->
-  <header class="sticky top-0 z-50 backdrop-blur-xl bg-white/80 border-b border-black/[0.08] transition-all">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 flex items-center justify-between text-xs font-normal tracking-tight text-[#424245]">
+  <!-- ================= TOP ANNOUNCEMENT BANNER ================= -->
+  <aside class="relative z-50 bg-gradient-to-r from-brand-950 via-indigo-900 to-purple-950 text-white text-xs py-2 px-4 text-center font-medium shadow-md flex items-center justify-center gap-2">
+    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 text-white border border-white/20 text-[11px] font-semibold">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> 2026/2027 Admissions
+    </span>
+    <span class="font-medium">GL Assessment, CEM Select & CSSE Grammar School Syllabus Updated</span>
+    <a href="#interactive-preview" class="text-amber-300 font-bold underline underline-offset-2 hover:text-white transition-colors ml-1 inline-flex items-center gap-0.5">
+      <span>Try Interactive Demo</span>
+      <span class="material-symbols-outlined text-xs">arrow_forward</span>
+    </a>
+  </aside>
+
+  <!-- ================= FLOATING GLASS NAVIGATION ================= -->
+  <header class="sticky top-3 z-40 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="backdrop-blur-xl bg-white/85 border border-slate-200/90 rounded-2xl px-4 sm:px-6 py-3.5 shadow-[0_8px_30px_rgb(79,70,229,0.08)] flex items-center justify-between transition-all">
       
       <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-2 text-[#1d1d1f] hover:opacity-80 transition-opacity">
-        <div class="w-6 h-6 rounded-lg bg-gradient-to-tr from-[#1d1d1f] to-slate-700 flex items-center justify-center text-white font-extrabold text-[13px] shadow-sm">
-          <span class="material-symbols-outlined text-[15px]">school</span>
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-fuchsia-600 flex items-center justify-center text-white shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-[22px]">school</span>
         </div>
-        <span class="font-bold tracking-tight text-sm text-[#1d1d1f]">Learnly 11+</span>
-        <span class="text-[10px] font-mono uppercase px-1.5 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200 ml-1">Pro</span>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-xl font-black tracking-tight text-slate-900">Learnly</span>
+            <span class="text-[10px] font-black uppercase px-1.5 py-0.5 rounded bg-brand-50 text-brand-700 border border-brand-200 font-mono">11+ PRO</span>
+          </div>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500 block -mt-0.5">Scholar Edition</span>
+        </div>
       </a>
 
-      <!-- Desktop Links -->
-      <div class="hidden md:flex items-center gap-7">
-        <a href="#overview" class="hover:text-black transition-colors">Overview</a>
-        <a href="#demo" class="hover:text-black transition-colors">Interactive Demo</a>
-        <a href="#features" class="hover:text-black transition-colors">Architecture</a>
-        <a href="#schools" class="hover:text-black transition-colors">Grammar Schools</a>
-        <a href="#comparison" class="hover:text-black transition-colors">Why Learnly</a>
-        <a href="#legal-modal" onclick="openLegalPolicy('terms')" class="hover:text-black transition-colors">Legal & Safety</a>
+      <!-- Desktop Navigation Links -->
+      <div class="hidden lg:flex items-center gap-7 text-xs font-bold text-slate-600">
+        <a href="#features" class="hover:text-brand-600 transition-colors">Features</a>
+        <a href="#interactive-preview" class="hover:text-brand-600 transition-colors flex items-center gap-1">
+          <span>Live Demo</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        </a>
+        <a href="#grammar-schools" class="hover:text-brand-600 transition-colors">Target Schools</a>
+        <a href="#testimonials" class="hover:text-brand-600 transition-colors">Results</a>
+        <a href="#comparison" class="hover:text-brand-600 transition-colors">Why Learnly</a>
+        <button type="button" onclick="openLegalPolicy('terms')" class="hover:text-brand-600 transition-colors">Legal & Safety</button>
       </div>
 
-      <!-- Action -->
+      <!-- Action Buttons -->
       <div class="flex items-center gap-3">
-        <a href="index.html#dashboard" class="text-[#424245] hover:text-black transition-colors text-xs font-medium">
+        <a href="index.html#dashboard" class="hidden sm:inline-flex text-xs font-bold text-slate-700 hover:text-slate-950 px-3.5 py-2 rounded-xl hover:bg-slate-100 transition-colors">
           Sign In
         </a>
-        <a href="index.html#dashboard" class="apple-btn inline-flex items-center gap-1 bg-[#1d1d1f] hover:bg-black text-white px-3.5 py-1.5 rounded-full text-xs font-semibold tracking-tight shadow-sm transition-all">
+        <a href="index.html#practice-arena" class="btn-tactile inline-flex items-center gap-1.5 bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 hover:from-brand-700 hover:to-purple-700 text-white text-xs font-bold px-4 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/30 transition-all">
           <span>Launch Portal</span>
-          <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <span class="material-symbols-outlined text-sm">arrow_forward</span>
         </a>
       </div>
-
-    </div>
+    </nav>
   </header>
 
-  <!-- ================= APPLE-STYLE STICKY PRODUCT SUBNAV ================= -->
-  <div class="sticky top-12 z-40 backdrop-blur-xl bg-white/90 border-b border-black/[0.06]">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-12 flex items-center justify-between">
-      
-      <div class="flex items-center gap-2">
-        <span class="text-sm font-bold text-[#1d1d1f] tracking-tight">Learnly 11+ Scholar</span>
-        <span class="hidden sm:inline-block text-[11px] text-apple-muted font-mono">Cohort 2026/2027</span>
-      </div>
-
-      <div class="flex items-center gap-4 sm:gap-6 text-xs font-medium text-apple-muted">
-        <a href="#demo" class="hover:text-[#1d1d1f] transition-colors hidden sm:inline">Try Demo</a>
-        <a href="#features" class="hover:text-[#1d1d1f] transition-colors hidden md:inline">Key Features</a>
-        <a href="#schools" class="hover:text-[#1d1d1f] transition-colors hidden sm:inline">Cut-Offs</a>
-        <a href="#legal-modal" onclick="openLegalPolicy('safeguarding')" class="hover:text-[#1d1d1f] transition-colors hidden lg:inline flex items-center gap-1 text-emerald-600 font-semibold">
-          <span class="material-symbols-outlined text-xs">shield</span>
-          <span>KCSIE Safe</span>
-        </a>
-        <a href="index.html#practice-arena" class="apple-btn bg-apple-blue hover:bg-apple-blueHover text-white px-4 py-1.5 rounded-full font-semibold text-xs transition-all shadow-sm">
-          Start Free Trial
-        </a>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- ================= HERO SECTION (APPLE PRISTINE LIGHT) ================= -->
-  <section id="overview" class="relative pt-20 pb-24 md:pt-28 md:pb-32 overflow-hidden bg-gradient-to-b from-white via-[#fbfbfd] to-[#f5f5f7] text-center">
+  <!-- ================= HERO SECTION (SUPER RICH WITH VIBRANT LIGHT CANVAS) ================= -->
+  <section class="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden">
     
-    <!-- Delicate architectural background aura -->
-    <div class="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-gradient-to-tr from-blue-100/50 via-indigo-50/40 to-transparent blur-[120px] pointer-events-none rounded-full"></div>
+    <!-- Rich Colorful Ambient Aura Flares (Light Theme) -->
+    <div class="ambient-orb top-0 left-1/4 w-[600px] h-[500px] bg-gradient-to-tr from-indigo-300/40 via-purple-300/30 to-pink-300/20"></div>
+    <div class="ambient-orb top-20 right-1/6 w-[550px] h-[450px] bg-gradient-to-bl from-cyan-300/35 via-blue-300/25 to-indigo-300/20"></div>
+    <div class="ambient-orb top-96 left-1/12 w-[500px] h-[400px] bg-gradient-to-br from-amber-200/40 to-rose-200/30"></div>
 
-    <div class="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <!-- Eyebrow Pill -->
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white border border-slate-200 text-xs font-semibold text-slate-700 mb-8 shadow-sm">
-        <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
-        <span class="font-mono text-slate-900 font-bold">GL Assessment & CEM Standardised</span>
-        <span class="text-slate-300">|</span>
-        <span class="text-slate-500">Ages 9–11 (Year 4 & 5)</span>
+      <!-- Central Hero Content: Clean, Unobstructed, Majestic -->
+      <div class="max-w-4xl mx-auto text-center relative z-20">
+        
+        <!-- Glowing Eyebrow Pill -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-indigo-100 shadow-[0_4px_20px_rgba(79,70,229,0.08)] text-xs font-bold text-slate-700 mb-6 backdrop-blur-md">
+          <span class="flex h-2.5 w-2.5 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-600"></span>
+          </span>
+          <span class="text-slate-900 font-extrabold">14,200+ Mock Papers</span> completed this term
+          <span class="text-slate-300">•</span>
+          <span class="text-brand-600 font-black">Standard Age Score (SAS) Precision</span>
+        </div>
+
+        <!-- Grand Headline with Rainbow Gradient -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-950 tracking-tight leading-[1.08]">
+          The unfair advantage for <br/>
+          <span class="gradient-hero-title font-black">competitive 11+ grammar school</span> admissions.
+        </h1>
+
+        <!-- High-Impact Subtitle -->
+        <p class="mt-6 text-base sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+          Replaces chaotic paper packs with age-standardised <strong class="text-slate-900 font-bold">Standard Age Score (SAS) precision</strong>. 10,000+ adaptive questions, real-time cut-off benchmarking, and spaced-repetition vocabulary built for GL Assessment, CEM Select, and CSSE.
+        </p>
+
+        <!-- Dual CTA Buttons with Shimmer & Physics -->
+        <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="index.html#practice-arena" class="btn-tactile w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 hover:from-brand-700 hover:to-purple-700 text-white font-extrabold px-8 py-4 rounded-2xl text-base shadow-xl shadow-brand-600/30">
+            <span>Start Free Diagnostic Mock</span>
+            <span class="material-symbols-outlined text-lg">bolt</span>
+          </a>
+          <a href="#interactive-preview" class="btn-tactile w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold px-7 py-4 rounded-2xl text-base border border-slate-200/90 shadow-lg shadow-slate-200/50">
+            <span class="material-symbols-outlined text-brand-600 text-lg">play_circle</span>
+            <span>Explore Live Prototype</span>
+          </a>
+        </div>
+
+        <!-- Social Proof Checklist -->
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-slate-500">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span> Instant SAS Benchmark</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span> No Credit Card Required</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span> GL Assessment & CEM Aligned</span>
+        </div>
+
+        <!-- Avatars + Trustpilot Rating -->
+        <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+          <div class="flex -space-x-2">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-white">AR</div>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 to-pink-600 text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-white">PS</div>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-white">TK</div>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-orange-600 text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-white">NM</div>
+            <div class="w-8 h-8 rounded-full bg-slate-900 text-white text-[10px] font-bold flex items-center justify-center ring-2 ring-white">+3.4k</div>
+          </div>
+          <div class="text-left text-xs">
+            <div class="flex items-center gap-1 text-amber-500">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="font-black text-slate-900 ml-1">4.98 / 5</span>
+            </div>
+            <span class="text-slate-500 font-medium">Rated by 3,400+ UK Grammar School Parents</span>
+          </div>
+        </div>
+
       </div>
 
-      <!-- Monumental Headline -->
-      <h1 class="text-5xl sm:text-7xl lg:text-8xl font-black tracking-apple-display leading-[1.05] max-w-4xl mx-auto text-apple-headline">
-        Pure precision. <br/>
-        <span class="font-serif italic font-normal text-slate-900 text-[1.08em] tracking-normal">Beyond selective.</span>
-      </h1>
+      <!-- ================= HERO SHOWCASE STAGE WITH 4 FLANKING FLOATING CARDS ================= -->
+      <!-- Placed directly below the title & CTAs with generous spacing so nothing overlaps! -->
+      <div class="mt-14 relative max-w-6xl mx-auto">
+        
+        <!-- Central Interactive App Stage Cockpit -->
+        <div class="rainbow-border shadow-2xl shadow-brand-500/15">
+          <div class="bg-white/95 rounded-[1.4rem] p-4 sm:p-7 border border-slate-100 backdrop-blur-xl">
+            
+            <!-- Window Title Bar -->
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                <span class="ml-2 text-xs font-mono font-bold text-slate-500 hidden sm:inline">Learnly 11+ Scholar Engine • Live Diagnostic Arena</span>
+              </div>
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-mono font-bold flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                  <span>Real-time SAS Synchronised</span>
+                </span>
+              </div>
+            </div>
 
-      <!-- Elegant Sub-headline -->
-      <p class="mt-7 text-lg sm:text-2xl text-apple-body font-normal max-w-2xl mx-auto leading-relaxed tracking-apple-sub">
-        The exam preparation platform engineered for the UK's most competitive grammar schools. Accurate down to the Standard Age Score point.
-      </p>
+            <!-- Cockpit Internal Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+              
+              <!-- Left Mini Dashboard (Span-5) -->
+              <div class="lg:col-span-5 space-y-4 text-left">
+                <div class="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/80">
+                  <div class="flex items-center justify-between text-xs mb-2">
+                    <span class="font-bold text-slate-700">Target School:</span>
+                    <span class="font-extrabold text-brand-700 bg-brand-50 px-2 py-0.5 rounded-md border border-brand-200">Queen Elizabeth's (QE Boys)</span>
+                  </div>
+                  <div class="flex items-baseline justify-between">
+                    <div>
+                      <div class="text-3xl font-black font-mono text-slate-900">138.5 <span class="text-xs text-slate-500 font-sans font-normal">/ 141 SAS</span></div>
+                      <span class="text-[11px] font-bold text-emerald-600 flex items-center gap-0.5 mt-0.5">
+                        <span class="material-symbols-outlined text-xs">arrow_upward</span> +14.2 SAS improvement over 6 weeks
+                      </span>
+                    </div>
+                    <div class="text-right">
+                      <span class="text-[10px] font-mono font-bold text-slate-400 block">Historic Cutoff:</span>
+                      <span class="text-xs font-black text-slate-800">135 SAS (Safe ✓)</span>
+                    </div>
+                  </div>
+                  <!-- Progress Bar -->
+                  <div class="mt-3 w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                    <div class="bg-gradient-to-r from-brand-600 via-purple-600 to-emerald-500 h-full w-[96%] rounded-full"></div>
+                  </div>
+                </div>
 
-      <!-- Apple Action Group -->
-      <div class="mt-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="index.html#practice-arena" class="apple-btn w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-apple-blue hover:bg-apple-blueHover text-white font-semibold px-7 py-3.5 rounded-full text-base shadow-md shadow-apple-blue/20">
-          <span>Start Free Diagnostic Mock</span>
-          <span class="material-symbols-outlined text-base">arrow_forward</span>
-        </a>
-        <a href="#demo" class="apple-btn w-full sm:w-auto inline-flex items-center justify-center gap-1.5 bg-white hover:bg-slate-50 text-[#1d1d1f] px-6 py-3.5 rounded-full text-base font-semibold border border-slate-200 shadow-sm transition-colors">
-          <span>Explore Interactive Demo</span>
-          <span class="material-symbols-outlined text-base text-apple-blue">arrow_downward</span>
-        </a>
-      </div>
+                <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+                  <div class="bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-[10px] text-slate-500 uppercase">VR Speed</div>
+                    <div class="font-black text-slate-900 text-sm mt-0.5">38s <span class="text-[9px] text-emerald-600">(-12s)</span></div>
+                  </div>
+                  <div class="bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-[10px] text-slate-500 uppercase">Vocab Tier</div>
+                    <div class="font-black text-purple-700 text-sm mt-0.5">Level 9</div>
+                  </div>
+                  <div class="bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-[10px] text-slate-500 uppercase">Errors Queued</div>
+                    <div class="font-black text-amber-600 text-sm mt-0.5">3 Left</div>
+                  </div>
+                </div>
+              </div>
 
-      <!-- Understated Reassurances -->
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs text-apple-muted font-medium">
-        <span>No credit card required</span>
-        <span>•</span>
-        <span>Instant SAS benchmark report</span>
-        <span>•</span>
-        <span>14,000+ UK pupils active</span>
+              <!-- Right Question Simulator (Span-7) -->
+              <div class="lg:col-span-7 bg-white rounded-2xl p-5 border border-indigo-100 shadow-inner text-left">
+                <div class="flex items-center justify-between text-xs text-slate-500 pb-2 mb-3 border-b border-slate-100">
+                  <span class="font-bold text-indigo-700 flex items-center gap-1 font-mono">
+                    <span class="material-symbols-outlined text-sm">psychology</span>
+                    <span>Adaptive Question Simulator</span>
+                  </span>
+                  <span class="text-amber-600 font-mono font-bold flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">timer</span> 00:32 left
+                  </span>
+                </div>
+                <p class="text-xs sm:text-sm font-bold text-slate-900 mb-3 leading-snug">
+                  Which letter can be placed in the brackets to finish the first word and start the second word?
+                </p>
+                <div class="flex items-center justify-center gap-3 my-3 p-3 bg-indigo-50/50 rounded-xl border border-indigo-100 font-mono text-base font-extrabold text-slate-900">
+                  <span>PLA ( <strong class="text-brand-600 underline">?</strong> ) EAM</span>
+                </div>
+                <div class="grid grid-cols-4 gap-2 text-xs font-mono font-bold">
+                  <button class="py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 transition-colors text-slate-700">(A) N</button>
+                  <button class="py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md border border-emerald-400 font-black">(B) T ✓</button>
+                  <button class="py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 transition-colors text-slate-700">(C) S</button>
+                  <button class="py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 transition-colors text-slate-700">(D) R</button>
+                </div>
+                <div class="mt-3 text-[11px] text-emerald-700 font-medium flex items-center gap-1 bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200">
+                  <span class="material-symbols-outlined text-xs">check_circle</span>
+                  <span>Correct: <strong>PLAT</strong> (archaic/plate) & <strong>TEAM</strong>. Answered in 14.8 seconds (Top 1.5% speed).</span>
+                </div>
+              </div>
+
+            </div>
+
+          </div>
+        </div>
+
+        <!-- ================= 4 FLOATING DYNAMIC CARDS (Around the Stage) ================= -->
+        <!-- Floating Card 1: Top Left - Leo Sharma Offer Confirmed -->
+        <div class="hidden xl:block absolute -top-8 -left-12 animate-float-1 z-30 w-72">
+          <div class="glass-floating-card rounded-2xl p-4 border border-white">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 text-white flex items-center justify-center font-bold text-sm shadow-md shadow-emerald-500/25">
+                LS
+              </div>
+              <div>
+                <div class="text-xs font-extrabold text-slate-900">Leo Sharma (Age 10)</div>
+                <div class="text-[11px] text-emerald-600 font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs" style="font-variation-settings:'FILL' 1">verified</span>
+                  <span>QE Boys Offer Confirmed!</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
+              <span class="text-slate-500">Standard Age Score:</span>
+              <span class="text-brand-600 font-black text-sm">139 / 141 SAS</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Card 2: Bottom Left - LexiVault Vocabulary Streak -->
+        <div class="hidden xl:block absolute -bottom-10 -left-10 animate-float-2 z-30 w-64">
+          <div class="glass-floating-card rounded-2xl p-4 border border-white">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="px-2 py-0.5 rounded-md bg-purple-100 text-purple-700 text-[10px] font-bold uppercase tracking-wider font-mono">LexiVault 11+</span>
+              <span class="text-amber-500 font-bold text-xs flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">local_fire_department</span> 42-Day Streak
+              </span>
+            </div>
+            <div class="text-sm font-black text-slate-900">Sagacious</div>
+            <div class="text-[11px] text-slate-500 italic">"Wise, discerning, astute"</div>
+            <div class="mt-2 text-[10px] text-emerald-600 font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">check</span>
+              <span>Spaced repetition mastery 94%</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Card 3: Top Right - Live GL Exam Benchmark -->
+        <div class="hidden xl:block absolute -top-8 -right-12 animate-float-3 z-30 w-72">
+          <div class="glass-floating-card rounded-2xl p-4 border border-white">
+            <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-2">
+              <span class="font-bold text-brand-600">GL Mock Exam #04</span>
+              <span class="text-amber-600 font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">timer</span> 42:15 left
+              </span>
+            </div>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mb-2">
+              <div class="bg-gradient-to-r from-brand-600 via-indigo-600 to-fuchsia-600 h-full w-[84%] rounded-full"></div>
+            </div>
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-slate-600 font-semibold">Question 84 of 100</span>
+              <span class="text-emerald-600 font-black font-mono">98% Accuracy (Top 1%)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Card 4: Bottom Right - Parent Real-Time Diagnostic WhatsApp -->
+        <div class="hidden xl:block absolute -bottom-10 -right-10 animate-float-4 z-30 w-68">
+          <div class="glass-floating-card rounded-2xl p-4 border border-white">
+            <div class="flex items-center gap-2 mb-1.5">
+              <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                <span class="material-symbols-outlined text-xs">chat</span>
+              </div>
+              <span class="text-xs font-bold text-slate-900">Parent WhatsApp Alert</span>
+            </div>
+            <p class="text-[11px] text-slate-600 leading-snug">
+              Spatial reasoning nets cleared: <strong class="text-emerald-600 font-bold">+14 marks</strong> gained.
+            </p>
+            <div class="mt-2 text-[10px] font-mono text-brand-700 font-extrabold flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs text-brand-600">verified</span>
+              <span>HBS & QE Cutoff Safe Zone ✓</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
   </section>
 
-  <!-- ================= APPLE HARDWARE STUDIO PROTOTYPE (SILVER BEZEL) ================= -->
-  <!-- Emil Kowalski & Apple Principle: Real interactive device on screen -->
-  <section id="demo" class="py-20 md:py-28 bg-[#f5f5f7] relative border-y border-slate-200">
+  <!-- ================= INFINITE SCROLLING TARGET GRAMMAR SCHOOLS MARQUEE ================= -->
+  <section id="grammar-schools" class="py-10 bg-slate-50/80 border-y border-slate-200/80 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 mb-4 text-center">
+      <p class="text-xs font-black uppercase tracking-widest text-slate-500">
+        Engineered & calibrated for admission into the UK's most competitive grammar schools:
+      </p>
+    </div>
+
+    <!-- Infinite Scrolling Track -->
+    <div class="relative w-full overflow-hidden">
+      <div class="flex gap-4 animate-marquee whitespace-nowrap py-2">
+        
+        <!-- School 1 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-blue-600"></span>
+          <span>Queen Elizabeth's (QE Boys)</span>
+          <span class="text-[10px] font-mono text-brand-700 bg-brand-50 px-1.5 py-0.5 rounded border border-brand-200">135+ SAS</span>
+        </div>
+
+        <!-- School 2 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-purple-600"></span>
+          <span>The Henrietta Barnett School</span>
+          <span class="text-[10px] font-mono text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200">132+ SAS</span>
+        </div>
+
+        <!-- School 3 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+          <span>Tiffin Boys & Girls</span>
+          <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">128+ SAS</span>
+        </div>
+
+        <!-- School 4 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-amber-600"></span>
+          <span>Wilson's School (Sutton SET)</span>
+          <span class="text-[10px] font-mono text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">130+ SAS</span>
+        </div>
+
+        <!-- School 5 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-rose-600"></span>
+          <span>St Olave's Grammar</span>
+          <span class="text-[10px] font-mono text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">133+ SAS</span>
+        </div>
+
+        <!-- School 6 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-sky-600"></span>
+          <span>King Edward VI (Birmingham)</span>
+          <span class="text-[10px] font-mono text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200">225+ Score</span>
+        </div>
+
+        <!-- School 7 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-indigo-600"></span>
+          <span>Altrincham Grammar Schools</span>
+          <span class="text-[10px] font-mono text-indigo-700 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200">334+ Score</span>
+        </div>
+
+        <!-- School 8 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-teal-600"></span>
+          <span>Reading School</span>
+          <span class="text-[10px] font-mono text-teal-700 bg-teal-50 px-1.5 py-0.5 rounded border border-teal-200">Top 100 Rank</span>
+        </div>
+
+        <!-- Duplicate set for seamless continuous marquee loop -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-blue-600"></span>
+          <span>Queen Elizabeth's (QE Boys)</span>
+          <span class="text-[10px] font-mono text-brand-700 bg-brand-50 px-1.5 py-0.5 rounded border border-brand-200">135+ SAS</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-purple-600"></span>
+          <span>The Henrietta Barnett School</span>
+          <span class="text-[10px] font-mono text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200">132+ SAS</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+          <span>Tiffin Boys & Girls</span>
+          <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">128+ SAS</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-amber-600"></span>
+          <span>Wilson's School (Sutton SET)</span>
+          <span class="text-[10px] font-mono text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">130+ SAS</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-rose-600"></span>
+          <span>St Olave's Grammar</span>
+          <span class="text-[10px] font-mono text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">133+ SAS</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INTERACTIVE PRODUCT PROTOTYPE ================= -->
+  <section id="interactive-preview" class="py-20 md:py-28 bg-gradient-to-b from-[#f8fafc] via-white to-[#f8fafc] border-b border-slate-200 relative">
     <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-xs uppercase font-mono font-bold tracking-widest text-apple-blue">Interactive Hardware Bezel</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold text-[#1d1d1f] tracking-apple-title">
-          Test the engine. Touch the physics.
+        <span class="text-xs font-black uppercase tracking-widest text-brand-600 bg-brand-50 border border-brand-200 px-3.5 py-1 rounded-full shadow-sm">
+          Hands-On Prototype
+        </span>
+        <h2 class="mt-4 text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+          Experience the engine before signing up.
         </h2>
-        <p class="mt-2 text-apple-muted text-sm">
-          Everything below is a live functional module operating at 60 frames per second.
+        <p class="mt-3 text-slate-600 text-base">
+          Touch and test 3 core modules in real time. Everything updates live with zero latency.
         </p>
       </div>
 
-      <!-- Studio Display Silver Bezel -->
-      <div class="silver-hardware-bezel bg-white rounded-[2.5rem] p-4 sm:p-7 border border-slate-200/90 relative overflow-hidden">
+      <!-- Prototype Card Container -->
+      <div class="bg-white rounded-3xl p-4 sm:p-7 shadow-[0_20px_60px_rgba(79,70,229,0.12)] border border-slate-200/90 relative overflow-hidden">
         
-        <!-- Display Top Notch Indicator -->
-        <div class="flex items-center justify-center pb-4">
-          <div class="w-3 h-3 rounded-full bg-slate-200 border border-slate-300"></div>
-        </div>
-
-        <!-- Segmented Control Bar (Apple Design WWDC) -->
-        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-5 px-2 sm:px-4">
+        <!-- Segmented Tab Switcher -->
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-5 px-2">
           
           <div class="inline-flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200/60" role="tablist">
-            <button id="apple-tab-btn-predictor" onclick="switchAppleTab('predictor')" class="apple-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-white bg-apple-blue transition-all flex items-center gap-2 shadow-sm">
+            <button id="tab-btn-predictor" onclick="switchDemoTab('predictor')" class="demo-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-brand-600 to-indigo-600 transition-all flex items-center gap-2 shadow-md">
               <span class="material-symbols-outlined text-base">analytics</span>
-              <span>SAS Score Predictor</span>
+              <span>SAS Cut-off Calculator</span>
             </button>
-            <button id="apple-tab-btn-drill" onclick="switchAppleTab('drill')" class="apple-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-[#86868b] hover:text-[#1d1d1f] transition-all flex items-center gap-2">
-              <span class="material-symbols-outlined text-base">quiz</span>
+            <button id="tab-btn-drill" onclick="switchDemoTab('drill')" class="demo-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-base text-purple-600">quiz</span>
               <span>11+ Question Sample</span>
             </button>
-            <button id="apple-tab-btn-vocab" onclick="switchAppleTab('vocab')" class="apple-tab-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-[#86868b] hover:text-[#1d1d1f] transition-all flex items-center gap-2">
-              <span class="material-symbols-outlined text-base">style</span>
-              <span>3D LexiVault Card</span>
+            <button id="tab-btn-vocab" onclick="switchDemoTab('vocab')" class="demo-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-base text-pink-600">style</span>
+              <span>LexiVault 3D Card</span>
             </button>
           </div>
 
-          <div class="hidden lg:flex items-center gap-2 text-xs text-apple-muted font-mono font-medium">
-            <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-            <span>Real-Time Statistical Engine</span>
+          <div class="hidden md:flex items-center gap-2 text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-3.5 py-2 rounded-xl border border-emerald-200">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Live Interactive Engine</span>
           </div>
 
         </div>
 
         <!-- TAB 1: SAS GRAMMAR SCHOOL PREDICTOR -->
-        <div id="apple-panel-predictor" class="apple-panel p-4 sm:p-8">
+        <div id="tab-content-predictor" class="demo-tab-panel p-4 sm:p-8">
           <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             
             <div class="lg:col-span-6 space-y-6 text-left">
               <div>
-                <label for="apple-school-select" class="text-xs font-mono font-semibold uppercase tracking-wider text-slate-500 block mb-2">Target Grammar School</label>
-                <select id="apple-school-select" onchange="calculateAppleSAS()" class="w-full bg-slate-50 border border-slate-200 rounded-2xl px-4 py-3 text-[#1d1d1f] font-semibold text-sm focus:outline-none focus:border-apple-blue focus:bg-white transition-all shadow-sm">
-                  <option value="qeboys" data-cutoff="135" data-name="Queen Elizabeth's (QE Boys)">Queen Elizabeth's School (QE Boys) — Cut-off: ~135 SAS</option>
-                  <option value="henrietta" data-cutoff="132" data-name="The Henrietta Barnett School">The Henrietta Barnett School — Cut-off: ~132 SAS</option>
-                  <option value="wilsons" data-cutoff="130" data-name="Wilson's School (Sutton SET)">Wilson's School (Sutton SET) — Cut-off: ~130 SAS</option>
-                  <option value="tiffin" data-cutoff="128" data-name="Tiffin School (Kingston)">Tiffin Boys & Girls — Cut-off: ~128 SAS</option>
+                <label for="school-select" class="text-xs font-mono font-bold uppercase tracking-wider text-slate-600 block mb-2">Target Grammar School</label>
+                <select id="school-select" onchange="calculateSASPredictor()" class="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-slate-900 font-bold text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition-all shadow-sm">
+                  <option value="qeboys" data-cutoff="135" data-name="Queen Elizabeth's (QE Boys)">Queen Elizabeth's School (QE Boys) — Cutoff: ~135 SAS</option>
+                  <option value="henrietta" data-cutoff="132" data-name="The Henrietta Barnett School">The Henrietta Barnett School — Cutoff: ~132 SAS</option>
+                  <option value="wilsons" data-cutoff="130" data-name="Wilson's School (Sutton SET)">Wilson's School (Sutton SET) — Cutoff: ~130 SAS</option>
+                  <option value="tiffin" data-cutoff="128" data-name="Tiffin School (Kingston)">Tiffin Boys & Girls — Cutoff: ~128 SAS</option>
                   <option value="csse" data-cutoff="125" data-name="CSSE Essex Consortium">CSSE Essex Consortium — Top 10% Cut-off</option>
-                  <option value="altrincham" data-cutoff="124" data-name="Altrincham Grammar">Altrincham Grammar Schools — Cut-off: ~124 SAS</option>
+                  <option value="altrincham" data-cutoff="124" data-name="Altrincham Grammar">Altrincham Grammar Schools — Cutoff: ~124 SAS</option>
                 </select>
               </div>
 
               <div>
-                <div class="flex items-center justify-between text-xs text-slate-600 mb-2 font-medium">
+                <div class="flex items-center justify-between text-xs text-slate-700 mb-2 font-bold">
                   <span>Child's Current Practice Accuracy:</span>
-                  <span id="apple-accuracy-val" class="font-mono font-bold text-apple-blue text-base">84%</span>
+                  <span id="accuracy-display" class="font-mono font-black text-brand-600 text-lg">84%</span>
                 </div>
-                <input id="apple-accuracy-slider" type="range" min="50" max="98" value="84" oninput="calculateAppleSAS()" class="w-full h-2 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-apple-blue"/>
-                <div class="flex justify-between text-[11px] text-slate-400 mt-1 font-mono">
-                  <span>50% (National Avg)</span>
+                <input id="accuracy-slider" type="range" min="50" max="98" value="84" oninput="calculateSASPredictor()" class="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600"/>
+                <div class="flex justify-between text-[11px] text-slate-500 mt-1 font-mono font-semibold">
+                  <span>50% (Avg)</span>
                   <span>75% (Strong)</span>
-                  <span>90%+ (Super-Selective)</span>
+                  <span>90%+ (Top Tier)</span>
                 </div>
               </div>
 
-              <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80 text-xs space-y-2 font-mono">
+              <div class="p-4 rounded-2xl bg-gradient-to-r from-indigo-50/70 to-purple-50/70 border border-indigo-100 text-xs space-y-2 font-mono">
                 <div class="flex items-center justify-between">
-                  <span class="text-slate-500">Historic Cut-off Threshold:</span>
-                  <span id="apple-cutoff-target" class="font-bold text-slate-900">135 SAS</span>
+                  <span class="text-slate-600">Target SAS Benchmark:</span>
+                  <span id="target-cutoff-val" class="font-bold text-slate-900">135 SAS</span>
                 </div>
                 <div class="flex items-center justify-between">
-                  <span class="text-slate-500">National Cohort Percentile:</span>
-                  <span id="apple-percentile-val" class="font-bold text-emerald-600">Top 2.1% (98th)</span>
+                  <span class="text-slate-600">National Percentile Rank:</span>
+                  <span id="percentile-val" class="font-black text-emerald-700">Top 2.1% (98th)</span>
                 </div>
               </div>
             </div>
 
             <!-- Result Card -->
             <div class="lg:col-span-6">
-              <div class="bg-gradient-to-b from-slate-50 to-white border border-slate-200 rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden shadow-sm">
-                <div class="text-xs uppercase font-mono tracking-widest text-slate-500 font-semibold">Predicted Standard Age Score</div>
+              <div class="bg-gradient-to-br from-indigo-950 via-brand-900 to-purple-950 text-white rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden shadow-2xl border border-indigo-700/50">
+                <div class="absolute -top-10 -right-10 w-44 h-44 bg-brand-500/25 rounded-full blur-2xl"></div>
+                
+                <div class="text-xs uppercase font-mono tracking-widest text-indigo-200 font-bold">Predicted Standard Age Score</div>
                 
                 <div class="my-4">
-                  <span id="apple-sas-score" class="text-7xl sm:text-8xl font-black text-slate-900 font-mono tracking-tight tabular-nums">134</span>
-                  <span class="text-slate-400 text-xl font-mono font-bold">/141</span>
+                  <span id="predicted-sas-score" class="text-7xl sm:text-8xl font-black text-white font-mono tracking-tight tabular-nums">134</span>
+                  <span class="text-indigo-300 text-xl font-mono font-bold">/141</span>
                 </div>
 
-                <div id="apple-status-pill" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <div id="status-badge" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
                   <span class="material-symbols-outlined text-sm">verified</span>
-                  <span id="apple-status-text">Strong Admission Safety Band</span>
+                  <span id="status-text">Strong Admission Safety Band</span>
                 </div>
 
-                <p id="apple-analysis-text" class="mt-4 text-xs sm:text-sm text-slate-600 leading-relaxed max-w-sm mx-auto">
-                  At 134 SAS, your child is within 1 point of the QE Boys safety threshold. Focus on Verbal Reasoning time management to guarantee qualification.
+                <p id="recommendation-text" class="mt-4 text-xs sm:text-sm text-indigo-100 leading-relaxed max-w-sm mx-auto">
+                  At 134 SAS, your child is within 1 point of the QE Boys safety threshold. Focus on Verbal Reasoning speed drills to guarantee qualification.
                 </p>
 
-                <div class="mt-6 pt-5 border-t border-slate-100">
-                  <a href="index.html#school-predictor" class="text-xs font-bold text-apple-blue hover:underline inline-flex items-center gap-1">
-                    <span>Inspect full 40+ UK Grammar School Matrix</span>
+                <div class="mt-6 pt-5 border-t border-indigo-800/80">
+                  <a href="index.html#school-predictor" class="text-xs font-bold text-amber-300 hover:text-white inline-flex items-center gap-1 transition-colors">
+                    <span>View full 40+ UK Grammar School Breakdown</span>
                     <span class="material-symbols-outlined text-xs">arrow_forward</span>
                   </a>
                 </div>
@@ -353,66 +736,66 @@
           </div>
         </div>
 
-        <!-- TAB 2: 11+ VERBAL REASONING SAMPLE -->
-        <div id="apple-panel-drill" class="apple-panel hidden p-4 sm:p-8">
+        <!-- TAB 2: LIVE 11+ QUESTION SAMPLE -->
+        <div id="tab-content-drill" class="demo-tab-panel hidden p-4 sm:p-8">
           <div class="max-w-2xl mx-auto bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 text-left">
             <div class="flex items-center justify-between text-xs text-slate-500 border-b border-slate-200 pb-3 mb-4">
-              <span class="font-mono text-apple-blue font-bold">GL Assessment VR • Antonym Type 12</span>
+              <span class="font-mono text-brand-600 font-bold">GL Assessment VR • Antonym Type 12</span>
               <span class="text-amber-600 font-mono font-bold flex items-center gap-1"><span class="material-symbols-outlined text-sm">timer</span> 45s Recommended Speed</span>
             </div>
 
             <p class="text-sm font-bold text-slate-900 mb-5 leading-relaxed">
-              Find the <strong class="text-apple-blue underline">TWO</strong> words, one from each group, that are most opposite in meaning (Antonyms):
+              Find the <strong class="text-brand-600 underline">TWO</strong> words, one from each group, that are most opposite in meaning (Antonyms):
             </p>
 
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
-              <div class="p-4 rounded-2xl bg-white border border-slate-200">
+              <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
                 <span class="text-xs font-mono font-bold text-slate-500 block mb-2">GROUP 1:</span>
                 <div class="space-y-2">
-                  <button onclick="selectAppleQuestion(this, 'g1', 'A')" class="apple-q-opt w-full text-left px-3.5 py-2 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-between">
+                  <button onclick="selectQuestionChoice(this, 'g1', 'A')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
                     <span>(A) Impetuous</span>
-                    <span class="apple-q-ind text-[10px] text-slate-400">Choice</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
                   </button>
-                  <button onclick="selectAppleQuestion(this, 'g1', 'B')" class="apple-q-opt w-full text-left px-3.5 py-2 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-between">
+                  <button onclick="selectQuestionChoice(this, 'g1', 'B')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
                     <span>(B) Benevolent</span>
-                    <span class="apple-q-ind text-[10px] text-slate-400">Choice</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
                   </button>
-                  <button onclick="selectAppleQuestion(this, 'g1', 'C')" class="apple-q-opt w-full text-left px-3.5 py-2 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-between">
+                  <button onclick="selectQuestionChoice(this, 'g1', 'C')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
                     <span>(C) Resilient</span>
-                    <span class="apple-q-ind text-[10px] text-slate-400">Choice</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
                   </button>
                 </div>
               </div>
 
-              <div class="p-4 rounded-2xl bg-white border border-slate-200">
+              <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
                 <span class="text-xs font-mono font-bold text-slate-500 block mb-2">GROUP 2:</span>
                 <div class="space-y-2">
-                  <button onclick="selectAppleQuestion(this, 'g2', 'D')" class="apple-q-opt w-full text-left px-3.5 py-2 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-between">
+                  <button onclick="selectQuestionChoice(this, 'g2', 'D')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
                     <span>(D) Malevolent</span>
-                    <span class="apple-q-ind text-[10px] text-slate-400">Choice</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
                   </button>
-                  <button onclick="selectAppleQuestion(this, 'g2', 'E')" class="apple-q-opt w-full text-left px-3.5 py-2 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-between">
+                  <button onclick="selectQuestionChoice(this, 'g2', 'E')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
                     <span>(E) Cautious</span>
-                    <span class="apple-q-ind text-[10px] text-slate-400">Choice</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
                   </button>
-                  <button onclick="selectAppleQuestion(this, 'g2', 'F')" class="apple-q-opt w-full text-left px-3.5 py-2 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-slate-300 transition-all flex items-center justify-between">
+                  <button onclick="selectQuestionChoice(this, 'g2', 'F')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
                     <span>(F) Fragile</span>
-                    <span class="apple-q-ind text-[10px] text-slate-400">Choice</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
                   </button>
                 </div>
               </div>
             </div>
 
             <div class="flex items-center justify-between pt-2">
-              <span id="apple-drill-msg" class="text-xs text-slate-500">Select one word from Group 1 and one from Group 2.</span>
-              <button onclick="checkAppleDrill()" class="apple-btn px-5 py-2 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white font-semibold text-xs shadow-md">
+              <span id="drill-feedback-msg" class="text-xs text-slate-500 font-medium">Select one word from Group 1 and one from Group 2.</span>
+              <button id="check-drill-btn" onclick="checkDrillAnswer()" class="btn-tactile px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md">
                 Check Solution
               </button>
             </div>
 
-            <div id="apple-solution-box" class="hidden mt-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-xs text-slate-800 space-y-1.5">
-              <div class="text-emerald-700 font-bold flex items-center gap-1.5">
-                <span class="material-symbols-outlined text-base">check_circle</span>
+            <div id="drill-solution-box" class="hidden mt-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-xs text-slate-800 space-y-1.5">
+              <div class="text-emerald-800 font-bold flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base text-emerald-600">check_circle</span>
                 <span>Correct Pair: (A) Impetuous & (E) Cautious, OR (B) Benevolent & (D) Malevolent.</span>
               </div>
               <p class="text-slate-600 leading-relaxed">
@@ -423,18 +806,18 @@
           </div>
         </div>
 
-        <!-- TAB 3: 3D LEXIVAULT CARD -->
-        <div id="apple-panel-vocab" class="apple-panel hidden p-4 sm:p-8">
+        <!-- TAB 3: LEXIVAULT 3D FLASHCARD -->
+        <div id="tab-content-vocab" class="demo-tab-panel hidden p-4 sm:p-8">
           <div class="max-w-sm mx-auto text-center">
             <p class="text-xs text-slate-500 mb-4 font-mono">Click card to execute 3D spatial flip:</p>
 
-            <div class="flip-card w-full h-72 cursor-pointer" onclick="toggleAppleCard(this)">
-              <div class="flip-card-inner relative w-full h-full rounded-3xl shadow-lg">
+            <div class="flip-card w-full h-72 cursor-pointer" onclick="toggleCardFlip(this)">
+              <div class="flip-card-inner relative w-full h-full rounded-3xl shadow-xl">
                 
                 <div class="flip-card-front absolute inset-0 w-full h-full bg-white border border-slate-200 rounded-3xl p-6 flex flex-col justify-between text-left">
                   <div class="flex items-center justify-between">
-                    <span class="px-2.5 py-1 rounded-lg bg-blue-50 text-apple-blue text-xs font-mono font-bold border border-blue-100">11+ High Yield #48</span>
-                    <button type="button" onclick="playAppleAudio(event, 'sagacious')" aria-label="Listen to pronunciation" class="p-2 rounded-full bg-slate-100 hover:bg-slate-200 text-apple-blue transition-colors">
+                    <span class="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-700 text-xs font-mono font-bold border border-purple-200">11+ High Yield #48</span>
+                    <button type="button" onclick="playAudioSimulation(event, 'sagacious')" aria-label="Listen to pronunciation" class="p-2 rounded-full bg-slate-100 hover:bg-purple-100 text-purple-700 transition-colors">
                       <span class="material-symbols-outlined text-base">volume_up</span>
                     </button>
                   </div>
@@ -445,20 +828,20 @@
                   </div>
                   <div class="flex items-center justify-between text-xs text-slate-400 border-t border-slate-100 pt-3 font-mono">
                     <span>Click to reveal Antonyms</span>
-                    <span class="material-symbols-outlined text-sm text-apple-blue">flip</span>
+                    <span class="material-symbols-outlined text-sm text-purple-600">flip</span>
                   </div>
                 </div>
 
-                <div class="flip-card-back absolute inset-0 w-full h-full bg-slate-50 border border-blue-200 rounded-3xl p-6 flex flex-col justify-between text-left">
+                <div class="flip-card-back absolute inset-0 w-full h-full bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-300 rounded-3xl p-6 flex flex-col justify-between text-left">
                   <div>
-                    <span class="text-[11px] font-mono font-bold uppercase text-apple-blue">Etymology & Antonyms</span>
+                    <span class="text-[11px] font-mono font-bold uppercase text-purple-700">Etymology & Antonyms</span>
                     <div class="mt-2 text-xs space-y-1.5 text-slate-700">
                       <p><strong>Root:</strong> Latin <em>sagax</em> (wise / perceptive).</p>
                       <p><strong>Synonyms:</strong> Astute, judicious, shrewd.</p>
                       <p><strong>Antonyms:</strong> Foolish, obtuse, vacuous.</p>
                     </div>
                   </div>
-                  <div class="text-[11px] text-emerald-600 font-bold flex items-center justify-between border-t border-slate-200 pt-2 font-mono">
+                  <div class="text-[11px] text-emerald-700 font-bold flex items-center justify-between border-t border-purple-200 pt-2 font-mono">
                     <span>Retained via Spaced Repetition</span>
                     <span class="material-symbols-outlined text-sm">stars</span>
                   </div>
@@ -468,7 +851,7 @@
             </div>
 
             <div class="mt-6">
-              <a href="index.html#vocab-vault" class="apple-btn text-xs font-semibold text-slate-900 bg-white hover:bg-slate-100 border border-slate-200 px-5 py-2 rounded-full inline-flex items-center gap-1.5 shadow-sm transition-colors">
+              <a href="index.html#vocab-vault" class="btn-tactile text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 px-5 py-2.5 rounded-full inline-flex items-center gap-1.5 shadow-md">
                 <span>Browse Full 1,500-Word LexiVault</span>
                 <span class="material-symbols-outlined text-xs">arrow_forward</span>
               </a>
@@ -482,99 +865,224 @@
     </div>
   </section>
 
-  <!-- ================= APPLE KEYNOTE BENTO GRID (LIGHT PLATINUM) ================= -->
-  <section id="features" class="py-24 md:py-36 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+  <!-- ================= COLORFUL 6-PILLAR BENTO GRID ================= -->
+  <section id="features" class="py-24 md:py-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-xs font-black uppercase tracking-widest text-brand-600 bg-brand-50 border border-brand-200 px-3.5 py-1 rounded-full shadow-sm">
+        Complete Architecture
+      </span>
+      <h2 class="mt-4 text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight max-w-2xl mx-auto">
+        Engineered for the <span class="whitespace-nowrap gradient-hero-title">top 1% cut-offs.</span>
+      </h2>
+      <p class="mt-4 text-slate-600 text-lg">
+        Grammar school admission is decided by single marks. Every tool inside Learnly is calibrated to eliminate careless errors under pressure.
+      </p>
+    </div>
+
+    <!-- Bento Grid Container -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
       
-      <div class="max-w-3xl mx-auto text-center mb-16">
-        <span class="text-xs uppercase font-mono font-bold tracking-widest text-apple-blue">The Architecture</span>
-        <h2 class="mt-3 text-4xl sm:text-5xl font-black tracking-apple-title text-apple-headline">
-          Pro by design. Precise to the mark.
+      <!-- BENTO CARD 1: ADAPTIVE PRACTICE ARENA (Large span-8) -->
+      <div class="md:col-span-8 bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/80 border border-blue-200/90 rounded-3xl p-8 sm:p-10 shadow-[0_10px_30px_rgba(37,99,235,0.06)] hover:shadow-xl hover:shadow-blue-500/10 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">sports_esports</span>
+            </div>
+            <span class="text-xs font-mono font-bold text-blue-700 bg-blue-100/80 border border-blue-200 px-3 py-1 rounded-full">
+              10,000+ Questions Active
+            </span>
+          </div>
+          <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Adaptive Practice Arena</h3>
+          <p class="mt-3 text-slate-600 text-sm leading-relaxed max-w-xl">
+            Never waste time repeating questions your child already knows. The engine dynamically dials difficulty between Foundation, Scholar, and Super-Selective tiers based on their real-time error latency.
+          </p>
+        </div>
+
+        <div class="mt-8 bg-white border border-slate-200 rounded-2xl p-5 space-y-3 shadow-sm">
+          <div class="flex items-center justify-between text-xs font-semibold text-slate-500">
+            <span>Mock Simulation #04 • Verbal Reasoning</span>
+            <span class="text-emerald-700 font-mono font-bold">Question 42 of 100</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 h-full w-[42%] rounded-full"></div>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-medium text-slate-800">
+            "Find the hidden four-letter word spanning between the two adjacent words: <em class="text-brand-600 font-bold">TH<strong class="underline">E RE</strong>ALM</em>."
+          </div>
+        </div>
+      </div>
+
+      <!-- BENTO CARD 2: REAL-TIME SAS ENGINE (Span-4) -->
+      <div class="md:col-span-4 bg-gradient-to-br from-indigo-950 via-brand-950 to-purple-950 text-white border border-indigo-800/80 rounded-3xl p-8 sm:p-10 shadow-xl flex flex-col justify-between relative overflow-hidden group">
+        <div class="absolute -top-10 -right-10 w-36 h-36 bg-brand-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform"></div>
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-white/10 text-emerald-300 flex items-center justify-center mb-4 border border-white/20">
+            <span class="material-symbols-outlined text-2xl">ssid_chart</span>
+          </div>
+          <h3 class="text-2xl font-black tracking-tight text-white">Diagnostic SAS Engine</h3>
+          <p class="mt-3 text-indigo-200 text-xs leading-relaxed">
+            Raw percentages lie because older students have a natural advantage. We calculate age-standardised SAS scores (69–141 scale) calibrated to your child's exact birth month.
+          </p>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-indigo-800/80 text-center">
+          <div class="text-5xl font-black font-mono text-emerald-400 tabular-nums">136.4 SAS</div>
+          <span class="text-xs text-indigo-300 font-semibold uppercase tracking-wider block mt-1">99th Percentile Cohort</span>
+        </div>
+      </div>
+
+      <!-- BENTO CARD 3: LEXIVAULT 11+ VOCABULARY (Span-4) -->
+      <div class="md:col-span-4 bg-gradient-to-br from-purple-50/80 via-white to-pink-50/80 border border-purple-200/90 rounded-3xl p-8 shadow-[0_10px_30px_rgba(168,85,247,0.06)] hover:shadow-xl hover:shadow-purple-500/10 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center mb-4 shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl">auto_stories</span>
+          </div>
+          <h3 class="text-xl font-black text-slate-900 tracking-tight">LexiVault 11+ Power</h3>
+          <p class="mt-2 text-slate-600 text-xs leading-relaxed">
+            1,500 curated high-yield 11+ words with audio pronunciation, Greek/Latin roots, and antonym pairings. Powered by spaced repetition.
+          </p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-2 text-xs font-bold">
+          <span class="px-2.5 py-1 rounded-lg bg-purple-100 text-purple-800">Astute</span>
+          <span class="px-2.5 py-1 rounded-lg bg-blue-100 text-blue-800">Lethargic</span>
+          <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800">Pugnacious</span>
+          <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800">Benevolent</span>
+        </div>
+      </div>
+
+      <!-- BENTO CARD 4: MISTAKE MASTERY VAULT (Span-4) -->
+      <div class="md:col-span-4 bg-gradient-to-br from-rose-50/80 via-white to-amber-50/80 border border-rose-200/90 rounded-3xl p-8 shadow-[0_10px_30px_rgba(244,63,94,0.06)] hover:shadow-xl hover:shadow-rose-500/10 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-rose-600 text-white flex items-center justify-center mb-4 shadow-lg shadow-rose-500/30 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl">healing</span>
+          </div>
+          <h3 class="text-xl font-black text-slate-900 tracking-tight">Mistake Mastery Vault</h3>
+          <p class="mt-2 text-slate-600 text-xs leading-relaxed">
+            Every incorrect answer is automatically captured. The AI diagnoses whether the flaw was conceptual, vocabulary gap, or time pressure, and re-tests until cleared.
+          </p>
+        </div>
+
+        <div class="mt-6 p-3 rounded-2xl bg-rose-100/70 border border-rose-200 text-xs text-rose-900 font-bold flex items-center gap-2">
+          <span class="material-symbols-outlined text-base text-rose-600">priority_high</span>
+          <span>14 errors auto-queued for Sunday re-drill</span>
+        </div>
+      </div>
+
+      <!-- BENTO CARD 5: KCSIE SAFEGUARDED TUTORS & CLINICS (Span-4) -->
+      <div class="md:col-span-4 bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/80 border border-emerald-200/90 rounded-3xl p-8 shadow-[0_10px_30px_rgba(16,185,129,0.06)] hover:shadow-xl hover:shadow-emerald-500/10 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center mb-4 shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl">supervisor_account</span>
+          </div>
+          <h3 class="text-xl font-black text-slate-900 tracking-tight">Parent Hub & Clinics</h3>
+          <p class="mt-2 text-slate-600 text-xs leading-relaxed">
+            Weekly digest emails and live progress transparency. When your child hits a conceptual wall, book 1-on-1 video clinic sessions with vetted Oxbridge 11+ tutors.
+          </p>
+        </div>
+
+        <div class="mt-6 flex items-center gap-3 pt-3 border-t border-emerald-100">
+          <div class="w-8 h-8 rounded-full bg-emerald-200 text-emerald-800 font-bold flex items-center justify-center text-xs">OX</div>
+          <div class="text-xs">
+            <div class="font-bold text-slate-900">1-on-1 Diagnostic Clinics</div>
+            <div class="text-emerald-700 font-semibold">Enhanced DBS Verified</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= PARENT RESULTS & SOCIAL PROOF WALL ================= -->
+  <section id="testimonials" class="py-20 bg-slate-50/60 border-y border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-black uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full shadow-sm">
+          Proven Admissions
+        </span>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          Letters of Offer. Verified by Parents.
         </h2>
-        <p class="mt-3 text-apple-body text-lg max-w-xl mx-auto">
-          Grammar school qualification is decided by single marks. Every subsystem inside Learnly is calibrated to safeguard them.
+        <p class="mt-3 text-slate-600 text-base">
+          From anxious mock scores to first-round grammar school admission offers across the UK.
         </p>
       </div>
 
-      <!-- Bento Grid (Apple Light Keynote Style) -->
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <!-- CARD 1: 141 SAS CEILING (Col span 7) -->
-        <div class="md:col-span-7 bg-[#fbfbfd] border border-slate-200 rounded-3xl p-8 sm:p-10 flex flex-col justify-between hover:border-slate-300 shadow-sm transition-all">
-          <div>
-            <span class="text-xs font-mono uppercase font-bold text-apple-blue tracking-wider">Age-Standardised Accuracy</span>
-            <h3 class="text-3xl sm:text-4xl font-black text-slate-900 mt-2 tracking-apple-title">
-              141 SAS. The ceiling of human measurement.
-            </h3>
-            <p class="mt-3 text-apple-body text-sm leading-relaxed max-w-md">
-              Raw percentages give parents a false sense of security. Learnly computes exact Standard Age Scores, mathematically standardising summer-born pupils against autumn peers.
-            </p>
-          </div>
-
-          <div class="mt-8 pt-6 border-t border-slate-200 flex items-baseline gap-4 font-mono">
-            <div class="text-5xl font-black text-slate-900 tabular-nums">136.4</div>
-            <div class="text-xs text-emerald-600 font-bold uppercase tracking-wider">QE Boys Safety Threshold Cleared</div>
-          </div>
-        </div>
-
-        <!-- CARD 2: 45-SECOND SPEED PACING (Col span 5) -->
-        <div class="md:col-span-5 bg-[#fbfbfd] border border-slate-200 rounded-3xl p-8 sm:p-10 flex flex-col justify-between hover:border-slate-300 shadow-sm transition-all">
-          <div>
-            <span class="text-xs font-mono uppercase font-bold text-amber-600 tracking-wider">Exam Hall Speed Pacing</span>
-            <h3 class="text-2xl sm:text-3xl font-bold text-slate-900 mt-2 tracking-apple-title">
-              45 seconds per question.
-            </h3>
-            <p class="mt-3 text-apple-body text-sm leading-relaxed">
-              In GL Assessment and Sutton SET, speed determines success. The engine builds instinctual pattern recognition to prevent running out of time.
-            </p>
-          </div>
-
-          <div class="mt-8 p-4 rounded-2xl bg-white border border-slate-200 flex items-center justify-between text-xs font-mono">
-            <span class="text-slate-500">Average Latency:</span>
-            <span class="text-slate-900 font-bold">38.2s / Question</span>
-          </div>
-        </div>
-
-        <!-- CARD 3: 10,000+ CURATED QUESTIONS (Col span 4) -->
-        <div class="md:col-span-4 bg-[#fbfbfd] border border-slate-200 rounded-3xl p-8 flex flex-col justify-between hover:border-slate-300 shadow-sm transition-all">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-4 border border-purple-100">
-              <span class="material-symbols-outlined text-xl">database</span>
+        <!-- Story 1 -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm hover:shadow-lg transition-all space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1 text-amber-400">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
             </div>
-            <h4 class="text-xl font-bold text-slate-900 tracking-tight">10,000+ Items</h4>
-            <p class="mt-2 text-apple-body text-xs leading-relaxed">
-              Curated by former 11+ grammar school examiners covering all 21 GL question types, CEM speed cloze, and CSSE maths.
-            </p>
+            <span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-[10px] font-bold">QE Boys Offer</span>
           </div>
-          <div class="mt-6 text-xs text-purple-700 font-mono font-bold">100-Question Full Simulations</div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
+            "Leo was consistently failing Verbal Reasoning speed sections on paper mocks. Learnly's timer pressure mode and mistake vault boosted his SAS from 116 to 139 in 3 months. He got his first-choice offer for QE Boys!"
+          </p>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="font-bold text-slate-900 text-xs">Priya Sharma</div>
+              <div class="text-[11px] text-slate-500">Barnet, London • Year 5 Parent</div>
+            </div>
+            <span class="text-xs font-mono font-black text-emerald-600">+23 SAS</span>
+          </div>
         </div>
 
-        <!-- CARD 4: MISTAKE MASTERY VAULT (Col span 4) -->
-        <div class="md:col-span-4 bg-[#fbfbfd] border border-slate-200 rounded-3xl p-8 flex flex-col justify-between hover:border-slate-300 shadow-sm transition-all">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 flex items-center justify-center mb-4 border border-rose-100">
-              <span class="material-symbols-outlined text-xl">healing</span>
+        <!-- Story 2 -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm hover:shadow-lg transition-all space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1 text-amber-400">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
             </div>
-            <h4 class="text-xl font-bold text-slate-900 tracking-tight">Mistake Mastery</h4>
-            <p class="mt-2 text-apple-body text-xs leading-relaxed">
-              Every incorrect answer is automatically isolated with AI diagnostic root-cause breakdown and re-drill intervals.
-            </p>
+            <span class="px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200 text-[10px] font-bold">Henrietta Barnett</span>
           </div>
-          <div class="mt-6 text-xs text-rose-700 font-mono font-bold">Zero Repeat Errors</div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
+            "The LexiVault vocabulary flashcards with Latin and Greek roots are unlike anything else on the market. Maya remembered 800+ complex words effortlessly. She scored in the Top 20 for HBS Round 2."
+          </p>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="font-bold text-slate-900 text-xs">Dr. David Chen</div>
+              <div class="text-[11px] text-slate-500">Finchley • Year 5 Parent</div>
+            </div>
+            <span class="text-xs font-mono font-black text-emerald-600">+19 SAS</span>
+          </div>
         </div>
 
-        <!-- CARD 5: PARENT TRANSPARENCY & CLINICS (Col span 4) -->
-        <div class="md:col-span-4 bg-[#fbfbfd] border border-slate-200 rounded-3xl p-8 flex flex-col justify-between hover:border-slate-300 shadow-sm transition-all">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-4 border border-emerald-100">
-              <span class="material-symbols-outlined text-xl">verified</span>
+        <!-- Story 3 -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm hover:shadow-lg transition-all space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1 text-amber-400">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
             </div>
-            <h4 class="text-xl font-bold text-slate-900 tracking-tight">KCSIE Safeguarded</h4>
-            <p class="mt-2 text-apple-body text-xs leading-relaxed">
-              1-on-1 diagnostic clinics with Oxbridge tutors, vetted under Enhanced DBS checks and UK statutory child safety standards.
-            </p>
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">Tiffin Girls Offer</span>
           </div>
-          <div class="mt-6 text-xs text-emerald-700 font-mono font-bold">Enhanced DBS Verified Tutors</div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
+            "Instead of paying £80 an hour for private tutoring with no data, Learnly gave me exact SAS percentiles every Saturday morning. Best investment we made for grammar prep."
+          </p>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="font-bold text-slate-900 text-xs">Sarah Jenkins</div>
+              <div class="text-[11px] text-slate-500">Kingston • Year 5 Parent</div>
+            </div>
+            <span class="text-xs font-mono font-black text-emerald-600">134 SAS</span>
+          </div>
         </div>
 
       </div>
@@ -582,113 +1090,57 @@
     </div>
   </section>
 
-  <!-- ================= TARGET GRAMMAR SCHOOLS ================= -->
-  <section id="schools" class="py-24 bg-[#f5f5f7] border-b border-slate-200">
-    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-      
-      <span class="text-xs font-mono uppercase font-bold tracking-widest text-slate-500">Admissions Calibration</span>
-      <h2 class="mt-3 text-3xl sm:text-4xl font-extrabold tracking-apple-title text-slate-900">
-        Calibrated for England's toughest cut-offs.
-      </h2>
-      <p class="mt-3 text-apple-body text-sm max-w-xl mx-auto">
-        Historically benchmarked against real admissions cut-offs across England's most competitive grammar schools.
-      </p>
-
-      <div class="mt-12 grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4 text-left">
-        <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="text-xs font-mono text-apple-blue font-bold">Barnet</div>
-          <div class="text-sm font-bold text-slate-900 mt-1">Queen Elizabeth's (QE)</div>
-          <div class="text-xs text-slate-500 mt-2">Cut-off: ~135+ SAS</div>
-        </div>
-        <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="text-xs font-mono text-purple-600 font-bold">North London</div>
-          <div class="text-sm font-bold text-slate-900 mt-1">Henrietta Barnett</div>
-          <div class="text-xs text-slate-500 mt-2">Cut-off: ~132+ SAS</div>
-        </div>
-        <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="text-xs font-mono text-emerald-600 font-bold">Surrey / Sutton</div>
-          <div class="text-sm font-bold text-slate-900 mt-1">Wilson's & Sutton Grammar</div>
-          <div class="text-xs text-slate-500 mt-2">SET Stage 1 + Stage 2</div>
-        </div>
-        <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="text-xs font-mono text-amber-600 font-bold">Kingston</div>
-          <div class="text-sm font-bold text-slate-900 mt-1">Tiffin Boys & Girls</div>
-          <div class="text-xs text-slate-500 mt-2">Cut-off: ~128+ SAS</div>
-        </div>
-        <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="text-xs font-mono text-rose-600 font-bold">Bromley</div>
-          <div class="text-sm font-bold text-slate-900 mt-1">St Olave's Grammar</div>
-          <div class="text-xs text-slate-500 mt-2">Stage 2 Selective</div>
-        </div>
-        <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="text-xs font-mono text-sky-600 font-bold">Birmingham</div>
-          <div class="text-sm font-bold text-slate-900 mt-1">King Edward VI Consortium</div>
-          <div class="text-xs text-slate-500 mt-2">Cut-off: ~224-238 CEM</div>
-        </div>
-        <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="text-xs font-mono text-indigo-600 font-bold">Trafford</div>
-          <div class="text-sm font-bold text-slate-900 mt-1">Altrincham Grammar</div>
-          <div class="text-xs text-slate-500 mt-2">Cut-off: ~124+ SAS</div>
-        </div>
-        <div class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm">
-          <div class="text-xs font-mono text-teal-600 font-bold">Essex</div>
-          <div class="text-sm font-bold text-slate-900 mt-1">CSSE Consortium (KEGS)</div>
-          <div class="text-xs text-slate-500 mt-2">Top 10% Selective</div>
-        </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= PRISTINE PLATINUM COMPARISON SECTION ================= -->
-  <section id="comparison" class="py-24 bg-white text-slate-900 border-b border-slate-200">
+  <!-- ================= HEAD-TO-HEAD COMPARISON ================= -->
+  <section id="comparison" class="py-20 md:py-28 bg-white border-b border-slate-200">
     <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-16">
-        <span class="text-xs uppercase font-mono font-bold tracking-widest text-slate-500">Value Comparison</span>
-        <h2 class="mt-2 text-3xl sm:text-4xl font-extrabold tracking-apple-title text-slate-900">
-          Why traditional tutoring leaves marks behind.
+        <span class="text-xs font-black uppercase tracking-widest text-brand-600 bg-brand-50 border border-brand-200 px-3.5 py-1 rounded-full shadow-sm">
+          Value & Impact
+        </span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          Why traditional 11+ prep leaves marks on the table.
         </h2>
-        <p class="mt-3 text-apple-body text-sm">
-          A side-by-side assessment of traditional tutoring vs. Learnly's precision diagnostic architecture.
+        <p class="mt-3 text-slate-600 text-base">
+          See why modern parents are shifting from expensive £75/hr private tutoring and dusty paper mock books to Learnly 11+.
         </p>
       </div>
 
-      <div class="bg-white rounded-3xl border border-slate-200 shadow-sm overflow-hidden">
+      <div class="bg-white border border-slate-200 rounded-3xl shadow-lg overflow-hidden">
         <div class="overflow-x-auto">
-          <table class="w-full text-left text-sm border-collapse">
+          <table class="w-full text-left border-collapse">
             <thead>
-              <tr class="border-b border-slate-200 bg-slate-50">
+              <tr class="border-b border-slate-200 bg-slate-100/60">
                 <th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-slate-600">Feature</th>
-                <th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-slate-400">Traditional £75/hr Tutor</th>
-                <th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-apple-blue bg-blue-50/50">Learnly 11+ Scholar</th>
+                <th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-slate-500">Traditional £75/hr Tutor</th>
+                <th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-brand-600 bg-brand-50/50">Learnly 11+ Scholar</th>
               </tr>
             </thead>
-            <tbody class="divide-y divide-slate-100">
+            <tbody class="divide-y divide-slate-100 text-sm">
               <tr>
-                <td class="py-4 px-6 font-bold text-slate-900">Standard Age Score (SAS) Metric</td>
-                <td class="py-4 px-6 text-slate-500">❌ Rough raw percentages only</td>
-                <td class="py-4 px-6 font-bold text-apple-blue bg-blue-50/20">✅ Exact GL/CEM standardisation (69–141 scale)</td>
+                <td class="py-4 px-6 font-bold text-slate-900">Standard Age Score (SAS) Calibrator</td>
+                <td class="py-4 px-6 text-slate-500">❌ Gives rough raw percentages only</td>
+                <td class="py-4 px-6 font-bold text-brand-700 bg-brand-50/20">✅ Exact age-standardised SAS (69–141 scale)</td>
               </tr>
               <tr>
-                <td class="py-4 px-6 font-bold text-slate-900">Cut-off Safety Margins</td>
+                <td class="py-4 px-6 font-bold text-slate-900">Grammar School Cut-off Safety Benchmarks</td>
                 <td class="py-4 px-6 text-slate-500">❌ Anxious guessing until results day</td>
-                <td class="py-4 px-6 font-bold text-apple-blue bg-blue-50/20">✅ Live comparison against historical cut-offs</td>
+                <td class="py-4 px-6 font-bold text-brand-700 bg-brand-50/20">✅ Live comparison against historical cut-offs</td>
               </tr>
               <tr>
-                <td class="py-4 px-6 font-bold text-slate-900">Mistake Retention Cycle</td>
-                <td class="py-4 px-6 text-slate-500">❌ Paper sheets get lost in drawers</td>
-                <td class="py-4 px-6 font-bold text-apple-blue bg-blue-50/20">✅ Automated Mistake Vault with re-drill loop</td>
+                <td class="py-4 px-6 font-bold text-slate-900">Mistake Diagnostic & Memory Cycle</td>
+                <td class="py-4 px-6 text-slate-500">❌ Mistakes buried in physical paper piles</td>
+                <td class="py-4 px-6 font-bold text-brand-700 bg-brand-50/20">✅ Auto-categorised Mistake Vault with re-drill</td>
               </tr>
               <tr>
                 <td class="py-4 px-6 font-bold text-slate-900">Mock Exam Volume</td>
                 <td class="py-4 px-6 text-slate-500">❌ 5–10 expensive paper books (£150+)</td>
-                <td class="py-4 px-6 font-bold text-apple-blue bg-blue-50/20">✅ 100+ full mock exam simulations (100 Qs each)</td>
+                <td class="py-4 px-6 font-bold text-brand-700 bg-brand-50/20">✅ 100+ full mock exam simulations (100 Qs each)</td>
               </tr>
               <tr>
-                <td class="py-4 px-6 font-bold text-slate-900">Typical Annual Investment</td>
+                <td class="py-4 px-6 font-bold text-slate-900">Typical Annual Cost</td>
                 <td class="py-4 px-6 text-slate-500">£2,400 – £4,500 / year</td>
-                <td class="py-4 px-6 font-bold text-emerald-600 bg-blue-50/20">Fraction of the cost with unlimited practice</td>
+                <td class="py-4 px-6 font-black text-emerald-600 bg-brand-50/20">Fraction of the cost with unlimited access</td>
               </tr>
             </tbody>
           </table>
@@ -698,54 +1150,34 @@
     </div>
   </section>
 
-  <!-- ================= FINAL HIGH-CONVERSION CTA (APPLE LIGHT) ================= -->
-  <section class="py-24 md:py-36 bg-[#fbfbfd] text-center relative overflow-hidden">
-    <div class="relative max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 z-10">
+  <!-- ================= MONUMENTAL DARK FOOTER WITH BIG WIDE COMPANY NAME ================= -->
+  <!-- User requirement: "Also at the footer keep the company name big and wide in dark background." -->
+  <footer class="bg-[#06080e] text-slate-400 text-xs pt-20 pb-10 border-t border-slate-900 relative overflow-hidden">
+    
+    <!-- Subtle Ambient Bottom Glow -->
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-brand-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
-      <span class="text-xs font-mono uppercase font-bold tracking-widest text-apple-blue">Cohort 2026/2027</span>
-      <h2 class="mt-4 text-4xl sm:text-6xl font-black tracking-apple-display text-apple-headline leading-tight">
-        Turn exam anxiety into <br/>
-        <span class="font-serif italic text-slate-900">quiet confidence.</span>
-      </h2>
-
-      <p class="mt-5 text-apple-body text-base sm:text-lg max-w-lg mx-auto">
-        Give your child the age-standardised diagnostic system that clarifies their exact path to qualification.
-      </p>
-
-      <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
-        <a href="index.html#practice-arena" class="apple-btn w-full sm:w-auto bg-apple-blue hover:bg-apple-blueHover text-white font-semibold px-8 py-4 rounded-full text-base shadow-md shadow-apple-blue/20">
-          Start Free Diagnostic Mock
-        </a>
-        <a href="index.html#dashboard" class="apple-btn w-full sm:w-auto bg-white hover:bg-slate-50 text-slate-900 font-semibold px-7 py-4 rounded-full text-base border border-slate-200 shadow-sm transition-colors">
-          Enter Student Portal
-        </a>
-      </div>
-
-      <p class="mt-4 text-xs text-apple-muted font-medium">
-        No payment details required • Full diagnostic scorecard generated immediately
-      </p>
-
-    </div>
-  </section>
-
-  <!-- ================= 4-COLUMN FOOTER WITH LEGAL POLICIES (APPLE LIGHT) ================= -->
-  <footer class="bg-[#f5f5f7] text-[#86868b] border-t border-slate-200 text-xs pt-16 pb-12">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-slate-200">
+      <!-- 5-Column Footer Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-16 border-b border-slate-800/80">
         
-        <div class="lg:col-span-2 space-y-3">
-          <div class="flex items-center gap-2 text-slate-900">
-            <div class="w-6 h-6 rounded-lg bg-gradient-to-tr from-slate-900 to-slate-700 flex items-center justify-center text-white font-extrabold text-[12px] shadow-sm">
-              <span class="material-symbols-outlined text-[14px]">school</span>
+        <!-- Col 1: Brand Info -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-fuchsia-600 flex items-center justify-center text-white font-bold text-base shadow-lg shadow-brand-500/25">
+              <span class="material-symbols-outlined text-xl">school</span>
             </div>
-            <span class="font-bold tracking-tight text-sm text-slate-900">Learnly 11+ Scholar</span>
+            <div>
+              <div class="font-black text-white text-base tracking-tight">Learnly 11+ Scholar Edition</div>
+              <div class="text-[11px] text-slate-400 font-medium">The Modern Standard for UK Grammar School Admissions</div>
+            </div>
           </div>
-          <p class="text-xs text-apple-body leading-relaxed max-w-sm">
-            Age-standardised diagnostic platform engineered for Year 4 & 5 pupils targeting England's top grammar schools.
+          <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+            Age-standardised diagnostic assessment platform engineered for Year 4 & Year 5 pupils targeting GL Assessment, CEM Select, CSSE, and super-selective entrance exams.
           </p>
-          <div class="flex items-center gap-3 text-[11px] text-slate-500 pt-2 font-mono">
-            <span class="text-emerald-600 font-bold">● ICO Registered</span>
+          <div class="flex items-center gap-3 text-slate-500 text-xs pt-1 font-mono">
+            <span class="text-emerald-400 font-bold">● ICO Registered</span>
             <span>•</span>
             <span>KCSIE Safeguarded</span>
             <span>•</span>
@@ -753,63 +1185,65 @@
           </div>
         </div>
 
+        <!-- Col 2: Platform -->
         <div class="space-y-3">
-          <div class="text-xs font-bold uppercase tracking-wider text-slate-900">Platform</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-white">Platform</div>
           <ul class="space-y-2">
-            <li><a href="index.html#practice-arena" class="hover:text-black transition-colors">Practice Arena</a></li>
-            <li><a href="index.html#mock-exams" class="hover:text-black transition-colors">Mock Exams</a></li>
-            <li><a href="index.html#vocab-vault" class="hover:text-black transition-colors">LexiVault 11+</a></li>
-            <li><a href="index.html#school-predictor" class="hover:text-black transition-colors">School Predictor</a></li>
-            <li><a href="index.html#parent-portal" class="hover:text-black transition-colors">Parent Portal</a></li>
+            <li><a href="index.html#practice-arena" class="hover:text-white transition-colors">Practice Arena</a></li>
+            <li><a href="index.html#mock-exams" class="hover:text-white transition-colors">Mock Exams</a></li>
+            <li><a href="index.html#vocab-vault" class="hover:text-white transition-colors">LexiVault 11+</a></li>
+            <li><a href="index.html#school-predictor" class="hover:text-white transition-colors">School Predictor</a></li>
+            <li><a href="index.html#parent-portal" class="hover:text-white transition-colors">Parent Portal</a></li>
           </ul>
         </div>
 
+        <!-- Col 3: Exam Boards -->
         <div class="space-y-3">
-          <div class="text-xs font-bold uppercase tracking-wider text-slate-900">Exam Boards</div>
+          <div class="text-xs font-bold uppercase tracking-wider text-white">Exam Boards</div>
           <ul class="space-y-2">
-            <li><a href="#schools" class="hover:text-black transition-colors">GL Assessment</a></li>
-            <li><a href="#schools" class="hover:text-black transition-colors">CEM Select</a></li>
-            <li><a href="#schools" class="hover:text-black transition-colors">CSSE Essex</a></li>
-            <li><a href="#schools" class="hover:text-black transition-colors">Sutton SET</a></li>
+            <li><a href="#syllabus" class="hover:text-white transition-colors">GL Assessment (21 VR Types)</a></li>
+            <li><a href="#syllabus" class="hover:text-white transition-colors">CEM Select (Cloze & Speed)</a></li>
+            <li><a href="#syllabus" class="hover:text-white transition-colors">CSSE Essex Consortium</a></li>
+            <li><a href="#syllabus" class="hover:text-white transition-colors">Sutton SET & London Grammar</a></li>
           </ul>
         </div>
 
-        <!-- Col 4: LEGAL (Requested by user) -->
+        <!-- Col 4: LEGAL (Requested Policies) -->
         <div class="space-y-3">
-          <div class="text-xs font-bold uppercase tracking-wider text-slate-900 flex items-center gap-1.5">
-            <span class="material-symbols-outlined text-sm text-apple-blue">gavel</span>
+          <div class="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm text-brand-400">gavel</span>
             <span>Legal & Safety</span>
           </div>
           <ul class="space-y-2 font-medium">
             <li>
-              <button type="button" onclick="openLegalPolicy('terms')" class="hover:text-black transition-colors text-left">
+              <button type="button" onclick="openLegalPolicy('terms')" class="hover:text-white transition-colors text-left">
                 Terms of Service
               </button>
             </li>
             <li>
-              <button type="button" onclick="openLegalPolicy('privacy')" class="hover:text-black transition-colors text-left">
+              <button type="button" onclick="openLegalPolicy('privacy')" class="hover:text-white transition-colors text-left">
                 Privacy Policy (ICO Code)
               </button>
             </li>
             <li>
-              <button type="button" onclick="openLegalPolicy('cookies')" class="hover:text-black transition-colors text-left">
+              <button type="button" onclick="openLegalPolicy('cookies')" class="hover:text-white transition-colors text-left">
                 Cookie Policy
               </button>
             </li>
             <li>
-              <button type="button" onclick="openLegalPolicy('safeguarding')" class="hover:text-emerald-700 transition-colors text-left text-emerald-600 flex items-center gap-1">
+              <button type="button" onclick="openLegalPolicy('safeguarding')" class="hover:text-emerald-300 transition-colors text-left text-emerald-400 flex items-center gap-1 font-bold">
                 <span class="material-symbols-outlined text-xs">shield</span>
                 <span>Safeguarding (KCSIE)</span>
               </button>
             </li>
             <li>
-              <button type="button" onclick="openLegalPolicy('gdpr')" class="hover:text-black transition-colors text-left">
+              <button type="button" onclick="openLegalPolicy('gdpr')" class="hover:text-white transition-colors text-left">
                 GDPR & Data Rights
               </button>
             </li>
             <li class="pt-1">
-              <button type="button" onclick="openCookieSettingsModal()" class="px-2.5 py-1 rounded-lg bg-white hover:bg-slate-100 text-slate-800 border border-slate-200 shadow-sm transition-all flex items-center gap-1 text-[11px] font-mono">
-                <span class="material-symbols-outlined text-xs text-amber-500">tune</span>
+              <button type="button" onclick="openCookieSettingsModal()" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all flex items-center gap-1 text-[11px] font-mono">
+                <span class="material-symbols-outlined text-xs text-amber-400">tune</span>
                 <span>Cookie Settings</span>
               </button>
             </li>
@@ -818,29 +1252,38 @@
 
       </div>
 
+      <!-- Copyright & Disclaimers -->
       <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
-        <div>© 2026 Learnly Education Ltd. Registered in England & Wales (No. 14892104).</div>
+        <div>© 2026 Learnly Education Ltd. Company No. 14892104. Registered in England & Wales.</div>
         <div class="text-center md:text-right max-w-xl">
-          Disclaimer: GL Assessment and CEM are registered trademarks of their respective authorities. Learnly is an independent academic resource.
+          Disclaimer: Learnly 11+ is an independent preparation resource. GL Assessment, CEM, and CSSE are registered trademarks of their respective governing bodies.
         </div>
+      </div>
+
+      <!-- ================= BIG AND WIDE COMPANY NAME DISPLAY ================= -->
+      <!-- Specifically requested: "Also at the footer keep the company name big and wide in dark background." -->
+      <div class="mt-14 pt-8 border-t border-slate-900 text-center overflow-hidden">
+        <h2 class="giant-footer-title tracking-tighter">
+          LEARNLY 11+
+        </h2>
       </div>
 
     </div>
   </footer>
 
-  <!-- ================= LEGAL POLICIES MODAL DIALOG (APPLE LIGHT) ================= -->
+  <!-- ================= LEGAL POLICIES INTERACTIVE MODAL ================= -->
   <div id="legal-modal" class="fixed inset-0 z-[150] hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
-    <div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closeLegalModal()"></div>
+    <div class="fixed inset-0 bg-slate-950/80 backdrop-blur-md" onclick="closeLegalModal()"></div>
 
     <div class="relative bg-white rounded-3xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden z-10 text-slate-900">
       
       <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
         <div class="flex items-center gap-3">
-          <div class="w-8 h-8 rounded-xl bg-blue-50 text-apple-blue flex items-center justify-center border border-blue-100">
+          <div class="w-8 h-8 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center border border-brand-100">
             <span class="material-symbols-outlined text-lg">verified_user</span>
           </div>
           <div>
-            <h2 id="legal-modal-title" class="text-base font-bold text-slate-900">Legal Governance & Child Safety</h2>
+            <h2 id="legal-modal-title" class="text-base font-extrabold text-slate-900">Legal Governance & Child Safety</h2>
             <p class="text-[11px] text-slate-500">Learnly Education Ltd • Compliant with UK Law & Statutory Child Safety Guidelines</p>
           </div>
         </div>
@@ -851,7 +1294,7 @@
       </div>
 
       <div class="flex overflow-x-auto border-b border-slate-100 bg-white px-6 py-2 gap-2 text-xs font-bold scrollbar-none" role="tablist">
-        <button id="legal-tab-btn-terms" onclick="switchLegalTab('terms')" class="legal-tab px-3.5 py-2 rounded-xl text-apple-blue bg-blue-50 border border-blue-100 whitespace-nowrap transition-all">
+        <button id="legal-tab-btn-terms" onclick="switchLegalTab('terms')" class="legal-tab px-3.5 py-2 rounded-xl text-brand-600 bg-brand-50 border border-brand-200 whitespace-nowrap transition-all">
           Terms of Service
         </button>
         <button id="legal-tab-btn-privacy" onclick="switchLegalTab('privacy')" class="legal-tab px-3.5 py-2 rounded-xl text-slate-600 hover:text-black hover:bg-slate-50 whitespace-nowrap transition-all">
@@ -930,7 +1373,7 @@
           </p>
           <h4 class="font-bold text-slate-900 text-sm mt-4">2. Designated Safeguarding Lead (DSL)</h4>
           <p>
-            Any welfare concerns can be directed immediately to our DSL at: <strong class="text-apple-blue">safeguarding@learnly11plus.co.uk</strong>.
+            Any welfare concerns can be directed immediately to our DSL at: <strong class="text-brand-600">safeguarding@learnly11plus.co.uk</strong>.
           </p>
         </article>
 
@@ -940,7 +1383,7 @@
             <span class="text-xs text-slate-400 font-mono">Data Protection Act 2018</span>
           </div>
           <p>
-            Under UK GDPR, you have the statutory Right of Access (SAR), Right to Erasure ("To Be Forgotten"), and Data Portability. Contact our Data Protection Officer at: <strong class="text-apple-blue">dpo@learnly11plus.co.uk</strong>.
+            Under UK GDPR, you have the statutory Right of Access (SAR), Right to Erasure ("To Be Forgotten"), and Data Portability. Contact our Data Protection Officer at: <strong class="text-brand-600">dpo@learnly11plus.co.uk</strong>.
           </p>
         </article>
 
@@ -948,7 +1391,7 @@
 
       <div class="px-6 py-4 border-t border-slate-100 flex items-center justify-between bg-slate-50 text-xs">
         <span class="text-slate-500">Questions? Contact support@learnly11plus.co.uk</span>
-        <button onclick="closeLegalModal()" class="apple-btn px-5 py-2 rounded-full bg-slate-900 hover:bg-black text-white font-semibold shadow-sm">
+        <button onclick="closeLegalModal()" class="btn-tactile px-5 py-2 rounded-xl bg-slate-900 text-white font-bold">
           Close
         </button>
       </div>
@@ -956,9 +1399,9 @@
     </div>
   </div>
 
-  <!-- ================= COOKIE SETTINGS MODAL (APPLE LIGHT) ================= -->
+  <!-- ================= COOKIE SETTINGS MODAL ================= -->
   <div id="cookie-settings-modal" class="fixed inset-0 z-[160] hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true">
-    <div class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm" onclick="closeCookieSettingsModal()"></div>
+    <div class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm" onclick="closeCookieSettingsModal()"></div>
 
     <div class="relative bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 z-10 text-slate-900">
       <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
@@ -977,52 +1420,52 @@
             <div class="font-bold text-slate-900">Strictly Necessary (Required)</div>
             <p class="text-slate-500 mt-1">Required for authentication sessions and mock exam timer sync.</p>
           </div>
-          <input type="checkbox" checked disabled class="mt-1 w-4 h-4 rounded accent-apple-blue cursor-not-allowed"/>
+          <input type="checkbox" checked disabled class="mt-1 w-4 h-4 rounded accent-brand-600 cursor-not-allowed"/>
         </div>
         <div class="p-3.5 rounded-2xl bg-white border border-slate-200 flex items-start justify-between gap-4">
           <div>
             <div class="font-bold text-slate-900">Functional Customisations</div>
             <p class="text-slate-500 mt-1">Remembers your font size and sound synthesis preferences.</p>
           </div>
-          <input id="pref-functional" type="checkbox" checked class="mt-1 w-4 h-4 rounded accent-apple-blue cursor-pointer"/>
+          <input id="pref-functional" type="checkbox" checked class="mt-1 w-4 h-4 rounded accent-brand-600 cursor-pointer"/>
         </div>
         <div class="p-3.5 rounded-2xl bg-white border border-slate-200 flex items-start justify-between gap-4">
           <div>
             <div class="font-bold text-slate-900">Diagnostic Performance Telemetry</div>
             <p class="text-slate-500 mt-1">Anonymous metrics to measure question latency.</p>
           </div>
-          <input id="pref-analytics" type="checkbox" checked class="mt-1 w-4 h-4 rounded accent-apple-blue cursor-pointer"/>
+          <input id="pref-analytics" type="checkbox" checked class="mt-1 w-4 h-4 rounded accent-brand-600 cursor-pointer"/>
         </div>
       </div>
 
       <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
-        <button onclick="acceptAllCookies()" class="apple-btn px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-800 font-semibold text-xs">
+        <button onclick="acceptAllCookies()" class="btn-tactile px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs">
           Accept All
         </button>
-        <button onclick="saveCookiePreferences()" class="apple-btn px-5 py-2 rounded-full bg-apple-blue hover:bg-apple-blueHover text-white font-semibold text-xs shadow-md">
+        <button onclick="saveCookiePreferences()" class="btn-tactile px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-md">
           Save Preferences
         </button>
       </div>
     </div>
   </div>
 
-  <!-- ================= COOKIE CONSENT BANNER (APPLE LIGHT) ================= -->
-  <aside id="cookie-banner" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 bg-white/95 backdrop-blur-md text-slate-900 p-5 rounded-2xl border border-slate-200 shadow-2xl">
+  <!-- ================= COOKIE CONSENT BANNER ================= -->
+  <aside id="cookie-banner" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 bg-slate-950/95 backdrop-blur-md text-white p-5 rounded-2xl border border-slate-800 shadow-2xl">
     <div class="flex items-start gap-3">
-      <span class="material-symbols-outlined text-amber-500 text-xl shrink-0">cookie</span>
+      <span class="material-symbols-outlined text-amber-400 text-xl shrink-0">cookie</span>
       <div class="text-xs">
-        <p class="font-bold text-slate-900">Privacy & Cookie Notice</p>
-        <p class="text-slate-600 mt-1 leading-relaxed">
+        <p class="font-bold text-white">Privacy & Cookie Notice</p>
+        <p class="text-slate-400 mt-1 leading-relaxed">
           We use strictly necessary cookies for secure exam sessions. We never sell data or run 3rd party ads.
         </p>
         <div class="mt-3.5 flex flex-wrap items-center gap-2">
-          <button onclick="acceptAllCookies()" class="apple-btn px-3.5 py-1.5 rounded-full bg-apple-blue text-white font-semibold text-xs shadow-sm">
+          <button onclick="acceptAllCookies()" class="btn-tactile px-3.5 py-1.5 rounded-lg bg-brand-600 text-white font-bold text-xs">
             Accept All
           </button>
-          <button onclick="rejectNonEssentialCookies()" class="apple-btn px-3.5 py-1.5 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-200">
+          <button onclick="rejectNonEssentialCookies()" class="btn-tactile px-3.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-bold text-xs border border-slate-700">
             Necessary Only
           </button>
-          <button onclick="openCookieSettingsModal()" class="text-xs text-apple-blue hover:underline ml-1 font-semibold">
+          <button onclick="openCookieSettingsModal()" class="text-xs text-brand-400 hover:underline ml-1">
             Customise
           </button>
         </div>
@@ -1030,14 +1473,13 @@
     </div>
   </aside>
 
-  <!-- ================= INTERACTIVE JAVASCRIPT ================= -->
+  <!-- ================= JAVASCRIPT CONTROLLERS ================= -->
   <script>
-    // Audio synthesizer for crisp Apple haptic clicks
     const audioCtx = (typeof window !== 'undefined' && (window.AudioContext || window.webkitAudioContext)) 
       ? new (window.AudioContext || window.webkitAudioContext)() 
       : null;
 
-    function playAppleClick(freq = 520, type = 'sine', duration = 0.05) {
+    function playAudioTone(freq = 520, type = 'sine', duration = 0.05) {
       if (!audioCtx) return;
       try {
         if (audioCtx.state === 'suspended') audioCtx.resume();
@@ -1054,112 +1496,108 @@
       } catch (e) {}
     }
 
-    // Segmented Tab Controller
-    function switchAppleTab(tabName) {
-      playAppleClick(580, 'sine', 0.04);
-      document.querySelectorAll('.apple-tab-btn').forEach(btn => {
-        btn.classList.remove('text-white', 'bg-apple-blue', 'shadow-sm');
-        btn.classList.add('text-[#86868b]');
+    function switchDemoTab(tabName) {
+      playAudioTone(580, 'sine', 0.04);
+      document.querySelectorAll('.demo-tab-btn').forEach(btn => {
+        btn.classList.remove('text-white', 'bg-gradient-to-r', 'from-brand-600', 'to-indigo-600', 'shadow-md');
+        btn.classList.add('text-slate-600');
       });
-      const activeBtn = document.getElementById(`apple-tab-btn-${tabName}`);
+      const activeBtn = document.getElementById(`tab-btn-${tabName}`);
       if (activeBtn) {
-        activeBtn.classList.add('text-white', 'bg-apple-blue', 'shadow-sm');
-        activeBtn.classList.remove('text-[#86868b]');
+        activeBtn.classList.add('text-white', 'bg-gradient-to-r', 'from-brand-600', 'to-indigo-600', 'shadow-md');
+        activeBtn.classList.remove('text-slate-600');
       }
 
-      document.querySelectorAll('.apple-panel').forEach(p => p.classList.add('hidden'));
-      const activePanel = document.getElementById(`apple-panel-${tabName}`);
+      document.querySelectorAll('.demo-tab-panel').forEach(p => p.classList.add('hidden'));
+      const activePanel = document.getElementById(`tab-content-${tabName}`);
       if (activePanel) activePanel.classList.remove('hidden');
     }
 
-    // SAS Grammar School Calculator
-    function calculateAppleSAS() {
-      const select = document.getElementById('apple-school-select');
+    function calculateSASPredictor() {
+      const select = document.getElementById('school-select');
       const opt = select.options[select.selectedIndex];
       const cutoff = parseInt(opt.getAttribute('data-cutoff') || '130', 10);
       const schoolName = opt.getAttribute('data-name');
 
-      const slider = document.getElementById('apple-accuracy-slider');
+      const slider = document.getElementById('accuracy-slider');
       const acc = parseInt(slider.value, 10);
-      document.getElementById('apple-accuracy-val').textContent = acc + '%';
+      document.getElementById('accuracy-display').textContent = acc + '%';
 
       let sas = Math.round(100 + ((acc - 50) / 38) * 35);
       if (sas > 141) sas = 141;
       if (sas < 85) sas = 85;
 
-      document.getElementById('apple-sas-score').textContent = sas;
-      document.getElementById('apple-cutoff-target').textContent = cutoff + ' SAS';
+      document.getElementById('predicted-sas-score').textContent = sas;
+      document.getElementById('target-cutoff-val').textContent = cutoff + ' SAS';
 
       let pText = "Top 20% (80th Percentile)";
       if (sas >= 135) pText = "Top 0.8% (99th+ Percentile)";
       else if (sas >= 130) pText = "Top 2.5% (98th Percentile)";
       else if (sas >= 125) pText = "Top 5% (95th Percentile)";
       else if (sas >= 115) pText = "Top 15% (85th Percentile)";
-      document.getElementById('apple-percentile-val').textContent = pText;
+      document.getElementById('percentile-val').textContent = pText;
 
-      const pill = document.getElementById('apple-status-pill');
-      const pillText = document.getElementById('apple-status-text');
-      const analysis = document.getElementById('apple-analysis-text');
+      const badge = document.getElementById('status-badge');
+      const badgeText = document.getElementById('status-text');
+      const rec = document.getElementById('recommendation-text');
 
       if (sas >= cutoff + 2) {
-        pill.className = "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700 border border-emerald-200";
-        pillText.textContent = "Strong Admission Safety Band";
-        analysis.textContent = `At ${sas} SAS, your child is ${sas - cutoff} points above the historic entry threshold for ${schoolName}. Pacing in timed mocks will cement an offer.`;
+        badge.className = "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/30";
+        badgeText.textContent = "Strong Admission Safety Band";
+        rec.textContent = `At ${sas} SAS, your child is ${sas - cutoff} points above the historic entry threshold for ${schoolName}. Pacing in timed mocks will cement an offer.`;
       } else if (sas >= cutoff - 1) {
-        pill.className = "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-amber-50 text-amber-700 border border-amber-200";
-        pillText.textContent = "Competitive Borderline Band";
-        analysis.textContent = `At ${sas} SAS, your child is within range of ${schoolName} (cutoff ${cutoff} SAS). Remedying spatial reasoning errors will cross the threshold.`;
+        badge.className = "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-black bg-amber-500/20 text-amber-300 border border-amber-400/30";
+        badgeText.textContent = "Competitive Borderline Band";
+        rec.textContent = `At ${sas} SAS, your child is within range of ${schoolName} (cutoff ${cutoff} SAS). Remedying spatial reasoning errors will cross the threshold.`;
       } else {
-        pill.className = "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-bold bg-rose-50 text-rose-700 border border-rose-200";
-        pillText.textContent = "Target School Stretch Zone";
-        analysis.textContent = `Your child is currently ${cutoff - sas} points below the typical cutoff for ${schoolName}. Daily Mistake Mastery practice will close the gap.`;
+        badge.className = "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-black bg-rose-500/20 text-rose-300 border border-rose-400/30";
+        badgeText.textContent = "Target School Stretch Zone";
+        rec.textContent = `Your child is currently ${cutoff - sas} points below the typical cutoff for ${schoolName}. Daily Mistake Mastery practice will close the gap.`;
       }
     }
 
-    // Question Sample Controller
-    let appleSelG1 = null;
-    let appleSelG2 = null;
+    let selectedGroup1 = null;
+    let selectedGroup2 = null;
 
-    function selectAppleQuestion(btn, group, code) {
-      playAppleClick(640, 'triangle', 0.04);
+    function selectQuestionChoice(btn, group, code) {
+      playAudioTone(640, 'triangle', 0.04);
       const parent = btn.parentElement;
-      parent.querySelectorAll('.apple-q-opt').forEach(el => {
-        el.classList.remove('bg-apple-blue', 'text-white', 'border-apple-blue');
+      parent.querySelectorAll('.q-opt').forEach(el => {
+        el.classList.remove('bg-brand-600', 'text-white', 'border-brand-600');
         el.classList.add('bg-slate-50', 'text-slate-800');
-        const ind = el.querySelector('.apple-q-ind');
+        const ind = el.querySelector('.opt-indicator');
         if (ind) ind.textContent = 'Choice';
       });
 
-      btn.classList.add('bg-apple-blue', 'text-white', 'border-apple-blue');
+      btn.classList.add('bg-brand-600', 'text-white', 'border-brand-600');
       btn.classList.remove('bg-slate-50', 'text-slate-800');
-      const ind = btn.querySelector('.apple-q-ind');
+      const ind = btn.querySelector('.opt-indicator');
       if (ind) ind.textContent = 'Selected ✓';
 
-      if (group === 'g1') appleSelG1 = code;
-      if (group === 'g2') appleSelG2 = code;
+      if (group === 'g1') selectedGroup1 = code;
+      if (group === 'g2') selectedGroup2 = code;
 
-      document.getElementById('apple-drill-msg').textContent = 
-        `Selected: (${appleSelG1 || '_'}) and (${appleSelG2 || '_'})`;
+      document.getElementById('drill-feedback-msg').textContent = 
+        `Selected: (${selectedGroup1 || '_'}) and (${selectedGroup2 || '_'})`;
     }
 
-    function checkAppleDrill() {
-      if (!appleSelG1 || !appleSelG2) {
+    function checkDrillAnswer() {
+      if (!selectedGroup1 || !selectedGroup2) {
         alert("Please select one word from Group 1 and one word from Group 2!");
         return;
       }
-      playAppleClick(880, 'sine', 0.12);
-      document.getElementById('apple-solution-box').classList.remove('hidden');
+      playAudioTone(880, 'sine', 0.12);
+      document.getElementById('drill-solution-box').classList.remove('hidden');
     }
 
-    // 3D Card Flip
-    function toggleAppleCard(card) {
-      playAppleClick(480, 'sine', 0.05);
+    function toggleCardFlip(card) {
+      playAudioTone(480, 'sine', 0.05);
       card.classList.toggle('flipped');
     }
 
-    function playAppleAudio(event, word) {
+    function playAudioSimulation(event, word) {
       event.stopPropagation();
-      playAppleClick(720, 'sine', 0.08);
+      playAudioTone(720, 'sine', 0.08);
       if ('speechSynthesis' in window) {
         const utter = new SpeechSynthesisUtterance(word);
         utter.rate = 0.85;
@@ -1167,9 +1605,8 @@
       }
     }
 
-    // Legal Modal Controllers
     function openLegalPolicy(policyKey = 'terms') {
-      playAppleClick(500, 'sine', 0.04);
+      playAudioTone(500, 'sine', 0.04);
       const modal = document.getElementById('legal-modal');
       modal.classList.remove('hidden');
       modal.classList.add('flex');
@@ -1178,7 +1615,7 @@
     }
 
     function closeLegalModal() {
-      playAppleClick(380, 'sine', 0.04);
+      playAudioTone(380, 'sine', 0.04);
       const modal = document.getElementById('legal-modal');
       modal.classList.add('hidden');
       modal.classList.remove('flex');
@@ -1186,14 +1623,14 @@
     }
 
     function switchLegalTab(tabKey) {
-      playAppleClick(540, 'sine', 0.03);
+      playAudioTone(540, 'sine', 0.03);
       document.querySelectorAll('.legal-tab').forEach(btn => {
-        btn.classList.remove('text-apple-blue', 'bg-blue-50', 'border', 'border-blue-100');
+        btn.classList.remove('text-brand-600', 'bg-brand-50', 'border', 'border-brand-200');
         btn.classList.add('text-slate-600');
       });
       const activeBtn = document.getElementById(`legal-tab-btn-${tabKey}`);
       if (activeBtn) {
-        activeBtn.classList.add('text-apple-blue', 'bg-blue-50', 'border', 'border-blue-100');
+        activeBtn.classList.add('text-brand-600', 'bg-brand-50', 'border', 'border-brand-200');
         activeBtn.classList.remove('text-slate-600');
       }
 
@@ -1202,7 +1639,6 @@
       if (activePanel) activePanel.classList.remove('hidden');
     }
 
-    // Cookie Preferences
     function checkCookieConsent() {
       const consent = localStorage.getItem('learnly_cookie_consent');
       const banner = document.getElementById('cookie-banner');
@@ -1210,7 +1646,7 @@
     }
 
     function openCookieSettingsModal() {
-      playAppleClick(520, 'sine', 0.04);
+      playAudioTone(520, 'sine', 0.04);
       const modal = document.getElementById('cookie-settings-modal');
       modal.classList.remove('hidden');
       modal.classList.add('flex');
@@ -1218,7 +1654,7 @@
     }
 
     function closeCookieSettingsModal() {
-      playAppleClick(380, 'sine', 0.04);
+      playAudioTone(380, 'sine', 0.04);
       const modal = document.getElementById('cookie-settings-modal');
       modal.classList.add('hidden');
       modal.classList.remove('flex');
@@ -1226,7 +1662,7 @@
     }
 
     function saveCookiePreferences() {
-      playAppleClick(640, 'sine', 0.08);
+      playAudioTone(640, 'sine', 0.08);
       const functional = document.getElementById('pref-functional').checked;
       const analytics = document.getElementById('pref-analytics').checked;
       localStorage.setItem('learnly_pref_functional', functional);
@@ -1238,7 +1674,7 @@
     }
 
     function acceptAllCookies() {
-      playAppleClick(700, 'sine', 0.08);
+      playAudioTone(700, 'sine', 0.08);
       localStorage.setItem('learnly_pref_functional', 'true');
       localStorage.setItem('learnly_pref_analytics', 'true');
       localStorage.setItem('learnly_cookie_consent', 'accepted_all');
@@ -1248,7 +1684,7 @@
     }
 
     function rejectNonEssentialCookies() {
-      playAppleClick(450, 'sine', 0.05);
+      playAudioTone(450, 'sine', 0.05);
       localStorage.setItem('learnly_pref_functional', 'false');
       localStorage.setItem('learnly_pref_analytics', 'false');
       localStorage.setItem('learnly_cookie_consent', 'necessary_only');
@@ -1265,7 +1701,7 @@
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-      calculateAppleSAS();
+      calculateSASPredictor();
       checkCookieConsent();
     });
   </script>
