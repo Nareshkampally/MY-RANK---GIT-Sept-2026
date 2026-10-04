@@ -25,14 +25,15 @@ router.get('/adaptive', async (req, res) => {
     // Fetch all questions from mock-04 (our main 10-question paper)
     let snapshot = await db.collection('questions')
       .where('test_paper_id', '==', 'mock-04')
-      .orderBy('question_number', 'asc')
       .get();
       
     let questions = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    // Sort in memory to avoid missing Firestore composite index error
+    questions.sort((a, b) => a.question_number - b.question_number);
 
     // Fallback to any questions if mock-04 is empty
     if (questions.length === 0) {
-      const allSnapshot = await db.collection('questions').limit(10).get();
+      const allSnapshot = await db.collection('questions').limit(50).get();
       questions = allSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     }
 

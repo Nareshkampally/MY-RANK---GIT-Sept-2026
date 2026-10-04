@@ -1,0 +1,62 @@
+require('dotenv').config();
+const { getFirestoreDb } = require('./firebase');
+
+async function pushMoreQuestions() {
+  console.log('🔥 Pushing 40 more questions to reach 100+ questions per test...');
+  const db = getFirestoreDb();
+
+  try {
+    const papersSnapshot = await db.collection('test_papers').get();
+    const papers = papersSnapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+
+    let qCount = 0;
+
+    for (const paper of papers) {
+      // Set total_questions to 100
+      await db.collection('test_papers').doc(paper.id).update({ total_questions: 100 });
+      console.log(`Bumping ${paper.id} to 100 questions...`);
+      
+      const batch = db.batch();
+      // Generate from 63 to 100
+      for (let i = 63; i <= 100; i++) {
+        const qId = `${paper.id}-Q${i}`;
+        const question = {
+          id: qId,
+          test_paper_id: paper.id,
+          question_number: i,
+          subject: paper.subject,
+          stem: `[Generated] Question ${i} for ${paper.title}. What is the correct answer?`,
+          passage_context: `This is a generated passage for question ${i}. Read carefully.`,
+          options: [
+            { letter: 'A', text: `Option A for Q${i}` },
+            { letter: 'B', text: `Option B for Q${i}` },
+            { letter: 'C', text: `Option C for Q${i}` },
+            { letter: 'D', text: `Option D for Q${i}` },
+            { letter: 'E', text: `Option E for Q${i}` }
+          ],
+          correct_answer: ['A', 'B', 'C', 'D', 'E'][i % 5],
+          explanation: `The correct answer is Option ${['A', 'B', 'C', 'D', 'E'][i % 5]} because this is a generated explanation for Q${i}.`,
+          socratic_hints: {
+            tier1: `Hint 1 for Q${i}`,
+            tier2: `Hint 2 for Q${i}`,
+            tier3: `Hint 3 for Q${i}`
+          }
+        };
+
+        const ref = db.collection('questions').doc(qId);
+        batch.set(ref, question);
+        qCount++;
+      }
+      await batch.commit();
+      console.log(`✅ Pushed additional questions for ${paper.id}`);
+    }
+
+    console.log(`🎉 Added ${qCount} more questions to Firestore!`);
+    process.exit(0);
+  } catch (error) {
+    console.error('❌ Failed to push questions:', error);
+    process.exit(1);
+  }
+}
+
+pushMoreQuestions();

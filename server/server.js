@@ -59,6 +59,11 @@ app.get('/api/health', (req, res) => {
   });
 });
 
+// Landing Page route
+app.get(['/landing', '/landing.html'], (req, res) => {
+  res.sendFile(path.join(ROOT_DIR, 'landing.html'));
+});
+
 // Single Page Application (SPA) Fallback — serves index.html
 app.get('*', (req, res) => {
   res.sendFile(path.join(ROOT_DIR, 'index.html'));

@@ -236,6 +236,18 @@ html[data-theme="myrank"] {
   font-weight: 700;
   box-shadow: 0 2px 12px 0 rgba(79, 70, 229, 0.2);
 }
+.nav-link.active:hover {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+.nav-text {
+  color: inherit;
+}
+.nav-link.active .nav-icon {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: var(--on-primary) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+}
 .nav-link.active::before {
   content: '';
   position: absolute;
@@ -252,6 +264,15 @@ html[data-theme="myrank"] .nav-link.active {
   color: var(--on-primary);
   box-shadow: 0 4px 14px 0 rgba(199, 255, 36, 0.3);
   font-weight: 700;
+}
+html[data-theme="myrank"] .nav-link.active:hover {
+  background: var(--primary);
+  color: var(--on-primary);
+}
+html[data-theme="myrank"] .nav-link.active .nav-icon {
+  background: rgba(0, 0, 0, 0.1) !important;
+  color: var(--on-primary) !important;
+  border-color: rgba(0, 0, 0, 0.2) !important;
 }
 html[data-theme="myrank"] .nav-link.active::before {
   background: var(--primary-fixed);

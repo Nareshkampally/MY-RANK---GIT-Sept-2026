@@ -112,7 +112,7 @@ LearnlyRouter.register('vocab-vault', function() {
       </p>
     </div>
     <!-- Quick Stats Bar -->
-    <div class="flex items-center gap-3 bg-white/10 backdrop-blur-md p-2 rounded-[2.5rem] border border-white/20 shadow-sm relative z-10">
+    <div class="flex flex-row flex-nowrap items-center gap-3 bg-white/10 backdrop-blur-md p-2 rounded-[2.5rem] border border-white/20 shadow-sm relative z-10 shrink-0 w-max overflow-x-auto">
       <div class="px-3 py-1.5 rounded-xl bg-white text-center">
         <span class="text-[10px] uppercase font-bold text-purple-700 block">Mastered</span>
         <strong class="text-lg font-black text-purple-700 font-mono" id="mastered-count">2</strong>

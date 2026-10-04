@@ -174,13 +174,13 @@ LearnlyRouter.register('subject-quests', function() {
               <div>
                 <div class="flex items-center gap-2 mb-1">
                   <span class="px-3 py-1 rounded-lg bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest border border-primary/20">GL & CEM Spec</span>
-                  <span class="text-xs font-bold text-outline-variant">Stage 4 Mastery</span>
+                  <span class="text-xs font-bold text-on-surface-variant">Stage 4 Mastery</span>
                 </div>
                 <h2 class="text-2xl text-on-surface font-extrabold tracking-tight">Mathematics</h2>
               </div>
             </div>
             <div class="text-right">
-              <span class="text-4xl text-primary font-black leading-none">8.8<span class="text-lg font-bold text-outline-variant">/10</span></span>
+              <span class="text-4xl text-primary font-black leading-none">8.8<span class="text-lg font-bold text-on-surface-variant">/10</span></span>
               <span class="block text-xs text-tertiary font-bold mt-1 tracking-widest uppercase">Exceeding Benchmark</span>
             </div>
           </div>
@@ -245,13 +245,13 @@ LearnlyRouter.register('subject-quests', function() {
               <div>
                 <div class="flex items-center gap-2 mb-1">
                   <span class="px-3 py-1 rounded-lg bg-primary/10 text-primary text-xs font-bold uppercase tracking-widest border border-primary/20">Consortium Standard</span>
-                  <span class="text-xs font-bold text-outline-variant">Stage 4 Mastery</span>
+                  <span class="text-xs font-bold text-on-surface-variant">Stage 4 Mastery</span>
                 </div>
                 <h2 class="text-2xl text-on-surface font-extrabold tracking-tight">Verbal Reasoning</h2>
               </div>
             </div>
             <div class="text-right">
-              <span class="text-4xl text-primary font-black leading-none">8.6<span class="text-lg font-bold text-outline-variant">/10</span></span>
+              <span class="text-4xl text-primary font-black leading-none">8.6<span class="text-lg font-bold text-on-surface-variant">/10</span></span>
               <span class="block text-xs text-tertiary font-bold mt-1 tracking-widest uppercase">Selective Grammar Tier</span>
             </div>
           </div>
@@ -316,13 +316,13 @@ LearnlyRouter.register('subject-quests', function() {
               <div>
                 <div class="flex items-center gap-2 mb-1">
                   <span class="px-3 py-1 rounded-lg bg-tertiary/10 text-tertiary text-xs font-bold uppercase tracking-widest border border-tertiary/20">Spatial 3D Engine</span>
-                  <span class="text-xs font-bold text-outline-variant">Stage 3 Mastery</span>
+                  <span class="text-xs font-bold text-on-surface-variant">Stage 3 Mastery</span>
                 </div>
                 <h2 class="text-2xl text-on-surface font-extrabold tracking-tight">Non-Verbal Reasoning</h2>
               </div>
             </div>
             <div class="text-right">
-              <span class="text-4xl text-tertiary font-black leading-none">8.2<span class="text-lg font-bold text-outline-variant">/10</span></span>
+              <span class="text-4xl text-tertiary font-black leading-none">8.2<span class="text-lg font-bold text-on-surface-variant">/10</span></span>
               <span class="block text-xs text-tertiary font-bold mt-1 tracking-widest uppercase">Top Decile Standing</span>
             </div>
           </div>
@@ -349,7 +349,7 @@ LearnlyRouter.register('subject-quests', function() {
                 Net Folding Architect
               </span>
               <div class="flex items-center justify-between">
-                 <span class="text-xs font-bold text-outline-variant">Stage 6 of 10</span>
+                 <span class="text-xs font-bold text-on-surface-variant">Stage 6 of 10</span>
                  <span class="text-xs text-tertiary font-bold">60%</span>
               </div>
               <div class="w-full bg-surface-container-high rounded-full h-2 overflow-hidden mt-1">
@@ -390,13 +390,13 @@ LearnlyRouter.register('subject-quests', function() {
               <div>
                 <div class="flex items-center gap-2 mb-1">
                   <span class="px-3 py-1 rounded-lg bg-secondary/20 text-secondary text-xs font-bold uppercase tracking-widest border border-secondary/30">ISEB & CSSE Rigour</span>
-                  <span class="text-xs font-bold text-outline-variant">Stage 3 Mastery</span>
+                  <span class="text-xs font-bold text-on-surface-variant">Stage 3 Mastery</span>
                 </div>
                 <h2 class="text-2xl text-on-surface font-extrabold tracking-tight">English & SPaG</h2>
               </div>
             </div>
             <div class="text-right">
-              <span class="text-4xl text-secondary font-black leading-none">7.9<span class="text-lg font-bold text-outline-variant">/10</span></span>
+              <span class="text-4xl text-secondary font-black leading-none">7.9<span class="text-lg font-bold text-on-surface-variant">/10</span></span>
               <span class="block text-xs text-secondary font-bold mt-1 tracking-widest uppercase">High Focus Potential</span>
             </div>
           </div>
