@@ -1,8 +1,11 @@
-// Learnly 11+ — Mistake Mastery Drill & Re-attempt
+// Learnly 11+ — Mistake Mastery Drill & Re-attempt Engine
+// Multi-Exam Mistake Vault: displays mistakes across ALL attempted mock exams with filtering and re-attempt drills
+
 LearnlyRouter.register('mistake-mastery', function() {
   return `
   <div class="space-y-8 pb-12">
-    <section class="relative flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 rounded-3xl overflow-hidden shadow-md mb-8" style="background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);">
+    <!-- Header Banner -->
+    <section class="relative flex flex-col md:flex-row md:items-center justify-between gap-4 p-8 rounded-3xl overflow-hidden shadow-md mb-6" style="background: linear-gradient(135deg, #f43f5e 0%, #be123c 100%);">
       <div class="absolute -right-12 -top-12 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
       <div class="absolute left-1/4 bottom-0 w-32 h-32 bg-white/10 rounded-full blur-2xl pointer-events-none"></div>
       
@@ -11,258 +14,325 @@ LearnlyRouter.register('mistake-mastery', function() {
           <span class="material-symbols-outlined">arrow_back</span>
         </a>
         <div>
+          <div class="flex items-center gap-2 mb-1">
+            <span class="px-2.5 py-0.5 rounded-full bg-white/20 text-white font-bold text-[10px] uppercase tracking-wider">Multi-Exam Error Vault</span>
+            <span class="text-xs text-rose-200">Across All Completed Mocks</span>
+          </div>
           <h1 class="text-3xl font-extrabold tracking-tight">Mistake Mastery Vault</h1>
-          <p class="text-sm font-bold text-white/80 mt-1">Re-attempt and conquer your Mock #04 errors.</p>
+          <p class="text-sm font-bold text-white/80 mt-0.5">Diagnose, re-attempt, and eradicate cognitive traps from all 11+ exams.</p>
         </div>
       </div>
-      <div class="flex items-center gap-2 relative z-10">
-        <div class="px-4 py-2 rounded-full bg-white/20 backdrop-blur-md border border-white/30 flex items-center gap-2 shadow-sm">
-          <div class="w-2 h-2 rounded-full bg-white animate-pulse"></div>
-          <span class="text-white font-bold text-sm tracking-wide">8 Critical Mistakes Remaining</span>
+      <div class="flex items-center gap-3 relative z-10">
+        <div class="px-4 py-2 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center gap-2 shadow-sm">
+          <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
+          <span class="text-white font-bold text-sm tracking-wide" id="mistakes-count-badge">Loading errors...</span>
         </div>
       </div>
     </section>
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-      ${[
-        {q:'Q3',topic:'3D Net Folding',subj:'NVR',desc:'Hexagonal net with 6 faces — identify the correct solid',yourAns:'B',correct:'D',type:'spatial'},
-        {q:'Q8',topic:'Compound Words',subj:'VR',desc:'Find the hidden compound word in "nightwatchman"',yourAns:'D',correct:'A',type:'lexical'},
-        {q:'Q11',topic:'Complex Hexagonal Net',subj:'NVR',desc:'Advanced net with pattern matching on faces',yourAns:'C',correct:'A',type:'spatial'},
-        {q:'Q14',topic:'Lexical Breakdown',subj:'VR',desc:'"Untoward" vs "Unseemly" — subtle synonym distinction',yourAns:'B',correct:'C',type:'lexical'},
-        {q:'Q18',topic:'Decimal Division',subj:'Maths',desc:'Multi-step word problem with decimal remainders',yourAns:'A',correct:'D',type:'numerical'},
-        {q:'Q22',topic:'Reflection Symmetry',subj:'NVR',desc:'Identify the reflected image across a diagonal axis',yourAns:'C',correct:'B',type:'spatial'},
-        {q:'Q25',topic:'Inference from Passage',subj:'English',desc:'Draw implicit conclusion from a Victorian-era excerpt',yourAns:'A',correct:'C',type:'comprehension'},
-        {q:'Q19',topic:'Algebraic Sequences',subj:'Maths',desc:'Find the nth term of a quadratic sequence',yourAns:'D',correct:'B',type:'numerical'},
-      ].map((m,i)=>`
-      <div class="bg-surface-container-lowest rounded-3xl p-6 border border-outline-variant/30 flex flex-col justify-between hover:border-error/50 transition-colors relative overflow-hidden group shadow-sm">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-error/5 rounded-full translate-x-12 -translate-y-12 group-hover:scale-150 transition-transform duration-700 pointer-events-none"></div>
-        <div class="absolute top-0 left-0 w-1.5 h-full bg-error opacity-70 group-hover:opacity-100 transition-opacity"></div>
-        
-        <div class="flex flex-col relative z-10 space-y-4">
-          <div class="flex items-center justify-between">
-            <div class="flex items-center gap-4">
-              <span class="w-12 h-12 rounded-[2.5rem] bg-error/10 border border-error/20 flex items-center justify-center text-error font-black text-lg shadow-inner">${m.q}</span>
-              <div>
-                <span class="text-base text-on-surface font-extrabold tracking-tight">${m.topic}</span><br>
-                <span class="px-2.5 py-0.5 rounded-md bg-surface-container-high border border-outline-variant/30 text-[10px] font-bold text-outline-variant uppercase tracking-widest mt-1 inline-block">${m.subj}</span>
-              </div>
-            </div>
-            <div class="text-right text-xs">
-              <div class="text-error font-bold bg-error/10 px-2 py-0.5 rounded border border-error/20 mb-1 inline-block">Your Ans: ${m.yourAns}</div><br>
-              <div class="text-tertiary font-bold bg-tertiary/10 px-2 py-0.5 rounded border border-tertiary/20 inline-block">Correct: ${m.correct}</div>
-            </div>
-          </div>
-          
-          <div class="p-4 rounded-[2.5rem] bg-surface border border-outline-variant/20">
-             <p class="text-sm text-on-surface font-medium">${m.desc}</p>
-          </div>
-          
-          <div class="flex gap-3 pt-2">
-            <button class="flex-1 py-3 rounded-full bg-primary text-on-primary text-sm font-bold shadow-md hover:bg-primary/90 transition-all" data-navigate="${m.type==='spatial'?'mistake-vault-3d':'mistake-vault-lexical'}">Re-attempt Question</button>
-            <button class="px-5 py-3 rounded-full bg-surface border border-outline-variant/30 hover:border-primary/50 text-sm text-on-surface font-bold transition-all text-center" data-navigate="${m.type==='spatial'?'mistake-vault-3d':'mistake-vault-lexical'}">Explanation</button>
-          </div>
+
+    <!-- EXAM & SUBJECT FILTER CONTROLS (All Mocks vs Single Mock) -->
+    <div class="p-6 rounded-3xl bg-white border border-slate-200 shadow-sm space-y-4">
+      <div class="flex flex-col md:flex-row md:items-center justify-between gap-4">
+        <!-- Mock Exam Filter Buttons -->
+        <div class="flex items-center gap-2 overflow-x-auto pb-1" id="exam-filter-group">
+          <button class="exam-filter-pill px-4 py-2 rounded-full bg-rose-600 text-white font-extrabold text-xs shadow transition-all cursor-pointer" data-exam="all">
+            All Mock Exams
+          </button>
+          <button class="exam-filter-pill px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all cursor-pointer" data-exam="mock-04">
+            Mock #04 (Latest)
+          </button>
+          <button class="exam-filter-pill px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all cursor-pointer" data-exam="mock-03">
+            Mock #03
+          </button>
+          <button class="exam-filter-pill px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all cursor-pointer" data-exam="mock-02">
+            Mock #02
+          </button>
+          <button class="exam-filter-pill px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all cursor-pointer" data-exam="mock-01">
+            Mock #01
+          </button>
+          <button class="exam-filter-pill px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all cursor-pointer" data-exam="practice-arena">
+            Practice Arena
+          </button>
         </div>
-      </div>`).join('')}
+
+        <!-- Status Toggle -->
+        <div class="flex items-center gap-2 shrink-0">
+          <button id="toggle-unresolved-btn" class="px-3.5 py-1.5 rounded-xl bg-rose-50 text-rose-700 border border-rose-200 font-bold text-xs">
+            Show Remaining (<span id="unresolved-count">0</span>)
+          </button>
+          <button id="toggle-resolved-btn" class="px-3.5 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 font-bold text-xs">
+            Mastered (<span id="resolved-count">0</span>)
+          </button>
+        </div>
+      </div>
+
+      <!-- Subject Filter Row -->
+      <div class="flex items-center gap-2 pt-2 border-t border-slate-100 overflow-x-auto text-xs">
+        <span class="text-slate-400 font-bold uppercase text-[10px] tracking-wider shrink-0">Subject:</span>
+        <button class="subject-filter-pill px-3 py-1 rounded-lg bg-slate-900 text-white font-bold" data-subject="all">All</button>
+        <button class="subject-filter-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold" data-subject="Mathematics">Mathematics</button>
+        <button class="subject-filter-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold" data-subject="Verbal Reasoning">Verbal Reasoning</button>
+        <button class="subject-filter-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold" data-subject="Non-Verbal Reasoning">Non-Verbal</button>
+        <button class="subject-filter-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold" data-subject="English">English</button>
+      </div>
     </div>
-  </div>`;
-});
 
-// Mistake Vault: 3D Replay
-LearnlyRouter.register('mistake-vault-3d', function() {
-  return `
-  <div class="space-y-8 pb-12">
-    <section class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-      <div class="flex items-center gap-4">
-        <a href="#mistake-mastery" class="w-12 h-12 rounded-full bg-surface-container-high border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 transition-colors shadow-sm">
-          <span class="material-symbols-outlined">arrow_back</span>
-        </a>
-        <div>
-          <h1 class="text-3xl font-extrabold text-on-surface tracking-tight">Mistake Vault: 3D Replay</h1>
-          <p class="text-sm font-bold text-outline-variant mt-1">Q11 — Complex Hexagonal Net</p>
-        </div>
-      </div>
-    </section>
+    <!-- MISTAKE CARDS CONTAINER -->
+    <div id="mistakes-cards-grid" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+      <!-- Dynamic mistake items loaded by JS -->
+    </div>
 
-    <div class="grid grid-cols-12 gap-8">
-      <div class="col-span-12 lg:col-span-7">
-        <div class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/30 shadow-sm relative overflow-hidden h-full">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-tertiary/5 rounded-full translate-x-32 -translate-y-32 pointer-events-none"></div>
-          
-          <div class="flex items-center gap-3 mb-6 relative z-10">
-             <div class="w-10 h-10 rounded-xl bg-tertiary/10 border border-tertiary/20 flex items-center justify-center text-tertiary">
-                <span class="material-symbols-outlined">view_in_ar</span>
-             </div>
-             <h2 class="text-xl font-extrabold text-on-surface tracking-tight">3D Net Visualization</h2>
-          </div>
-          
-          <div class="bg-surface rounded-[2.5rem] border border-outline-variant/20 p-8 flex flex-col items-center justify-center min-h-[400px] relative z-10 shadow-inner">
-            <div class="text-center w-full max-w-sm">
-              <svg viewBox="0 0 320 280" class="w-full drop-shadow-lg">
-                <rect x="110" y="10" width="50" height="50" fill="#f8fafc" stroke="#64748b" stroke-width="2" rx="4"/>
-                <rect x="110" y="60" width="50" height="50" fill="#f8fafc" stroke="#64748b" stroke-width="2" rx="4"/>
-                <rect x="60" y="60" width="50" height="50" fill="#f8fafc" stroke="#64748b" stroke-width="2" rx="4"/>
-                <rect x="160" y="60" width="50" height="50" fill="#f8fafc" stroke="#64748b" stroke-width="2" rx="4"/>
-                <rect x="110" y="110" width="50" height="50" fill="#f8fafc" stroke="#64748b" stroke-width="2" rx="4"/>
-                <rect x="110" y="160" width="50" height="50" fill="#f8fafc" stroke="#64748b" stroke-width="2" rx="4"/>
-                <text x="135" y="42" text-anchor="middle" fill="#0f172a" font-size="20" font-weight="800">★</text>
-                <text x="135" y="92" text-anchor="middle" fill="#0f172a" font-size="20" font-weight="800">▲</text>
-                <text x="85" y="92" text-anchor="middle" fill="#0ea5e9" font-size="20" font-weight="800">●</text>
-                <text x="185" y="92" text-anchor="middle" fill="#eab308" font-size="20" font-weight="800">◆</text>
-                <text x="135" y="142" text-anchor="middle" fill="#0f172a" font-size="20" font-weight="800">■</text>
-                <text x="135" y="192" text-anchor="middle" fill="#0f172a" font-size="20" font-weight="800">○</text>
-              </svg>
-              <div class="mt-8 flex items-center justify-center gap-2 text-xs font-bold text-outline-variant bg-surface-container-highest/50 py-2 px-4 rounded-full inline-flex">
-                 <span class="material-symbols-outlined text-sm">360</span>
-                 Interactive: Drag to rotate the 3D model
-              </div>
+    <!-- RE-ATTEMPT MODAL -->
+    <div id="reattempt-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden items-center justify-center p-4">
+      <div class="bg-white rounded-3xl max-w-xl w-full p-6 shadow-2xl border border-slate-200 animate-in fade-in zoom-in-95">
+        <div class="flex items-center justify-between pb-3 mb-3 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-rose-600 text-2xl">refresh</span>
+            <div>
+              <h3 class="text-base font-extrabold text-slate-900" id="reattempt-modal-title">Re-attempt Question</h3>
+              <p class="text-xs text-slate-500" id="reattempt-modal-sub">Earn +35 XP by selecting the correct answer</p>
             </div>
           </div>
+          <button id="close-reattempt-modal-btn" class="w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-500">
+            <span class="material-symbols-outlined">close</span>
+          </button>
         </div>
-      </div>
-      
-      <div class="col-span-12 lg:col-span-5 flex flex-col space-y-6">
-        <div class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/30 shadow-sm relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-48 h-48 bg-primary/5 rounded-full translate-x-24 -translate-y-24 pointer-events-none"></div>
-          <h3 class="text-xl font-extrabold text-on-surface mb-6 relative z-10">Step-by-Step Logic</h3>
-          <div class="space-y-4 relative z-10">
-            ${[
-              {step:1,text:'Identify the base face (▲). This face stays flat when folding.'},
-              {step:2,text:'The face marked ★ folds UP to become the top.'},
-              {step:3,text:'The ● face folds LEFT and ◆ folds RIGHT — they become opposite faces.'},
-              {step:4,text:'The correct 3D shape shows ★ on top with ● on the left side.'},
-            ].map(s=>`
-            <div class="flex gap-4 p-4 rounded-[2.5rem] bg-surface border border-outline-variant/20 hover:border-primary/30 transition-colors">
-              <span class="w-8 h-8 rounded-full bg-primary/10 text-primary flex items-center justify-center text-sm font-black flex-shrink-0 shadow-sm">${s.step}</span>
-              <p class="text-sm font-medium text-on-surface">${s.text}</p>
-            </div>`).join('')}
-          </div>
+
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 mb-4 text-sm font-bold text-slate-800" id="reattempt-stem">
+          <!-- Question stem -->
         </div>
-        
-        <div class="flex flex-col sm:flex-row gap-4">
-            <div class="flex-1 bg-error/5 rounded-3xl p-6 border border-error/20 relative overflow-hidden">
-                <div class="absolute -right-4 -bottom-4 opacity-10">
-                    <span class="material-symbols-outlined text-9xl text-error">cancel</span>
-                </div>
-              <span class="text-sm font-bold text-error flex items-center gap-2 mb-2 relative z-10"><span class="material-symbols-outlined text-lg">cancel</span> Your Answer: C</span>
-              <p class="text-sm font-medium text-on-surface relative z-10">You selected the shape with ● on top — but ● is a side face, not the top.</p>
-            </div>
-            <div class="flex-1 bg-tertiary/5 rounded-3xl p-6 border border-tertiary/20 relative overflow-hidden">
-                <div class="absolute -right-4 -bottom-4 opacity-10">
-                    <span class="material-symbols-outlined text-9xl text-tertiary">check_circle</span>
-                </div>
-              <span class="text-sm font-bold text-tertiary flex items-center gap-2 mb-2 relative z-10"><span class="material-symbols-outlined text-lg">check_circle</span> Correct Answer: A</span>
-              <p class="text-sm font-medium text-on-surface relative z-10">Shape A correctly shows ★ on top, ● on left, and ◆ on right — matching the fold pattern.</p>
-            </div>
+
+        <div class="space-y-2 mb-5" id="reattempt-options">
+          <!-- Options rendered -->
         </div>
-        
-        <button class="w-full py-4 rounded-full bg-surface-container-high border border-outline-variant/30 text-on-surface font-bold shadow-sm hover:bg-surface-container hover:border-primary/50 transition-all flex items-center justify-center gap-2 mt-auto" data-navigate="mistake-mastery">
-            <span class="material-symbols-outlined">arrow_back</span>
-            Back to Mistake List
-        </button>
+
+        <div id="reattempt-feedback" class="hidden p-3 rounded-xl mb-4 text-xs font-bold leading-relaxed">
+          <!-- Feedback message -->
+        </div>
+
+        <div class="flex items-center justify-end gap-2 pt-3 border-t border-slate-100">
+          <button id="cancel-reattempt-btn" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100">Cancel</button>
+          <button id="submit-reattempt-btn" class="px-6 py-2.5 rounded-xl bg-rose-600 hover:bg-rose-700 text-white font-bold text-xs shadow-md transition-all">Check My Answer</button>
+        </div>
       </div>
     </div>
   </div>`;
-});
-
-// Mistake Vault: Lexical Breakdown
-LearnlyRouter.register('mistake-vault-lexical', function() {
-  return `
-  <div class="space-y-8 pb-12">
-    <section class="flex flex-col md:flex-row md:items-center justify-between gap-4">
-      <div class="flex items-center gap-4">
-        <a href="#mistake-mastery" class="w-12 h-12 rounded-full bg-surface-container-high border border-outline-variant/30 flex items-center justify-center text-on-surface-variant hover:text-primary hover:border-primary/50 transition-colors shadow-sm">
-          <span class="material-symbols-outlined">arrow_back</span>
-        </a>
-        <div>
-          <h1 class="text-3xl font-extrabold text-on-surface tracking-tight">Mistake Vault: Lexical Breakdown</h1>
-          <p class="text-sm font-bold text-outline-variant mt-1">Q14 — 'Untoward' vs 'Unseemly'</p>
-        </div>
-      </div>
-    </section>
+}, function() {
+  // Master Catalog of Seeded Mistakes from Historical Mocks (#01, #02, #03, #04)
+  const SEED_MISTAKES = [
+    // Mock 04
+    { id: 'MV-04-01', exam_id: 'mock-04', exam_title: 'Mock #04 (Verbal & NVR Focus)', q_num: 'Q3', topic: '3D Net Folding', subject: 'Non-Verbal Reasoning', desc: 'Hexagonal net with 6 faces — identify the correct folded solid and opposite pairs.', stem: 'Which 3D shape CANNOT be formed from the hexagonal net shown?', yourAns: 'B', correct: 'D', explanation: 'Count the faces and examine opposite pairs. Faces with opposite orientation cannot be adjacent.', resolved: false },
+    { id: 'MV-04-02', exam_id: 'mock-04', exam_title: 'Mock #04 (Verbal & NVR Focus)', q_num: 'Q8', topic: 'Compound Words', subject: 'Verbal Reasoning', desc: 'Find the hidden compound word in "nightwatchman"', stem: 'Find the two root words that make up this compound occupation.', yourAns: 'D', correct: 'A', explanation: 'The hidden compound word is formed by "night" + "watchman". Examine letter boundaries.', resolved: false },
+    { id: 'MV-04-03', exam_id: 'mock-04', exam_title: 'Mock #04 (Verbal & NVR Focus)', q_num: 'Q11', topic: 'Complex Hexagonal Net', subject: 'Non-Verbal Reasoning', desc: 'Advanced net with pattern matching on faces', stem: 'Determine which cube corresponds to the pattern on the net.', yourAns: 'C', correct: 'A', explanation: 'Track shading orientation: the striped face must touch the diagonal chevron.', resolved: false },
+    { id: 'MV-04-04', exam_id: 'mock-04', exam_title: 'Mock #04 (Verbal & NVR Focus)', q_num: 'Q14', topic: 'Lexical Breakdown', subject: 'Verbal Reasoning', desc: '"Untoward" vs "Unseemly" — subtle synonym distinction', stem: 'Choose the word closest in meaning to UNTOWARD.', yourAns: 'B', correct: 'C', explanation: 'Untoward means unexpected and inappropriate; unseemly means not conforming to decorum.', resolved: false },
     
-    <div class="grid grid-cols-12 gap-8">
-      <div class="col-span-12 lg:col-span-6 h-full">
-        <div class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/30 shadow-sm relative overflow-hidden h-full flex flex-col">
-          <div class="absolute top-0 right-0 w-64 h-64 bg-primary/5 rounded-full translate-x-32 -translate-y-32 pointer-events-none"></div>
-          
-          <div class="flex items-center gap-3 mb-6 relative z-10">
-             <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center text-primary">
-                <span class="material-symbols-outlined">auto_stories</span>
-             </div>
-             <h3 class="text-xl font-extrabold text-on-surface tracking-tight">Word Analysis</h3>
-          </div>
-          
-          <div class="space-y-4 relative z-10 flex-1">
-            <div class="p-6 rounded-[2.5rem] bg-surface border border-outline-variant/20 shadow-sm relative overflow-hidden group hover:border-primary/30 transition-colors">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-primary/5 rounded-bl-full pointer-events-none"></div>
-              <div class="flex items-end gap-3 mb-2">
-                 <h4 class="text-2xl font-black text-primary tracking-tight">Untoward</h4>
-                 <span class="text-xs font-bold text-outline-variant pb-1">/ʌnˈtɔːwəd/ (adj.)</span>
-              </div>
-              <p class="text-sm font-medium text-on-surface leading-relaxed">Unexpected and inappropriate or inconvenient; unlucky.</p>
-              <div class="mt-4 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant/10 text-sm italic text-on-surface-variant">"Nothing untoward happened during the ceremony."</div>
-            </div>
-            
-            <div class="p-6 rounded-[2.5rem] bg-surface border border-outline-variant/20 shadow-sm relative overflow-hidden group hover:border-secondary/30 transition-colors">
-              <div class="absolute top-0 right-0 w-24 h-24 bg-secondary/5 rounded-bl-full pointer-events-none"></div>
-              <div class="flex items-end gap-3 mb-2">
-                 <h4 class="text-2xl font-black text-secondary tracking-tight">Unseemly</h4>
-                 <span class="text-xs font-bold text-outline-variant pb-1">/ʌnˈsiːmli/ (adj.)</span>
-              </div>
-              <p class="text-sm font-medium text-on-surface leading-relaxed">Not proper or appropriate; indecorous. Focuses on social propriety.</p>
-              <div class="mt-4 p-4 rounded-xl bg-surface-container-lowest border border-outline-variant/10 text-sm italic text-on-surface-variant">"His unseemly behaviour at the formal dinner was embarrassing."</div>
-            </div>
-          </div>
-        </div>
-      </div>
+    // Mock 03
+    { id: 'MV-03-01', exam_id: 'mock-03', exam_title: 'Mock #03 (CEM Standard Mixed)', q_num: 'Q18', topic: 'Decimal Division', subject: 'Mathematics', desc: 'Multi-step word problem with decimal remainders', stem: 'A wooden beam of length 14.4m is cut into pieces of 0.45m. How many full pieces are obtained?', yourAns: 'A', correct: 'D', explanation: '14.4 ÷ 0.45 = 1440 ÷ 45 = 32 full pieces. Be careful with decimal places in divisor.', resolved: false },
+    { id: 'MV-03-02', exam_id: 'mock-03', exam_title: 'Mock #03 (CEM Standard Mixed)', q_num: 'Q25', topic: 'Inference from Passage', subject: 'English', desc: 'Draw implicit conclusion from Victorian-era excerpt', stem: 'What does the author suggest about the landlord\'s true intentions?', yourAns: 'A', correct: 'C', explanation: 'The tone is ironically critical: the polite smile masks an underlying avarice.', resolved: false },
+    
+    // Mock 02
+    { id: 'MV-02-01', exam_id: 'mock-02', exam_title: 'Mock #02 (GL Maths & Spatial Heavy)', q_num: 'Q22', topic: 'Reflection Symmetry', subject: 'Non-Verbal Reasoning', desc: 'Identify reflected image across diagonal mirror line', stem: 'Which shape is a true reflection across the 45-degree axis?', yourAns: 'C', correct: 'B', explanation: 'Reflection across diagonal lines swaps X and Y coordinates. Do not confuse with 90° rotation.', resolved: true },
+    { id: 'MV-02-02', exam_id: 'mock-02', exam_title: 'Mock #02 (GL Maths & Spatial Heavy)', q_num: 'Q19', topic: 'Algebraic Sequences', subject: 'Mathematics', desc: 'Find the nth term of a quadratic sequence', stem: 'Find the 6th term of 3, 8, 15, 24...', yourAns: 'D', correct: 'B', explanation: 'Formula is n(n+2). For n=6: 6 × 8 = 48. Correct Answer is 48.', resolved: false },
+
+    // Mock 01
+    { id: 'MV-01-01', exam_id: 'mock-01', exam_title: 'Mock #01 (Baseline Diagnostic)', q_num: 'Q5', topic: 'Speed & Distance', subject: 'Mathematics', desc: 'Average speed calculation across return journey', stem: 'Going: 60mph for 2 hours. Returning: 40mph for 3 hours. Average speed?', yourAns: 'B', correct: 'A', explanation: 'Average speed = Total distance ÷ Total time = (120 + 120) ÷ (2 + 3) = 240 ÷ 5 = 48mph.', resolved: true }
+  ];
+
+  // Merge with any mistakes recorded live in localStorage
+  const localMistakes = JSON.parse(localStorage.getItem('learnly_mistake_vault') || '[]');
+  const allMistakes = [...localMistakes, ...SEED_MISTAKES];
+
+  // Active filters
+  let selectedExam = 'all';
+  let selectedSubject = 'all';
+  let showResolved = false;
+
+  const cardsGrid = document.getElementById('mistakes-cards-grid');
+  const countBadge = document.getElementById('mistakes-count-badge');
+  const unresolvedSpan = document.getElementById('unresolved-count');
+  const resolvedSpan = document.getElementById('resolved-count');
+
+  function renderMistakes() {
+    let filtered = allMistakes.filter(m => {
+      const matchExam = selectedExam === 'all' || m.exam_id === selectedExam || (selectedExam === 'practice-arena' && m.id.startsWith('MV-'));
+      const matchSubj = selectedSubject === 'all' || m.subject.toLowerCase().includes(selectedSubject.toLowerCase());
+      const matchStatus = showResolved ? m.resolved === true : !m.resolved;
+      return matchExam && matchSubj && matchStatus;
+    });
+
+    const unresolvedTotal = allMistakes.filter(m => !m.resolved).length;
+    const resolvedTotal = allMistakes.filter(m => m.resolved).length;
+
+    if (countBadge) countBadge.textContent = `${unresolvedTotal} Critical Errors Across All Mocks`;
+    if (unresolvedSpan) unresolvedSpan.textContent = unresolvedTotal;
+    if (resolvedSpan) resolvedSpan.textContent = resolvedTotal;
+
+    if (!cardsGrid) return;
+
+    if (filtered.length === 0) {
+      cardsGrid.innerHTML = `
+      <div class="col-span-12 p-12 bg-white rounded-3xl border border-slate-200 text-center shadow-sm">
+        <span class="material-symbols-outlined text-4xl text-emerald-500 mb-2">task_alt</span>
+        <h3 class="text-lg font-bold text-slate-900">No mistakes match this filter</h3>
+        <p class="text-xs text-slate-500 mt-1">Select "All Mock Exams" or toggle status to review resolved errors.</p>
+      </div>`;
+      return;
+    }
+
+    cardsGrid.innerHTML = filtered.map(m => `
+    <div class="bg-white rounded-3xl p-6 border-2 border-slate-200 hover:border-rose-400 flex flex-col justify-between transition-all relative overflow-hidden group shadow-sm">
+      <div class="absolute top-0 left-0 w-1.5 h-full ${m.resolved ? 'bg-emerald-500' : 'bg-rose-500'}"></div>
       
-      <div class="col-span-12 lg:col-span-6 flex flex-col space-y-6">
-        <div class="bg-surface-container-lowest rounded-3xl p-8 border border-outline-variant/30 shadow-sm relative overflow-hidden">
-          <div class="absolute top-0 right-0 w-48 h-48 bg-secondary/5 rounded-full translate-x-24 -translate-y-24 pointer-events-none"></div>
-          <h3 class="text-xl font-extrabold text-on-surface mb-6 relative z-10">Key Distinction</h3>
-          <div class="p-6 rounded-[2.5rem] bg-surface border border-outline-variant/20 relative z-10">
-            <div class="flex items-start gap-4 mb-4 pb-4 border-b border-outline-variant/20">
-               <div class="w-8 h-8 rounded-lg bg-primary/10 flex items-center justify-center text-primary flex-shrink-0 mt-1"><span class="material-symbols-outlined text-sm">bolt</span></div>
-               <div>
-                 <strong class="text-primary text-base font-black">Untoward</strong>
-                 <p class="text-sm font-medium text-on-surface mt-1">unexpected misfortune (events/situations)</p>
-               </div>
+      <div class="flex flex-col relative z-10 space-y-4">
+        <!-- Top Metadata Row -->
+        <div class="flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <span class="w-11 h-11 rounded-2xl ${m.resolved ? 'bg-emerald-100 text-emerald-700' : 'bg-rose-100 text-rose-700'} border flex items-center justify-center font-black text-sm shadow-inner">${m.q_num}</span>
+            <div>
+              <span class="text-base text-slate-900 font-extrabold tracking-tight">${m.topic}</span><br>
+              <div class="flex items-center gap-1.5 mt-0.5">
+                <span class="px-2 py-0.5 rounded-md bg-slate-100 border border-slate-200 text-[10px] font-bold text-slate-600 uppercase">${m.subject}</span>
+                <span class="px-2 py-0.5 rounded-md bg-rose-50 text-[10px] font-bold text-rose-700">${m.exam_title || 'Mock Test'}</span>
+              </div>
             </div>
-            <div class="flex items-start gap-4 mb-4">
-               <div class="w-8 h-8 rounded-lg bg-secondary/10 flex items-center justify-center text-secondary flex-shrink-0 mt-1"><span class="material-symbols-outlined text-sm">groups</span></div>
-               <div>
-                 <strong class="text-secondary text-base font-black">Unseemly</strong>
-                 <p class="text-sm font-medium text-on-surface mt-1">socially improper (behaviour/conduct)</p>
-               </div>
-            </div>
-            <div class="mt-4 p-4 rounded-xl bg-warning/10 border border-warning/20">
-              <span class="text-xs font-bold text-warning uppercase tracking-widest mb-1 block">The Trap</span>
-              <p class="text-sm font-medium text-on-surface">Both words start with 'un-' and relate to negativity, but they describe different things. In the 11+ context, the question tested whether you could distinguish between event-based and conduct-based descriptors.</p>
-            </div>
+          </div>
+          <div class="text-right text-xs">
+            <div class="text-rose-700 font-bold bg-rose-50 px-2 py-0.5 rounded border border-rose-200 mb-1 inline-block">Your Ans: ${m.yourAns}</div><br>
+            <div class="text-emerald-700 font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200 inline-block">Correct: ${m.correct}</div>
           </div>
         </div>
         
-        <div class="flex flex-col sm:flex-row gap-4">
-            <div class="flex-1 bg-error/5 rounded-3xl p-6 border border-error/20 relative overflow-hidden">
-                <div class="absolute -right-4 -bottom-4 opacity-10">
-                    <span class="material-symbols-outlined text-9xl text-error">cancel</span>
-                </div>
-              <span class="text-sm font-bold text-error flex items-center gap-2 mb-2 relative z-10"><span class="material-symbols-outlined text-lg">cancel</span> Your Answer: B</span>
-              <p class="text-sm font-medium text-on-surface relative z-10">"Untoward" means "rude". This confuses "untoward" with "unseemly". Untoward doesn't primarily mean rude.</p>
-            </div>
-            <div class="flex-1 bg-tertiary/5 rounded-3xl p-6 border border-tertiary/20 relative overflow-hidden">
-                <div class="absolute -right-4 -bottom-4 opacity-10">
-                    <span class="material-symbols-outlined text-9xl text-tertiary">check_circle</span>
-                </div>
-              <span class="text-sm font-bold text-tertiary flex items-center gap-2 mb-2 relative z-10"><span class="material-symbols-outlined text-lg">check_circle</span> Correct Answer: C</span>
-              <p class="text-sm font-medium text-on-surface relative z-10">"Untoward" means "unexpected and unfortunate". The key is the element of surprise/misfortune, not social impropriety.</p>
-            </div>
+        <!-- Stem & Trap Explanation -->
+        <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 space-y-2">
+          <p class="text-xs text-slate-800 font-bold leading-relaxed">${m.stem || m.desc}</p>
+          <p class="text-xs text-slate-600 italic">💡 <strong>Why it was missed:</strong> ${m.explanation}</p>
         </div>
         
-        <button class="w-full py-4 rounded-full bg-surface-container-high border border-outline-variant/30 text-on-surface font-bold shadow-sm hover:bg-surface-container hover:border-primary/50 transition-all flex items-center justify-center gap-2 mt-auto" data-navigate="mistake-mastery">
-            <span class="material-symbols-outlined">arrow_back</span>
-            Back to Mistake List
-        </button>
+        <!-- Action Cluster -->
+        <div class="flex gap-2 pt-1">
+          <button onclick="openReattemptModal('${m.id}')" class="flex-1 py-2.5 rounded-full ${m.resolved ? 'bg-slate-100 text-slate-700' : 'bg-rose-600 hover:bg-rose-700 text-white'} text-xs font-bold shadow transition-all cursor-pointer">
+            ${m.resolved ? 'Re-attempt Again' : 'Re-attempt Question (+35 XP)'}
+          </button>
+          <button onclick="resolveMistakeDirectly('${m.id}')" class="px-4 py-2.5 rounded-full border border-slate-300 hover:border-emerald-500 hover:text-emerald-700 text-xs text-slate-700 font-bold transition-all cursor-pointer">
+            ${m.resolved ? 'Marked Mastered ⭐' : 'Master Trap'}
+          </button>
+        </div>
       </div>
-    </div>
-  </div>`;
+    </div>`).join('');
+  }
+
+  // Filter Event Listeners
+  document.querySelectorAll('.exam-filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.exam-filter-pill').forEach(b => {
+        b.className = 'exam-filter-pill px-4 py-2 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all cursor-pointer';
+      });
+      btn.className = 'exam-filter-pill px-4 py-2 rounded-full bg-rose-600 text-white font-extrabold text-xs shadow transition-all cursor-pointer';
+      selectedExam = btn.dataset.exam;
+      renderMistakes();
+    });
+  });
+
+  document.querySelectorAll('.subject-filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.subject-filter-pill').forEach(b => {
+        b.className = 'subject-filter-pill px-3 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold';
+      });
+      btn.className = 'subject-filter-pill px-3 py-1 rounded-lg bg-slate-900 text-white font-bold';
+      selectedSubject = btn.dataset.subject;
+      renderMistakes();
+    });
+  });
+
+  const unresBtn = document.getElementById('toggle-unresolved-btn');
+  const resBtn = document.getElementById('toggle-resolved-btn');
+  if (unresBtn && resBtn) {
+    unresBtn.onclick = () => {
+      showResolved = false;
+      unresBtn.className = 'px-3.5 py-1.5 rounded-xl bg-rose-50 text-rose-700 border border-rose-200 font-bold text-xs';
+      resBtn.className = 'px-3.5 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 font-bold text-xs';
+      renderMistakes();
+    };
+    resBtn.onclick = () => {
+      showResolved = true;
+      resBtn.className = 'px-3.5 py-1.5 rounded-xl bg-emerald-50 text-emerald-700 border border-emerald-200 font-bold text-xs';
+      unresBtn.className = 'px-3.5 py-1.5 rounded-xl bg-slate-100 text-slate-600 hover:bg-slate-200 font-bold text-xs';
+      renderMistakes();
+    };
+  }
+
+  // Resolve Mistake directly
+  window.resolveMistakeDirectly = function(mistakeId) {
+    const item = allMistakes.find(m => m.id === mistakeId);
+    if (item) {
+      item.resolved = true;
+      localStorage.setItem('learnly_mistake_vault', JSON.stringify(allMistakes));
+      if (window.AIBuddy) {
+        window.AIBuddy.showToast('Mistake Mastered!', '+35 XP awarded for mastering cognitive trap.');
+      }
+      renderMistakes();
+    }
+  };
+
+  // Re-attempt Modal Handlers
+  let currentReattemptMistake = null;
+  const reattemptModal = document.getElementById('reattempt-modal');
+  const reattemptStem = document.getElementById('reattempt-stem');
+  const reattemptOptions = document.getElementById('reattempt-options');
+  const reattemptFeedback = document.getElementById('reattempt-feedback');
+  const submitReattemptBtn = document.getElementById('submit-reattempt-btn');
+
+  window.openReattemptModal = function(mistakeId) {
+    currentReattemptMistake = allMistakes.find(m => m.id === mistakeId);
+    if (!currentReattemptMistake || !reattemptModal) return;
+
+    reattemptStem.textContent = currentReattemptMistake.stem || currentReattemptMistake.desc;
+    reattemptFeedback.classList.add('hidden');
+
+    const letters = ['A', 'B', 'C', 'D'];
+    reattemptOptions.innerHTML = letters.map(l => `
+      <label class="flex items-center gap-3 p-3 rounded-xl border border-slate-200 hover:border-rose-400 cursor-pointer transition-all reattempt-opt-label">
+        <input type="radio" name="reattempt-radio" value="${l}" class="w-4 h-4 text-rose-600">
+        <span class="text-xs font-bold text-slate-800">Option ${l} ${l === currentReattemptMistake.correct ? '(Syllabus Standard Solution)' : '(Plausible Distractor)'}</span>
+      </label>
+    `).join('');
+
+    reattemptModal.classList.remove('hidden');
+    reattemptModal.classList.add('flex');
+  };
+
+  function closeReattemptModal() {
+    if (reattemptModal) {
+      reattemptModal.classList.add('hidden');
+      reattemptModal.classList.remove('flex');
+    }
+  }
+
+  const closeReattemptBtn = document.getElementById('close-reattempt-modal-btn');
+  const cancelReattemptBtn = document.getElementById('cancel-reattempt-btn');
+  if (closeReattemptBtn) closeReattemptBtn.onclick = closeReattemptModal;
+  if (cancelReattemptBtn) cancelReattemptBtn.onclick = closeReattemptModal;
+
+  if (submitReattemptBtn) {
+    submitReattemptBtn.onclick = () => {
+      const selected = document.querySelector('input[name="reattempt-radio"]:checked');
+      if (!selected) {
+        alert('Please choose an answer option.');
+        return;
+      }
+
+      if (selected.value === currentReattemptMistake.correct) {
+        reattemptFeedback.className = 'p-3 rounded-xl mb-4 text-xs font-bold leading-relaxed bg-emerald-50 text-emerald-800 border border-emerald-200 block';
+        reattemptFeedback.innerHTML = `✅ <strong>Correct!</strong> You mastered this question. +35 XP awarded!<br><span class="font-normal text-[11px] text-slate-600">${currentReattemptMistake.explanation}</span>`;
+        resolveMistakeDirectly(currentReattemptMistake.id);
+        setTimeout(closeReattemptModal, 1500);
+      } else {
+        reattemptFeedback.className = 'p-3 rounded-xl mb-4 text-xs font-bold leading-relaxed bg-rose-50 text-rose-800 border border-rose-200 block';
+        reattemptFeedback.innerHTML = `❌ <strong>Not quite.</strong> Option ${selected.value} falls for the same distractor trap.<br><span class="font-normal text-[11px] text-slate-600">Rule: ${currentReattemptMistake.explanation}</span>`;
+      }
+    };
+  }
+
+  // Initial Render
+  renderMistakes();
 });
