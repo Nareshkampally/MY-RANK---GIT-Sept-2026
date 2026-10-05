@@ -61,13 +61,22 @@ router.get('/adaptive', async (req, res) => {
 router.get('/recent', async (req, res) => {
   try {
     const db = getFirestoreDb();
-    const snapshot = await db.collection('test_attempts')
-      .where('user_id', '==', req.user.uid)
-      .orderBy('finish_time', 'desc')
-      .limit(10)
-      .get();
+    let snapshot;
+    try {
+      snapshot = await db.collection('test_attempts')
+        .where('user_id', '==', req.user.uid)
+        .orderBy('finish_time', 'desc')
+        .limit(10)
+        .get();
+    } catch (idxErr) {
+      snapshot = await db.collection('test_attempts')
+        .where('user_id', '==', req.user.uid)
+        .get();
+    }
       
-    const attempts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    let attempts = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    attempts.sort((a, b) => new Date(b.finish_time || b.start_time || 0) - new Date(a.finish_time || a.start_time || 0));
+    attempts = attempts.slice(0, 10);
     res.json({ attempts });
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch recent attempts' });

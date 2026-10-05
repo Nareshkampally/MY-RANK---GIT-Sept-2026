@@ -7,12 +7,20 @@ const { getFirestoreDb } = require('../db/firebase');
 router.get('/summary', async (req, res) => {
   try {
     const db = getFirestoreDb();
-    const snapshot = await db.collection('test_attempts')
-      .where('user_id', '==', req.user.uid)
-      .orderBy('start_time', 'asc')
-      .get();
+    let snapshot;
+    try {
+      snapshot = await db.collection('test_attempts')
+        .where('user_id', '==', req.user.uid)
+        .orderBy('start_time', 'asc')
+        .get();
+    } catch (idxErr) {
+      snapshot = await db.collection('test_attempts')
+        .where('user_id', '==', req.user.uid)
+        .get();
+    }
       
-    const attempts = snapshot.docs.map(doc => doc.data());
+    let attempts = snapshot.docs.map(doc => doc.data());
+    attempts.sort((a, b) => new Date(a.start_time || 0) - new Date(b.start_time || 0));
 
     // Subject breakdown
     const subjectAverages = {

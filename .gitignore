@@ -6,3 +6,4 @@ node_modules/
 serviceAccountKey.json
 server/db/*.sqlite
 server/db/*.sqlite-*
+scratch/

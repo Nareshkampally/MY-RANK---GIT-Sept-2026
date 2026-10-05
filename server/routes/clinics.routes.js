@@ -7,12 +7,20 @@ const { getFirestoreDb } = require('../db/firebase');
 router.get('/', async (req, res) => {
   try {
     const db = getFirestoreDb();
-    const snapshot = await db.collection('clinic_bookings')
-      .where('user_id', '==', req.user.uid)
-      .orderBy('created_at', 'desc')
-      .get();
+    let snapshot;
+    try {
+      snapshot = await db.collection('clinic_bookings')
+        .where('user_id', '==', req.user.uid)
+        .orderBy('created_at', 'desc')
+        .get();
+    } catch (idxErr) {
+      snapshot = await db.collection('clinic_bookings')
+        .where('user_id', '==', req.user.uid)
+        .get();
+    }
     
-    const bookings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    let bookings = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    bookings.sort((a, b) => new Date(b.created_at || 0) - new Date(a.created_at || 0));
     res.json({ bookings });
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch clinic bookings' });
