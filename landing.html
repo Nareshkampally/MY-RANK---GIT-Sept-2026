@@ -11,6 +11,9 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
   <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&display=swap" rel="stylesheet"/>
 
+  <!-- Tailwind CSS CDN for guaranteed utility resolution -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
   <style>
     /* ================= PALETTE & SPEC TOKENS ================= */
     :root {
@@ -21,12 +24,11 @@
       --muted: #767E8C;
       --ink-blue: #2C4A8F;
       --hairline: rgba(20, 28, 43, 0.16);
-      --hairline-heavy: rgba(20, 28, 43, 0.32);
       --font-serif: 'Newsreader', Georgia, serif;
       --font-mono: 'Courier Prime', Courier, monospace;
     }
 
-    /* Universal zero-radius rule */
+    /* Universal zero-radius rule everywhere including buttons */
     *, *::before, *::after {
       box-sizing: border-box;
       border-radius: 0 !important;
@@ -34,7 +36,7 @@
       -moz-osx-font-smoothing: grayscale;
     }
 
-    body {
+    html, body {
       margin: 0;
       padding: 0;
       background-color: var(--ground);
@@ -44,6 +46,7 @@
       line-height: 1.9;
       letter-spacing: 0.08em;
       overflow-x: hidden;
+      width: 100%;
     }
 
     ::selection {
@@ -67,13 +70,14 @@
       font-weight: 400;
     }
 
-    .mono-label {
+    .mono-kicker {
       font-family: var(--font-mono);
       font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--ink-secondary);
       line-height: 1.6;
+      display: block;
     }
 
     .mono-accent {
@@ -84,12 +88,12 @@
       color: var(--ink-blue);
     }
 
-    /* Clean square buttons - never filled with blue */
+    /* Clean square buttons - NEVER filled with blue */
     .btn-square {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      padding: 12px 24px;
+      padding: 13px 26px;
       font-family: var(--font-mono);
       font-size: 11px;
       letter-spacing: 0.1em;
@@ -99,7 +103,8 @@
       border: 1px solid var(--ink);
       background: transparent;
       color: var(--ink);
-      transition: background-color 140ms ease, color 140ms ease, border-color 140ms ease;
+      transition: background-color 140ms ease, color 140ms ease;
+      white-space: nowrap;
     }
     .btn-square:hover {
       background-color: var(--ink);
@@ -115,24 +120,166 @@
       color: var(--ink);
     }
 
-    /* Hairline utilities */
-    .border-b-hairline { border-bottom: 1px solid var(--hairline); }
-    .border-t-hairline { border-top: 1px solid var(--hairline); }
-    .border-l-hairline { border-left: 1px solid var(--hairline); }
-    .border-r-hairline { border-right: 1px solid var(--hairline); }
-    .border-hairline { border: 1px solid var(--hairline); }
+    /* Navigation Bar: Fixed 58px on translucent ground with 12px blur */
+    .nav-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 58px;
+      z-index: 50;
+      background: rgba(239, 233, 221, 0.88);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--hairline);
+      display: flex;
+      align-items: center;
+    }
+    .nav-inner {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+    }
+    .nav-link {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-secondary);
+      text-decoration: none;
+      transition: color 140ms ease;
+    }
+    .nav-link:hover {
+      color: var(--ink-blue);
+    }
 
-    /* ================= FIXED TRAVELLING PRODUCT ================= */
+    /* Hero Section: Full viewport minus nav, column layout on secondary ground */
+    .hero-section {
+      min-height: calc(100vh - 58px);
+      margin-top: 58px;
+      background-color: var(--ground-secondary);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 56px 40px 0 40px;
+      border-bottom: 1px solid var(--hairline);
+    }
+    .hero-content {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      position: relative;
+      z-index: 2;
+    }
+    .hero-copy-block {
+      max-width: 46vw;
+      min-width: 320px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .hero-title {
+      font-size: clamp(32px, 4.6vw, 68px);
+      line-height: 1.06;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0;
+    }
+    .hero-lede {
+      font-size: 12px;
+      line-height: 1.9;
+      color: var(--ink-secondary);
+      margin: 0;
+      max-width: 520px;
+    }
+    .hero-cta-group {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding-top: 8px;
+      flex-wrap: wrap;
+    }
+
+    /* Specifications strip at bottom of column via margin-top: auto */
+    .hero-spec-strip {
+      max-width: 1280px;
+      width: 100%;
+      margin: auto auto 0 auto;
+      padding: 18px 0;
+      border-top: 1px solid var(--hairline);
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--ink-secondary);
+      position: relative;
+      z-index: 2;
+    }
+    .spec-item-label {
+      display: block;
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+    .spec-item-val {
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    /* Wordmark spread across the very foot */
+    .wordmark-spread {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      width: 103%;
+      margin-left: -1.5%;
+      font-family: var(--font-serif);
+      font-weight: 500;
+      font-size: clamp(52px, 13vw, 196px);
+      line-height: 0.74;
+      letter-spacing: -0.04em;
+      color: var(--ink);
+      user-select: none;
+      pointer-events: none;
+      overflow: hidden;
+      transform: translateY(0.12em);
+      border-top: 1px solid var(--hairline);
+      padding-top: 6px;
+      position: relative;
+      z-index: 1;
+    }
+    .wordmark-spread span {
+      display: inline-block;
+      transition: transform 80ms linear;
+    }
+
+    /* ================= FIXED TRAVELLING PRODUCT OBJECT ================= */
     #travelling-product {
       position: fixed;
       width: 320px;
       height: 380px;
-      z-index: 30;
+      z-index: 20;
       pointer-events: none;
-      transition: opacity 180ms ease, visibility 180ms ease;
-      /* The only element allowed a drop-shadow per spec */
-      filter: drop-shadow(0 24px 32px rgba(20, 28, 43, 0.22));
+      /* Only element permitted a drop shadow per specification */
+      filter: drop-shadow(0 20px 30px rgba(20, 28, 43, 0.18));
+      transition: opacity 160ms ease, visibility 160ms ease;
       will-change: transform, opacity;
+      top: 18vh;
+      left: 56vw;
     }
 
     @media (prefers-reduced-motion: reduce) {
@@ -141,71 +288,96 @@
       }
     }
 
-    /* ================= SPREAD WORDMARK ================= */
-    .wordmark-spread {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      width: 104%;
-      margin-left: -2%;
-      font-family: var(--font-serif);
-      font-weight: 500;
-      font-size: clamp(48px, 12.8vw, 190px);
-      line-height: 0.76;
-      letter-spacing: -0.04em;
-      color: var(--ink);
-      user-select: none;
-      pointer-events: none;
-      overflow: hidden;
-      transform: translateY(0.12em);
+    /* Standard Two-Column Sections (Argument & Materials) */
+    .two-col-section {
+      padding: 100px 40px;
+      border-bottom: 1px solid var(--hairline);
+      background-color: var(--ground);
     }
-    .wordmark-spread span {
-      display: inline-block;
-      transition: transform 60ms linear;
+    .section-inner {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 460px 1fr;
+      gap: 72px;
+    }
+    .section-left-copy {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    .section-title {
+      font-size: clamp(28px, 3.4vw, 48px);
+      line-height: 1.12;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0;
+    }
+    .section-lede {
+      font-size: 12px;
+      line-height: 1.9;
+      color: var(--ink-secondary);
+      margin: 0;
     }
 
-    /* Table & row formatting */
+    /* Hairline-ruled rows */
+    .ruled-rows {
+      border-top: 1px solid var(--hairline);
+    }
     .spec-row {
       display: grid;
-      grid-template-columns: 140px 1fr 180px;
+      grid-template-columns: 160px 1fr 180px;
       gap: 24px;
-      padding: 16px 0;
+      padding: 18px 0;
       border-bottom: 1px solid var(--hairline);
       align-items: baseline;
     }
-    @media (max-width: 768px) {
-      .spec-row {
-        grid-template-columns: 1fr;
-        gap: 6px;
-      }
-      #travelling-product {
-        display: none;
-      }
+    .spec-row-label {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-blue);
+      font-weight: 700;
+    }
+    .spec-row-desc {
+      font-size: 12px;
+      line-height: 1.8;
+      color: var(--ink);
+    }
+    .spec-row-val {
+      font-family: var(--font-mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-align: right;
+      color: var(--ink-secondary);
+      font-variant-numeric: tabular-nums;
     }
 
-    /* Demonstration panel */
-    .demo-panel {
-      background: var(--ground);
-      border: 1px solid var(--ink);
-      padding: 32px;
-      position: relative;
+    /* Demonstration Section: Heading, variant buttons, bordered panel */
+    .demo-section {
+      padding: 100px 40px;
+      border-bottom: 1px solid var(--hairline);
+      background-color: var(--ground-secondary);
     }
-    .demo-svg-path {
-      fill: none;
-      stroke: var(--ink-blue);
-      stroke-width: 1.5;
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-      transition: stroke-dashoffset 2s cubic-bezier(0.16, 1, 0.3, 1), stroke-width 300ms ease;
+    .demo-panel-container {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
     }
-
-    /* Variant buttons */
+    .variant-bar {
+      display: flex;
+      flex-wrap: wrap;
+      margin: 24px 0 32px 0;
+    }
     .variant-btn {
       font-family: var(--font-mono);
       font-size: 11px;
       letter-spacing: 0.1em;
       text-transform: uppercase;
-      padding: 10px 18px;
+      padding: 12px 22px;
       background: transparent;
       border: 1px solid var(--hairline);
       color: var(--ink-secondary);
@@ -214,19 +386,141 @@
       margin-bottom: -1px;
       transition: all 140ms ease;
     }
+    .variant-btn:hover {
+      color: var(--ink);
+      border-color: var(--ink);
+    }
     .variant-btn[aria-pressed="true"] {
       border-color: var(--ink);
       color: var(--ink);
-      background-color: var(--ground-secondary);
+      background-color: var(--ground);
       font-weight: 700;
       box-shadow: inset 0 0 0 1px var(--ink);
     }
 
-    /* Legal dialog modal in stationery style */
+    .demo-output-panel {
+      background: var(--ground);
+      border: 1px solid var(--ink);
+      padding: 36px 40px;
+      position: relative;
+    }
+    .demo-header-strip {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--hairline);
+      font-family: var(--font-mono);
+      font-size: 10px;
+      text-transform: uppercase;
+      color: var(--muted);
+      letter-spacing: 0.1em;
+    }
+    .demo-svg-path {
+      fill: none;
+      stroke: var(--ink-blue);
+      stroke-width: 1.75;
+      stroke-linecap: square;
+      stroke-linejoin: miter;
+      transition: stroke-dashoffset 2s cubic-bezier(0.16, 1, 0.3, 1), stroke-width 300ms ease;
+    }
+
+    .demo-facts-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      padding-top: 24px;
+      border-top: 1px solid var(--hairline);
+      margin-top: 24px;
+      font-family: var(--font-mono);
+      font-size: 11px;
+    }
+
+    /* Measurements Section: Single column of hairline-ruled rows */
+    .measurements-section {
+      padding: 100px 40px;
+      border-bottom: 1px solid var(--hairline);
+      background-color: var(--ground-secondary);
+    }
+
+    /* Close Section */
+    .close-section {
+      padding: 100px 40px 0 40px;
+      background-color: var(--ground);
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+    .close-inner {
+      max-width: 1280px;
+      width: 100%;
+      margin: 0 auto;
+    }
+    .close-top-split {
+      display: flex;
+      align-items: flex-end;
+      justify-content: space-between;
+      gap: 40px;
+      padding-bottom: 64px;
+      border-bottom: 1px solid var(--hairline);
+      flex-wrap: wrap;
+    }
+    .close-fine-print {
+      font-family: var(--font-mono);
+      font-size: 12px;
+      line-height: 1.9;
+      color: var(--ink-secondary);
+      margin-top: 16px;
+      max-width: 520px;
+    }
+
+    .footer-strip {
+      padding: 24px 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: var(--font-mono);
+      font-size: 11px;
+      color: var(--muted);
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: 0.1em;
+    }
+    .legal-btn {
+      background: transparent;
+      border: 0;
+      padding: 0;
+      font-family: var(--font-mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+      cursor: pointer;
+      text-decoration: none;
+      transition: color 140ms ease;
+    }
+    .legal-btn:hover {
+      color: var(--ink);
+    }
+    .legal-btn-accent {
+      color: var(--ink-blue);
+      font-weight: 700;
+    }
+
+    /* Modal Dialog */
     .modal-backdrop {
       position: fixed;
       inset: 0;
-      background: rgba(20, 28, 43, 0.6);
+      background: rgba(20, 28, 43, 0.65);
       backdrop-filter: blur(8px);
       z-index: 100;
       display: none;
@@ -237,12 +531,24 @@
     .modal-box {
       background: var(--ground);
       border: 1px solid var(--ink);
-      max-width: 720px;
+      max-width: 740px;
       width: 100%;
       max-height: 85vh;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 20px 40px rgba(20, 28, 43, 0.25);
+    }
+
+    /* Responsive adjustments */
+    @media (max-width: 992px) {
+      .hero-copy-block { max-width: 100%; }
+      .section-inner { grid-template-columns: 1fr; gap: 40px; }
+      .spec-row { grid-template-columns: 1fr; gap: 6px; }
+      .spec-row-val { text-align: left; }
+      .nav-links { display: none; }
+      #travelling-product { display: none !important; }
+      .hero-spec-strip { grid-template-columns: repeat(2, 1fr); }
+      .hero-section, .two-col-section, .demo-section, .measurements-section, .close-section { padding-left: 20px; padding-right: 20px; }
+      .nav-inner { padding: 0 20px; }
     }
   </style>
 </head>
@@ -252,97 +558,93 @@
   <!-- A single high-precision cut-out of the Learnly Calibrated Diagnostic Instrument -->
   <div id="travelling-product" aria-hidden="true">
     <svg width="320" height="380" viewBox="0 0 320 380" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Cut-out outer shadow & parchment bevel -->
-      <rect x="20" y="20" width="280" height="340" fill="#E5DED0" stroke="#141C2B" stroke-width="1.5"/>
-      <rect x="28" y="28" width="264" height="324" fill="#EFE9DD" stroke="rgba(20,28,43,0.2)" stroke-width="1"/>
+      <!-- Outer Card Cut-out with warm paper fill & ink border -->
+      <rect x="16" y="16" width="288" height="348" fill="#E5DED0" stroke="#141C2B" stroke-width="1.5"/>
+      <rect x="24" y="24" width="272" height="332" fill="#EFE9DD" stroke="rgba(20,28,43,0.18)" stroke-width="1"/>
       
-      <!-- Engraved Vernier Diagnostic Caliper Header -->
-      <line x1="28" y1="64" x2="292" y2="64" stroke="#141C2B" stroke-width="1"/>
-      <text x="38" y="48" font-family="'Courier Prime', monospace" font-size="9" letter-spacing="0.1em" fill="#4A5364" text-anchor="start">STANDARD AGE CALIPER</text>
-      <text x="282" y="48" font-family="'Courier Prime', monospace" font-size="9" letter-spacing="0.1em" fill="#2C4A8F" font-weight="700" text-anchor="end">SAS 141</text>
+      <!-- Engraved Vernier Header -->
+      <line x1="24" y1="60" x2="296" y2="60" stroke="#141C2B" stroke-width="1"/>
+      <text x="36" y="46" font-family="'Courier Prime', monospace" font-size="9" letter-spacing="0.1em" fill="#4A5364" text-anchor="start">STANDARD AGE CALIPER</text>
+      <text x="284" y="46" font-family="'Courier Prime', monospace" font-size="9" letter-spacing="0.1em" fill="#2C4A8F" font-weight="700" text-anchor="end">SAS 141</text>
       
       <!-- Mathematical SAS Scale Graticule (70 to 141) -->
       <g stroke="#141C2B" stroke-width="1">
-        <!-- Main scale bar -->
-        <line x1="48" y1="84" x2="272" y2="84"/>
-        <line x1="48" y1="78" x2="48" y2="90"/>
-        <line x1="85" y1="80" x2="85" y2="88"/>
-        <line x1="123" y1="80" x2="123" y2="88"/>
-        <line x1="160" y1="76" x2="160" y2="92"/> <!-- 100 Mean -->
-        <line x1="197" y1="80" x2="197" y2="88"/>
-        <line x1="235" y1="78" x2="235" y2="90"/>
-        <line x1="272" y1="76" x2="272" y2="92"/> <!-- 141 Max -->
+        <line x1="44" y1="84" x2="276" y2="84"/>
+        <line x1="44" y1="78" x2="44" y2="90"/>
+        <line x1="82" y1="80" x2="82" y2="88"/>
+        <line x1="121" y1="80" x2="121" y2="88"/>
+        <line x1="160" y1="74" x2="160" y2="94"/> <!-- 100 Mean -->
+        <line x1="199" y1="80" x2="199" y2="88"/>
+        <line x1="237" y1="78" x2="237" y2="90"/>
+        <line x1="276" y1="74" x2="276" y2="94"/> <!-- 141 Max -->
       </g>
-      <text x="48" y="102" font-family="'Courier Prime', monospace" font-size="8" fill="#767E8C" text-anchor="middle">70</text>
+      <text x="44" y="102" font-family="'Courier Prime', monospace" font-size="8" fill="#767E8C" text-anchor="middle">70</text>
       <text x="160" y="102" font-family="'Courier Prime', monospace" font-size="8" fill="#141C2B" font-weight="700" text-anchor="middle">100 µ</text>
-      <text x="272" y="102" font-family="'Courier Prime', monospace" font-size="8" fill="#2C4A8F" font-weight="700" text-anchor="middle">141</text>
+      <text x="276" y="102" font-family="'Courier Prime', monospace" font-size="8" fill="#2C4A8F" font-weight="700" text-anchor="middle">141</text>
       
       <!-- Engraved Normal Distribution Window -->
-      <rect x="44" y="118" width="232" height="110" fill="#E5DED0" stroke="#141C2B" stroke-width="1"/>
-      <!-- Gaussian Curve Path -->
-      <path d="M 48 214 Q 100 214 130 170 Q 160 128 160 128 Q 160 128 190 170 Q 220 214 272 214" fill="none" stroke="#2C4A8F" stroke-width="1.75"/>
-      <!-- Standard deviation ticks -->
-      <line x1="160" y1="128" x2="160" y2="214" stroke="#141C2B" stroke-width="1" stroke-dasharray="2 2"/>
-      <line x1="228" y1="198" x2="228" y2="214" stroke="#2C4A8F" stroke-width="1.5"/>
-      <text x="228" y="190" font-family="'Courier Prime', monospace" font-size="8" fill="#2C4A8F" text-anchor="middle">QE BOYS 135</text>
+      <rect x="40" y="118" width="240" height="114" fill="#E5DED0" stroke="#141C2B" stroke-width="1"/>
+      <!-- Gaussian Normal Distribution Path in Ink Blue stroke -->
+      <path d="M 44 218 Q 100 218 130 170 Q 160 126 160 126 Q 160 126 190 170 Q 220 218 276 218" fill="none" stroke="#2C4A8F" stroke-width="1.75"/>
+      <line x1="160" y1="126" x2="160" y2="218" stroke="#141C2B" stroke-width="1" stroke-dasharray="2 2"/>
+      <line x1="230" y1="198" x2="230" y2="218" stroke="#2C4A8F" stroke-width="1.5"/>
+      <text x="230" y="190" font-family="'Courier Prime', monospace" font-size="8" fill="#2C4A8F" text-anchor="middle">QE BOYS 135</text>
       
       <!-- Vernier Dial Indicator Indicator Needle -->
-      <circle cx="160" cy="275" r="32" stroke="#141C2B" stroke-width="1.5" fill="#EFE9DD"/>
-      <circle cx="160" cy="275" r="3" fill="#141C2B"/>
-      <!-- Needle angled toward 138 SAS -->
-      <line x1="160" y1="275" x2="182" y2="252" stroke="#2C4A8F" stroke-width="2"/>
-      <text x="160" y="324" font-family="'Newsreader', serif" font-style="italic" font-size="13" fill="#141C2B" text-anchor="middle">Standard Age Score</text>
-      <text x="160" y="338" font-family="'Courier Prime', monospace" font-size="9" letter-spacing="0.08em" fill="#4A5364" text-anchor="middle">BIRTH-MONTH ADJUSTED</text>
+      <circle cx="160" cy="282" r="32" stroke="#141C2B" stroke-width="1.5" fill="#EFE9DD"/>
+      <circle cx="160" cy="282" r="3" fill="#141C2B"/>
+      <!-- Needle pointing precisely to 138 SAS -->
+      <line x1="160" y1="282" x2="182" y2="260" stroke="#2C4A8F" stroke-width="2"/>
+      <text x="160" y="328" font-family="'Newsreader', serif" font-style="italic" font-size="13" fill="#141C2B" text-anchor="middle">Standard Age Score</text>
+      <text x="160" y="342" font-family="'Courier Prime', monospace" font-size="8.5" letter-spacing="0.08em" fill="#4A5364" text-anchor="middle">BIRTH-MONTH ADJUSTED</text>
     </svg>
   </div>
 
-  <!-- ================= NAVIGATION ================= -->
-  <nav class="fixed top-0 left-0 right-0 z-50 h-[58px] border-b-hairline bg-[#EFE9DD]/85 backdrop-blur-[12px] flex items-center">
-    <div class="w-full max-w-7xl mx-auto px-6 sm:px-10 flex items-center justify-between">
+  <!-- ================= NAVIGATION: FIXED 58PX ================= -->
+  <nav class="nav-bar">
+    <div class="nav-inner">
       
-      <!-- Serif wordmark with trailing period in accent -->
+      <!-- Serif wordmark at 19px with trailing period in accent -->
       <a href="#" class="text-[19px] font-serif font-normal text-[#141C2B] tracking-[-0.02em] no-underline">
-        Learnly<span class="text-[#2C4A8F] font-bold">.</span>
+        Learnly<span style="color: var(--ink-blue); font-weight: 700;">.</span>
       </a>
 
       <!-- Monospaced uppercase links turning accent on hover -->
-      <div class="hidden md:flex items-center gap-8 text-[11px] font-mono tracking-[0.1em] uppercase text-[#4A5364]">
-        <a href="#argument" class="hover:text-[#2C4A8F] transition-colors no-underline">I. The Standard</a>
-        <a href="#demonstration" class="hover:text-[#2C4A8F] transition-colors no-underline">II. The Demonstration</a>
-        <a href="#materials" class="hover:text-[#2C4A8F] transition-colors no-underline">III. Syllabi</a>
-        <a href="#measurements" class="hover:text-[#2C4A8F] transition-colors no-underline">IV. Specifications</a>
+      <div class="nav-links">
+        <a href="#argument" class="nav-link">I. The Standard</a>
+        <a href="#demonstration" class="nav-link">II. The Demonstration</a>
+        <a href="#materials" class="nav-link">III. Syllabi</a>
+        <a href="#measurements" class="nav-link">IV. Specifications</a>
       </div>
 
       <!-- One square button -->
-      <div class="flex items-center gap-4">
-        <a href="index.html#practice-arena" class="btn-square btn-square-solid">
-          Evaluate Candidate
-        </a>
-      </div>
+      <a href="index.html#practice-arena" class="btn-square btn-square-solid">
+        Evaluate Candidate
+      </a>
 
     </div>
   </nav>
 
   <!-- ================= SECTION 1: HERO ================= -->
-  <header class="min-h-[calc(100vh-58px)] mt-[58px] bg-[#E5DED0] relative overflow-hidden flex flex-col justify-between pt-16 sm:pt-20 px-6 sm:px-10 border-b-hairline">
+  <header class="hero-section">
     
-    <div class="max-w-7xl mx-auto w-full">
+    <div class="hero-content">
       <!-- Copy block no wider than 46vw -->
-      <div class="max-w-[46vw] min-w-[320px] space-y-6">
+      <div class="hero-copy-block">
         
-        <div class="mono-label">
+        <span class="mono-kicker">
           [ 11-PLUS ADMISSIONS / SPECIFICATION 2026–2027 ]
-        </div>
+        </span>
 
-        <h1 class="text-[clamp(32px,4.6vw,68px)] leading-[1.06] font-normal tracking-[-0.02em] text-[#141C2B]">
+        <h1 class="hero-title">
           A precision diagnostic instrument for grammar school <em>admissions.</em>
         </h1>
 
-        <p class="text-[12px] text-[#4A5364] leading-[1.9] tracking-[0.08em] font-mono max-w-lg">
+        <p class="hero-lede">
           The 11+ does not test effort; it tests standardized capacity under strict actuarial time limits. Learnly evaluates candidate velocity across all 21 GL question typologies, calculates exact birth-month Standard Age Scores, and identifies the missing proofs.
         </p>
 
-        <div class="pt-2 flex flex-wrap items-center gap-4">
+        <div class="hero-cta-group">
           <a href="index.html#practice-arena" class="btn-square btn-square-solid">
             Begin Baseline Diagnostic
           </a>
@@ -354,30 +656,28 @@
       </div>
     </div>
 
-    <!-- Hairline-topped strip of monospaced specifications -->
-    <div class="w-full max-w-7xl mx-auto mt-auto pt-10">
-      <div class="border-t-hairline py-4 grid grid-cols-2 sm:grid-cols-4 gap-4 text-[11px] font-mono tracking-[0.08em] text-[#4A5364]">
-        <div>
-          <span class="block text-[10px] text-[#767E8C] uppercase">STANDARD:</span>
-          <span>GL / CEM / CSSE</span>
-        </div>
-        <div>
-          <span class="block text-[10px] text-[#767E8C] uppercase">CALIBRATION RANGE:</span>
-          <span class="text-[#2C4A8F] font-bold">SAS 69 — 141</span>
-        </div>
-        <div>
-          <span class="block text-[10px] text-[#767E8C] uppercase">ACTIVE TEST POOL:</span>
-          <span>10,480 PROBLEMS</span>
-        </div>
-        <div>
-          <span class="block text-[10px] text-[#767E8C] uppercase">AGE NORMALISATION:</span>
-          <span>±6.2 MO. ADJUSTMENT</span>
-        </div>
+    <!-- Hairline-topped strip of monospaced specifications via margin-top: auto -->
+    <div class="hero-spec-strip">
+      <div>
+        <span class="spec-item-label">STANDARD:</span>
+        <span class="spec-item-val">GL / CEM / CSSE</span>
+      </div>
+      <div>
+        <span class="spec-item-label">CALIBRATION RANGE:</span>
+        <span class="spec-item-val" style="color: var(--ink-blue);">SAS 69 — 141</span>
+      </div>
+      <div>
+        <span class="spec-item-label">ACTIVE TEST POOL:</span>
+        <span class="spec-item-val">10,480 PROBLEMS</span>
+      </div>
+      <div>
+        <span class="spec-item-label">AGE NORMALISATION:</span>
+        <span class="spec-item-val">±6.2 MO. ADJUSTMENT</span>
       </div>
     </div>
 
-    <!-- Across the very foot: Brand name set letter by letter spanning full width -->
-    <div class="wordmark-spread border-t-hairline" id="hero-wordmark">
+    <!-- Across the very foot: brand name set letter by letter spanning full width -->
+    <div class="wordmark-spread" id="hero-wordmark">
       <span>L</span>
       <span>E</span>
       <span>A</span>
@@ -390,52 +690,48 @@
   </header>
 
   <!-- ================= SECTION 2: THE ARGUMENT ================= -->
-  <section id="argument" class="py-24 sm:py-32 px-6 sm:px-10 border-b-hairline bg-[#EFE9DD]">
-    <div class="max-w-7xl mx-auto">
+  <section id="argument" class="two-col-section">
+    <div class="section-inner">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <!-- Left: Heading and monospaced lede -->
+      <div class="section-left-copy">
+        <span class="mono-kicker">[ I. THE ARGUMENT ]</span>
+        <h2 class="section-title">
+          Why raw percentages <em>fail</em> the candidate.
+        </h2>
+        <p class="section-lede">
+          Every September, thousands of pupils score above 85% on commercial paper workbooks, yet receive rejection letters from Queen Elizabeth’s, Henrietta Barnett, and the Sutton grammar schools.
+        </p>
+        <p class="section-lede">
+          Grammar school consortia do not admit pupils on raw marks. They rank candidates on Standard Age Scores (SAS) calculated through Gaussian distribution curves. A child born in August receives up to six raw points of age-standardisation credit over a peer born in September of the previous year. Static workbooks cannot compute this; Learnly executes it on every question.
+        </p>
+      </div>
+
+      <!-- Right: Hairline-ruled rows -->
+      <div class="ruled-rows">
         
-        <!-- Left: Heading and monospaced lede -->
-        <div class="lg:col-span-5 space-y-5">
-          <span class="mono-label">[ I. THE ARGUMENT ]</span>
-          <h2 class="text-[clamp(28px,3.2vw,48px)] leading-[1.12]">
-            Why raw percentages <em>fail</em> the candidate.
-          </h2>
-          <p class="text-[12px] text-[#4A5364] leading-[1.9] font-mono">
-            Every September, thousands of pupils score above 85% on commercial paper workbooks, yet receive rejection letters from Queen Elizabeth’s, Henrietta Barnett, and the Sutton grammar schools. 
-          </p>
-          <p class="text-[12px] text-[#4A5364] leading-[1.9] font-mono">
-            Grammar school consortia do not admit pupils on raw marks. They rank candidates on Standard Age Scores (SAS) calculated through Gaussian distribution curves. A child born in August receives up to six raw points of age-standardisation credit over a peer born in September of the previous year. Static workbooks cannot compute this; Learnly executes it on every question.
-          </p>
+        <div class="spec-row">
+          <span class="spec-row-label">01. NORMALISATION</span>
+          <span class="spec-row-desc">Birth-Month Statistical Balancing against the national standardization sample of 12,000 pupils.</span>
+          <span class="spec-row-val">µ = 100, σ = 15</span>
         </div>
 
-        <!-- Right: Hairline-ruled rows -->
-        <div class="lg:col-span-7 border-t-hairline">
-          
-          <div class="spec-row">
-            <span class="mono-accent">01. NORMALISATION</span>
-            <span class="text-[12px] text-[#141C2B]">Birth-Month Statistical Balancing against the national standardization sample of 12,000 pupils.</span>
-            <span class="font-mono text-right text-[11px] text-[#4A5364]">µ = 100, σ = 15</span>
-          </div>
+        <div class="spec-row">
+          <span class="spec-row-label">02. TYPOLOGIES</span>
+          <span class="spec-row-desc">Full exhaust coverage of all 21 GL Assessment Verbal Reasoning codes, from compound-word algebra to letter sequences.</span>
+          <span class="spec-row-val">21 / 21 PATTERNS</span>
+        </div>
 
-          <div class="spec-row">
-            <span class="mono-accent">02. TYPOLOGIES</span>
-            <span class="text-[12px] text-[#141C2B]">Full exhaust coverage of all 21 GL Assessment Verbal Reasoning codes, from compound-word algebra to letter sequences.</span>
-            <span class="font-mono text-right text-[11px] text-[#4A5364]">21 / 21 PATTERNS</span>
-          </div>
+        <div class="spec-row">
+          <span class="spec-row-label">03. REMEDIATION</span>
+          <span class="spec-row-desc">Immediate algorithmic routing of incorrect derivations into the scholar’s spaced-repetition queue.</span>
+          <span class="spec-row-val">0.00s LATENCY</span>
+        </div>
 
-          <div class="spec-row">
-            <span class="mono-accent">03. REMEDIATION</span>
-            <span class="text-[12px] text-[#141C2B]">Immediate algorithmic routing of incorrect derivations into the scholar’s spaced-repetition queue.</span>
-            <span class="font-mono text-right text-[11px] text-[#4A5364]">0.00s LATENCY</span>
-          </div>
-
-          <div class="spec-row">
-            <span class="mono-accent">04. ETYMOLOGY</span>
-            <span class="text-[12px] text-[#141C2B]">LexiVault decomposing 1,500 11+ vocabulary hurdles into Latin and Greek root morphemes.</span>
-            <span class="font-mono text-right text-[11px] text-[#4A5364]">1,500 ROOTS</span>
-          </div>
-
+        <div class="spec-row">
+          <span class="spec-row-label">04. ETYMOLOGY</span>
+          <span class="spec-row-desc">LexiVault decomposing 1,500 11+ vocabulary hurdles into Latin and Greek root morphemes.</span>
+          <span class="spec-row-val">1,500 ROOTS</span>
         </div>
 
       </div>
@@ -444,20 +740,20 @@
   </section>
 
   <!-- ================= SECTION 3: THE DEMONSTRATION (DRAWS ITSELF) ================= -->
-  <section id="demonstration" class="py-24 sm:py-32 px-6 sm:px-10 border-b-hairline bg-[#E5DED0]">
-    <div class="max-w-7xl mx-auto">
+  <section id="demonstration" class="demo-section">
+    <div class="demo-panel-container">
       
-      <div class="max-w-2xl mb-12">
-        <span class="mono-label">[ II. THE DEMONSTRATION ]</span>
-        <h2 class="text-[clamp(28px,3.2vw,48px)] leading-[1.12] mt-2 mb-4">
+      <div style="max-width: 680px;">
+        <span class="mono-kicker">[ II. THE DEMONSTRATION ]</span>
+        <h2 class="section-title" style="margin-top: 8px; margin-bottom: 16px;">
           A demonstration that <em>draws</em> itself.
         </h2>
-        <p class="text-[12px] text-[#4A5364] leading-[1.9] font-mono">
+        <p class="section-lede">
           The platform performing its own diagnostic output. Select an admissions model below to observe the mathematical derivation path rendered in ink.
         </p>
 
         <!-- Variant Picker (aria-pressed) -->
-        <div class="flex flex-wrap pt-4" role="group" aria-label="Admissions Derivation Models">
+        <div class="variant-bar" role="group" aria-label="Admissions Derivation Models">
           <button type="button" class="variant-btn" aria-pressed="true" onclick="selectVariant(0)">
             Model A • Standard Age Curve
           </button>
@@ -471,15 +767,15 @@
       </div>
 
       <!-- Bordered panel holding SVG of product's own output -->
-      <div class="demo-panel">
-        <div class="flex items-center justify-between pb-4 border-b-hairline mb-6 text-[10px] font-mono uppercase text-[#767E8C]">
+      <div class="demo-output-panel">
+        <div class="demo-header-strip">
           <span id="demo-indicator">PLOT 01 // GAUSSIAN ADMISSIONS DENSITY</span>
           <span>OUTPUT RESOLUTION: 100% VECTOR</span>
         </div>
 
         <!-- SVG Output Canvas -->
-        <div class="w-full h-64 sm:h-80 flex items-center justify-center overflow-hidden">
-          <svg id="demo-svg" class="w-full h-full" viewBox="0 0 800 280" fill="none">
+        <div style="width: 100%; height: 320px; display: flex; align-items: center; justify-content: center; overflow: hidden; margin: 16px 0;">
+          <svg id="demo-svg" style="width: 100%; height: 100%;" viewBox="0 0 800 280" fill="none">
             <!-- Background coordinate grid -->
             <g stroke="rgba(20,28,43,0.08)" stroke-width="1">
               <line x1="40" y1="40" x2="760" y2="40"/>
@@ -506,19 +802,19 @@
           </svg>
         </div>
 
-        <!-- Three monospaced facts beneath the drawing, wired to the picker -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-6 border-t-hairline mt-6 font-mono text-[11px]">
+        <!-- Three monospaced facts beneath the drawing -->
+        <div class="demo-facts-strip">
           <div>
-            <span class="block text-[10px] text-[#767E8C] uppercase" id="fact-1-label">OBSERVED SAMPLE:</span>
-            <span class="text-[#141C2B] font-bold" id="fact-1-val">14,200 Cohort Pupils</span>
+            <span class="spec-item-label" id="fact-1-label">OBSERVED SAMPLE:</span>
+            <span class="spec-item-val" id="fact-1-val">14,200 Cohort Pupils</span>
           </div>
           <div>
-            <span class="block text-[10px] text-[#767E8C] uppercase" id="fact-2-label">STANDARD DEVIATION:</span>
-            <span class="text-[#2C4A8F] font-bold" id="fact-2-val">15.0 SAS Points</span>
+            <span class="spec-item-label" id="fact-2-label">STANDARD DEVIATION:</span>
+            <span class="spec-item-val" style="color: var(--ink-blue);" id="fact-2-val">15.0 SAS Points</span>
           </div>
           <div>
-            <span class="block text-[10px] text-[#767E8C] uppercase" id="fact-3-label">SELECTIVITY BAND:</span>
-            <span class="text-[#141C2B] font-bold" id="fact-3-val">Top 2.5% of National Year 5</span>
+            <span class="spec-item-label" id="fact-3-label">SELECTIVITY BAND:</span>
+            <span class="spec-item-val" id="fact-3-val">Top 2.5% of National Year 5</span>
           </div>
         </div>
 
@@ -528,52 +824,48 @@
   </section>
 
   <!-- ================= SECTION 4: THE MATERIALS (SYLLABI) ================= -->
-  <section id="materials" class="py-24 sm:py-32 px-6 sm:px-10 border-b-hairline bg-[#EFE9DD]">
-    <div class="max-w-7xl mx-auto">
+  <section id="materials" class="two-col-section">
+    <div class="section-inner">
       
-      <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16">
+      <div class="section-left-copy">
+        <span class="mono-kicker">[ III. THE MATERIALS ]</span>
+        <h2 class="section-title">
+          Four disciplines. Zero <em>generic</em> items.
+        </h2>
+        <p class="section-lede">
+          Every module in Learnly is built directly from the official test syllabi published by GL Assessment, CEM Select, the Consortium of Selective Schools in Essex (CSSE), and the Sutton Selective Eligibility Test (SET).
+        </p>
+        <div style="padding-top: 12px;">
+          <a href="index.html#practice-arena" class="btn-square">
+            Browse Complete Catalog
+          </a>
+        </div>
+      </div>
+
+      <div class="ruled-rows">
         
-        <div class="lg:col-span-5 space-y-5">
-          <span class="mono-label">[ III. THE MATERIALS ]</span>
-          <h2 class="text-[clamp(28px,3.2vw,48px)] leading-[1.12]">
-            Four disciplines. Zero <em>generic</em> items.
-          </h2>
-          <p class="text-[12px] text-[#4A5364] leading-[1.9] font-mono">
-            Every module in Learnly is built directly from the official test syllabi published by GL Assessment, CEM Select, the Consortium of Selective Schools in Essex (CSSE), and the Sutton Selective Eligibility Test (SET).
-          </p>
-          <div class="pt-4">
-            <a href="index.html#practice-arena" class="btn-square">
-              Browse Complete Catalog
-            </a>
-          </div>
+        <div class="spec-row">
+          <span class="spec-row-label">VERBAL REASONING</span>
+          <span class="spec-row-desc">Word-letter codes, complete the word, hidden words, antonyms, analogies, and logical deduction.</span>
+          <span class="spec-row-val">3,240 ITEMS</span>
         </div>
 
-        <div class="lg:col-span-7 border-t-hairline">
-          
-          <div class="spec-row">
-            <span class="mono-accent">VERBAL REASONING</span>
-            <span class="text-[12px] text-[#141C2B]">Word-letter codes, complete the word, hidden words, antonyms, analogies, and logical deduction.</span>
-            <span class="font-mono text-right text-[11px] text-[#4A5364]">3,240 ITEMS</span>
-          </div>
+        <div class="spec-row">
+          <span class="spec-row-label">MATHEMATICS</span>
+          <span class="spec-row-desc">Multi-step algebra, proportions, prime factorisation, probability, coordinate geometry, and Venn logic.</span>
+          <span class="spec-row-val">3,510 ITEMS</span>
+        </div>
 
-          <div class="spec-row">
-            <span class="mono-accent">MATHEMATICS</span>
-            <span class="text-[12px] text-[#141C2B]">Multi-step algebra, proportions, prime factorisation, probability, coordinate geometry, and Venn logic.</span>
-            <span class="font-mono text-right text-[11px] text-[#4A5364]">3,510 ITEMS</span>
-          </div>
+        <div class="spec-row">
+          <span class="spec-row-label">ENGLISH & ROOTS</span>
+          <span class="spec-row-desc">19th-century classical prose comprehension, cloze test vocabulary, syntax inversion, and Latin etymology.</span>
+          <span class="spec-row-val">1,890 ITEMS</span>
+        </div>
 
-          <div class="spec-row">
-            <span class="mono-accent">ENGLISH & ROOTS</span>
-            <span class="text-[12px] text-[#141C2B]">19th-century classical prose comprehension, cloze test vocabulary, syntax inversion, and Latin etymology.</span>
-            <span class="font-mono text-right text-[11px] text-[#4A5364]">1,890 ITEMS</span>
-          </div>
-
-          <div class="spec-row">
-            <span class="mono-accent">NON-VERBAL & SPATIAL</span>
-            <span class="text-[12px] text-[#141C2B]">3D net unfoldings, matrix progressions, reflective symmetry, combined shapes, and isometric rotations.</span>
-            <span class="font-mono text-right text-[11px] text-[#4A5364]">1,840 ITEMS</span>
-          </div>
-
+        <div class="spec-row">
+          <span class="spec-row-label">NON-VERBAL & SPATIAL</span>
+          <span class="spec-row-desc">3D net unfoldings, matrix progressions, reflective symmetry, combined shapes, and isometric rotations.</span>
+          <span class="spec-row-val">1,840 ITEMS</span>
         </div>
 
       </div>
@@ -582,56 +874,56 @@
   </section>
 
   <!-- ================= SECTION 5: MEASUREMENTS & SPECIFICATIONS ================= -->
-  <section id="measurements" class="py-24 sm:py-32 px-6 sm:px-10 border-b-hairline bg-[#E5DED0]">
-    <div class="max-w-7xl mx-auto">
+  <section id="measurements" class="measurements-section">
+    <div class="demo-panel-container">
       
-      <div class="max-w-2xl mb-12">
-        <span class="mono-label">[ IV. MEASUREMENTS ]</span>
-        <h2 class="text-[clamp(28px,3.2vw,48px)] leading-[1.12] mt-2 mb-4">
+      <div style="max-width: 680px; margin-bottom: 48px;">
+        <span class="mono-kicker">[ IV. MEASUREMENTS ]</span>
+        <h2 class="section-title" style="margin-top: 8px; margin-bottom: 16px;">
           Empirical specifications of the <em>standard.</em>
         </h2>
-        <p class="text-[12px] text-[#4A5364] leading-[1.9] font-mono">
+        <p class="section-lede">
           All figures verified against statutory admissions reports published by UK grammar school admission authorities.
         </p>
       </div>
 
       <!-- Single column of hairline-ruled rows: label, description, right-aligned tabular figure -->
-      <div class="border-t-hairline">
+      <div class="ruled-rows">
         
         <div class="spec-row">
-          <span class="mono-accent">BARNET (QE BOYS)</span>
-          <span class="text-[12px] text-[#141C2B]">Queen Elizabeth's School for Boys. GL Assessment twin papers (Maths + English/VR).</span>
-          <span class="font-mono text-right text-[11px] text-[#2C4A8F] font-bold">135 SAS CUT-OFF</span>
+          <span class="spec-row-label">BARNET (QE BOYS)</span>
+          <span class="spec-row-desc">Queen Elizabeth's School for Boys. GL Assessment twin papers (Maths + English/VR).</span>
+          <span class="spec-row-val" style="color: var(--ink-blue); font-weight: 700;">135 SAS CUT-OFF</span>
         </div>
 
         <div class="spec-row">
-          <span class="mono-accent">BARNET (HBS)</span>
-          <span class="text-[12px] text-[#141C2B]">The Henrietta Barnett School. Stage 1 GL Cognitive + Stage 2 English Creative Writing.</span>
-          <span class="font-mono text-right text-[11px] text-[#2C4A8F] font-bold">132 SAS CUT-OFF</span>
+          <span class="spec-row-label">BARNET (HBS)</span>
+          <span class="spec-row-desc">The Henrietta Barnett School. Stage 1 GL Cognitive + Stage 2 English Creative Writing.</span>
+          <span class="spec-row-val" style="color: var(--ink-blue); font-weight: 700;">132 SAS CUT-OFF</span>
         </div>
 
         <div class="spec-row">
-          <span class="mono-accent">KINGSTON (TIFFIN)</span>
-          <span class="text-[12px] text-[#141C2B]">Tiffin School and The Tiffin Girls' School. Two-stage combined aptitude and mathematics.</span>
-          <span class="font-mono text-right text-[11px] text-[#2C4A8F] font-bold">128 SAS CUT-OFF</span>
+          <span class="spec-row-label">KINGSTON (TIFFIN)</span>
+          <span class="spec-row-desc">Tiffin School and The Tiffin Girls' School. Two-stage combined aptitude and mathematics.</span>
+          <span class="spec-row-val" style="color: var(--ink-blue); font-weight: 700;">128 SAS CUT-OFF</span>
         </div>
 
         <div class="spec-row">
-          <span class="mono-accent">SUTTON (SET)</span>
-          <span class="text-[12px] text-[#141C2B]">Wilson's School, Sutton Grammar, Wallington County. Selective Eligibility Test.</span>
-          <span class="font-mono text-right text-[11px] text-[#2C4A8F] font-bold">130 SAS CUT-OFF</span>
+          <span class="spec-row-label">SUTTON (SET)</span>
+          <span class="spec-row-desc">Wilson's School, Sutton Grammar, Wallington County. Selective Eligibility Test.</span>
+          <span class="spec-row-val" style="color: var(--ink-blue); font-weight: 700;">130 SAS CUT-OFF</span>
         </div>
 
         <div class="spec-row">
-          <span class="mono-accent">ESSEX (CSSE)</span>
-          <span class="text-[12px] text-[#141C2B]">Colchester Royal Grammar and Chelmsford County High. Non-calculator mathematics & open English.</span>
-          <span class="font-mono text-right text-[11px] text-[#2C4A8F] font-bold">345 AGGREGATE</span>
+          <span class="spec-row-label">ESSEX (CSSE)</span>
+          <span class="spec-row-desc">Colchester Royal Grammar and Chelmsford County High. Non-calculator mathematics & open English.</span>
+          <span class="spec-row-val" style="color: var(--ink-blue); font-weight: 700;">345 AGGREGATE</span>
         </div>
 
         <div class="spec-row">
-          <span class="mono-accent">BUCKINGHAMSHIRE</span>
-          <span class="text-[12px] text-[#141C2B]">Secondary Transfer Test. 13 grammar schools. Verbal, Non-Verbal, and Mathematical reasoning.</span>
-          <span class="font-mono text-right text-[11px] text-[#2C4A8F] font-bold">121 SAS QUALIFIER</span>
+          <span class="spec-row-label">BUCKINGHAMSHIRE</span>
+          <span class="spec-row-desc">Secondary Transfer Test. 13 grammar schools. Verbal, Non-Verbal, and Mathematical reasoning.</span>
+          <span class="spec-row-val" style="color: var(--ink-blue); font-weight: 700;">121 SAS QUALIFIER</span>
         </div>
 
       </div>
@@ -640,23 +932,22 @@
   </section>
 
   <!-- ================= SECTION 6: THE CLOSE ================= -->
-  <footer class="py-24 sm:py-32 px-6 sm:px-10 bg-[#EFE9DD] relative overflow-hidden flex flex-col justify-between">
-    <div class="max-w-7xl mx-auto w-full">
+  <footer class="close-section">
+    <div class="close-inner">
       
       <!-- Top split: headline and buttons -->
-      <div class="flex flex-col lg:flex-row lg:items-end justify-between gap-10 pb-16 border-b-hairline">
-        
-        <div class="max-w-xl space-y-4">
-          <span class="mono-label">[ COMMENCE PREPARATION ]</span>
-          <h2 class="text-[clamp(32px,3.8vw,56px)] leading-[1.08]">
+      <div class="close-top-split">
+        <div style="max-width: 580px;">
+          <span class="mono-kicker">[ COMMENCE PREPARATION ]</span>
+          <h2 class="hero-title" style="margin-top: 8px;">
             Equip the scholar with the <em>calibrated standard.</em>
           </h2>
-          <p class="text-[12px] text-[#4A5364] leading-[1.9] font-mono">
+          <p class="close-fine-print">
             Calm, methodical preparation on the precise examination formats. Five days full platform access. No lock-in contracts.
           </p>
         </div>
 
-        <div class="flex flex-wrap items-center gap-4">
+        <div style="display: flex; gap: 16px; flex-wrap: wrap;">
           <a href="index.html#practice-arena" class="btn-square btn-square-solid">
             Start 5-Day Free Evaluation
           </a>
@@ -664,33 +955,32 @@
             Parent Login
           </a>
         </div>
-
       </div>
 
       <!-- Hairline footer strip with legal buttons -->
-      <div class="py-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 text-[11px] font-mono text-[#767E8C]">
+      <div class="footer-strip">
         <div>
           <span>© 2026 LEARNLY EDUCATION LTD.</span>
-          <span class="ml-3">UK REGISTERED COMPANY #14892104</span>
+          <span style="margin-left: 14px;">UK REGISTERED COMPANY #14892104</span>
         </div>
 
-        <div class="flex flex-wrap items-center gap-4 text-[10px] uppercase tracking-[0.1em]">
-          <button type="button" onclick="openLegalPolicy('terms')" class="hover:text-[#141C2B] bg-transparent border-0 p-0 text-[10px] font-mono cursor-pointer text-[#767E8C]">Terms of Service</button>
+        <div class="footer-links">
+          <button type="button" onclick="openLegalPolicy('terms')" class="legal-btn">Terms of Service</button>
           <span>/</span>
-          <button type="button" onclick="openLegalPolicy('privacy')" class="hover:text-[#141C2B] bg-transparent border-0 p-0 text-[10px] font-mono cursor-pointer text-[#767E8C]">Privacy (ICO Code)</button>
+          <button type="button" onclick="openLegalPolicy('privacy')" class="legal-btn">Privacy (ICO Code)</button>
           <span>/</span>
-          <button type="button" onclick="openLegalPolicy('cookies')" class="hover:text-[#141C2B] bg-transparent border-0 p-0 text-[10px] font-mono cursor-pointer text-[#767E8C]">Cookie Policy</button>
+          <button type="button" onclick="openLegalPolicy('cookies')" class="legal-btn">Cookie Policy</button>
           <span>/</span>
-          <button type="button" onclick="openLegalPolicy('safeguarding')" class="text-[#2C4A8F] hover:underline bg-transparent border-0 p-0 text-[10px] font-mono cursor-pointer font-bold">Safeguarding (KCSIE)</button>
+          <button type="button" onclick="openLegalPolicy('safeguarding')" class="legal-btn legal-btn-accent">Safeguarding (KCSIE)</button>
           <span>/</span>
-          <button type="button" onclick="openLegalPolicy('gdpr')" class="hover:text-[#141C2B] bg-transparent border-0 p-0 text-[10px] font-mono cursor-pointer text-[#767E8C]">GDPR Rights</button>
+          <button type="button" onclick="openLegalPolicy('gdpr')" class="legal-btn">GDPR Rights</button>
           <span>/</span>
-          <button type="button" onclick="openCookieSettings()" class="hover:text-[#141C2B] bg-transparent border-0 p-0 text-[10px] font-mono cursor-pointer text-[#767E8C]">Cookie Settings</button>
+          <button type="button" onclick="openLegalPolicy('cookies')" class="legal-btn">Cookie Settings</button>
         </div>
       </div>
 
       <!-- Wordmark full width translated down slightly so the page edge crops it -->
-      <div class="wordmark-spread pt-8 border-t-hairline">
+      <div class="wordmark-spread" style="margin-top: 24px;">
         <span>L</span>
         <span>E</span>
         <span>A</span>
@@ -707,51 +997,51 @@
   <div id="legal-modal" class="modal-backdrop" role="dialog" aria-modal="true" aria-labelledby="modal-title">
     <div class="modal-box">
       <!-- Modal Header -->
-      <div class="p-6 border-b-hairline flex items-center justify-between bg-[#E5DED0]">
+      <div style="padding: 24px; border-bottom: 1px solid var(--hairline); display: flex; align-items: center; justify-content: space-between; background-color: var(--ground-secondary);">
         <div>
-          <span class="mono-label block">[ STATUTORY GOVERNANCE ]</span>
-          <h3 id="modal-title" class="text-xl font-serif mt-0.5">Learnly Legal & Safeguarding Policy</h3>
+          <span class="mono-kicker">[ STATUTORY GOVERNANCE ]</span>
+          <h3 id="modal-title" style="font-family: var(--font-serif); font-size: 20px; margin-top: 2px;">Learnly Legal & Safeguarding Policy</h3>
         </div>
-        <button type="button" onclick="closeLegalModal()" class="btn-square py-1 px-3 text-[10px]">
+        <button type="button" onclick="closeLegalModal()" class="btn-square" style="padding: 6px 14px; font-size: 10px;">
           [ CLOSE ✕ ]
         </button>
       </div>
 
       <!-- Tab Strip -->
-      <div class="flex border-b-hairline bg-[#EFE9DD] overflow-x-auto text-[10px] font-mono uppercase">
-        <button type="button" id="tab-terms" onclick="showLegalTab('terms')" class="p-3 border-r-hairline hover:bg-[#E5DED0] cursor-pointer bg-[#E5DED0] font-bold">Terms</button>
-        <button type="button" id="tab-privacy" onclick="showLegalTab('privacy')" class="p-3 border-r-hairline hover:bg-[#E5DED0] cursor-pointer text-[#4A5364]">Privacy (ICO)</button>
-        <button type="button" id="tab-cookies" onclick="showLegalTab('cookies')" class="p-3 border-r-hairline hover:bg-[#E5DED0] cursor-pointer text-[#4A5364]">Cookies</button>
-        <button type="button" id="tab-safeguarding" onclick="showLegalTab('safeguarding')" class="p-3 border-r-hairline hover:bg-[#E5DED0] cursor-pointer text-[#2C4A8F] font-bold">Safeguarding</button>
-        <button type="button" id="tab-gdpr" onclick="showLegalTab('gdpr')" class="p-3 hover:bg-[#E5DED0] cursor-pointer text-[#4A5364]">GDPR Rights</button>
+      <div style="display: flex; border-bottom: 1px solid var(--hairline); background-color: var(--ground); overflow-x: auto; font-family: var(--font-mono); font-size: 10px; text-transform: uppercase;">
+        <button type="button" id="tab-terms" onclick="showLegalTab('terms')" style="padding: 12px 18px; border: 0; border-right: 1px solid var(--hairline); background-color: var(--ground-secondary); font-weight: 700; cursor: pointer;">Terms</button>
+        <button type="button" id="tab-privacy" onclick="showLegalTab('privacy')" style="padding: 12px 18px; border: 0; border-right: 1px solid var(--hairline); background-color: transparent; color: var(--ink-secondary); cursor: pointer;">Privacy (ICO)</button>
+        <button type="button" id="tab-cookies" onclick="showLegalTab('cookies')" style="padding: 12px 18px; border: 0; border-right: 1px solid var(--hairline); background-color: transparent; color: var(--ink-secondary); cursor: pointer;">Cookies</button>
+        <button type="button" id="tab-safeguarding" onclick="showLegalTab('safeguarding')" style="padding: 12px 18px; border: 0; border-right: 1px solid var(--hairline); background-color: transparent; color: var(--ink-blue); font-weight: 700; cursor: pointer;">Safeguarding</button>
+        <button type="button" id="tab-gdpr" onclick="showLegalTab('gdpr')" style="padding: 12px 18px; border: 0; background-color: transparent; color: var(--ink-secondary); cursor: pointer;">GDPR Rights</button>
       </div>
 
       <!-- Modal Body -->
-      <div class="p-6 overflow-y-auto text-[11px] leading-[1.8] font-mono text-[#4A5364] space-y-4">
+      <div style="padding: 24px; overflow-y: auto; font-family: var(--font-mono); font-size: 11px; line-height: 1.8; color: var(--ink-secondary); display: flex; flex-direction: column; gap: 16px;">
         
         <article id="panel-terms">
-          <div class="mono-accent mb-2">TERMS OF SERVICE // OCTOBER 2026</div>
+          <div class="mono-accent" style="margin-bottom: 8px;">TERMS OF SERVICE // OCTOBER 2026</div>
           <p>Candidate accounts must be created and supervised by a parent or legal guardian over 18 years of age. All adaptive diagnostic algorithms, mock examination papers, and scoring engines are the exclusive intellectual property of Learnly Education Ltd under the Copyright, Designs and Patents Act 1988.</p>
-          <p class="mt-2">Subscriptions operate on an active monthly cadence with instant 1-click cancellation available inside the Parent Portal without penalty clauses.</p>
+          <p style="margin-top: 8px;">Subscriptions operate on an active monthly cadence with instant 1-click cancellation available inside the Parent Portal without penalty clauses.</p>
         </article>
 
-        <article id="panel-privacy" class="hidden">
-          <div class="mono-accent mb-2">ICO CHILDREN'S CODE COMPLIANCE</div>
+        <article id="panel-privacy" style="display: none;">
+          <div class="mono-accent" style="margin-bottom: 8px;">ICO CHILDREN'S CODE COMPLIANCE</div>
           <p>We adhere strictly to the UK Information Commissioner's Office (ICO) Age Appropriate Design Code. We never sell personal child data, nor do we run behavioral tracking scripts. Pupil date of birth is collected strictly to mathematically calibrate Standard Age Scores (SAS) and is never transferred externally.</p>
         </article>
 
-        <article id="panel-cookies" class="hidden">
-          <div class="mono-accent mb-2">COOKIE POLICY // PECR COMPLIANT</div>
+        <article id="panel-cookies" style="display: none;">
+          <div class="mono-accent" style="margin-bottom: 8px;">COOKIE POLICY // PECR COMPLIANT</div>
           <p>We deploy strictly necessary cookies for candidate session authentication and exam timer persistence. Telemetry preferences may be configured at any time.</p>
         </article>
 
-        <article id="panel-safeguarding" class="hidden">
-          <div class="mono-accent mb-2">SAFEGUARDING (KCSIE 2026/27)</div>
+        <article id="panel-safeguarding" style="display: none;">
+          <div class="mono-accent" style="margin-bottom: 8px;">SAFEGUARDING (KCSIE 2026/27)</div>
           <p>Operating under statutory guidance issued by the Department for Education: Keeping Children Safe in Education (KCSIE). All platform educators undergo Enhanced Disclosure and Barring Service (DBS) verification with Children's Barred List vetting. Contact our Designated Safeguarding Lead at: safeguarding@learnly11plus.co.uk.</p>
         </article>
 
-        <article id="panel-gdpr" class="hidden">
-          <div class="mono-accent mb-2">GDPR & STATUTORY DATA RIGHTS</div>
+        <article id="panel-gdpr" style="display: none;">
+          <div class="mono-accent" style="margin-bottom: 8px;">GDPR & STATUTORY DATA RIGHTS</div>
           <p>Under the Data Protection Act 2018, parents hold the statutory Right of Access (SAR), Right to Rectification, and Right to Erasure. Direct requests to our Data Protection Officer at: dpo@learnly11plus.co.uk.</p>
         </article>
 
@@ -762,21 +1052,19 @@
   <!-- ================= JAVASCRIPT CONTROLLERS ================= -->
   <script>
     // ================= MOTION MODELS: TRAVELLING PRODUCT =================
-    // Statically checked for prefers-reduced-motion
     const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
     const travellingProduct = document.getElementById('travelling-product');
     const heroWordmark = document.getElementById('hero-wordmark');
     const heroLetters = heroWordmark ? heroWordmark.querySelectorAll('span') : [];
 
-    // Stops for the travelling product expressed as percentage of viewport
-    // [scrollYProgress, xPercent, yPercent, rotationDeg, scale, opacity]
+    // Keyframed travel path across viewport percentages
     const travelKeyframes = [
-      { progress: 0.00, x: 62, y: 16, rot: 4,  scale: 1.00, opacity: 1 },
-      { progress: 0.18, x: 48, y: 32, rot: -4, scale: 0.88, opacity: 1 },
-      { progress: 0.38, x: 12, y: 48, rot: 8,  scale: 0.80, opacity: 1 },
-      { progress: 0.58, x: 60, y: 44, rot: -6, scale: 0.74, opacity: 1 },
-      { progress: 0.78, x: 40, y: 65, rot: 2,  scale: 0.65, opacity: 0.4 },
-      { progress: 0.90, x: 30, y: 70, rot: 0,  scale: 0.55, opacity: 0 },
+      { progress: 0.00, x: 56, y: 18, rot: 4,  scale: 1.00, opacity: 1 },
+      { progress: 0.20, x: 50, y: 30, rot: -4, scale: 0.90, opacity: 1 },
+      { progress: 0.42, x: 62, y: 44, rot: 6,  scale: 0.82, opacity: 1 },
+      { progress: 0.65, x: 54, y: 52, rot: -5, scale: 0.76, opacity: 1 },
+      { progress: 0.82, x: 44, y: 64, rot: 2,  scale: 0.66, opacity: 0.3 },
+      { progress: 0.92, x: 34, y: 70, rot: 0,  scale: 0.55, opacity: 0 },
     ];
 
     function updateScrollMotion() {
@@ -786,7 +1074,7 @@
       if (maxScroll <= 0) return;
       const progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
 
-      // Interpolate between keyframes
+      // Interpolate stops
       let p1 = travelKeyframes[0];
       let p2 = travelKeyframes[travelKeyframes.length - 1];
 
@@ -798,8 +1086,8 @@
         }
       }
 
-      const segmentSpan = p2.progress - p1.progress;
-      const t = segmentSpan === 0 ? 0 : (progress - p1.progress) / segmentSpan;
+      const span = p2.progress - p1.progress;
+      const t = span === 0 ? 0 : (progress - p1.progress) / span;
 
       const x = p1.x + (p2.x - p1.x) * t;
       const y = p1.y + (p2.y - p1.y) * t;
@@ -820,12 +1108,12 @@
         }
       }
 
-      // Spread Wordmark: as scroll leaves hero (0 to 600px), sink & spread from centre
+      // Wordmark spread: spreads from centre outward and sinks
       const heroScroll = Math.min(window.scrollY / 600, 1);
       heroLetters.forEach((letter, index) => {
-        const offsetMultiplier = (index - 3); // L E A [R] N L Y -> centre is R (index 3)
-        const spreadX = offsetMultiplier * heroScroll * 28;
-        const sinkY = heroScroll * 35;
+        const offsetMultiplier = (index - 3); // L E A [R] N L Y -> centre R
+        const spreadX = offsetMultiplier * heroScroll * 32;
+        const sinkY = heroScroll * 38;
         letter.style.transform = `translate(${spreadX}px, ${sinkY}px)`;
       });
     }
@@ -835,23 +1123,20 @@
 
     // ================= SELF-DRAWING DEMONSTRATION =================
     const demoPath = document.getElementById('self-drawing-path');
-    let pathLength = 0;
 
     function initDrawing() {
       if (!demoPath) return;
-      pathLength = demoPath.getTotalLength();
-      demoPath.style.strokeDasharray = `${pathLength} ${pathLength}`;
-      demoPath.style.strokeDashoffset = `${pathLength}`;
+      const len = demoPath.getTotalLength();
+      demoPath.style.strokeDasharray = `${len} ${len}`;
+      demoPath.style.strokeDashoffset = `${len}`;
       
-      // Animate entry to zero offset
       requestAnimationFrame(() => {
         setTimeout(() => {
           demoPath.style.strokeDashoffset = '0';
-        }, 150);
+        }, 120);
       });
     }
 
-    // Variant Models Data
     const variants = [
       {
         indicator: 'PLOT 01 // GAUSSIAN ADMISSIONS DENSITY',
@@ -892,12 +1177,10 @@
       const v = variants[index];
       if (!v || !demoPath) return;
 
-      // Update buttons
       document.querySelectorAll('.variant-btn').forEach((btn, i) => {
         btn.setAttribute('aria-pressed', i === index ? 'true' : 'false');
       });
 
-      // Update text facts
       document.getElementById('demo-indicator').textContent = v.indicator;
       document.getElementById('fact-1-label').textContent = v.f1Label;
       document.getElementById('fact-1-val').textContent = v.f1Val;
@@ -906,7 +1189,6 @@
       document.getElementById('fact-3-label').textContent = v.f3Label;
       document.getElementById('fact-3-val').textContent = v.f3Val;
 
-      // Re-draw path with new geometry
       demoPath.style.transition = 'none';
       demoPath.setAttribute('d', v.d);
       demoPath.style.strokeWidth = v.strokeWidth;
@@ -914,7 +1196,6 @@
       demoPath.style.strokeDasharray = `${newLen} ${newLen}`;
       demoPath.style.strokeDashoffset = `${newLen}`;
 
-      // Trigger animation
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           demoPath.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.16, 1, 0.3, 1)';
@@ -945,23 +1226,21 @@
       ['terms', 'privacy', 'cookies', 'safeguarding', 'gdpr'].forEach(t => {
         const panel = document.getElementById(`panel-${t}`);
         const btn = document.getElementById(`tab-${t}`);
-        if (panel) panel.classList.add('hidden');
+        if (panel) panel.style.display = 'none';
         if (btn) {
           btn.style.backgroundColor = 'transparent';
           btn.style.fontWeight = 'normal';
+          btn.style.color = 'var(--ink-secondary)';
         }
       });
       const activePanel = document.getElementById(`panel-${tabId}`);
       const activeBtn = document.getElementById(`tab-${tabId}`);
-      if (activePanel) activePanel.classList.remove('hidden');
+      if (activePanel) activePanel.style.display = 'block';
       if (activeBtn) {
         activeBtn.style.backgroundColor = 'var(--ground-secondary)';
         activeBtn.style.fontWeight = 'bold';
+        activeBtn.style.color = 'var(--ink)';
       }
-    }
-
-    function openCookieSettings() {
-      openLegalPolicy('cookies');
     }
 
     window.addEventListener('keydown', (e) => {
