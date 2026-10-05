@@ -150,9 +150,9 @@ LearnlyRouter.register('mock-exams', function() {
           <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1">play_circle</span>
           Start Full Exam (100Q)
         </button>
-        <button class="px-6 py-3 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-colors flex items-center gap-2 backdrop-blur-md" data-navigate="practice-arena?length=25">
+        <button class="px-6 py-3 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-colors flex items-center gap-2 backdrop-blur-md" data-navigate="practice-arena?length=50">
           <span class="material-symbols-outlined text-lg">subject</span>
-          Practice Mode (25Q)
+          Practice Mode (50Q)
         </button>
         <button class="px-6 py-3 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-colors flex items-center gap-2 backdrop-blur-md" data-navigate="mock-simulation">
           <span class="material-symbols-outlined text-lg">preview</span>
@@ -171,7 +171,7 @@ LearnlyRouter.register('mock-exams', function() {
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       ${[
         { icon: 'history_edu', name: 'Full Consortium Mock', sub: 'GL + CEM · All 4 subjects · 100Q · 60min', xp: '+500 XP', color: 'border-primary hover:bg-primary/5', badge: 'RECOMMENDED', nav: 'practice-arena?subject=composite&length=100' },
-        { icon: 'subject', name: 'Single Subject Mock', sub: 'Pick one subject · 25Q · 20 minutes', xp: '+120 XP', color: 'border-emerald-400 hover:bg-emerald-50', badge: 'FOCUSED', nav: 'practice-arena?length=25' },
+        { icon: 'subject', name: 'Single Subject Mock', sub: 'Pick one subject · 50Q · 45 minutes', xp: '+200 XP', color: 'border-emerald-400 hover:bg-emerald-50', badge: 'FOCUSED', nav: 'practice-arena?length=50' },
         { icon: 'speed', name: 'Speed Challenge', sub: 'Mixed · 50Q · 25 minutes · Fast pace', xp: '+250 XP', color: 'border-amber-400 hover:bg-amber-50', badge: 'TIMED', nav: 'practice-arena?subject=composite&length=50' },
       ].map(t => `
       <button class="p-5 rounded-[2.5rem] bg-surface-container-lowest border-2 ${t.color} transition-all cursor-pointer text-left group" data-navigate="${t.nav}">

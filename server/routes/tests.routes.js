@@ -42,7 +42,7 @@ router.get('/adaptive', async (req, res) => {
         id: 'adaptive-' + Date.now(),
         title: 'Scholar Mock #04 — Adaptive Practice Session',
         type: 'Adaptive Mock',
-        duration_mins: 25,
+        duration_mins: 45,
         total_questions: questions.length,
         questions: questions.map(q => ({
           ...q,
@@ -116,8 +116,8 @@ router.post('/:id/submit', async (req, res) => {
     const {
       startTime,
       finishTime = new Date().toISOString(),
-      rawScore = 24,
-      maxScore = 25,
+      rawScore = 45,
+      maxScore = 50,
       studentAgeMonths = 125,
       subject = 'Verbal Reasoning'
     } = req.body;

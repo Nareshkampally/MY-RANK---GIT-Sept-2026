@@ -26,10 +26,10 @@ async function seed() {
   // ============================================================
   await queryExec('DELETE FROM test_papers');
   const testPapers = [
-    ['mock-01', 'Diagnostic Baseline Assessment', 'Mixed', 'CEM Standard', 25, 25, 'Easy', 'Entry-level diagnostic to establish baseline SAS'],
-    ['mock-02', 'GL Assessment — NVR & Maths Heavy', 'Mixed', 'GL Format', 25, 25, 'Medium', 'Focus on spatial reasoning and arithmetic'],
-    ['mock-03', 'CEM Standard — Mixed Paper', 'Mixed', 'CEM Standard', 25, 25, 'Medium', 'Balanced CEM-style mixed paper'],
-    ['mock-04', 'GL Assessment — Verbal Reasoning Focus', 'Verbal Reasoning', 'GL Format', 10, 25, 'Hard', 'Challenging VR drills with complex passages'],
+    ['mock-01', 'Diagnostic Baseline Assessment', 'Mixed', 'CEM Standard', 100, 60, 'Easy', 'Entry-level diagnostic to establish baseline SAS across 4 sections'],
+    ['mock-02', 'GL Assessment — NVR & Maths Heavy', 'Mixed', 'GL Format', 100, 60, 'Medium', 'Focus on spatial reasoning and arithmetic across 4 sections'],
+    ['mock-03', 'CEM Standard — Mixed Paper', 'Mixed', 'CEM Standard', 100, 60, 'Medium', 'Balanced CEM-style mixed paper across 4 sections'],
+    ['mock-04', 'GL Assessment — Verbal Reasoning Focus', 'Verbal Reasoning', 'GL Format', 50, 45, 'Hard', 'Challenging VR deep-dive paper with complex passages'],
     ['mock-05', 'Full Consortium Simulation', 'Mixed', 'GL + CEM Composite', 100, 60, 'Hard', 'Complete GL + CEM composite format — 100 questions across all 4 subjects'],
     ['drill-vr-01', 'Verbal Reasoning Speed Drill', 'Verbal Reasoning', 'Drill', 20, 12, 'Medium', 'High-speed VR questions for fluency building'],
     ['drill-maths-01', 'Mental Arithmetic Lightning Round', 'Mathematics', 'Drill', 30, 15, 'Medium', 'Non-calculator mental arithmetic practice'],

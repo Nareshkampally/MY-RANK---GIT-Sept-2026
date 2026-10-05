@@ -74,7 +74,7 @@ LearnlyRouter.register('scorecard', function() {
     { subj: 'English', icon: 'menu_book', color: 'primary' },
   ].map(s => {
     const subjectMistakes = mistakes.filter(m => m.subject && m.subject.includes(s.subj.split(' ')[0]));
-    const totalQs = 25;
+    const totalQs = (a.max_score && a.max_score >= 50) ? (a.subject === 'Mixed' ? Math.round(a.max_score / 4) : a.max_score) : 25;
     const missed = Math.min(subjectMistakes.length, totalQs);
     const score = totalQs - missed;
     const pct = Math.round((score / totalQs) * 100);

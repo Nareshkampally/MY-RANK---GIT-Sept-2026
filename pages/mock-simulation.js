@@ -22,10 +22,10 @@ LearnlyRouter.register('mock-simulation', function() {
       <div class="max-w-2xl mx-auto">
         <span class="material-symbols-outlined text-8xl text-primary mb-space-lg">assignment</span>
         <h2 class="font-headline-lg text-headline-lg text-on-surface mb-space-sm">Mock Exam Ready to Begin</h2>
-        <p class="font-body-lg text-body-lg text-on-surface-variant mb-space-xl">This is a full-length simulation with all 4 subjects. Once started, the timer cannot be paused. Answer every question — unanswered questions count as incorrect.</p>
-        <div class="grid grid-cols-4 gap-space-md mb-space-xl">
-          ${[{subj:'Verbal Reasoning',qs:25,icon:'psychology'},{subj:'Mathematics',qs:25,icon:'functions'},{subj:'Non-Verbal',qs:25,icon:'view_in_ar'},{subj:'English',qs:25,icon:'menu_book'}].map(s=>`
-          <div class="p-space-md rounded-xl bg-surface-container-low"><span class="material-symbols-outlined text-primary text-2xl mb-2">${s.icon}</span><br><span class="font-label-lg text-label-lg text-on-surface font-bold">${s.subj}</span><br><span class="font-label-md text-label-md text-on-surface-variant">${s.qs} questions</span></div>`).join('')}
+        <p class="font-body-lg text-body-lg text-on-surface-variant mb-space-xl">Full-length simulation with all 4 subjects structured into 4 timed sections. Answer every question — unattempted questions count as incorrect.</p>
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-space-md mb-space-xl">
+          ${[{sec:'Section 1',subj:'Verbal Reasoning',qs:'25 or 50 Qs',icon:'psychology'},{sec:'Section 2',subj:'Mathematics',qs:'25 or 50 Qs',icon:'functions'},{sec:'Section 3',subj:'Non-Verbal',qs:'25 or 50 Qs',icon:'view_in_ar'},{sec:'Section 4',subj:'English & SPaG',qs:'25 or 50 Qs',icon:'menu_book'}].map(s=>`
+          <div class="p-space-md rounded-2xl bg-surface-container-low border border-outline-variant/20 shadow-sm"><span class="text-[10px] font-black uppercase text-primary tracking-wider block mb-1">${s.sec}</span><span class="material-symbols-outlined text-primary text-2xl mb-1">${s.icon}</span><br><span class="font-label-lg text-label-lg text-on-surface font-bold">${s.subj}</span><br><span class="font-label-md text-label-md text-on-surface-variant font-medium">${s.qs}</span></div>`).join('')}
         </div>
         <div class="bg-surface-container-low rounded-3xl p-space-md mb-space-xl">
           <div class="flex items-center justify-center gap-space-xl">
@@ -33,12 +33,17 @@ LearnlyRouter.register('mock-simulation', function() {
             <div class="h-8 w-px bg-outline-variant/40"></div>
             <div><span class="font-headline-md text-headline-md text-secondary font-bold">+500</span><br><span class="font-label-md text-label-md text-on-surface-variant">XP Reward</span></div>
             <div class="h-8 w-px bg-outline-variant/40"></div>
-            <div><span class="font-headline-md text-headline-md text-on-surface font-bold">SAS</span><br><span class="font-label-md text-label-md text-on-surface-variant">Scored</span></div>
+            <div><span class="font-headline-md text-headline-md text-on-surface font-bold">SAS</span><br><span class="font-label-md text-label-md text-on-surface-variant">Standardised</span></div>
           </div>
         </div>
-        <button class="px-space-2xl py-3.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-xl hover:scale-105 transition-all text-lg" data-navigate="practice-arena?subject=composite&length=100" type="button">
-          <span class="material-symbols-outlined text-xl mr-2 align-middle">play_arrow</span> Begin Full Mock Exam (100 Questions)
-        </button>
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+          <button class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-primary text-on-primary font-label-lg text-label-lg font-bold shadow-xl hover:scale-105 transition-all text-base cursor-pointer" data-navigate="practice-arena?subject=composite&length=100" type="button">
+            <span class="material-symbols-outlined text-xl mr-2 align-middle">play_arrow</span> Start 100Q Mock (25 Qs / Section)
+          </button>
+          <button class="w-full sm:w-auto px-8 py-3.5 rounded-full bg-surface-container-high text-on-surface font-label-lg text-label-lg font-bold border border-outline-variant/30 hover:bg-surface-container-highest transition-all text-base cursor-pointer" data-navigate="practice-arena?subject=composite&length=200" type="button">
+            <span class="material-symbols-outlined text-xl mr-2 align-middle">bolt</span> Mega Mock 200Q (50 Qs / Section)
+          </button>
+        </div>
       </div>
     </div>
   </div>`;

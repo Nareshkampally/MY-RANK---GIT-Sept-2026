@@ -67,6 +67,19 @@ LearnlyRouter.register('practice-arena', function() {
         </div>
       </section>
 
+      <!-- SECTION NAVIGATION RIBBON & QUESTION PALETTE BAR -->
+      <section class="flex flex-wrap items-center justify-between gap-3 pt-3 pb-2 border-b border-outline-variant/20 relative z-10" id="section-nav-strip">
+        <div class="flex items-center gap-2 overflow-x-auto pb-1" id="section-tabs-container">
+          <!-- Dynamic Section Pills: e.g. Section 1: Maths, Section 2: VR, etc. -->
+        </div>
+        <div class="flex items-center gap-2 shrink-0">
+          <button id="toggle-palette-btn" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-surface-container-high hover:bg-surface-container-highest text-on-surface font-bold text-xs shadow-sm border border-outline-variant/30 transition-all cursor-pointer" type="button">
+            <span class="material-symbols-outlined text-sm text-primary">apps</span>
+            <span id="palette-summary-label">Question Palette (1–50)</span>
+          </button>
+        </div>
+      </section>
+
       <!-- DUAL PANE TEST ARENA -->
       <div class="flex-grow grid grid-cols-12 gap-8 items-start w-full pt-4 pb-8 overflow-y-auto" id="arena-grid">
         <!-- LEFT: Stimulus Passage & Weak Area Context -->
@@ -177,6 +190,17 @@ LearnlyRouter.register('practice-arena', function() {
           </button>
         </div>
 
+        <!-- Focus Topics Grid -->
+        <div class="mb-4">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-xs font-extrabold uppercase text-slate-700 tracking-wider">Select Topic or Syllabus Area:</span>
+            <button type="button" id="select-all-topics-btn" class="text-[11px] font-bold text-indigo-600 hover:text-indigo-800 cursor-pointer">Practice Full Subject</button>
+          </div>
+          <div class="space-y-2 max-h-48 overflow-y-auto pr-1" id="modal-topic-options">
+            <!-- Populated dynamically -->
+          </div>
+        </div>
+
         <!-- Test Length Selector (Questions Count) -->
         <div class="mb-4 p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
           <div class="flex items-center justify-between mb-2">
@@ -184,34 +208,64 @@ LearnlyRouter.register('practice-arena', function() {
               <span class="material-symbols-outlined text-sm text-indigo-600">quiz</span>
               <span>Test Length (Number of Questions):</span>
             </span>
-            <span class="text-[11px] text-indigo-700 font-bold" id="selected-length-label">Standard 11+ Mock (25 Questions)</span>
+            <span class="text-[11px] text-indigo-700 font-bold" id="selected-length-label">Standard 11+ Mock (50 Questions)</span>
           </div>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="length-selector-container">
-            <button type="button" class="test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all text-center" data-length="10">
-              10 Qs <span class="text-[10px] text-slate-400 block font-normal">Quick Sprint</span>
+            <button type="button" class="test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border-2 border-indigo-600 bg-indigo-50 text-indigo-900 shadow-sm transition-all text-center" data-length="50">
+              50 Qs <span class="text-[10px] text-indigo-700 block font-bold">Standard 11+ (50Q)</span>
             </button>
-            <button type="button" class="test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border-2 border-indigo-600 bg-indigo-50 text-indigo-900 shadow-sm transition-all text-center" data-length="25">
-              25 Qs <span class="text-[10px] text-indigo-700 block font-bold">Standard 11+</span>
-            </button>
-            <button type="button" class="test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all text-center" data-length="50">
-              50 Qs <span class="text-[10px] text-slate-400 block font-normal">Half Mock</span>
+            <button type="button" class="test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all text-center" data-length="80">
+              80 Qs <span class="text-[10px] text-slate-400 block font-normal">GL Assessment VR</span>
             </button>
             <button type="button" class="test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all text-center" data-length="100">
               100 Qs <span class="text-[10px] text-slate-400 block font-normal">Full Consortium</span>
+            </button>
+            <button type="button" class="test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all text-center" data-length="200">
+              200 Qs <span class="text-[10px] text-slate-400 block font-normal">50Q per Section</span>
             </button>
           </div>
         </div>
 
         <div class="flex items-center justify-between pt-3 border-t border-slate-100">
-          <button id="modal-composite-btn" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs transition-all">
-            Full 4-Subject Mock
+          <button id="modal-composite-btn" class="px-4 py-2 rounded-xl bg-indigo-50 hover:bg-indigo-100 text-indigo-700 border border-indigo-200 font-bold text-xs transition-all flex items-center gap-1.5 cursor-pointer">
+            <span class="material-symbols-outlined text-sm">assignment</span>
+            <span>Full 4-Subject Mock (100 Questions)</span>
           </button>
           <div class="flex items-center gap-2">
             <button id="cancel-topic-modal-btn" class="px-4 py-2 rounded-xl text-xs font-bold text-slate-600 hover:bg-slate-100">Cancel</button>
             <button id="launch-topic-test-btn" class="px-6 py-2.5 rounded-xl bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-xs shadow-md transition-all">
-              Launch Targeted Test
+              Launch Test
             </button>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- QUESTION PALETTE / OVERVIEW MODAL -->
+    <div id="palette-modal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden items-center justify-center p-4">
+      <div class="bg-white rounded-3xl max-w-3xl w-full p-6 shadow-2xl border border-slate-200 animate-in fade-in zoom-in-95 max-h-[85vh] flex flex-col">
+        <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-100">
+          <div class="flex items-center gap-2">
+            <span class="material-symbols-outlined text-indigo-600 text-2xl">apps</span>
+            <div>
+              <h3 class="text-base font-extrabold text-slate-900" id="palette-modal-title">Question Navigator</h3>
+              <p class="text-xs text-slate-500">Jump directly to any question across all sections.</p>
+            </div>
+          </div>
+          <button id="close-palette-modal-btn" class="w-8 h-8 rounded-full hover:bg-slate-100 flex items-center justify-center text-slate-500 cursor-pointer">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="flex-grow overflow-y-auto pr-1 space-y-4" id="palette-sections-grid">
+          <!-- Grid of all questions divided by section -->
+        </div>
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between text-xs text-slate-600">
+          <div class="flex items-center gap-3">
+            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-md bg-emerald-500 inline-block"></span> Answered</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-md bg-slate-200 inline-block"></span> Unanswered</span>
+            <span class="flex items-center gap-1"><span class="w-3 h-3 rounded-md border-2 border-indigo-600 inline-block"></span> Current</span>
+          </div>
+          <button id="close-palette-bottom-btn" class="px-5 py-2 rounded-xl bg-slate-900 text-white font-bold text-xs cursor-pointer">Close</button>
         </div>
       </div>
     </div>
@@ -305,7 +359,7 @@ LearnlyRouter.register('practice-arena', function() {
   // State
   let currentSubject = 'maths';
   let currentTopicId = 'all';
-  let currentTestLength = 25; // Default 25 questions standard
+  let currentTestLength = 50; // Default 50 questions standard 11+ mock
   let currentTest = null;
   let currentIndex = 0;
   let answers = {};
@@ -314,9 +368,34 @@ LearnlyRouter.register('practice-arena', function() {
   let elapsedSeconds = 0;
   let startTimeIso = new Date().toISOString();
 
+  // DOM Elements
+  const loadingEl = document.getElementById('arena-loading');
+  const contentEl = document.getElementById('arena-content');
+  const headerBar = document.getElementById('arena-header-bar');
+  const titleEl = document.getElementById('exam-title');
+  const badgeEl = document.getElementById('exam-badge');
+  const subjBadge = document.getElementById('exam-subject-badge');
+  const progCurrEl = document.getElementById('progress-current');
+  const progTotalEl = document.getElementById('progress-total');
+  const elapsedEl = document.getElementById('watch-elapsed');
+  const timerEl = document.getElementById('countdown-timer');
+  const qTitleEl = document.getElementById('q-title');
+  const qTopicTag = document.getElementById('q-topic-tag');
+  const qSubjEl = document.getElementById('q-subject-pill');
+  const passEl = document.getElementById('passage-box');
+  const qNumEl = document.getElementById('q-number-badge');
+  const stemEl = document.getElementById('question-stem-text');
+  const optsContainer = document.getElementById('options-container');
+  const prevBtn = document.getElementById('prev-btn');
+  const nextBtn = document.getElementById('next-btn');
+  const finishBtn = document.getElementById('finish-test-btn');
+  const hintBtn = document.getElementById('open-hint-btn');
+  const switchTopicBtn = document.getElementById('switch-topic-btn');
+  const topicModal = document.getElementById('topic-selector-modal');
+
   // Read URL params (e.g. #practice-arena?subject=vr&topic=inversion-logic)
   const params = LearnlyRouter.getParams();
-  if (params.subject && QUESTION_BANK[params.subject.toLowerCase()]) {
+  if (params.subject && (QUESTION_BANK[params.subject.toLowerCase()] || params.subject.toLowerCase() === 'composite')) {
     currentSubject = params.subject.toLowerCase();
   }
   if (params.topic) {
@@ -324,21 +403,21 @@ LearnlyRouter.register('practice-arena', function() {
   }
   if (params.length) {
     const pLen = parseInt(params.length);
-    if ([10, 25, 50, 100].includes(pLen)) currentTestLength = pLen;
+    if ([25, 50, 80, 100, 200].includes(pLen)) currentTestLength = pLen;
   }
 
-  // Helper to dynamically expand question pool to desired count (guarantees 25, 50, or 100 questions)
+  // Helper to dynamically expand question pool to desired count (guarantees 50, 80, 100, or 200 questions)
   function generateQuestionSet(baseList, targetCount, subjectTitle, topicTitle) {
     const list = [...baseList];
-    let counter = list.length + 1;
+    let counter = 1;
     while (list.length < targetCount) {
       const template = baseList[(list.length) % baseList.length];
       const clone = {
         ...template,
-        id: `${template.id}-VAR${counter}`,
-        stem: `[Variant ${counter}] ${template.stem}`,
+        id: `${template.id}-v${counter}`,
+        stem: template.stem,
         options: template.options.map(opt => ({ ...opt })),
-        explanation: `${template.explanation} (Applied to Question Variant ${counter}).`
+        explanation: template.explanation
       };
       list.push(clone);
       counter++;
@@ -346,54 +425,102 @@ LearnlyRouter.register('practice-arena', function() {
     return list.slice(0, targetCount);
   }
 
-  function buildTestQuestions(subjectKey, topicId, desiredCount = 25) {
+  function buildTestQuestions(subjectKey, topicId, desiredCount = currentTestLength) {
     let pool = [];
     if (subjectKey === 'composite') {
-      const perSubj = Math.ceil(desiredCount / 4);
-      const mQ = generateQuestionSet(QUESTION_BANK.maths.baseQuestions, perSubj, 'Mathematics', 'Maths');
-      const vQ = generateQuestionSet(QUESTION_BANK.vr.baseQuestions, perSubj, 'Verbal Reasoning', 'VR');
-      const nQ = generateQuestionSet(QUESTION_BANK.nvr.baseQuestions, perSubj, 'Non-Verbal Reasoning', 'NVR');
-      const eQ = generateQuestionSet(QUESTION_BANK.english.baseQuestions, perSubj, 'English & SPaG', 'English');
+      const totalCount = (desiredCount && desiredCount >= 50) ? (desiredCount === 50 ? 100 : desiredCount) : 100;
+      const perSubj = Math.ceil(totalCount / 4);
+      const mQ = generateQuestionSet(QUESTION_BANK.maths.baseQuestions, perSubj, 'Mathematics', 'Maths').map((q, i) => ({
+        ...q,
+        sectionIndex: 0,
+        sectionName: 'Section 1: Mathematics',
+        sectionQNum: i + 1
+      }));
+      const vQ = generateQuestionSet(QUESTION_BANK.vr.baseQuestions, perSubj, 'Verbal Reasoning', 'VR').map((q, i) => ({
+        ...q,
+        sectionIndex: 1,
+        sectionName: 'Section 2: Verbal Reasoning',
+        sectionQNum: i + 1
+      }));
+      const nQ = generateQuestionSet(QUESTION_BANK.nvr.baseQuestions, perSubj, 'Non-Verbal Reasoning', 'NVR').map((q, i) => ({
+        ...q,
+        sectionIndex: 2,
+        sectionName: 'Section 3: Non-Verbal Reasoning',
+        sectionQNum: i + 1
+      }));
+      const eQ = generateQuestionSet(QUESTION_BANK.english.baseQuestions, perSubj, 'English & SPaG', 'English').map((q, i) => ({
+        ...q,
+        sectionIndex: 3,
+        sectionName: 'Section 4: English & SPaG',
+        sectionQNum: i + 1
+      }));
       
-      pool = [...mQ, ...vQ, ...nQ, ...eQ].slice(0, desiredCount);
+      pool = [...mQ, ...vQ, ...nQ, ...eQ].slice(0, totalCount);
       return {
-        id: `mock-composite-${desiredCount}q`,
-        title: `Full 4-Subject Consortium Mock Exam (${desiredCount} Questions)`,
+        id: `mock-composite-${totalCount}q`,
+        title: `Full 4-Subject Consortium Mock Exam (${totalCount} Questions)`,
         subjectName: 'All 4 Subjects',
         topicName: 'GL & CEM Composite Spec',
-        type: `${desiredCount} Questions • Full Mock`,
-        duration_mins: Math.round(desiredCount * 0.75),
+        type: `${totalCount} Questions • Full 4-Section Mock`,
+        duration_mins: Math.round(totalCount * 0.75),
         gradient: 'linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%)',
+        sections: [
+          { name: 'Section 1: Maths', startIdx: 0, count: perSubj, icon: 'calculate' },
+          { name: 'Section 2: Verbal', startIdx: perSubj, count: perSubj, icon: 'psychology' },
+          { name: 'Section 3: Non-Verbal', startIdx: perSubj * 2, count: perSubj, icon: 'view_in_ar' },
+          { name: 'Section 4: English', startIdx: perSubj * 3, count: totalCount - (perSubj * 3), icon: 'menu_book' }
+        ],
         questions: pool
       };
     }
 
     const subjData = QUESTION_BANK[subjectKey] || QUESTION_BANK.maths;
+    const finalCount = desiredCount || 50;
+    const halfCount = Math.floor(finalCount / 2);
+
     if (!topicId || topicId === 'all') {
-      pool = generateQuestionSet(subjData.baseQuestions, desiredCount, subjData.name, 'Full Syllabus');
+      pool = generateQuestionSet(subjData.baseQuestions, finalCount, subjData.name, 'Full Syllabus').map((q, i) => ({
+        ...q,
+        sectionIndex: i < halfCount ? 0 : 1,
+        sectionName: i < halfCount ? 'Section 1: Core Fundamentals' : 'Section 2: Advanced Reasoning',
+        sectionQNum: i < halfCount ? (i + 1) : (i - halfCount + 1)
+      }));
       return {
-        id: `mock-${subjectKey}-${desiredCount}q`,
-        title: `${subjData.name} — Full Standard Mock (${desiredCount} Questions)`,
+        id: `mock-${subjectKey}-${finalCount}q`,
+        title: `${subjData.name} — Standard 11+ Mock (${finalCount} Questions)`,
         subjectName: subjData.name,
         topicName: 'Comprehensive Syllabus',
-        type: `${desiredCount} Questions • Standard Mock`,
-        duration_mins: Math.round(desiredCount * 0.8),
+        type: `${finalCount} Questions • Standard Mock`,
+        duration_mins: Math.round(finalCount * 0.8),
         gradient: subjData.gradient,
+        sections: [
+          { name: 'Section 1: Core', startIdx: 0, count: halfCount, icon: 'menu_book' },
+          { name: 'Section 2: Advanced', startIdx: halfCount, count: finalCount - halfCount, icon: 'military_tech' }
+        ],
         questions: pool
       };
     } else {
       const topicObj = subjData.topics.find(t => t.id === topicId) || { name: topicId };
       const matched = subjData.baseQuestions.filter(q => q.topic === topicId);
       const source = matched.length > 0 ? matched : subjData.baseQuestions;
-      pool = generateQuestionSet(source, desiredCount, subjData.name, topicObj.name);
+      pool = generateQuestionSet(source, finalCount, subjData.name, topicObj.name).map((q, i) => ({
+        ...q,
+        sectionIndex: i < halfCount ? 0 : 1,
+        sectionName: i < halfCount ? `Section 1: ${topicObj.name} Basics` : `Section 2: ${topicObj.name} Mastery`,
+        sectionQNum: i < halfCount ? (i + 1) : (i - halfCount + 1)
+      }));
       return {
-        id: `drill-${subjectKey}-${topicId}-${desiredCount}q`,
-        title: `${subjData.name} — ${topicObj.name} (${desiredCount} Questions)`,
+        id: `drill-${subjectKey}-${topicId}-${finalCount}q`,
+        title: `${subjData.name} — ${topicObj.name} (${finalCount} Questions)`,
         subjectName: subjData.name,
         topicName: `Weak Area: ${topicObj.name}`,
-        type: `${desiredCount} Questions • Focus Drill`,
-        duration_mins: Math.round(desiredCount * 0.8),
+        type: `${finalCount} Questions • Focus Drill`,
+        duration_mins: Math.round(finalCount * 0.8),
         gradient: subjData.gradient,
+        sections: [
+          { name: 'Section 1: Foundations', startIdx: 0, count: halfCount, icon: 'menu_book' },
+          { name: 'Section 2: Mastery', startIdx: halfCount, count: finalCount - halfCount, icon: 'military_tech' }
+        ],
         questions: pool
       };
     }
@@ -404,13 +531,52 @@ LearnlyRouter.register('practice-arena', function() {
     currentIndex = index;
     const q = currentTest.questions[index];
 
-    progCurrEl.textContent = index + 1;
-    qNumEl.textContent = `Question ${index + 1} of ${currentTest.questions.length}`;
-    qSubjEl.textContent = q.subject || currentTest.subjectName;
-    qTopicTag.textContent = q.topicName || currentTest.topicName;
-    qTitleEl.textContent = `${q.subject || '11+ Focus'}: ${q.topicName || 'Core Problem'}`;
-    passEl.innerHTML = q.passage_context || '<p>Analyze the problem and calculate carefully.</p>';
-    stemEl.textContent = q.stem;
+    if (progCurrEl) progCurrEl.textContent = index + 1;
+    if (qNumEl) qNumEl.textContent = `Question ${index + 1} of ${currentTest.questions.length}`;
+    if (qSubjEl) qSubjEl.textContent = q.sectionName || q.subject || currentTest.subjectName;
+    if (qTopicTag) qTopicTag.textContent = q.topicName || currentTest.topicName;
+    if (qTitleEl) qTitleEl.textContent = `${q.sectionName || q.subject || '11+ Focus'}: ${q.topicName || 'Problem ' + (index + 1)}`;
+    if (passEl) passEl.innerHTML = q.passage_context || '<p>Analyze the problem and calculate carefully.</p>';
+    if (stemEl) stemEl.textContent = q.stem;
+
+    const qNumBadge = document.getElementById('q-number-badge');
+    if (qNumBadge) {
+      qNumBadge.textContent = `Question ${index + 1} of ${currentTest.questions.length}`;
+    }
+
+    // Render Section Tabs
+    const secContainer = document.getElementById('section-tabs-container');
+    if (secContainer && currentTest.sections) {
+      secContainer.innerHTML = currentTest.sections.map((sec, sIdx) => {
+        const isCurrentSec = (q.sectionIndex === sIdx);
+        const endIdx = sec.startIdx + sec.count;
+        let ansCount = 0;
+        for (let i = sec.startIdx; i < endIdx && i < currentTest.questions.length; i++) {
+          if (answers[currentTest.questions[i].id]) ansCount++;
+        }
+        return `
+          <button type="button" class="section-tab-btn flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${isCurrentSec ? 'bg-indigo-600 text-white shadow-sm ring-2 ring-indigo-300' : 'bg-white hover:bg-slate-100 text-slate-700 border border-slate-200'}" data-start="${sec.startIdx}">
+            <span class="material-symbols-outlined text-sm">${sec.icon || 'quiz'}</span>
+            <span>${sec.name}</span>
+            <span class="px-1.5 py-0.5 rounded-md ${isCurrentSec ? 'bg-white/20 text-white' : 'bg-slate-100 text-slate-600'} text-[10px] font-mono">${ansCount}/${sec.count}</span>
+          </button>
+        `;
+      }).join('');
+
+      secContainer.querySelectorAll('.section-tab-btn').forEach(btn => {
+        btn.onclick = () => {
+          const sIdx = parseInt(btn.dataset.start);
+          renderQuestion(sIdx);
+        };
+      });
+    }
+
+    // Update Palette Summary Label
+    const palLabel = document.getElementById('palette-summary-label');
+    if (palLabel) {
+      const answeredTotal = Object.keys(answers).length;
+      palLabel.textContent = `Question Palette (${answeredTotal}/${currentTest.questions.length})`;
+    }
 
     // Render options
     optsContainer.innerHTML = q.options.map(opt => {
@@ -467,11 +633,11 @@ LearnlyRouter.register('practice-arena', function() {
     currentTest = buildTestQuestions(subjectKey, topicId, count);
 
     // Update Header
-    titleEl.textContent = currentTest.title;
-    subjBadge.textContent = currentTest.subjectName;
-    badgeEl.textContent = currentTest.type;
-    progTotalEl.textContent = currentTest.questions.length;
-    headerBar.style.background = currentTest.gradient;
+    if (titleEl) titleEl.textContent = currentTest.title;
+    if (subjBadge) subjBadge.textContent = currentTest.subjectName;
+    if (badgeEl) badgeEl.textContent = currentTest.type;
+    if (progTotalEl) progTotalEl.textContent = currentTest.questions.length;
+    if (headerBar) headerBar.style.background = currentTest.gradient;
 
     timeLeft = currentTest.duration_mins * 60;
     startTimeIso = new Date().toISOString();
@@ -479,13 +645,13 @@ LearnlyRouter.register('practice-arena', function() {
     startTimer();
     renderQuestion(0);
 
-    loadingEl.classList.add('hidden');
-    contentEl.classList.remove('hidden');
+    if (loadingEl) loadingEl.classList.add('hidden');
+    if (contentEl) contentEl.classList.remove('hidden');
   }
 
   // Navigation handlers
-  prevBtn.onclick = () => { if (currentIndex > 0) renderQuestion(currentIndex - 1); };
-  nextBtn.onclick = () => { if (currentIndex < currentTest.questions.length - 1) renderQuestion(currentIndex + 1); };
+  if (prevBtn) prevBtn.onclick = () => { if (currentIndex > 0) renderQuestion(currentIndex - 1); };
+  if (nextBtn) nextBtn.onclick = () => { if (currentIndex < currentTest.questions.length - 1) renderQuestion(currentIndex + 1); };
 
   // Submit test & Record Mistakes into Mistake Vault!
   async function submitTest() {
@@ -547,11 +713,12 @@ LearnlyRouter.register('practice-arena', function() {
     window.location.hash = '#scorecard';
   }
 
-  finishBtn.onclick = submitTest;
+  if (finishBtn) finishBtn.onclick = submitTest;
 
   // Topic Switcher Modal Logic
   function populateModalTopics(subjectKey) {
     const optsList = document.getElementById('modal-topic-options');
+    if (!optsList) return;
     const subjData = QUESTION_BANK[subjectKey] || QUESTION_BANK.maths;
     optsList.innerHTML = subjData.topics.map(t => `
       <label class="p-3 rounded-xl border-2 border-slate-200 hover:border-indigo-400 bg-slate-50/50 flex items-center justify-between cursor-pointer transition-all topic-radio-label">
@@ -603,10 +770,10 @@ LearnlyRouter.register('practice-arena', function() {
         b.className = 'test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all text-center';
       });
       btn.className = 'test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border-2 border-indigo-600 bg-indigo-50 text-indigo-900 shadow-sm transition-all text-center';
-      currentTestLength = parseInt(btn.dataset.length) || 25;
+      currentTestLength = parseInt(btn.dataset.length) || 50;
       const lbl = document.getElementById('selected-length-label');
       if (lbl) {
-        const names = { 10: 'Quick Sprint (10 Questions)', 25: 'Standard 11+ Mock (25 Questions)', 50: 'Half Mock (50 Questions)', 100: 'Full Consortium Mock (100 Questions)' };
+        const names = { 50: 'Standard 11+ Mock (50 Questions)', 80: 'GL Assessment VR (80 Questions)', 100: 'Full Consortium Mock (100 Questions)', 200: 'Complete Mega Mock (200 Questions — 50Q per Section)' };
         lbl.textContent = names[currentTestLength] || `${currentTestLength} Questions`;
       }
     });
@@ -646,9 +813,83 @@ LearnlyRouter.register('practice-arena', function() {
     compositeBtn.onclick = () => {
       topicModal.classList.add('hidden');
       topicModal.classList.remove('flex');
-      initTest('composite', 'all', currentTestLength >= 50 ? currentTestLength : 50);
+      initTest('composite', 'all', 100);
     };
   }
+
+  // Question Palette Modal Logic
+  const paletteModal = document.getElementById('palette-modal');
+  const togglePaletteBtn = document.getElementById('toggle-palette-btn');
+  const closePaletteBtn = document.getElementById('close-palette-modal-btn');
+  const closePaletteBottomBtn = document.getElementById('close-palette-bottom-btn');
+  const paletteGrid = document.getElementById('palette-sections-grid');
+
+  function openPaletteModal() {
+    if (!currentTest || !paletteModal || !paletteGrid) return;
+    const sections = currentTest.sections || [
+      { name: currentTest.subjectName, startIdx: 0, count: currentTest.questions.length, icon: 'quiz' }
+    ];
+
+    paletteGrid.innerHTML = sections.map((sec) => {
+      const start = sec.startIdx;
+      const end = Math.min(start + sec.count, currentTest.questions.length);
+      const qButtons = [];
+      let secAnswered = 0;
+
+      for (let i = start; i < end; i++) {
+        const q = currentTest.questions[i];
+        const isCurrent = (i === currentIndex);
+        const isAnswered = !!answers[q.id];
+        if (isAnswered) secAnswered++;
+
+        let btnClass = 'w-9 h-9 rounded-xl text-xs font-bold transition-all flex items-center justify-center cursor-pointer ';
+        if (isCurrent) {
+          btnClass += 'border-2 border-indigo-600 bg-indigo-50 text-indigo-900 shadow-sm ring-2 ring-indigo-300';
+        } else if (isAnswered) {
+          btnClass += 'bg-emerald-500 text-white font-extrabold shadow-sm hover:bg-emerald-600';
+        } else {
+          btnClass += 'bg-slate-100 hover:bg-slate-200 text-slate-700';
+        }
+
+        qButtons.push(`
+          <button type="button" class="palette-q-btn ${btnClass}" data-index="${i}">
+            ${i + 1}
+          </button>
+        `);
+      }
+
+      return `
+        <div class="p-4 rounded-2xl border border-slate-200 bg-slate-50/50">
+          <div class="flex items-center justify-between mb-3">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-sm text-indigo-600">${sec.icon || 'quiz'}</span>
+              <span class="text-xs font-extrabold text-slate-800">${sec.name}</span>
+            </div>
+            <span class="text-[11px] font-bold text-slate-500 font-mono">${secAnswered}/${sec.count} Answered</span>
+          </div>
+          <div class="grid grid-cols-5 sm:grid-cols-10 gap-2">
+            ${qButtons.join('')}
+          </div>
+        </div>
+      `;
+    }).join('');
+
+    paletteGrid.querySelectorAll('.palette-q-btn').forEach(btn => {
+      btn.onclick = () => {
+        const idx = parseInt(btn.dataset.index);
+        paletteModal.classList.add('hidden');
+        paletteModal.classList.remove('flex');
+        renderQuestion(idx);
+      };
+    });
+
+    paletteModal.classList.remove('hidden');
+    paletteModal.classList.add('flex');
+  }
+
+  if (togglePaletteBtn) togglePaletteBtn.onclick = openPaletteModal;
+  if (closePaletteBtn) closePaletteBtn.onclick = () => { paletteModal.classList.add('hidden'); paletteModal.classList.remove('flex'); };
+  if (closePaletteBottomBtn) closePaletteBottomBtn.onclick = () => { paletteModal.classList.add('hidden'); paletteModal.classList.remove('flex'); };
 
   // Socratic Hint Logic
   if (hintBtn) {
@@ -662,15 +903,22 @@ LearnlyRouter.register('practice-arena', function() {
 
   // Font sizing tools
   let zoom = 100;
-  document.getElementById('font-decrease-btn').onclick = () => {
-    zoom = Math.max(90, zoom - 10);
-    document.getElementById('arena-grid').style.fontSize = `${zoom}%`;
-  };
-  document.getElementById('font-increase-btn').onclick = () => {
-    zoom = Math.min(130, zoom + 10);
-    document.getElementById('arena-grid').style.fontSize = `${zoom}%`;
-  };
+  const fDec = document.getElementById('font-decrease-btn');
+  const fInc = document.getElementById('font-increase-btn');
+  const aGrid = document.getElementById('arena-grid');
+  if (fDec && aGrid) {
+    fDec.onclick = () => {
+      zoom = Math.max(90, zoom - 10);
+      aGrid.style.fontSize = `${zoom}%`;
+    };
+  }
+  if (fInc && aGrid) {
+    fInc.onclick = () => {
+      zoom = Math.min(130, zoom + 10);
+      aGrid.style.fontSize = `${zoom}%`;
+    };
+  }
 
-  // Launch initial test
+  // Launch initial test with standard length
   initTest(currentSubject, currentTopicId, currentTestLength);
 });

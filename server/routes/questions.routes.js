@@ -7,9 +7,9 @@ const { generateSocraticHints } = require('../services/aiTutor');
 // GET /api/questions — query question catalog with customizable limit and subject
 router.get('/', async (req, res) => {
   try {
-    const { subject, limit = 25, paper_id } = req.query;
+    const { subject, limit = 50, paper_id } = req.query;
     const db = getFirestoreDb();
-    const parsedLimit = Math.min(Math.max(parseInt(limit) || 25, 5), 100);
+    const parsedLimit = Math.min(Math.max(parseInt(limit) || 50, 5), 100);
 
     let query = db.collection('questions');
 

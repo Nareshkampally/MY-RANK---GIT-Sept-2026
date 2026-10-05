@@ -137,9 +137,9 @@ LearnlyRouter.register('subject-quests', function() {
             </div>
           </div>
           <div class="flex items-center w-full lg:w-auto justify-end relative z-10">
-            <a href="#practice-arena?subject=nvr&topic=3d-nets" class="px-8 py-3 bg-white text-indigo-900 rounded-full font-bold shadow-md hover:bg-slate-100 transition-all flex items-center gap-2 border border-white/20">
+            <a href="#practice-arena?subject=nvr&topic=3d-nets&length=50" class="px-8 py-3 bg-white text-indigo-900 rounded-full font-bold shadow-md hover:bg-slate-100 transition-all flex items-center gap-2 border border-white/20">
               <span class="material-symbols-outlined text-xl">play_arrow</span>
-              Begin Pathway (30m)
+              Begin Pathway (50Q Deep Dive)
             </a>
           </div>
         </div>
@@ -256,8 +256,8 @@ LearnlyRouter.register('subject-quests', function() {
 
         <!-- Action Cluster -->
         <div class="pt-6 mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-indigo-100 relative z-10">
-          <a href="#practice-arena?subject=maths&topic=remainder-theory" class="flex-1 py-3 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2">
-            <span>Drill Target Focus</span>
+          <a href="#practice-arena?subject=maths&topic=remainder-theory&length=50" class="flex-1 py-3 rounded-full bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2">
+            <span>Drill Target Focus (50Q)</span>
             <span class="px-2 py-0.5 rounded-md bg-white/20 text-xs">+35 XP</span>
           </a>
           <div class="flex items-center gap-2">
@@ -337,8 +337,8 @@ LearnlyRouter.register('subject-quests', function() {
 
         <!-- Action Cluster -->
         <div class="pt-6 mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-purple-100 relative z-10">
-          <a href="#practice-arena?subject=vr&topic=inversion-logic" class="flex-1 py-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2">
-            <span>Drill Target Focus</span>
+          <a href="#practice-arena?subject=vr&topic=inversion-logic&length=50" class="flex-1 py-3 rounded-full bg-purple-600 hover:bg-purple-700 text-white text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2">
+            <span>Drill Target Focus (50Q)</span>
             <span class="px-2 py-0.5 rounded-md bg-white/20 text-xs">+35 XP</span>
           </a>
           <div class="flex items-center gap-2">
@@ -418,8 +418,8 @@ LearnlyRouter.register('subject-quests', function() {
 
         <!-- Action Cluster -->
         <div class="pt-6 mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-emerald-100 relative z-10">
-          <a href="#practice-arena?subject=nvr&topic=3d-nets" class="flex-1 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2">
-            <span>Drill Target Focus</span>
+          <a href="#practice-arena?subject=nvr&topic=3d-nets&length=50" class="flex-1 py-3 rounded-full bg-emerald-600 hover:bg-emerald-700 text-white text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2">
+            <span>Drill Target Focus (50Q)</span>
             <span class="px-2 py-0.5 rounded-md bg-white/20 text-xs">+40 XP</span>
           </a>
           <div class="flex items-center gap-2">
@@ -499,8 +499,8 @@ LearnlyRouter.register('subject-quests', function() {
 
         <!-- Action Cluster -->
         <div class="pt-6 mt-6 flex flex-wrap items-center justify-between gap-4 border-t border-rose-100 relative z-10">
-          <a href="#practice-arena?subject=english&topic=comprehension-tone" class="flex-1 py-3 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2">
-            <span>Drill Target Focus</span>
+          <a href="#practice-arena?subject=english&topic=comprehension-tone&length=50" class="flex-1 py-3 rounded-full bg-rose-600 hover:bg-rose-700 text-white text-sm font-bold shadow-md transition-all flex items-center justify-center gap-2">
+            <span>Drill Target Focus (50Q)</span>
             <span class="px-2 py-0.5 rounded-md bg-white/20 text-xs">+30 XP</span>
           </a>
           <div class="flex items-center gap-2">

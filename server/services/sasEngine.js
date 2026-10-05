@@ -4,12 +4,12 @@
 /**
  * Calculates standardized 11+ SAS and percentile rank.
  * @param {number} rawScore - Marks achieved by the student (e.g. 23)
- * @param {number} maxScore - Total available marks (e.g. 25)
+ * @param {number} maxScore - Total available marks (e.g. 50)
  * @param {number} studentAgeMonths - Student age in months (default: 125 = 10y 5m)
  * @param {string} subject - 'Mathematics' | 'Verbal Reasoning' | 'Non-Verbal Spatial' | 'English'
  * @returns {object} { sas, percentile, percentage, readinessTier, stanine }
  */
-function calculateSAS(rawScore, maxScore = 25, studentAgeMonths = 125, subject = 'Verbal Reasoning') {
+function calculateSAS(rawScore, maxScore = 50, studentAgeMonths = 125, subject = 'Verbal Reasoning') {
   const percentage = Math.round((rawScore / maxScore) * 1000) / 10;
 
   // Cohort standard normalization parameters for 11+ competitive entry
