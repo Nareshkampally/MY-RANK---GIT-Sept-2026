@@ -238,6 +238,7 @@
         <a href="#grammar-schools" class="hover:text-brand-600 transition-colors">Target Schools</a>
         <a href="#testimonials" class="hover:text-brand-600 transition-colors">Results</a>
         <a href="#comparison" class="hover:text-brand-600 transition-colors">Why Learnly</a>
+        <a href="#pricing" class="hover:text-brand-600 transition-colors">Pricing</a>
         <button type="button" onclick="openLegalPolicy('terms')" class="hover:text-brand-600 transition-colors">Legal & Safety</button>
       </div>
 
@@ -1150,7 +1151,464 @@
     </div>
   </section>
 
-  <!-- ================= MONUMENTAL DARK FOOTER WITH BIG WIDE COMPANY NAME ================= -->
+  <!-- ================= SECTION: TRANSPARENT 11+ PRICING & PLANS ================= -->
+  <section id="pricing" class="py-20 md:py-28 bg-gradient-to-b from-slate-50/80 via-white to-slate-50 border-b border-slate-200 relative overflow-hidden">
+    
+    <!-- Ambient Aesthetic Orbs -->
+    <div class="ambient-orb w-96 h-96 bg-brand-500/10 top-0 left-1/4"></div>
+    <div class="ambient-orb w-96 h-96 bg-purple-500/10 bottom-0 right-1/4"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto mb-12">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-50 border border-brand-200 text-brand-700 text-xs font-black uppercase tracking-wider mb-4 shadow-sm">
+          <span class="material-symbols-outlined text-sm text-brand-600">payments</span>
+          <span>Transparent British Pricing</span>
+        </div>
+        <h2 class="text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight">
+          Invest in Results, <span class="gradient-hero-title">Not Hourly Guesswork.</span>
+        </h2>
+        <p class="mt-4 text-slate-600 text-sm sm:text-base leading-relaxed">
+          Private 11+ tutors charge upwards of £75/hour with zero data. Learnly gives your child unlimited adaptive mocks, precise Standard Age Scores (SAS), and automated mistake recovery at a fraction of the cost.
+        </p>
+
+        <!-- Billing Cycle Switcher -->
+        <div class="mt-8 inline-flex items-center p-1.5 rounded-2xl bg-slate-100 border border-slate-200/90 shadow-inner">
+          <button type="button" id="billing-btn-monthly" onclick="switchBillingCycle('monthly')" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition-all">
+            Monthly Billing
+          </button>
+          <button type="button" id="billing-btn-annual" onclick="switchBillingCycle('annual')" class="px-5 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-brand-600 to-indigo-600 shadow-md transition-all flex items-center gap-2">
+            <span>Annual Billing</span>
+            <span class="px-2 py-0.5 rounded-full bg-amber-300 text-slate-950 text-[10px] font-black uppercase tracking-wider">
+              Save 20%
+            </span>
+          </button>
+        </div>
+        <p id="billing-sub-label" class="mt-2 text-[11px] text-slate-500 font-medium">
+          Annual plans include 2 months free + full access throughout the 2026/2027 admissions cycle.
+        </p>
+      </div>
+
+      <!-- 3-Tier Pricing Grid -->
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-stretch max-w-6xl mx-auto">
+        
+        <!-- PLAN 1: CORE FOUNDATION -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between relative group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-black uppercase tracking-wider text-slate-500 bg-slate-100 px-3 py-1 rounded-full">
+                Year 4 & Early Year 5
+              </span>
+            </div>
+            
+            <h3 class="text-2xl font-black text-slate-900 tracking-tight">Core Foundation</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+              Build core confidence and speed across English, Maths, Verbal and Non-Verbal reasoning fundamentals.
+            </p>
+
+            <!-- Price Display -->
+            <div class="mt-6 mb-6 pb-6 border-b border-slate-100">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight" id="price-val-foundation">£27.99</span>
+                <span class="text-xs font-bold text-slate-500" id="price-period-foundation">/month</span>
+              </div>
+              <div class="text-[11px] text-slate-500 mt-1 font-medium" id="price-sub-foundation">
+                Billed annually at £335.88/yr (Save £84)
+              </div>
+            </div>
+
+            <!-- Features List -->
+            <ul class="space-y-3 text-xs text-slate-700">
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-emerald-600 flex-shrink-0">check_circle</span>
+                <span><strong>15,000+ Adaptive Micro-Drills</strong> across all 4 subjects</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-emerald-600 flex-shrink-0">check_circle</span>
+                <span><strong>LexiVault 11+</strong> (2,500+ GL & CEM audio vocab cards)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-emerald-600 flex-shrink-0">check_circle</span>
+                <span><strong>Topic-Level Weakness Isolation</strong> (3D Nets, Algebra, Cloze)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-emerald-600 flex-shrink-0">check_circle</span>
+                <span><strong>Mistake Vault</strong> (Auto-captures incorrect answers for re-drill)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-emerald-600 flex-shrink-0">check_circle</span>
+                <span>Weekly Parent Progress Digest & Screen Time Controls</span>
+              </li>
+              <li class="flex items-start gap-2.5 text-slate-400">
+                <span class="material-symbols-outlined text-base text-slate-300 flex-shrink-0">cancel</span>
+                <span>Full-length timed mock exams with national percentiles</span>
+              </li>
+              <li class="flex items-start gap-2.5 text-slate-400">
+                <span class="material-symbols-outlined text-base text-slate-300 flex-shrink-0">cancel</span>
+                <span>Standard Age Score (SAS) cut-off predictor</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-4">
+            <button type="button" onclick="openCheckoutModal('foundation')" class="w-full py-3.5 px-4 rounded-2xl bg-slate-900 hover:bg-brand-600 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2">
+              <span>Start 5-Day Free Trial</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+            <p class="text-center text-[10px] text-slate-400 mt-2">£0 due today • Cancel anytime in 1 click</p>
+          </div>
+        </div>
+
+        <!-- PLAN 2: EXAM PREP SCHOLAR (MOST POPULAR) -->
+        <div class="bg-gradient-to-b from-brand-50/60 via-white to-purple-50/40 rounded-3xl p-8 border-2 border-brand-500 shadow-2xl shadow-brand-500/20 flex flex-col justify-between relative group transform lg:-translate-y-2">
+          
+          <!-- Floating Badge -->
+          <div class="absolute -top-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-full bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 text-white text-[11px] font-black uppercase tracking-wider shadow-lg shadow-brand-500/30 flex items-center gap-1.5 whitespace-nowrap">
+            <span class="material-symbols-outlined text-xs text-amber-300" style="font-variation-settings:'FILL' 1">star</span>
+            <span>Most Chosen for Grammar Entry</span>
+          </div>
+
+          <div>
+            <div class="flex items-center justify-between mb-4 mt-2">
+              <span class="text-xs font-black uppercase tracking-wider text-brand-700 bg-brand-100/70 border border-brand-200 px-3 py-1 rounded-full">
+                Year 5 Grammar Aspirants
+              </span>
+              <span class="text-[11px] font-black text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-md border border-emerald-200">
+                RECOMMENDED
+              </span>
+            </div>
+            
+            <h3 class="text-2xl font-black text-slate-900 tracking-tight">Exam Prep Scholar</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+              The complete, battle-tested system for pupils sitting GL Assessment, CEM Select, CSSE, or super-selective grammar schools.
+            </p>
+
+            <!-- Price Display -->
+            <div class="mt-6 mb-6 pb-6 border-b border-brand-100">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight" id="price-val-scholar">£47.99</span>
+                <span class="text-xs font-bold text-slate-500" id="price-period-scholar">/month</span>
+              </div>
+              <div class="text-[11px] text-brand-700 mt-1 font-semibold" id="price-sub-scholar">
+                Billed annually at £575.88/yr (Save £144)
+              </div>
+            </div>
+
+            <!-- Features List -->
+            <ul class="space-y-3 text-xs text-slate-800">
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-brand-600 flex-shrink-0">check_circle</span>
+                <span><strong>Everything in Core Foundation</strong>, plus:</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-brand-600 flex-shrink-0">check_circle</span>
+                <span><strong>Unlimited Full-Length Mock Exams</strong> (100 Qs each, real GL/CEM timing)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-brand-600 flex-shrink-0">check_circle</span>
+                <span><strong>Standard Age Score (SAS 69–141)</strong> age-standardised benchmark engine</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-brand-600 flex-shrink-0">check_circle</span>
+                <span><strong>Grammar School Cut-Off Predictor</strong> (Henrietta Barnett, QE Boys, Tiffin, Wilson's, KEGS)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-brand-600 flex-shrink-0">check_circle</span>
+                <span><strong>Target Focus Subject Calibration</strong> (Tier 1 Super-Selective vs Standard)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-brand-600 flex-shrink-0">check_circle</span>
+                <span><strong>Proctored Exam Room Simulation</strong> with pacing & pressure analysis</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-brand-600 flex-shrink-0">check_circle</span>
+                <span>AI Diagnostic Weakness Radar & Detailed PDF Scorecards</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-4">
+            <button type="button" onclick="openCheckoutModal('scholar')" class="w-full py-4 px-4 rounded-2xl bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 hover:from-brand-700 hover:to-purple-700 text-white font-extrabold text-sm shadow-xl shadow-brand-500/30 transition-all flex items-center justify-center gap-2">
+              <span>Start 5-Day Free Trial</span>
+              <span class="material-symbols-outlined text-base">arrow_forward</span>
+            </button>
+            <p class="text-center text-[10px] text-slate-500 mt-2 font-medium">Instant full access • No charge until Day 6</p>
+          </div>
+        </div>
+
+        <!-- PLAN 3: SCHOLAR + TUTOR CLINIC PASS -->
+        <div class="bg-white rounded-3xl p-8 border border-slate-200 shadow-sm hover:shadow-xl transition-all flex flex-col justify-between relative group">
+          <div>
+            <div class="flex items-center justify-between mb-4">
+              <span class="text-xs font-black uppercase tracking-wider text-purple-700 bg-purple-50 border border-purple-200 px-3 py-1 rounded-full">
+                Super-Selectives + 1:1 Expert
+              </span>
+            </div>
+            
+            <h3 class="text-2xl font-black text-slate-900 tracking-tight">Tutor Clinic Pass</h3>
+            <p class="text-xs text-slate-600 mt-2 leading-relaxed">
+              Platform mastery combined with regular 1-on-1 diagnostic reviews with verified Oxbridge 11+ tutors.
+            </p>
+
+            <!-- Price Display -->
+            <div class="mt-6 mb-6 pb-6 border-b border-slate-100">
+              <div class="flex items-baseline gap-1">
+                <span class="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight" id="price-val-tutor">£79.99</span>
+                <span class="text-xs font-bold text-slate-500" id="price-period-tutor">/month</span>
+              </div>
+              <div class="text-[11px] text-purple-700 mt-1 font-semibold" id="price-sub-tutor">
+                Billed annually at £959.88/yr (Save £240)
+              </div>
+            </div>
+
+            <!-- Features List -->
+            <ul class="space-y-3 text-xs text-slate-700">
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-purple-600 flex-shrink-0">check_circle</span>
+                <span><strong>Everything in Exam Prep Scholar</strong>, plus:</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-purple-600 flex-shrink-0">check_circle</span>
+                <span><strong>Monthly 1-on-1 Specialist 11+ Clinic Session</strong> (45 mins live video)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-purple-600 flex-shrink-0">check_circle</span>
+                <span><strong>Enhanced DBS & Oxbridge Verified Tutors</strong> (KCSIE Safeguarded)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-purple-600 flex-shrink-0">check_circle</span>
+                <span><strong>Live Mistake Vault Walkthrough</strong> (Targeted conceptual repairs)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-purple-600 flex-shrink-0">check_circle</span>
+                <span><strong>Priority Parent Admissions Advisory</strong> (WhatsApp & Phone guidance)</span>
+              </li>
+              <li class="flex items-start gap-2.5">
+                <span class="material-symbols-outlined text-base text-purple-600 flex-shrink-0">check_circle</span>
+                <span>Dedicated Tutor Hub booking console with flexible scheduling</span>
+              </li>
+            </ul>
+          </div>
+
+          <div class="mt-8 pt-4">
+            <button type="button" onclick="openCheckoutModal('tutor_pass')" class="w-full py-3.5 px-4 rounded-2xl bg-purple-900 hover:bg-purple-800 text-white font-bold text-xs shadow-md transition-all flex items-center justify-center gap-2">
+              <span>Start 5-Day Free Trial</span>
+              <span class="material-symbols-outlined text-sm">arrow_forward</span>
+            </button>
+            <p class="text-center text-[10px] text-slate-400 mt-2">Includes 1 Free Diagnostic Clinic Consultation</p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Trust Badges & Reassurance Bar -->
+      <div class="mt-14 max-w-4xl mx-auto p-6 rounded-3xl bg-white border border-slate-200/90 shadow-sm grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center mb-2">
+            <span class="material-symbols-outlined text-xl">verified_user</span>
+          </div>
+          <span class="text-xs font-bold text-slate-900">5-Day Free Trial</span>
+          <span class="text-[11px] text-slate-500">Test every single feature</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-xl bg-blue-50 text-blue-600 flex items-center justify-center mb-2">
+            <span class="material-symbols-outlined text-xl">event_repeat</span>
+          </div>
+          <span class="text-xs font-bold text-slate-900">1-Click Cancellation</span>
+          <span class="text-[11px] text-slate-500">Zero exit fees or locks</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-xl bg-purple-50 text-purple-600 flex items-center justify-center mb-2">
+            <span class="material-symbols-outlined text-xl">lock</span>
+          </div>
+          <span class="text-xs font-bold text-slate-900">Stripe Encrypted</span>
+          <span class="text-[11px] text-slate-500">256-bit bank grade SSL</span>
+        </div>
+        <div class="flex flex-col items-center">
+          <div class="w-10 h-10 rounded-xl bg-amber-50 text-amber-600 flex items-center justify-center mb-2">
+            <span class="material-symbols-outlined text-xl">volunteer_activism</span>
+          </div>
+          <span class="text-xs font-bold text-slate-900">Pupil Premium</span>
+          <span class="text-[11px] text-slate-500">Free access via school</span>
+        </div>
+      </div>
+
+      <!-- FAQ Accordion for Pricing -->
+      <div class="mt-20 max-w-3xl mx-auto">
+        <div class="text-center mb-10">
+          <h3 class="text-2xl font-black text-slate-900 tracking-tight">Frequently Asked Pricing Questions</h3>
+          <p class="text-xs sm:text-sm text-slate-600 mt-1">Everything you need to know about starting your child's 11+ preparation with Learnly.</p>
+        </div>
+
+        <div class="space-y-3">
+          <!-- FAQ 1 -->
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden transition-all">
+            <button type="button" onclick="togglePricingFaq(this)" class="w-full px-6 py-4 text-left font-bold text-xs sm:text-sm text-slate-900 flex items-center justify-between hover:bg-slate-50 transition-colors">
+              <span>How does the 5-day free trial work?</span>
+              <span class="material-symbols-outlined text-base text-slate-400 transition-transform">expand_more</span>
+            </button>
+            <div class="faq-content hidden px-6 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              You get immediate, unrestricted access to the plan you select for a full 5 days. Your card will not be charged until the 6th day. You can cancel with a single click from the Parent Portal at any point during your trial without paying a penny.
+            </div>
+          </div>
+
+          <!-- FAQ 2 -->
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden transition-all">
+            <button type="button" onclick="togglePricingFaq(this)" class="w-full px-6 py-4 text-left font-bold text-xs sm:text-sm text-slate-900 flex items-center justify-between hover:bg-slate-50 transition-colors">
+              <span>When should my child start: Year 4 or Year 5?</span>
+              <span class="material-symbols-outlined text-base text-slate-400 transition-transform">expand_more</span>
+            </button>
+            <div class="faq-content hidden px-6 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              For Year 4 pupils, we recommend the <strong>Core Foundation</strong> plan to cultivate strong vocabulary roots (LexiVault) and spatial net reasoning without exam stress. In Year 5, switching to <strong>Exam Prep Scholar</strong> unlocks full-length timed mock exams and standard age score (SAS) calibration tailored to September exam dates.
+            </div>
+          </div>
+
+          <!-- FAQ 3 -->
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden transition-all">
+            <button type="button" onclick="togglePricingFaq(this)" class="w-full px-6 py-4 text-left font-bold text-xs sm:text-sm text-slate-900 flex items-center justify-between hover:bg-slate-50 transition-colors">
+              <span>Which exam boards do your plans cover?</span>
+              <span class="material-symbols-outlined text-base text-slate-400 transition-transform">expand_more</span>
+            </button>
+            <div class="faq-content hidden px-6 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              Learnly covers all primary UK 11+ testing bodies: <strong>GL Assessment</strong> (including all 21 standard Verbal Reasoning question typologies), <strong>CEM Select</strong> (computer-adaptive numerical and cloze formats), <strong>CSSE</strong> (Essex consortium), and bespoke London grammar formats (Sutton SET, St. Olave's, Queen Elizabeth's Boys, and Henrietta Barnett).
+            </div>
+          </div>
+
+          <!-- FAQ 4 -->
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden transition-all">
+            <button type="button" onclick="togglePricingFaq(this)" class="w-full px-6 py-4 text-left font-bold text-xs sm:text-sm text-slate-900 flex items-center justify-between hover:bg-slate-50 transition-colors">
+              <span>Can I switch between monthly and annual plans?</span>
+              <span class="material-symbols-outlined text-base text-slate-400 transition-transform">expand_more</span>
+            </button>
+            <div class="faq-content hidden px-6 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              Yes, easily. You can upgrade from monthly to annual at any time from your Parent Portal to lock in the 20% discount. If you choose an annual plan and your child completes their exams early, our fair pro-rata policy applies.
+            </div>
+          </div>
+
+          <!-- FAQ 5 -->
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden transition-all">
+            <button type="button" onclick="togglePricingFaq(this)" class="w-full px-6 py-4 text-left font-bold text-xs sm:text-sm text-slate-900 flex items-center justify-between hover:bg-slate-50 transition-colors">
+              <span>Are the tutors Enhanced DBS verified under KCSIE?</span>
+              <span class="material-symbols-outlined text-base text-slate-400 transition-transform">expand_more</span>
+            </button>
+            <div class="faq-content hidden px-6 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              Yes, 100%. All tutors conducting 1-on-1 clinics undergo strict identity checks, Enhanced Disclosure and Barring Service (DBS) verification, and annual safeguarding training aligned with UK Department for Education Keeping Children Safe in Education (KCSIE) statutory guidelines.
+            </div>
+          </div>
+
+          <!-- FAQ 6 -->
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden transition-all">
+            <button type="button" onclick="togglePricingFaq(this)" class="w-full px-6 py-4 text-left font-bold text-xs sm:text-sm text-slate-900 flex items-center justify-between hover:bg-slate-50 transition-colors">
+              <span>How do I claim a Pupil Premium bursary account?</span>
+              <span class="material-symbols-outlined text-base text-slate-400 transition-transform">expand_more</span>
+            </button>
+            <div class="faq-content hidden px-6 pb-4 text-xs text-slate-600 leading-relaxed border-t border-slate-100 pt-3">
+              If your child is eligible for Free School Meals or Pupil Premium funding, their state primary school can issue a Learnly Scholar Access Code. Simply enter this code during checkout to receive 100% free, full-access accounts for the entire admissions year.
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= PLAN CHECKOUT & ENROLLMENT MODAL ================= -->
+  <div id="pricing-checkout-modal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-md hidden items-center justify-center p-4">
+    <div class="bg-white border border-slate-200 rounded-3xl max-w-lg w-full p-6 sm:p-8 shadow-2xl relative animate-fade-in max-h-[92vh] overflow-y-auto">
+      
+      <!-- Close Button -->
+      <button type="button" onclick="closeCheckoutModal()" class="absolute top-5 right-5 w-9 h-9 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-500 hover:text-slate-900 flex items-center justify-center transition-colors">
+        <span class="material-symbols-outlined text-lg">close</span>
+      </button>
+
+      <!-- Modal Header -->
+      <div class="flex items-center gap-3 mb-6">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-indigo-600 text-white flex items-center justify-center shadow-lg shadow-brand-500/25">
+          <span class="material-symbols-outlined text-2xl">verified</span>
+        </div>
+        <div>
+          <h3 class="text-xl font-black text-slate-900 tracking-tight">Start 5-Day Free Trial</h3>
+          <p class="text-xs text-slate-500 font-medium">Zero charge today • Instant portal access</p>
+        </div>
+      </div>
+
+      <!-- Plan Summary Card -->
+      <div class="p-4 rounded-2xl bg-brand-50/70 border border-brand-200/90 mb-6">
+        <div class="flex items-center justify-between">
+          <div>
+            <span id="modal-plan-name" class="text-sm font-black text-brand-950 block">Exam Prep Scholar</span>
+            <span id="modal-billing-cycle" class="text-xs text-brand-700 font-medium">Annual Plan (Save 20%)</span>
+          </div>
+          <div class="text-right">
+            <span id="modal-plan-price" class="text-lg font-black text-slate-900 block">£47.99/mo</span>
+            <span class="text-[10px] text-emerald-700 font-bold bg-emerald-100 px-2 py-0.5 rounded-full">5 Days Free</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Registration Form -->
+      <form onsubmit="handleCheckoutSubmit(event)" class="space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Parent's Full Name</label>
+          <input type="text" id="checkout-parent-name" required placeholder="e.g. Priya Sharma" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-medium focus:ring-2 focus:ring-brand-500 focus:outline-none"/>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Parent's Email Address (for reports & login)</label>
+          <input type="email" id="checkout-parent-email" required placeholder="e.g. priya.sharma@example.co.uk" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-medium focus:ring-2 focus:ring-brand-500 focus:outline-none"/>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Pupil's First Name</label>
+            <input type="text" id="checkout-pupil-name" required placeholder="e.g. Leo" class="w-full px-3.5 py-2.5 rounded-xl border border-slate-200 text-xs font-medium focus:ring-2 focus:ring-brand-500 focus:outline-none"/>
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Year Group</label>
+            <select id="checkout-pupil-year" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-medium bg-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+              <option value="Year 5 (Autumn 2026 Entry)">Year 5 (11+ Entry 2026)</option>
+              <option value="Year 4 (Foundation)">Year 4 (11+ Entry 2027)</option>
+              <option value="Year 6 (Late Prep / Independent)">Year 6 (Late Prep)</option>
+            </select>
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Primary Target Grammar School</label>
+          <select id="checkout-target-school" class="w-full px-3 py-2.5 rounded-xl border border-slate-200 text-xs font-medium bg-white focus:ring-2 focus:ring-brand-500 focus:outline-none">
+            <option value="Queen Elizabeth's School (Barnet)">Queen Elizabeth's School (Barnet) — GL</option>
+            <option value="The Henrietta Barnett School (HBS)">The Henrietta Barnett School (HBS) — Bespoke</option>
+            <option value="Tiffin School / Tiffin Girls">Tiffin School / Tiffin Girls' — Stage 1 & 2</option>
+            <option value="Wilson's School (Sutton)">Wilson's School (Sutton SET) — GL</option>
+            <option value="King Edward VI Grammar (KEGS)">King Edward VI Grammar (KEGS) — CSSE</option>
+            <option value="Altrincham Grammar School for Boys/Girls">Altrincham Grammar (Trafford Consortium)</option>
+            <option value="Other UK Grammar / Independent">Other UK Grammar / Independent School</option>
+          </select>
+        </div>
+
+        <!-- Payment Guarantee Notice -->
+        <div class="p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-slate-600 text-[11px] space-y-1">
+          <div class="flex items-center justify-between font-bold text-slate-900">
+            <span>Due Today:</span>
+            <span class="text-emerald-600 font-mono text-xs">£0.00 (5-Day Free Trial)</span>
+          </div>
+          <div class="flex items-center justify-between text-slate-500">
+            <span>First billing date:</span>
+            <span id="checkout-charge-date" class="font-medium">10 October 2026</span>
+          </div>
+          <p class="text-[10px] text-slate-400 pt-1 border-t border-slate-200">
+            Cancel with 1 click anytime before trial ends to avoid being charged. By continuing, you agree to our Terms and ICO Children's Code Privacy Policy.
+          </p>
+        </div>
+
+        <button type="submit" class="w-full py-3.5 rounded-xl bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 hover:from-brand-700 hover:to-purple-700 text-white font-extrabold text-sm shadow-xl shadow-brand-500/30 transition-all flex items-center justify-center gap-2">
+          <span>Activate Free Scholar Access</span>
+          <span class="material-symbols-outlined text-base">arrow_forward</span>
+        </button>
+      </form>
+    </div>
+  </div>
   <!-- User requirement: "Also at the footer keep the company name big and wide in dark background." -->
   <footer class="bg-[#06080e] text-slate-400 text-xs pt-20 pb-10 border-t border-slate-900 relative overflow-hidden">
     
@@ -1194,6 +1652,7 @@
             <li><a href="index.html#vocab-vault" class="hover:text-white transition-colors">LexiVault 11+</a></li>
             <li><a href="index.html#school-predictor" class="hover:text-white transition-colors">School Predictor</a></li>
             <li><a href="index.html#parent-portal" class="hover:text-white transition-colors">Parent Portal</a></li>
+            <li><a href="#pricing" class="text-amber-400 font-bold hover:text-white transition-colors flex items-center gap-1"><span>Pricing & Plans</span><span class="text-[9px] bg-amber-400/20 text-amber-300 px-1.5 py-0.5 rounded">NEW</span></a></li>
           </ul>
         </div>
 
@@ -1695,10 +2154,157 @@
       closeCookieSettingsModal();
     }
 
+    // ================= PRICING & CHECKOUT ENGINE =================
+    let currentBillingCycle = 'annual';
+    let selectedPlanKey = 'scholar';
+
+    const pricingData = {
+      foundation: {
+        name: 'Core Foundation (Year 4 & Early Prep)',
+        monthly: { price: '£34.99', sub: 'Billed monthly • Cancel anytime', period: '/month' },
+        annual: { price: '£27.99', sub: 'Billed annually at £335.88/yr (Save £84)', period: '/month' }
+      },
+      scholar: {
+        name: 'Exam Prep Scholar (Year 5 Aspirants)',
+        monthly: { price: '£59.99', sub: 'Billed monthly • Cancel anytime', period: '/month' },
+        annual: { price: '£47.99', sub: 'Billed annually at £575.88/yr (Save £144)', period: '/month' }
+      },
+      tutor_pass: {
+        name: 'Scholar + Tutor Clinic Pass (1:1 Expert)',
+        monthly: { price: '£99.99', sub: 'Billed monthly • Cancel anytime', period: '/month' },
+        annual: { price: '£79.99', sub: 'Billed annually at £959.88/yr (Save £240)', period: '/month' }
+      }
+    };
+
+    function switchBillingCycle(cycle) {
+      currentBillingCycle = cycle;
+      playAudioTone(cycle === 'annual' ? 640 : 520, 'sine', 0.05);
+
+      const btnMonthly = document.getElementById('billing-btn-monthly');
+      const btnAnnual = document.getElementById('billing-btn-annual');
+      const subLabel = document.getElementById('billing-sub-label');
+
+      if (cycle === 'annual') {
+        btnAnnual.className = 'px-5 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-brand-600 to-indigo-600 shadow-md transition-all flex items-center gap-2';
+        btnMonthly.className = 'px-5 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition-all';
+        if (subLabel) subLabel.textContent = 'Annual plans include 2 months free + full access throughout the 2026/2027 admissions cycle.';
+      } else {
+        btnMonthly.className = 'px-5 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-brand-600 to-indigo-600 shadow-md transition-all';
+        btnAnnual.className = 'px-5 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2';
+        if (subLabel) subLabel.textContent = 'Pay month-to-month. Cancel anytime in 1 click from your parent portal.';
+      }
+
+      // Update Card 1 (Foundation)
+      document.getElementById('price-val-foundation').textContent = pricingData.foundation[cycle].price;
+      document.getElementById('price-period-foundation').textContent = pricingData.foundation[cycle].period;
+      document.getElementById('price-sub-foundation').textContent = pricingData.foundation[cycle].sub;
+
+      // Update Card 2 (Scholar)
+      document.getElementById('price-val-scholar').textContent = pricingData.scholar[cycle].price;
+      document.getElementById('price-period-scholar').textContent = pricingData.scholar[cycle].period;
+      document.getElementById('price-sub-scholar').textContent = pricingData.scholar[cycle].sub;
+
+      // Update Card 3 (Tutor Pass)
+      document.getElementById('price-val-tutor').textContent = pricingData.tutor_pass[cycle].price;
+      document.getElementById('price-period-tutor').textContent = pricingData.tutor_pass[cycle].period;
+      document.getElementById('price-sub-tutor').textContent = pricingData.tutor_pass[cycle].sub;
+    }
+
+    function togglePricingFaq(btn) {
+      playAudioTone(480, 'sine', 0.03);
+      const content = btn.parentElement.querySelector('.faq-content');
+      const icon = btn.querySelector('.material-symbols-outlined');
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        icon.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        icon.classList.remove('rotate-180');
+      }
+    }
+
+    function openCheckoutModal(planKey) {
+      selectedPlanKey = planKey || 'scholar';
+      playAudioTone(580, 'sine', 0.05);
+
+      const plan = pricingData[selectedPlanKey];
+      const tierInfo = plan[currentBillingCycle];
+
+      document.getElementById('modal-plan-name').textContent = plan.name;
+      document.getElementById('modal-billing-cycle').textContent = currentBillingCycle === 'annual' ? 'Annual Plan (Save 20% + 2 Months Free)' : 'Monthly Plan (Cancel Anytime)';
+      document.getElementById('modal-plan-price').textContent = tierInfo.price + '/mo';
+
+      // Calculate dynamic charge date (+5 days)
+      const chargeDate = new Date();
+      chargeDate.setDate(chargeDate.getDate() + 5);
+      const formattedDate = chargeDate.toLocaleDateString('en-GB', { day: 'numeric', month: 'long', year: 'numeric' });
+      const chargeElem = document.getElementById('checkout-charge-date');
+      if (chargeElem) chargeElem.textContent = formattedDate;
+
+      const modal = document.getElementById('pricing-checkout-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCheckoutModal() {
+      playAudioTone(380, 'sine', 0.04);
+      const modal = document.getElementById('pricing-checkout-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function handleCheckoutSubmit(e) {
+      e.preventDefault();
+      playAudioTone(880, 'sine', 0.12);
+
+      const parentName = document.getElementById('checkout-parent-name').value;
+      const parentEmail = document.getElementById('checkout-parent-email').value;
+      const pupilName = document.getElementById('checkout-pupil-name').value;
+      const pupilYear = document.getElementById('checkout-pupil-year').value;
+      const targetSchool = document.getElementById('checkout-target-school').value;
+
+      // Save registration state into localStorage
+      const registration = {
+        planKey: selectedPlanKey,
+        billingCycle: currentBillingCycle,
+        parentName,
+        parentEmail,
+        pupilName,
+        pupilYear,
+        targetSchool,
+        trialStartedAt: new Date().toISOString(),
+        status: 'active_trial'
+      };
+
+      localStorage.setItem('learnly_active_subscription', JSON.stringify(registration));
+      localStorage.setItem('learnly_pupil_profile', JSON.stringify({ name: pupilName, targetSchool, year: pupilYear }));
+
+      closeCheckoutModal();
+
+      // Show celebratory notification and redirect to portal
+      const toast = document.createElement('div');
+      toast.className = 'fixed bottom-6 right-6 z-50 bg-slate-900 text-white px-5 py-4 rounded-2xl shadow-2xl border border-slate-700 flex items-center gap-3 animate-bounce';
+      toast.innerHTML = `
+        <span class="material-symbols-outlined text-emerald-400 text-2xl">check_circle</span>
+        <div>
+          <div class="font-bold text-xs">5-Day Scholar Trial Activated!</div>
+          <div class="text-[11px] text-slate-300">Welcome, ${pupilName}! Redirecting to Practice Arena...</div>
+        </div>
+      `;
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        window.location.href = 'index.html#practice-arena';
+      }, 1500);
+    }
+
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeLegalModal();
         closeCookieSettingsModal();
+        closeCheckoutModal();
       }
     });
 
