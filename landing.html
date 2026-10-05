@@ -3,13 +3,13 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Learnly 11+ — The Modern Standard for UK Grammar School Admissions</title>
-  <meta name="description" content="Precision 11+ examination diagnostic instrument. Adaptive practice, Standard Age Score (SAS) calibration, LexiVault vocabulary mastery, and official GL Assessment & CEM mock simulations."/>
+  <title>Learnly 11+ — The Modern Standard for UK Grammar School Preparation</title>
+  <meta name="description" content="Precision 11+ exam preparation platform. Adaptive practice arena, Standard Age Score (SAS) diagnostic predictions, LexiVault vocabulary mastery, and mock simulations for GL Assessment, CEM Select & CSSE."/>
 
-  <!-- Google Fonts: Newsreader, Instrument Serif, Plus Jakarta Sans, Courier Prime, JetBrains Mono -->
+  <!-- Fonts: Plus Jakarta Sans, Instrument Serif, JetBrains Mono -->
   <link rel="preconnect" href="https://fonts.googleapis.com"/>
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700&family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500;1,6..72,600&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600;700;800&display=swap" rel="stylesheet"/>
   
   <!-- Material Symbols Outlined -->
   <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL,GRAD,opsz@100..700,0..1,-50..200,20..48&display=swap" rel="stylesheet"/>
@@ -21,25 +21,67 @@
       theme: {
         extend: {
           fontFamily: {
-            serif: ['"Instrument Serif"', '"Newsreader"', 'Georgia', 'serif'],
             sans: ['"Plus Jakarta Sans"', '-apple-system', 'BlinkMacSystemFont', 'sans-serif'],
-            mono: ['"Courier Prime"', '"JetBrains Mono"', 'monospace'],
+            serif: ['"Instrument Serif"', 'Georgia', 'serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
           },
           colors: {
-            ground: {
-              DEFAULT: '#FAF8F5',
-              secondary: '#F3EEE6',
-              warm: '#EFE9DD',
+            brand: {
+              50: '#eef2ff',
+              100: '#e0e7ff',
+              200: '#c7d2fe',
+              300: '#a5b4fc',
+              400: '#818cf8',
+              500: '#6366f1',
+              600: '#4f46e5',
+              700: '#4338ca',
+              800: '#3730a3',
+              900: '#312e81',
+              950: '#1e1b4b',
+            }
+          },
+          animation: {
+            'float-1': 'floatOne 7s ease-in-out infinite',
+            'float-2': 'floatTwo 8s ease-in-out infinite 1s',
+            'float-3': 'floatThree 9s ease-in-out infinite 2s',
+            'float-4': 'floatFour 7.5s ease-in-out infinite 1.5s',
+            'pulse-subtle': 'pulseSubtle 4s ease-in-out infinite',
+            'marquee': 'marquee 32s linear infinite',
+            'marquee-reverse': 'marqueeRev 32s linear infinite',
+            'shimmer-fast': 'shimmer 2.5s infinite linear',
+          },
+          keyframes: {
+            floatOne: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(-1.5deg)' },
+              '50%': { transform: 'translateY(-14px) rotate(-0.5deg)' },
             },
-            ink: {
-              DEFAULT: '#141C2B',
-              secondary: '#4A5364',
-              muted: '#767E8C',
+            floatTwo: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(1.5deg)' },
+              '50%': { transform: 'translateY(-16px) rotate(2.5deg)' },
             },
-            inkblue: {
-              DEFAULT: '#2C4A8F',
-              light: '#3D61B0',
-              hover: '#203972',
+            floatThree: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(-1deg)' },
+              '50%': { transform: 'translateY(-12px) rotate(0.5deg)' },
+            },
+            floatFour: {
+              '0%, 100%': { transform: 'translateY(0px) rotate(1deg)' },
+              '50%': { transform: 'translateY(-15px) rotate(0deg)' },
+            },
+            pulseSubtle: {
+              '0%, 100%': { opacity: '0.6', transform: 'scale(1)' },
+              '50%': { opacity: '1', transform: 'scale(1.05)' },
+            },
+            marquee: {
+              '0%': { transform: 'translateX(0%)' },
+              '100%': { transform: 'translateX(-50%)' },
+            },
+            marqueeRev: {
+              '0%': { transform: 'translateX(-50%)' },
+              '100%': { transform: 'translateX(0%)' },
+            },
+            shimmer: {
+              '0%': { backgroundPosition: '-200% 0' },
+              '100%': { backgroundPosition: '200% 0' },
             }
           }
         }
@@ -49,1060 +91,997 @@
 
   <style>
     :root {
-      --ground: #FAF8F5;
-      --ground-secondary: #F3EEE6;
-      --ground-warm: #EFE9DD;
-      --ink: #141C2B;
-      --ink-secondary: #4A5364;
-      --muted: #767E8C;
-      --ink-blue: #2C4A8F;
-      --hairline: rgba(20, 28, 43, 0.14);
-      --hairline-heavy: rgba(20, 28, 43, 0.28);
-      --font-serif: 'Instrument Serif', 'Newsreader', Georgia, serif;
-      --font-sans: 'Plus Jakarta Sans', sans-serif;
-      --font-mono: 'Courier Prime', 'JetBrains Mono', monospace;
-    }
-
-    *, *::before, *::after {
-      box-sizing: border-box;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
+      text-rendering: optimizeLegibility;
     }
 
-    body {
-      margin: 0;
-      padding: 0;
-      background-color: var(--ground);
-      color: var(--ink);
-      font-family: var(--font-sans);
-      font-size: 13px;
-      line-height: 1.75;
-      overflow-x: hidden;
+    /* Vibrant Multi-Color Gradients */
+    .gradient-hero-title {
+      background: linear-gradient(135deg, #1e1b4b 0%, #4338ca 30%, #7c3aed 65%, #ec4899 90%, #f97316 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    ::selection {
-      background-color: var(--ink);
-      color: var(--ground);
+    .gradient-accent-blue {
+      background: linear-gradient(135deg, #2563eb 0%, #4f46e5 50%, #7c3aed 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    /* Headings in refined literary serif */
-    h1, h2, h3, h4 {
-      font-family: var(--font-serif);
-      font-weight: 400;
-      letter-spacing: -0.015em;
-      color: var(--ink);
-      margin: 0;
+    .gradient-accent-amber {
+      background: linear-gradient(135deg, #f59e0b 0%, #ea580c 50%, #dc2626 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
-    em, .serif-italic {
-      font-family: var(--font-serif);
-      font-style: italic;
-      color: var(--ink-blue);
-      font-weight: 400;
+    /* Rich Glassmorphism with Colorful Border Glow */
+    .glass-floating-card {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.95);
+      box-shadow: 
+        0 10px 30px -5px rgba(79, 70, 229, 0.12),
+        0 25px 60px -15px rgba(15, 23, 42, 0.08),
+        inset 0 1px 1px 0 rgba(255, 255, 255, 0.9);
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease;
+    }
+    .glass-floating-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      box-shadow: 
+        0 20px 40px -5px rgba(79, 70, 229, 0.2),
+        0 30px 70px -10px rgba(15, 23, 42, 0.12);
     }
 
-    .mono-meta {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-secondary);
+    /* Tactile button physics */
+    .btn-tactile {
+      transition: transform 120ms cubic-bezier(0.16, 1, 0.3, 1), box-shadow 120ms ease, filter 120ms ease;
     }
-
-    .mono-accent {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      color: var(--ink-blue);
-      font-weight: 700;
+    .btn-tactile:hover {
+      transform: translateY(-2px);
+      filter: brightness(1.05);
     }
-
-    /* Buttons: crisp architectural lines with tactile press physics */
-    .btn-pressable {
-      transition: all 140ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .btn-pressable:hover {
-      transform: translateY(-1.5px);
-    }
-    .btn-pressable:active {
-      transform: scale(0.98) translateY(0);
-    }
-
-    .btn-primary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 13px 28px;
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      background-color: var(--ink);
-      color: var(--ground);
-      border: 1px solid var(--ink);
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .btn-primary:hover {
-      background-color: #242E40;
-      color: #FFFFFF;
-    }
-
-    .btn-secondary {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      padding: 13px 26px;
-      font-family: var(--font-mono);
-      font-size: 11.5px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      text-decoration: none;
-      background: transparent;
-      color: var(--ink);
-      border: 1px solid var(--hairline-heavy);
-      cursor: pointer;
-      border-radius: 4px;
-    }
-    .btn-secondary:hover {
-      background-color: rgba(20, 28, 43, 0.04);
-      border-color: var(--ink);
-    }
-
-    /* Architectural card styling */
-    .arch-card {
-      background-color: #FFFFFF;
-      border: 1px solid var(--hairline);
-      border-radius: 6px;
-      box-shadow: 0 4px 16px rgba(20, 28, 43, 0.03);
-      transition: all 200ms cubic-bezier(0.16, 1, 0.3, 1);
-    }
-    .arch-card:hover {
-      border-color: var(--hairline-heavy);
-      box-shadow: 0 8px 24px rgba(20, 28, 43, 0.06);
-    }
-
-    /* Fixed Travelling Product Object */
-    #travelling-product {
-      position: fixed;
-      width: 310px;
-      height: 370px;
-      z-index: 25;
-      pointer-events: none;
-      filter: drop-shadow(0 20px 30px rgba(20, 28, 43, 0.18));
-      transition: opacity 160ms ease, visibility 160ms ease;
-      will-change: transform, opacity;
-      top: 18vh;
-      left: 58vw;
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-      #travelling-product { display: none !important; }
-    }
-    @media (max-width: 1024px) {
-      #travelling-product { display: none !important; }
-    }
-
-    /* Spread Wordmark */
-    .wordmark-spread {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      width: 102%;
-      margin-left: -1%;
-      font-family: var(--font-serif);
-      font-weight: 400;
-      font-size: clamp(48px, 12.5vw, 190px);
-      line-height: 0.74;
-      letter-spacing: -0.04em;
-      color: var(--ink);
-      user-select: none;
-      pointer-events: none;
-      overflow: hidden;
-      transform: translateY(0.12em);
-    }
-    .wordmark-spread span {
-      display: inline-block;
-      transition: transform 80ms linear;
-    }
-
-    /* Demonstration SVG path */
-    .demo-svg-path {
-      fill: none;
-      stroke: var(--ink-blue);
-      stroke-width: 1.75;
-      stroke-linecap: square;
-      stroke-linejoin: miter;
-      transition: stroke-dashoffset 2s cubic-bezier(0.16, 1, 0.3, 1), stroke-width 300ms ease;
-    }
-
-    /* Variant buttons */
-    .variant-btn {
-      font-family: var(--font-mono);
-      font-size: 11px;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-      padding: 10px 18px;
-      background: transparent;
-      border: 1px solid var(--hairline);
-      color: var(--ink-secondary);
-      cursor: pointer;
-      margin-right: -1px;
-      margin-bottom: -1px;
-      transition: all 140ms ease;
-    }
-    .variant-btn[aria-pressed="true"] {
-      border-color: var(--ink);
-      color: var(--ink);
-      background-color: var(--ground-secondary);
-      font-weight: 700;
-      box-shadow: inset 0 0 0 1px var(--ink);
+    .btn-tactile:active {
+      transform: translateY(1px) scale(0.98);
+      filter: brightness(0.95);
     }
 
     /* 3D Flip Card for LexiVault */
-    .lexi-flip-wrapper {
-      perspective: 1000px;
+    .flip-card {
+      perspective: 1200px;
     }
-    .lexi-flip-inner {
+    .flip-card-inner {
       transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
       transform-style: preserve-3d;
     }
-    .lexi-flip-wrapper.is-flipped .lexi-flip-inner {
+    .flip-card.flipped .flip-card-inner {
       transform: rotateY(180deg);
     }
-    .lexi-front, .lexi-back {
+    .flip-card-front, .flip-card-back {
       backface-visibility: hidden;
       -webkit-backface-visibility: hidden;
     }
-    .lexi-back {
+    .flip-card-back {
       transform: rotateY(180deg);
     }
 
-    /* Custom range slider */
-    input[type=range]::-webkit-slider-thumb {
-      -webkit-appearance: none;
-      height: 24px;
-      width: 24px;
-      border-radius: 50%;
-      background: var(--ink-blue);
-      cursor: pointer;
-      box-shadow: 0 2px 8px rgba(44, 74, 143, 0.4);
-      border: 3px solid #ffffff;
-      transition: transform 120ms ease;
-    }
-    input[type=range]::-webkit-slider-thumb:hover {
-      transform: scale(1.15);
-    }
-
-    /* Giant Monumental Footer Title */
+    /* Giant Company Name Display Typography */
     .giant-footer-title {
-      font-size: clamp(3.5rem, 14vw, 15.5rem);
+      font-size: clamp(3.2rem, 13vw, 15rem);
       letter-spacing: -0.05em;
-      line-height: 0.82;
+      line-height: 0.85;
       text-transform: uppercase;
-      font-weight: 900;
-      font-family: var(--font-serif);
-      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.02) 100%);
+      font-weight: 950;
+      background: linear-gradient(180deg, rgba(255, 255, 255, 0.28) 0%, rgba(255, 255, 255, 0.05) 100%);
       -webkit-background-clip: text;
       -webkit-text-fill-color: transparent;
       user-select: none;
     }
+
+    /* Subtle Rainbow Glow Ring */
+    .rainbow-border {
+      background: linear-gradient(135deg, #6366f1, #a855f7, #ec4899, #f97316);
+      padding: 1.5px;
+      border-radius: 1.5rem;
+    }
+
+    /* Ambient Mesh Orbs */
+    .ambient-orb {
+      filter: blur(120px);
+      opacity: 0.55;
+      pointer-events: none;
+      position: absolute;
+      border-radius: 9999px;
+    }
   </style>
 </head>
-<body class="selection:bg-ink selection:text-ground">
+<body class="bg-[#fcfdfe] text-slate-900 selection:bg-brand-500 selection:text-white antialiased overflow-x-hidden">
 
-  <!-- ================= TRAVELLING PRODUCT OBJECT ================= -->
-  <!-- Cut-out of the Learnly Calibrated Vernier Caliper & SAS Normal Curve -->
-  <div id="travelling-product" aria-hidden="true">
-    <svg width="310" height="370" viewBox="0 0 310 370" fill="none" xmlns="http://www.w3.org/2000/svg">
-      <!-- Cut-out card frame with parchment ground and ink hairline -->
-      <rect x="14" y="14" width="282" height="342" fill="#EFE9DD" stroke="#141C2B" stroke-width="1.5"/>
-      <rect x="22" y="22" width="266" height="326" fill="#FAF8F5" stroke="rgba(20,28,43,0.18)" stroke-width="1"/>
-      
-      <!-- Engraved Vernier Header -->
-      <line x1="22" y1="58" x2="288" y2="58" stroke="#141C2B" stroke-width="1"/>
-      <text x="34" y="44" font-family="'Courier Prime', monospace" font-size="8.5" letter-spacing="0.1em" fill="#4A5364">STANDARD AGE CALIPER</text>
-      <text x="276" y="44" font-family="'Courier Prime', monospace" font-size="8.5" letter-spacing="0.1em" fill="#2C4A8F" font-weight="700" text-anchor="end">SAS 141</text>
-      
-      <!-- Mathematical SAS Scale Graticule (70 to 141) -->
-      <g stroke="#141C2B" stroke-width="1">
-        <line x1="40" y1="80" x2="270" y2="80"/>
-        <line x1="40" y1="74" x2="40" y2="86"/>
-        <line x1="78" y1="76" x2="78" y2="84"/>
-        <line x1="117" y1="76" x2="117" y2="84"/>
-        <line x1="155" y1="70" x2="155" y2="90"/> <!-- 100 Mean -->
-        <line x1="193" y1="76" x2="193" y2="84"/>
-        <line x1="232" y1="74" x2="232" y2="86"/>
-        <line x1="270" y1="70" x2="270" y2="90"/> <!-- 141 Max -->
-      </g>
-      <text x="40" y="98" font-family="'Courier Prime', monospace" font-size="8" fill="#767E8C" text-anchor="middle">70</text>
-      <text x="155" y="98" font-family="'Courier Prime', monospace" font-size="8" fill="#141C2B" font-weight="700" text-anchor="middle">100 µ</text>
-      <text x="270" y="98" font-family="'Courier Prime', monospace" font-size="8" fill="#2C4A8F" font-weight="700" text-anchor="middle">141</text>
-      
-      <!-- Engraved Normal Distribution Window -->
-      <rect x="36" y="114" width="238" height="112" fill="#F3EEE6" stroke="#141C2B" stroke-width="1"/>
-      <path d="M 40 212 Q 95 212 125 168 Q 155 124 155 124 Q 155 124 185 168 Q 215 212 270 212" fill="none" stroke="#2C4A8F" stroke-width="1.75"/>
-      <line x1="155" y1="124" x2="155" y2="212" stroke="#141C2B" stroke-width="1" stroke-dasharray="2 2"/>
-      <line x1="225" y1="194" x2="225" y2="212" stroke="#2C4A8F" stroke-width="1.5"/>
-      <text x="225" y="186" font-family="'Courier Prime', monospace" font-size="7.5" fill="#2C4A8F" text-anchor="middle">QE BOYS 135</text>
-      
-      <!-- Vernier Dial Indicator Needle -->
-      <circle cx="155" cy="276" r="30" stroke="#141C2B" stroke-width="1.5" fill="#FAF8F5"/>
-      <circle cx="155" cy="276" r="3" fill="#141C2B"/>
-      <line x1="155" y1="276" x2="176" y2="254" stroke="#2C4A8F" stroke-width="2"/>
-      <text x="155" y="322" font-family="'Instrument Serif', serif" font-style="italic" font-size="13" fill="#141C2B" text-anchor="middle">Standard Age Score</text>
-      <text x="155" y="336" font-family="'Courier Prime', monospace" font-size="8" letter-spacing="0.08em" fill="#4A5364" text-anchor="middle">BIRTH-MONTH ADJUSTED</text>
-    </svg>
-  </div>
-
-  <!-- ================= TOP TRUST ANNOUNCEMENT BAR ================= -->
-  <aside class="relative z-50 bg-[#141C2B] text-white text-xs py-2 px-4 border-b border-slate-800 flex items-center justify-center gap-2">
-    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 bg-emerald-500/20 text-emerald-300 border border-emerald-400/30 text-[10px] font-mono font-bold">
-      <span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span> 2026/2027 COHORT
+  <!-- ================= TOP ANNOUNCEMENT BANNER ================= -->
+  <aside class="relative z-50 bg-gradient-to-r from-brand-950 via-indigo-900 to-purple-950 text-white text-xs py-2 px-4 text-center font-medium shadow-md flex items-center justify-center gap-2">
+    <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white/15 text-white border border-white/20 text-[11px] font-semibold">
+      <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span> 2026/2027 Admissions
     </span>
-    <span class="font-mono text-slate-300 hidden sm:inline text-[11px]">GL Assessment, CEM Select & CSSE Mock Exam Papers Published</span>
-    <a href="#predictor" class="text-indigo-300 font-mono text-[11px] font-bold hover:text-white underline underline-offset-4 ml-1 inline-flex items-center gap-0.5">
-      <span>Check School Cut-offs</span>
+    <span class="font-medium">GL Assessment, CEM Select & CSSE Grammar School Syllabus Updated</span>
+    <a href="#interactive-preview" class="text-amber-300 font-bold underline underline-offset-2 hover:text-white transition-colors ml-1 inline-flex items-center gap-0.5">
+      <span>Try Interactive Demo</span>
       <span class="material-symbols-outlined text-xs">arrow_forward</span>
     </a>
   </aside>
 
-  <!-- ================= FIXED 58PX STATIONERY NAVIGATION ================= -->
-  <nav class="sticky top-0 z-40 h-[58px] bg-[#FAF8F5]/90 backdrop-blur-[12px] border-b border-[rgba(20,28,43,0.14)] flex items-center">
-    <div class="max-w-7xl mx-auto w-full px-6 sm:px-10 flex items-center justify-between">
+  <!-- ================= FLOATING GLASS NAVIGATION ================= -->
+  <header class="sticky top-3 z-40 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <nav class="backdrop-blur-xl bg-white/85 border border-slate-200/90 rounded-2xl px-4 sm:px-6 py-3.5 shadow-[0_8px_30px_rgb(79,70,229,0.08)] flex items-center justify-between transition-all">
       
-      <!-- Brand signature -->
-      <a href="#" class="flex items-center gap-2 text-[20px] font-serif tracking-[-0.02em] text-[#141C2B] no-underline">
-        <span>Learnly</span><span class="text-[#2C4A8F] font-bold">.</span>
-        <span class="text-[10px] font-mono tracking-widest uppercase px-2 py-0.5 bg-[rgba(20,28,43,0.05)] border border-[rgba(20,28,43,0.12)] text-[#4A5364] ml-2">11+ SCHOLAR</span>
+      <!-- Brand Logo -->
+      <a href="#" class="flex items-center gap-3 group">
+        <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-700 via-brand-600 to-fuchsia-600 flex items-center justify-center text-white shadow-lg shadow-brand-500/30 group-hover:scale-105 transition-transform">
+          <span class="material-symbols-outlined text-[22px]">school</span>
+        </div>
+        <div>
+          <div class="flex items-center gap-1.5">
+            <span class="text-xl font-black tracking-tight text-slate-900">Learnly</span>
+            <span class="text-[10px] font-black uppercase px-1.5 py-0.5 rounded bg-brand-50 text-brand-700 border border-brand-200 font-mono">11+ PRO</span>
+          </div>
+          <span class="text-[10px] uppercase font-bold tracking-widest text-slate-500 block -mt-0.5">Scholar Edition</span>
+        </div>
       </a>
 
-      <!-- Desktop nav links -->
-      <div class="hidden lg:flex items-center gap-8 text-[11px] font-mono tracking-[0.08em] uppercase text-[#4A5364]">
-        <a href="#interactive-drill" class="hover:text-[#2C4A8F] transition-colors">I. Interactive Drill</a>
-        <a href="#demonstration" class="hover:text-[#2C4A8F] transition-colors">II. Derivation Engine</a>
-        <a href="#predictor" class="hover:text-[#2C4A8F] transition-colors">III. SAS Predictor</a>
-        <a href="#curriculum" class="hover:text-[#2C4A8F] transition-colors">IV. Syllabi</a>
-        <a href="#comparison" class="hover:text-[#2C4A8F] transition-colors">V. Audit Table</a>
+      <!-- Desktop Navigation Links -->
+      <div class="hidden lg:flex items-center gap-7 text-xs font-bold text-slate-600">
+        <a href="#features" class="hover:text-brand-600 transition-colors">Features</a>
+        <a href="#interactive-preview" class="hover:text-brand-600 transition-colors flex items-center gap-1">
+          <span>Live Demo</span>
+          <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+        </a>
+        <a href="#grammar-schools" class="hover:text-brand-600 transition-colors">Target Schools</a>
+        <a href="#testimonials" class="hover:text-brand-600 transition-colors">Results</a>
+        <a href="#comparison" class="hover:text-brand-600 transition-colors">Why Learnly</a>
+        <button type="button" onclick="openLegalPolicy('terms')" class="hover:text-brand-600 transition-colors">Legal & Safety</button>
       </div>
 
-      <!-- Action buttons -->
+      <!-- Action Buttons -->
       <div class="flex items-center gap-3">
-        <a href="index.html#dashboard" class="hidden sm:inline-flex text-[11px] font-mono tracking-[0.08em] uppercase text-[#4A5364] hover:text-[#141C2B] px-3 py-2">
-          Parent Login
+        <a href="index.html#dashboard" class="hidden sm:inline-flex text-xs font-bold text-slate-700 hover:text-slate-950 px-3.5 py-2 rounded-xl hover:bg-slate-100 transition-colors">
+          Sign In
         </a>
-        <a href="index.html#practice-arena" class="btn-pressable btn-primary py-2.5 px-4 sm:px-5">
-          <span>Start Free Trial</span>
+        <a href="index.html#practice-arena" class="btn-tactile inline-flex items-center gap-1.5 bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 hover:from-brand-700 hover:to-purple-700 text-white text-xs font-bold px-4 sm:px-5 py-2.5 rounded-xl shadow-lg shadow-brand-500/30 transition-all">
+          <span>Launch Portal</span>
           <span class="material-symbols-outlined text-sm">arrow_forward</span>
         </a>
       </div>
-
-    </div>
-  </nav>
-
-  <!-- ================= SECTION 1: HERO (MERGED EDITORIAL & MAKER) ================= -->
-  <header class="min-h-[calc(100vh-58px)] bg-[#F3EEE6] relative overflow-hidden flex flex-col justify-between pt-16 sm:pt-20 px-6 sm:px-10 border-b border-[rgba(20,28,43,0.14)]">
-    
-    <div class="max-w-7xl mx-auto w-full relative z-10">
-      <div class="max-w-xl space-y-6">
-        
-        <!-- Trustpilot & National Cohort Badge -->
-        <div class="inline-flex items-center gap-2.5 px-3 py-1.5 bg-white border border-[rgba(20,28,43,0.14)] text-xs font-mono text-[#141C2B] shadow-xs">
-          <span class="text-amber-500 font-bold">★★★★★</span>
-          <span class="font-bold">4.9 / 5</span>
-          <span class="text-[#767E8C]">•</span>
-          <span class="text-[#4A5364]">14,200+ UK Grammar School Candidates</span>
-        </div>
-
-        <!-- Headline with high-contrast serif & ink-blue italic -->
-        <h1 class="text-4xl sm:text-5xl lg:text-[62px] leading-[1.08] tracking-[-0.02em] text-[#141C2B]">
-          A precision diagnostic instrument for grammar school <em>admissions.</em>
-        </h1>
-
-        <!-- Monospaced lede -->
-        <p class="text-xs sm:text-[13px] text-[#4A5364] leading-[1.85] font-mono max-w-lg">
-          Grammar school admissions do not reward raw percentage guessing; they rank candidates on actuarial Standard Age Scores (SAS) under strict time pressure. Learnly diagnoses candidate velocity across all 21 GL question typologies, calculates exact birth-month adjustments, and builds exam-hall confidence.
-        </p>
-
-        <!-- Bullet proofpoints with checkmark -->
-        <div class="space-y-2 text-xs font-mono text-[#141C2B] pt-1">
-          <div class="flex items-center gap-2">
-            <span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-[10px] font-bold">✓</span>
-            <span>Standard Age Score (SAS) calibration adjusted for birth month (69–141)</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-[10px] font-bold">✓</span>
-            <span>10,480 adaptive questions covering all 21 GL Verbal & Non-Verbal types</span>
-          </div>
-          <div class="flex items-center gap-2">
-            <span class="w-4 h-4 rounded-full bg-emerald-100 text-emerald-800 flex items-center justify-center text-[10px] font-bold">✓</span>
-            <span>Instant step-by-step video remediation and LexiVault root-word derivations</span>
-          </div>
-        </div>
-
-        <!-- CTAs -->
-        <div class="pt-3 flex flex-wrap items-center gap-4">
-          <a href="index.html#practice-arena" class="btn-pressable btn-primary py-3.5 px-7">
-            <span>Begin Free Diagnostic</span>
-            <span class="material-symbols-outlined text-base">arrow_forward</span>
-          </a>
-          <a href="#demonstration" class="btn-pressable btn-secondary py-3.5 px-6">
-            <span>Inspect Derivation Engine</span>
-          </a>
-        </div>
-
-        <div class="flex items-center gap-4 text-[11px] font-mono text-[#767E8C] pt-1">
-          <span>✓ No credit card required</span>
-          <span>✓ 1-click parent cancellation</span>
-          <span>✓ Enhanced DBS & KCSIE Safe</span>
-        </div>
-
-      </div>
-    </div>
-
-    <!-- Hairline-topped specification strip via margin-top: auto -->
-    <div class="max-w-7xl mx-auto w-full mt-auto pt-10 relative z-10">
-      <div class="border-t border-[rgba(20,28,43,0.14)] py-4 grid grid-cols-2 sm:grid-cols-4 gap-6 text-[11px] font-mono text-[#4A5364]">
-        <div>
-          <span class="block text-[10px] text-[#767E8C] uppercase">STANDARD:</span>
-          <span class="font-bold text-[#141C2B]">GL / CEM / CSSE</span>
-        </div>
-        <div>
-          <span class="block text-[10px] text-[#767E8C] uppercase">CALIBRATION RANGE:</span>
-          <span class="font-bold text-[#2C4A8F]">SAS 69 — 141</span>
-        </div>
-        <div>
-          <span class="block text-[10px] text-[#767E8C] uppercase">ACTIVE QUESTION POOL:</span>
-          <span class="font-bold text-[#141C2B]">10,480 PROBLEMS</span>
-        </div>
-        <div>
-          <span class="block text-[10px] text-[#767E8C] uppercase">AGE NORMALISATION:</span>
-          <span class="font-bold text-[#141C2B]">±6.2 MO. ADJUSTMENT</span>
-        </div>
-      </div>
-    </div>
-
-    <!-- Spread wordmark across the very foot -->
-    <div class="wordmark-spread border-t border-[rgba(20,28,43,0.14)]" id="hero-wordmark">
-      <span>L</span>
-      <span>E</span>
-      <span>A</span>
-      <span>R</span>
-      <span>N</span>
-      <span>L</span>
-      <span>Y</span>
-    </div>
-
+    </nav>
   </header>
 
-  <!-- ================= TARGET GRAMMAR SCHOOL ADMISSIONS TICKER ================= -->
-  <section class="py-5 bg-white border-b border-[rgba(20,28,43,0.14)] overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 mb-2 text-center">
-      <span class="text-[10px] font-mono uppercase tracking-wider text-[#767E8C]">
-        Calibrated against official cut-offs of leading UK Grammar Schools:
-      </span>
-    </div>
+  <!-- ================= HERO SECTION (SUPER RICH WITH VIBRANT LIGHT CANVAS) ================= -->
+  <section class="relative pt-12 pb-20 md:pt-16 md:pb-28 overflow-hidden">
+    
+    <!-- Rich Colorful Ambient Aura Flares (Light Theme) -->
+    <div class="ambient-orb top-0 left-1/4 w-[600px] h-[500px] bg-gradient-to-tr from-indigo-300/40 via-purple-300/30 to-pink-300/20"></div>
+    <div class="ambient-orb top-20 right-1/6 w-[550px] h-[450px] bg-gradient-to-bl from-cyan-300/35 via-blue-300/25 to-indigo-300/20"></div>
+    <div class="ambient-orb top-96 left-1/12 w-[500px] h-[400px] bg-gradient-to-br from-amber-200/40 to-rose-200/30"></div>
 
-    <div class="flex gap-4 overflow-x-auto py-2 px-6 scrollbar-none justify-start lg:justify-center">
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.14)] text-xs font-mono shrink-0">
-        <span class="w-2 h-2 rounded-full bg-[#2C4A8F]"></span>
-        <span class="font-bold text-[#141C2B]">Queen Elizabeth's (QE Boys)</span>
-        <span class="text-[#2C4A8F] font-bold bg-blue-50 px-2 py-0.5 border border-blue-200 text-[10px]">135 SAS</span>
-      </div>
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.14)] text-xs font-mono shrink-0">
-        <span class="w-2 h-2 rounded-full bg-[#2C4A8F]"></span>
-        <span class="font-bold text-[#141C2B]">Henrietta Barnett (HBS)</span>
-        <span class="text-[#2C4A8F] font-bold bg-blue-50 px-2 py-0.5 border border-blue-200 text-[10px]">132 SAS</span>
-      </div>
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.14)] text-xs font-mono shrink-0">
-        <span class="w-2 h-2 rounded-full bg-[#2C4A8F]"></span>
-        <span class="font-bold text-[#141C2B]">Tiffin Boys & Tiffin Girls'</span>
-        <span class="text-[#2C4A8F] font-bold bg-blue-50 px-2 py-0.5 border border-blue-200 text-[10px]">128 SAS</span>
-      </div>
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.14)] text-xs font-mono shrink-0">
-        <span class="w-2 h-2 rounded-full bg-[#2C4A8F]"></span>
-        <span class="font-bold text-[#141C2B]">Wilson's School (Sutton SET)</span>
-        <span class="text-[#2C4A8F] font-bold bg-blue-50 px-2 py-0.5 border border-blue-200 text-[10px]">130 SAS</span>
-      </div>
-      <div class="inline-flex items-center gap-2 px-3.5 py-1.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.14)] text-xs font-mono shrink-0">
-        <span class="w-2 h-2 rounded-full bg-[#2C4A8F]"></span>
-        <span class="font-bold text-[#141C2B]">Colchester Royal (CSSE)</span>
-        <span class="text-[#2C4A8F] font-bold bg-blue-50 px-2 py-0.5 border border-blue-200 text-[10px]">345 Score</span>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= SECTION 2: LIVE INTERACTIVE GL 11+ MINI-DRILL (FROM 1ST DESIGN) ================= -->
-  <section id="interactive-drill" class="py-20 md:py-28 bg-[#FAF8F5] border-b border-[rgba(20,28,43,0.14)]">
-    <div class="max-w-5xl mx-auto px-6 sm:px-10">
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="mono-meta">[ I. THE INTERACTIVE BENCHMARK ]</span>
-        <h2 class="text-3xl sm:text-4xl text-[#141C2B] mt-2 mb-3">
-          Experience an official <em>GL Assessment</em> problem.
-        </h2>
-        <p class="text-xs sm:text-sm text-[#4A5364] font-mono leading-relaxed">
-          Test candidate instinct right now. Tap the missing letter tile to complete the compound word structure.
+      <!-- Central Hero Content: Clean, Unobstructed, Majestic -->
+      <div class="max-w-4xl mx-auto text-center relative z-20">
+        
+        <!-- Glowing Eyebrow Pill -->
+        <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/90 border border-indigo-100 shadow-[0_4px_20px_rgba(79,70,229,0.08)] text-xs font-bold text-slate-700 mb-6 backdrop-blur-md">
+          <span class="flex h-2.5 w-2.5 relative">
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-brand-400 opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-brand-600"></span>
+          </span>
+          <span class="text-slate-900 font-extrabold">14,200+ Mock Papers</span> completed this term
+          <span class="text-slate-300">•</span>
+          <span class="text-brand-600 font-black">Standard Age Score (SAS) Precision</span>
+        </div>
+
+        <!-- Grand Headline with Rainbow Gradient -->
+        <h1 class="text-4xl sm:text-6xl lg:text-7xl font-extrabold text-slate-950 tracking-tight leading-[1.08]">
+          The unfair advantage for <br/>
+          <span class="gradient-hero-title font-black">competitive 11+ grammar school</span> admissions.
+        </h1>
+
+        <!-- High-Impact Subtitle -->
+        <p class="mt-6 text-base sm:text-xl text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+          Replaces chaotic paper packs with age-standardised <strong class="text-slate-900 font-bold">Standard Age Score (SAS) precision</strong>. 10,000+ adaptive questions, real-time cut-off benchmarking, and spaced-repetition vocabulary built for GL Assessment, CEM Select, and CSSE.
         </p>
-      </div>
 
-      <div class="arch-card p-6 sm:p-10 bg-white border border-[rgba(20,28,43,0.18)] max-w-3xl mx-auto">
-        <div class="flex items-center justify-between pb-3 border-b border-[rgba(20,28,43,0.14)] text-xs font-mono text-[#767E8C] mb-6">
-          <span class="text-[#2C4A8F] font-bold">GL VERBAL REASONING // TYPOLOGY 14</span>
-          <span>SPEED CALIBRATION: TARGET 35 SECONDS</span>
-        </div>
-
-        <p class="text-sm font-bold text-[#141C2B] mb-4">
-          Which letter completes the first word and starts the second word?
-        </p>
-
-        <!-- Question display box -->
-        <div class="p-5 bg-[#F3EEE6] border border-[rgba(20,28,43,0.18)] font-mono text-center text-lg sm:text-xl font-bold text-[#141C2B] mb-6">
-          PLA [ <span class="text-[#2C4A8F] underline decoration-2 underline-offset-8">?</span> ] EAM
-        </div>
-
-        <!-- Choice buttons -->
-        <div class="grid grid-cols-4 gap-3 font-mono text-xs sm:text-sm font-bold">
-          <button type="button" onclick="handleMiniDrill(this, false)" class="mini-choice-btn btn-pressable py-3 border border-[rgba(20,28,43,0.22)] bg-white text-[#141C2B] hover:border-[#141C2B]">(A) N</button>
-          <button type="button" onclick="handleMiniDrill(this, true)" class="mini-choice-btn btn-pressable py-3 border border-[rgba(20,28,43,0.22)] bg-white text-[#141C2B] hover:border-[#141C2B]">(B) T</button>
-          <button type="button" onclick="handleMiniDrill(this, false)" class="mini-choice-btn btn-pressable py-3 border border-[rgba(20,28,43,0.22)] bg-white text-[#141C2B] hover:border-[#141C2B]">(C) S</button>
-          <button type="button" onclick="handleMiniDrill(this, false)" class="mini-choice-btn btn-pressable py-3 border border-[rgba(20,28,43,0.22)] bg-white text-[#141C2B] hover:border-[#141C2B]">(D) R</button>
-        </div>
-
-        <!-- Feedback reveal -->
-        <div id="mini-drill-feedback" class="hidden mt-6 p-4 bg-emerald-50 border border-emerald-300 text-xs font-mono text-emerald-950 flex items-start gap-3">
-          <span class="material-symbols-outlined text-emerald-700 text-lg font-bold shrink-0">check_circle</span>
-          <div>
-            <div class="font-bold text-sm">Correct! Letter 'T' (+50 XP)</div>
-            <div class="mt-1 text-[#4A5364] leading-relaxed">
-              Produces <strong>PLAT</strong> (archaic/dialect for braid/fold) and <strong>TEAM</strong>. This typology tests compound vocabulary depth and phonetic transition agility.
-            </div>
-          </div>
-        </div>
-
-        <!-- Footer strip -->
-        <div class="mt-6 pt-4 border-t border-[rgba(20,28,43,0.12)] flex items-center justify-between text-xs font-mono text-[#767E8C]">
-          <span>✓ 10,480 calibrated items in database</span>
-          <a href="index.html#practice-arena" class="text-[#2C4A8F] font-bold hover:underline flex items-center gap-1">
-            <span>Open Practice Arena</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+        <!-- Dual CTA Buttons with Shimmer & Physics -->
+        <div class="mt-9 flex flex-col sm:flex-row items-center justify-center gap-4">
+          <a href="index.html#practice-arena" class="btn-tactile w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-gradient-to-r from-brand-600 via-indigo-600 to-purple-600 hover:from-brand-700 hover:to-purple-700 text-white font-extrabold px-8 py-4 rounded-2xl text-base shadow-xl shadow-brand-600/30">
+            <span>Start Free Diagnostic Mock</span>
+            <span class="material-symbols-outlined text-lg">bolt</span>
+          </a>
+          <a href="#interactive-preview" class="btn-tactile w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-white hover:bg-slate-50 text-slate-800 font-bold px-7 py-4 rounded-2xl text-base border border-slate-200/90 shadow-lg shadow-slate-200/50">
+            <span class="material-symbols-outlined text-brand-600 text-lg">play_circle</span>
+            <span>Explore Live Prototype</span>
           </a>
         </div>
-      </div>
 
-    </div>
-  </section>
-
-  <!-- ================= SECTION 3: THE DEMONSTRATION (DRAWS ITSELF - FROM CURRENT DESIGN) ================= -->
-  <section id="demonstration" class="py-20 md:py-28 bg-[#F3EEE6] border-b border-[rgba(20,28,43,0.14)]">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10">
-      
-      <div class="max-w-2xl mb-10">
-        <span class="mono-meta">[ II. THE DERIVATION ENGINE ]</span>
-        <h2 class="text-3xl sm:text-4xl text-[#141C2B] mt-2 mb-3">
-          A demonstration that <em>draws</em> itself.
-        </h2>
-        <p class="text-xs sm:text-sm text-[#4A5364] font-mono leading-relaxed">
-          The platform performing its own diagnostic output. Select an admissions derivation model below to observe the mathematical path rendered in ink.
-        </p>
-
-        <!-- Variant Picker (aria-pressed) -->
-        <div class="flex flex-wrap mt-5" role="group" aria-label="Derivation Models">
-          <button type="button" class="variant-btn" aria-pressed="true" onclick="selectVariant(0)">
-            Model A • Gaussian SAS Density
-          </button>
-          <button type="button" class="variant-btn" aria-pressed="false" onclick="selectVariant(1)">
-            Model B • Verbal Reasoning Matrix
-          </button>
-          <button type="button" class="variant-btn" aria-pressed="false" onclick="selectVariant(2)">
-            Model C • Spatial Cube Unfolding
-          </button>
-        </div>
-      </div>
-
-      <!-- Bordered panel holding SVG of product's own output -->
-      <div class="arch-card p-6 sm:p-10 bg-white border border-[rgba(20,28,43,0.18)]">
-        <div class="flex items-center justify-between pb-3 border-b border-[rgba(20,28,43,0.14)] text-[10px] font-mono uppercase text-[#767E8C]">
-          <span id="demo-indicator">PLOT 01 // GAUSSIAN ADMISSIONS DENSITY</span>
-          <span>OUTPUT RESOLUTION: 100% VECTOR</span>
+        <!-- Social Proof Checklist -->
+        <div class="mt-6 flex flex-wrap items-center justify-center gap-6 text-xs font-semibold text-slate-500">
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span> Instant SAS Benchmark</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span> No Credit Card Required</span>
+          <span class="flex items-center gap-1.5"><span class="material-symbols-outlined text-emerald-600 text-base">check_circle</span> GL Assessment & CEM Aligned</span>
         </div>
 
-        <!-- SVG Output Canvas -->
-        <div class="w-full h-64 sm:h-80 flex items-center justify-center overflow-hidden my-4">
-          <svg id="demo-svg" class="w-full h-full" viewBox="0 0 800 280" fill="none">
-            <!-- Background coordinate grid -->
-            <g stroke="rgba(20,28,43,0.07)" stroke-width="1">
-              <line x1="40" y1="40" x2="760" y2="40"/>
-              <line x1="40" y1="100" x2="760" y2="100"/>
-              <line x1="40" y1="160" x2="760" y2="160"/>
-              <line x1="40" y1="220" x2="760" y2="220"/>
-              <line x1="160" y1="20" x2="160" y2="240"/>
-              <line x1="280" y1="20" x2="280" y2="240"/>
-              <line x1="400" y1="20" x2="400" y2="240"/>
-              <line x1="520" y1="20" x2="520" y2="240"/>
-              <line x1="640" y1="20" x2="640" y2="240"/>
-            </g>
-
-            <!-- Self-drawing vector path -->
-            <path id="self-drawing-path" class="demo-svg-path" d="M 60,220 C 220,220 320,40 400,40 C 480,40 580,220 740,220"/>
-
-            <!-- Dynamic annotations -->
-            <g id="demo-annotations" font-family="'Courier Prime', monospace" font-size="10" fill="#141C2B">
-              <text x="400" y="30" text-anchor="middle" fill="#2C4A8F">PEAK COHORT MEAN: 100 SAS</text>
-              <line x1="400" y1="36" x2="400" y2="220" stroke="#2C4A8F" stroke-width="1" stroke-dasharray="3 3"/>
-              <text x="640" y="140" text-anchor="start" fill="#2C4A8F">QE BOYS CUTOFF (135)</text>
-              <line x1="635" y1="120" x2="635" y2="220" stroke="#141C2B" stroke-width="1.5"/>
-            </g>
-          </svg>
-        </div>
-
-        <!-- Three monospaced facts beneath the drawing -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-6 pt-5 border-t border-[rgba(20,28,43,0.14)] font-mono text-[11px]">
-          <div>
-            <span class="block text-[10px] text-[#767E8C] uppercase" id="fact-1-label">OBSERVED SAMPLE:</span>
-            <span class="text-[#141C2B] font-bold" id="fact-1-val">14,200 Cohort Pupils</span>
+        <!-- Avatars + Trustpilot Rating -->
+        <div class="mt-7 flex flex-wrap items-center justify-center gap-3">
+          <div class="flex -space-x-2">
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-blue-500 to-indigo-600 text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-white">AR</div>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-purple-500 to-pink-600 text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-white">PS</div>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-white">TK</div>
+            <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-amber-500 to-orange-600 text-white text-[11px] font-bold flex items-center justify-center ring-2 ring-white">NM</div>
+            <div class="w-8 h-8 rounded-full bg-slate-900 text-white text-[10px] font-bold flex items-center justify-center ring-2 ring-white">+3.4k</div>
           </div>
-          <div>
-            <span class="block text-[10px] text-[#767E8C] uppercase" id="fact-2-label">STANDARD DEVIATION:</span>
-            <span class="text-[#2C4A8F] font-bold" id="fact-2-val">15.0 SAS Points</span>
-          </div>
-          <div>
-            <span class="block text-[10px] text-[#767E8C] uppercase" id="fact-3-label">SELECTIVITY BAND:</span>
-            <span class="text-[#141C2B] font-bold" id="fact-3-val">Top 2.5% of National Year 5</span>
+          <div class="text-left text-xs">
+            <div class="flex items-center gap-1 text-amber-500">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="font-black text-slate-900 ml-1">4.98 / 5</span>
+            </div>
+            <span class="text-slate-500 font-medium">Rated by 3,400+ UK Grammar School Parents</span>
           </div>
         </div>
 
       </div>
 
-    </div>
-  </section>
-
-  <!-- ================= SECTION 4: INTERACTIVE SAS SCHOOL PREDICTOR (FROM 1ST DESIGN) ================= -->
-  <section id="predictor" class="py-20 md:py-28 bg-[#FAF8F5] border-b border-[rgba(20,28,43,0.14)]">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10">
-      
-      <div class="max-w-2xl mx-auto text-center mb-12">
-        <span class="mono-meta">[ III. ACTUARIAL EVALUATION ]</span>
-        <h2 class="text-3xl sm:text-4xl text-[#141C2B] mt-2 mb-3">
-          11+ Grammar School Admission <em>Predictor.</em>
-        </h2>
-        <p class="text-xs sm:text-sm text-[#4A5364] font-mono leading-relaxed">
-          Select target school and adjust practice accuracy to compute the candidate's Standard Age Score against historic qualification thresholds.
-        </p>
-      </div>
-
-      <div class="bg-[#141C2B] text-white p-8 sm:p-12 border border-[rgba(20,28,43,0.2)] shadow-xl">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
-          
-          <!-- Left Controls (Span-6) -->
-          <div class="lg:col-span-6 space-y-6 text-left">
-            <div>
-              <label for="school-select" class="block text-[11px] font-mono uppercase tracking-wider text-slate-400 mb-2">
-                1. Select Target Grammar School:
-              </label>
-              <select id="school-select" onchange="calculateSASPredictor()" class="w-full bg-[#1E293B] text-white border border-slate-700 px-4 py-3 text-sm font-mono font-bold focus:outline-none focus:border-indigo-400">
-                <option value="qeboys" data-cutoff="135" data-name="Queen Elizabeth's (QE Boys, Barnet)">Queen Elizabeth's School (QE Boys) — Cutoff: ~135 SAS</option>
-                <option value="hb" data-cutoff="132" data-name="The Henrietta Barnett School">The Henrietta Barnett School (Girls) — Cutoff: ~132 SAS</option>
-                <option value="tiffin" data-cutoff="128" data-name="Tiffin School & Tiffin Girls'">Tiffin School & Tiffin Girls' — Cutoff: ~128 SAS</option>
-                <option value="wilsons" data-cutoff="130" data-name="Wilson's School (Sutton SET)">Wilson's School (Sutton SET) — Cutoff: ~130 SAS</option>
-                <option value="stolaves" data-cutoff="133" data-name="St Olave's Grammar School">St Olave's Grammar School (Orpington) — Cutoff: ~133 SAS</option>
-                <option value="colchester" data-cutoff="131" data-name="Colchester Royal Grammar (CSSE)">Colchester Royal Grammar (CSSE) — Cutoff: ~131 SAS</option>
-                <option value="kech" data-cutoff="129" data-name="King Edward VI Camp Hill (Birmingham)">King Edward VI Camp Hill — Cutoff: ~129 SAS</option>
-                <option value="altrincham" data-cutoff="127" data-name="Altrincham Grammar School (Trafford)">Altrincham Grammar (Trafford) — Cutoff: ~127 SAS</option>
-              </select>
-            </div>
-
-            <div>
-              <div class="flex items-center justify-between text-xs font-mono text-slate-300 mb-2">
-                <span>2. Child's Practice Accuracy:</span>
-                <span id="accuracy-display" class="font-bold text-lg text-indigo-400">84%</span>
+      <!-- ================= HERO SHOWCASE STAGE WITH 4 FLANKING FLOATING CARDS ================= -->
+      <!-- Placed directly below the title & CTAs with generous spacing so nothing overlaps! -->
+      <div class="mt-14 relative max-w-6xl mx-auto">
+        
+        <!-- Central Interactive App Stage Cockpit -->
+        <div class="rainbow-border shadow-2xl shadow-brand-500/15">
+          <div class="bg-white/95 rounded-[1.4rem] p-4 sm:p-7 border border-slate-100 backdrop-blur-xl">
+            
+            <!-- Window Title Bar -->
+            <div class="flex items-center justify-between border-b border-slate-100 pb-3 mb-4">
+              <div class="flex items-center gap-2">
+                <span class="w-3 h-3 rounded-full bg-rose-400"></span>
+                <span class="w-3 h-3 rounded-full bg-amber-400"></span>
+                <span class="w-3 h-3 rounded-full bg-emerald-400"></span>
+                <span class="ml-2 text-xs font-mono font-bold text-slate-500 hidden sm:inline">Learnly 11+ Scholar Engine • Live Diagnostic Arena</span>
               </div>
-              <input type="range" id="accuracy-slider" min="50" max="100" value="84" oninput="calculateSASPredictor()" class="w-full h-2 bg-slate-800 appearance-none cursor-pointer accent-[#2C4A8F]"/>
-              <div class="flex justify-between text-[10px] font-mono text-slate-400 mt-2">
-                <span>50% (Developing)</span>
-                <span>75% (National Mean)</span>
-                <span>100% (Scholar Standard)</span>
+              <div class="flex items-center gap-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[11px] font-mono font-bold flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-ping"></span>
+                  <span>Real-time SAS Synchronised</span>
+                </span>
               </div>
             </div>
 
-            <!-- Birth Season Selector -->
-            <div>
-              <div class="flex items-center justify-between text-xs font-mono text-slate-400 mb-1.5">
-                <span>3. Child's Birth Month (Age Adjustment):</span>
-                <span id="birth-month-label" class="text-indigo-300 font-bold">August (Summer Born +4.5 pts)</span>
+            <!-- Cockpit Internal Grid -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-5 items-center">
+              
+              <!-- Left Mini Dashboard (Span-5) -->
+              <div class="lg:col-span-5 space-y-4 text-left">
+                <div class="bg-slate-50/80 rounded-2xl p-4 border border-slate-200/80">
+                  <div class="flex items-center justify-between text-xs mb-2">
+                    <span class="font-bold text-slate-700">Target School:</span>
+                    <span class="font-extrabold text-brand-700 bg-brand-50 px-2 py-0.5 rounded-md border border-brand-200">Queen Elizabeth's (QE Boys)</span>
+                  </div>
+                  <div class="flex items-baseline justify-between">
+                    <div>
+                      <div class="text-3xl font-black font-mono text-slate-900">138.5 <span class="text-xs text-slate-500 font-sans font-normal">/ 141 SAS</span></div>
+                      <span class="text-[11px] font-bold text-emerald-600 flex items-center gap-0.5 mt-0.5">
+                        <span class="material-symbols-outlined text-xs">arrow_upward</span> +14.2 SAS improvement over 6 weeks
+                      </span>
+                    </div>
+                    <div class="text-right">
+                      <span class="text-[10px] font-mono font-bold text-slate-400 block">Historic Cutoff:</span>
+                      <span class="text-xs font-black text-slate-800">135 SAS (Safe ✓)</span>
+                    </div>
+                  </div>
+                  <!-- Progress Bar -->
+                  <div class="mt-3 w-full bg-slate-200 h-2 rounded-full overflow-hidden">
+                    <div class="bg-gradient-to-r from-brand-600 via-purple-600 to-emerald-500 h-full w-[96%] rounded-full"></div>
+                  </div>
+                </div>
+
+                <div class="grid grid-cols-3 gap-2 text-center text-xs font-mono">
+                  <div class="bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-[10px] text-slate-500 uppercase">VR Speed</div>
+                    <div class="font-black text-slate-900 text-sm mt-0.5">38s <span class="text-[9px] text-emerald-600">(-12s)</span></div>
+                  </div>
+                  <div class="bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-[10px] text-slate-500 uppercase">Vocab Tier</div>
+                    <div class="font-black text-purple-700 text-sm mt-0.5">Level 9</div>
+                  </div>
+                  <div class="bg-white p-2.5 rounded-xl border border-slate-200 shadow-sm">
+                    <div class="text-[10px] text-slate-500 uppercase">Errors Queued</div>
+                    <div class="font-black text-amber-600 text-sm mt-0.5">3 Left</div>
+                  </div>
+                </div>
               </div>
-              <div class="grid grid-cols-2 gap-2 text-xs font-mono font-bold">
-                <button type="button" onclick="setBirthSeason('summer')" id="btn-season-summer" class="py-2.5 px-3 bg-[#2C4A8F] text-white border border-indigo-400 text-center btn-pressable">
-                  ☀️ Summer Born (May – Aug)
-                </button>
-                <button type="button" onclick="setBirthSeason('autumn')" id="btn-season-autumn" class="py-2.5 px-3 bg-[#1E293B] text-slate-300 border border-slate-700 text-center btn-pressable">
-                  🍂 Autumn/Winter (Sep – Dec)
-                </button>
+
+              <!-- Right Question Simulator (Span-7) -->
+              <div class="lg:col-span-7 bg-white rounded-2xl p-5 border border-indigo-100 shadow-inner text-left">
+                <div class="flex items-center justify-between text-xs text-slate-500 pb-2 mb-3 border-b border-slate-100">
+                  <span class="font-bold text-indigo-700 flex items-center gap-1 font-mono">
+                    <span class="material-symbols-outlined text-sm">psychology</span>
+                    <span>Adaptive Question Simulator</span>
+                  </span>
+                  <span class="text-amber-600 font-mono font-bold flex items-center gap-1">
+                    <span class="material-symbols-outlined text-xs">timer</span> 00:32 left
+                  </span>
+                </div>
+                <p class="text-xs sm:text-sm font-bold text-slate-900 mb-3 leading-snug">
+                  Which letter can be placed in the brackets to finish the first word and start the second word?
+                </p>
+                <div class="flex items-center justify-center gap-3 my-3 p-3 bg-indigo-50/50 rounded-xl border border-indigo-100 font-mono text-base font-extrabold text-slate-900">
+                  <span>PLA ( <strong class="text-brand-600 underline">?</strong> ) EAM</span>
+                </div>
+                <div class="grid grid-cols-4 gap-2 text-xs font-mono font-bold">
+                  <button class="py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 transition-colors text-slate-700">(A) N</button>
+                  <button class="py-2 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white shadow-md border border-emerald-400 font-black">(B) T ✓</button>
+                  <button class="py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 transition-colors text-slate-700">(C) S</button>
+                  <button class="py-2 rounded-xl bg-slate-50 border border-slate-200 hover:border-brand-500 transition-colors text-slate-700">(D) R</button>
+                </div>
+                <div class="mt-3 text-[11px] text-emerald-700 font-medium flex items-center gap-1 bg-emerald-50 px-2.5 py-1.5 rounded-lg border border-emerald-200">
+                  <span class="material-symbols-outlined text-xs">check_circle</span>
+                  <span>Correct: <strong>PLAT</strong> (archaic/plate) & <strong>TEAM</strong>. Answered in 14.8 seconds (Top 1.5% speed).</span>
+                </div>
               </div>
+
             </div>
 
-            <div class="p-3.5 bg-slate-900 border border-slate-800 text-xs font-mono text-slate-300">
-              <span class="text-emerald-400 font-bold">✓ Standard Age Score (SAS) Calibration:</span>
-              <p class="text-[11px] text-slate-400 mt-1 leading-relaxed">
-                Raw scores do not govern grammar entry. Younger summer-born candidates receive up to +6 statistical adjustment points to ensure fair parity with older peers.
-              </p>
+          </div>
+        </div>
+
+        <!-- ================= 4 FLOATING DYNAMIC CARDS (Around the Stage) ================= -->
+        <!-- Floating Card 1: Top Left - Leo Sharma Offer Confirmed -->
+        <div class="hidden xl:block absolute -top-8 -left-12 animate-float-1 z-30 w-72">
+          <div class="glass-floating-card rounded-2xl p-4 border border-white">
+            <div class="flex items-center gap-3">
+              <div class="w-10 h-10 rounded-full bg-gradient-to-tr from-emerald-500 to-teal-600 text-white flex items-center justify-center font-bold text-sm shadow-md shadow-emerald-500/25">
+                LS
+              </div>
+              <div>
+                <div class="text-xs font-extrabold text-slate-900">Leo Sharma (Age 10)</div>
+                <div class="text-[11px] text-emerald-600 font-bold flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs" style="font-variation-settings:'FILL' 1">verified</span>
+                  <span>QE Boys Offer Confirmed!</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-3 pt-2.5 border-t border-slate-100 flex items-center justify-between text-xs font-mono">
+              <span class="text-slate-500">Standard Age Score:</span>
+              <span class="text-brand-600 font-black text-sm">139 / 141 SAS</span>
             </div>
           </div>
+        </div>
 
-          <!-- Right Score & Normal Curve Card (Span-6) -->
-          <div class="lg:col-span-6 bg-[#0B111D] p-6 sm:p-8 border border-slate-800 text-center">
-            <div class="flex items-center justify-between border-b border-slate-800 pb-3 mb-4 font-mono text-xs">
-              <span class="text-slate-400 uppercase text-[10px]">Predicted Standard Age Score</span>
-              <span id="status-badge" class="px-2.5 py-0.5 text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
-                <span id="status-text">Strong Admission Safety Band</span>
+        <!-- Floating Card 2: Bottom Left - LexiVault Vocabulary Streak -->
+        <div class="hidden xl:block absolute -bottom-10 -left-10 animate-float-2 z-30 w-64">
+          <div class="glass-floating-card rounded-2xl p-4 border border-white">
+            <div class="flex items-center justify-between mb-1.5">
+              <span class="px-2 py-0.5 rounded-md bg-purple-100 text-purple-700 text-[10px] font-bold uppercase tracking-wider font-mono">LexiVault 11+</span>
+              <span class="text-amber-500 font-bold text-xs flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">local_fire_department</span> 42-Day Streak
               </span>
             </div>
-
-            <div class="py-2">
-              <div class="text-6xl sm:text-7xl font-mono font-bold text-white tracking-tight">
-                <span id="predicted-sas-score">132</span><span class="text-xl text-slate-500 font-sans"> / 141</span>
-              </div>
-              <div id="percentile-val" class="text-xs font-mono text-indigo-400 mt-1">
-                Top 1.5% (98.5th Percentile)
-              </div>
+            <div class="text-sm font-black text-slate-900">Sagacious</div>
+            <div class="text-[11px] text-slate-500 italic">"Wise, discerning, astute"</div>
+            <div class="mt-2 text-[10px] text-emerald-600 font-bold flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">check</span>
+              <span>Spaced repetition mastery 94%</span>
             </div>
-
-            <!-- Dynamic SVG Normal Distribution Bell Curve -->
-            <div class="my-4 p-3 bg-slate-950 border border-slate-800">
-              <div class="text-[10px] font-mono text-slate-400 flex justify-between mb-1">
-                <span>National Mean (100)</span>
-                <span class="text-amber-400">Grammar Cutoff</span>
-                <span class="text-emerald-400">Top 1% (141)</span>
-              </div>
-              <div class="relative h-14 w-full">
-                <svg class="w-full h-full" viewBox="0 0 300 70" preserveAspectRatio="none">
-                  <path d="M 0,65 Q 75,65 110,40 T 150,5 T 190,40 Q 225,65 300,65" fill="none" stroke="#475569" stroke-width="2"/>
-                  <path d="M 210,45 Q 225,65 300,65 L 300,65 L 210,65 Z" fill="rgba(44, 74, 143, 0.3)"/>
-                  <line x1="150" y1="5" x2="150" y2="65" stroke="#64748b" stroke-dasharray="3 3"/>
-                  <line id="bell-marker" x1="250" y1="12" x2="250" y2="65" stroke="#10b981" stroke-width="3"/>
-                </svg>
-              </div>
-              <div class="text-[9px] text-slate-500 font-mono flex justify-between mt-1">
-                <span>SAS 70</span>
-                <span>SAS 100</span>
-                <span>SAS 120</span>
-                <span>SAS 141</span>
-              </div>
-            </div>
-
-            <p id="recommendation-text" class="text-xs font-mono text-slate-300 leading-relaxed text-left border-l-2 border-[#2C4A8F] pl-3 mb-5">
-              Candidate scores within entry range for target grammar school.
-            </p>
-
-            <a href="index.html#practice-arena" class="btn-pressable btn-primary w-full py-3.5 bg-[#2C4A8F] hover:bg-indigo-700 border-0">
-              <span>Unlock Candidate Assessment Portal</span>
-              <span class="material-symbols-outlined text-sm">arrow_forward</span>
-            </a>
           </div>
-
         </div>
+
+        <!-- Floating Card 3: Top Right - Live GL Exam Benchmark -->
+        <div class="hidden xl:block absolute -top-8 -right-12 animate-float-3 z-30 w-72">
+          <div class="glass-floating-card rounded-2xl p-4 border border-white">
+            <div class="flex items-center justify-between text-xs font-mono text-slate-500 mb-2">
+              <span class="font-bold text-brand-600">GL Mock Exam #04</span>
+              <span class="text-amber-600 font-bold flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">timer</span> 42:15 left
+              </span>
+            </div>
+            <div class="w-full bg-slate-100 h-2 rounded-full overflow-hidden mb-2">
+              <div class="bg-gradient-to-r from-brand-600 via-indigo-600 to-fuchsia-600 h-full w-[84%] rounded-full"></div>
+            </div>
+            <div class="flex items-center justify-between text-[11px]">
+              <span class="text-slate-600 font-semibold">Question 84 of 100</span>
+              <span class="text-emerald-600 font-black font-mono">98% Accuracy (Top 1%)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Floating Card 4: Bottom Right - Parent Real-Time Diagnostic WhatsApp -->
+        <div class="hidden xl:block absolute -bottom-10 -right-10 animate-float-4 z-30 w-68">
+          <div class="glass-floating-card rounded-2xl p-4 border border-white">
+            <div class="flex items-center gap-2 mb-1.5">
+              <div class="w-6 h-6 rounded-full bg-emerald-500 text-white flex items-center justify-center">
+                <span class="material-symbols-outlined text-xs">chat</span>
+              </div>
+              <span class="text-xs font-bold text-slate-900">Parent WhatsApp Alert</span>
+            </div>
+            <p class="text-[11px] text-slate-600 leading-snug">
+              Spatial reasoning nets cleared: <strong class="text-emerald-600 font-bold">+14 marks</strong> gained.
+            </p>
+            <div class="mt-2 text-[10px] font-mono text-brand-700 font-extrabold flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs text-brand-600">verified</span>
+              <span>HBS & QE Cutoff Safe Zone ✓</span>
+            </div>
+          </div>
+        </div>
+
       </div>
 
     </div>
   </section>
 
-  <!-- ================= SECTION 5: SYLLABUS & 3D LEXIVAULT MORPHEME CARD ================= -->
-  <section id="curriculum" class="py-20 md:py-28 bg-[#F3EEE6] border-b border-[rgba(20,28,43,0.14)]">
-    <div class="max-w-7xl mx-auto px-6 sm:px-10">
+  <!-- ================= INFINITE SCROLLING TARGET GRAMMAR SCHOOLS MARQUEE ================= -->
+  <section id="grammar-schools" class="py-10 bg-slate-50/80 border-y border-slate-200/80 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-4 mb-4 text-center">
+      <p class="text-xs font-black uppercase tracking-widest text-slate-500">
+        Engineered & calibrated for admission into the UK's most competitive grammar schools:
+      </p>
+    </div>
+
+    <!-- Infinite Scrolling Track -->
+    <div class="relative w-full overflow-hidden">
+      <div class="flex gap-4 animate-marquee whitespace-nowrap py-2">
+        
+        <!-- School 1 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-blue-600"></span>
+          <span>Queen Elizabeth's (QE Boys)</span>
+          <span class="text-[10px] font-mono text-brand-700 bg-brand-50 px-1.5 py-0.5 rounded border border-brand-200">135+ SAS</span>
+        </div>
+
+        <!-- School 2 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-purple-600"></span>
+          <span>The Henrietta Barnett School</span>
+          <span class="text-[10px] font-mono text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200">132+ SAS</span>
+        </div>
+
+        <!-- School 3 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+          <span>Tiffin Boys & Girls</span>
+          <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">128+ SAS</span>
+        </div>
+
+        <!-- School 4 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-amber-600"></span>
+          <span>Wilson's School (Sutton SET)</span>
+          <span class="text-[10px] font-mono text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">130+ SAS</span>
+        </div>
+
+        <!-- School 5 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-rose-600"></span>
+          <span>St Olave's Grammar</span>
+          <span class="text-[10px] font-mono text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">133+ SAS</span>
+        </div>
+
+        <!-- School 6 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-sky-600"></span>
+          <span>King Edward VI (Birmingham)</span>
+          <span class="text-[10px] font-mono text-sky-700 bg-sky-50 px-1.5 py-0.5 rounded border border-sky-200">225+ Score</span>
+        </div>
+
+        <!-- School 7 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-indigo-600"></span>
+          <span>Altrincham Grammar Schools</span>
+          <span class="text-[10px] font-mono text-indigo-700 bg-indigo-50 px-1.5 py-0.5 rounded border border-indigo-200">334+ Score</span>
+        </div>
+
+        <!-- School 8 -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-teal-600"></span>
+          <span>Reading School</span>
+          <span class="text-[10px] font-mono text-teal-700 bg-teal-50 px-1.5 py-0.5 rounded border border-teal-200">Top 100 Rank</span>
+        </div>
+
+        <!-- Duplicate set for seamless continuous marquee loop -->
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-blue-600"></span>
+          <span>Queen Elizabeth's (QE Boys)</span>
+          <span class="text-[10px] font-mono text-brand-700 bg-brand-50 px-1.5 py-0.5 rounded border border-brand-200">135+ SAS</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-purple-600"></span>
+          <span>The Henrietta Barnett School</span>
+          <span class="text-[10px] font-mono text-purple-700 bg-purple-50 px-1.5 py-0.5 rounded border border-purple-200">132+ SAS</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-emerald-600"></span>
+          <span>Tiffin Boys & Girls</span>
+          <span class="text-[10px] font-mono text-emerald-700 bg-emerald-50 px-1.5 py-0.5 rounded border border-emerald-200">128+ SAS</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-amber-600"></span>
+          <span>Wilson's School (Sutton SET)</span>
+          <span class="text-[10px] font-mono text-amber-700 bg-amber-50 px-1.5 py-0.5 rounded border border-amber-200">130+ SAS</span>
+        </div>
+        <div class="inline-flex items-center gap-2 px-4 py-2.5 rounded-2xl bg-white border border-slate-200 shadow-sm text-xs font-bold text-slate-800 shrink-0">
+          <span class="w-3 h-3 rounded-full bg-rose-600"></span>
+          <span>St Olave's Grammar</span>
+          <span class="text-[10px] font-mono text-rose-700 bg-rose-50 px-1.5 py-0.5 rounded border border-rose-200">133+ SAS</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= INTERACTIVE PRODUCT PROTOTYPE ================= -->
+  <section id="interactive-preview" class="py-20 md:py-28 bg-gradient-to-b from-[#f8fafc] via-white to-[#f8fafc] border-b border-slate-200 relative">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="max-w-2xl mb-12">
-        <span class="mono-meta">[ IV. THE SYLLABI ]</span>
-        <h2 class="text-3xl sm:text-4xl text-[#141C2B] mt-2 mb-3">
-          Four disciplines. Zero <em>generic</em> workbooks.
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-black uppercase tracking-widest text-brand-600 bg-brand-50 border border-brand-200 px-3.5 py-1 rounded-full shadow-sm">
+          Hands-On Prototype
+        </span>
+        <h2 class="mt-4 text-3xl sm:text-5xl font-black text-slate-900 tracking-tight">
+          Experience the engine before signing up.
         </h2>
-        <p class="text-xs sm:text-sm text-[#4A5364] font-mono leading-relaxed">
-          Built precisely to the statutory specifications of GL Assessment, CEM Select, CSSE Essex, and Sutton SET.
+        <p class="mt-3 text-slate-600 text-base">
+          Touch and test 3 core modules in real time. Everything updates live with zero latency.
         </p>
       </div>
 
-      <!-- 4 Columns Grid -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+      <!-- Prototype Card Container -->
+      <div class="bg-white rounded-3xl p-4 sm:p-7 shadow-[0_20px_60px_rgba(79,70,229,0.12)] border border-slate-200/90 relative overflow-hidden">
         
-        <!-- Verbal Reasoning -->
-        <div class="arch-card p-6 flex flex-col justify-between">
-          <div>
-            <span class="mono-accent block mb-2">VERBAL REASONING</span>
-            <h3 class="text-2xl font-serif mb-2">All 21 Typologies</h3>
-            <p class="text-xs text-[#4A5364] leading-relaxed mb-4">
-              Word-letter codes, antonyms, analogies, hidden words, number series, compound words, and algebraic substitution.
-            </p>
-            <div class="flex flex-wrap gap-1 text-[11px] font-mono">
-              <span class="px-2 py-0.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.12)]">21 Codes</span>
-              <span class="px-2 py-0.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.12)]">Cloze</span>
-            </div>
-          </div>
-          <div class="mt-6 pt-3 border-t border-[rgba(20,28,43,0.12)] font-mono text-xs font-bold text-[#2C4A8F]">
-            3,240 Calibrated Items →
-          </div>
-        </div>
-
-        <!-- Mathematics -->
-        <div class="arch-card p-6 flex flex-col justify-between">
-          <div>
-            <span class="mono-accent block mb-2">MATHEMATICS</span>
-            <h3 class="text-2xl font-serif mb-2">KS2 Mastery</h3>
-            <p class="text-xs text-[#4A5364] leading-relaxed mb-4">
-              Multi-step algebra, fractions, decimal proportions, prime factorisation, probability, Venn logic, and spatial coordinates.
-            </p>
-            <div class="flex flex-wrap gap-1 text-[11px] font-mono">
-              <span class="px-2 py-0.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.12)]">Multi-Step</span>
-              <span class="px-2 py-0.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.12)]">Algebra</span>
-            </div>
-          </div>
-          <div class="mt-6 pt-3 border-t border-[rgba(20,28,43,0.12)] font-mono text-xs font-bold text-[#2C4A8F]">
-            3,510 Calibrated Items →
-          </div>
-        </div>
-
-        <!-- English & LexiVault -->
-        <div class="arch-card p-6 flex flex-col justify-between">
-          <div>
-            <span class="mono-accent block mb-2">ENGLISH & LEXIVAULT</span>
-            <h3 class="text-2xl font-serif mb-2">Classical Etymology</h3>
-            <p class="text-xs text-[#4A5364] leading-relaxed mb-4">
-              1,500 classical Latin & Greek root builder, 19th-century reading prose comprehension, syntax, and punctuation.
-            </p>
-            <div class="flex flex-wrap gap-1 text-[11px] font-mono">
-              <span class="px-2 py-0.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.12)]">Latin Roots</span>
-              <span class="px-2 py-0.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.12)]">Inference</span>
-            </div>
-          </div>
-          <div class="mt-6 pt-3 border-t border-[rgba(20,28,43,0.12)] font-mono text-xs font-bold text-[#2C4A8F]">
-            1,890 Morpheme Words →
-          </div>
-        </div>
-
-        <!-- Non-Verbal & Spatial -->
-        <div class="arch-card p-6 flex flex-col justify-between">
-          <div>
-            <span class="mono-accent block mb-2">NON-VERBAL & SPATIAL</span>
-            <h3 class="text-2xl font-serif mb-2">3D Cube Nets</h3>
-            <p class="text-xs text-[#4A5364] leading-relaxed mb-4">
-              3D net foldings, rotational symmetry, sequence progressions, matrix puzzles, paper folds, and isometric rotations.
-            </p>
-            <div class="flex flex-wrap gap-1 text-[11px] font-mono">
-              <span class="px-2 py-0.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.12)]">3D Nets</span>
-              <span class="px-2 py-0.5 bg-[#FAF8F5] border border-[rgba(20,28,43,0.12)]">Matrices</span>
-            </div>
-          </div>
-          <div class="mt-6 pt-3 border-t border-[rgba(20,28,43,0.12)] font-mono text-xs font-bold text-[#2C4A8F]">
-            1,840 Spatial Puzzles →
-          </div>
-        </div>
-
-      </div>
-
-      <!-- 3D LexiVault Interactive Flashcard Featurette -->
-      <div class="arch-card p-8 sm:p-10 bg-white border border-[rgba(20,28,43,0.18)]">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+        <!-- Segmented Tab Switcher -->
+        <div class="flex flex-wrap items-center justify-between gap-3 border-b border-slate-100 pb-5 px-2">
           
-          <div class="lg:col-span-7 space-y-4">
-            <span class="mono-accent block">[ LEXIVAULT™ MORPHEME ENGINE ]</span>
-            <h3 class="text-2xl sm:text-3xl font-serif">
-              Decompose words into Latin and Greek <em>roots.</em>
-            </h3>
-            <p class="text-xs sm:text-sm text-[#4A5364] font-mono leading-relaxed">
-              Rote alphabetical vocabulary lists fail under exam pressure. When a scholar internalises the Latin root <code class="text-[#2C4A8F] font-bold">bene-</code> (good) and <code class="text-[#2C4A8F] font-bold">vol-</code> (will), they decode <em>benevolent, malevolent, volition, voluntary</em> without hesitation.
+          <div class="inline-flex bg-slate-100 p-1.5 rounded-2xl border border-slate-200/60" role="tablist">
+            <button id="tab-btn-predictor" onclick="switchDemoTab('predictor')" class="demo-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-white bg-gradient-to-r from-brand-600 to-indigo-600 transition-all flex items-center gap-2 shadow-md">
+              <span class="material-symbols-outlined text-base">analytics</span>
+              <span>SAS Cut-off Calculator</span>
+            </button>
+            <button id="tab-btn-drill" onclick="switchDemoTab('drill')" class="demo-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-base text-purple-600">quiz</span>
+              <span>11+ Question Sample</span>
+            </button>
+            <button id="tab-btn-vocab" onclick="switchDemoTab('vocab')" class="demo-tab-btn px-4 py-2.5 rounded-xl text-xs sm:text-sm font-bold text-slate-600 hover:text-slate-900 transition-all flex items-center gap-2">
+              <span class="material-symbols-outlined text-base text-pink-600">style</span>
+              <span>LexiVault 3D Card</span>
+            </button>
+          </div>
+
+          <div class="hidden md:flex items-center gap-2 text-xs font-mono font-bold text-emerald-700 bg-emerald-50 px-3.5 py-2 rounded-xl border border-emerald-200">
+            <span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span>Live Interactive Engine</span>
+          </div>
+
+        </div>
+
+        <!-- TAB 1: SAS GRAMMAR SCHOOL PREDICTOR -->
+        <div id="tab-content-predictor" class="demo-tab-panel p-4 sm:p-8">
+          <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            
+            <div class="lg:col-span-6 space-y-6 text-left">
+              <div>
+                <label for="school-select" class="text-xs font-mono font-bold uppercase tracking-wider text-slate-600 block mb-2">Target Grammar School</label>
+                <select id="school-select" onchange="calculateSASPredictor()" class="w-full bg-slate-50 border border-slate-300 rounded-2xl px-4 py-3 text-slate-900 font-bold text-sm focus:outline-none focus:border-brand-500 focus:bg-white transition-all shadow-sm">
+                  <option value="qeboys" data-cutoff="135" data-name="Queen Elizabeth's (QE Boys)">Queen Elizabeth's School (QE Boys) — Cutoff: ~135 SAS</option>
+                  <option value="henrietta" data-cutoff="132" data-name="The Henrietta Barnett School">The Henrietta Barnett School — Cutoff: ~132 SAS</option>
+                  <option value="wilsons" data-cutoff="130" data-name="Wilson's School (Sutton SET)">Wilson's School (Sutton SET) — Cutoff: ~130 SAS</option>
+                  <option value="tiffin" data-cutoff="128" data-name="Tiffin School (Kingston)">Tiffin Boys & Girls — Cutoff: ~128 SAS</option>
+                  <option value="csse" data-cutoff="125" data-name="CSSE Essex Consortium">CSSE Essex Consortium — Top 10% Cut-off</option>
+                  <option value="altrincham" data-cutoff="124" data-name="Altrincham Grammar">Altrincham Grammar Schools — Cutoff: ~124 SAS</option>
+                </select>
+              </div>
+
+              <div>
+                <div class="flex items-center justify-between text-xs text-slate-700 mb-2 font-bold">
+                  <span>Child's Current Practice Accuracy:</span>
+                  <span id="accuracy-display" class="font-mono font-black text-brand-600 text-lg">84%</span>
+                </div>
+                <input id="accuracy-slider" type="range" min="50" max="98" value="84" oninput="calculateSASPredictor()" class="w-full h-3 bg-slate-200 rounded-lg appearance-none cursor-pointer accent-brand-600"/>
+                <div class="flex justify-between text-[11px] text-slate-500 mt-1 font-mono font-semibold">
+                  <span>50% (Avg)</span>
+                  <span>75% (Strong)</span>
+                  <span>90%+ (Top Tier)</span>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-gradient-to-r from-indigo-50/70 to-purple-50/70 border border-indigo-100 text-xs space-y-2 font-mono">
+                <div class="flex items-center justify-between">
+                  <span class="text-slate-600">Target SAS Benchmark:</span>
+                  <span id="target-cutoff-val" class="font-bold text-slate-900">135 SAS</span>
+                </div>
+                <div class="flex items-center justify-between">
+                  <span class="text-slate-600">National Percentile Rank:</span>
+                  <span id="percentile-val" class="font-black text-emerald-700">Top 2.1% (98th)</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Result Card -->
+            <div class="lg:col-span-6">
+              <div class="bg-gradient-to-br from-indigo-950 via-brand-900 to-purple-950 text-white rounded-3xl p-6 sm:p-8 text-center relative overflow-hidden shadow-2xl border border-indigo-700/50">
+                <div class="absolute -top-10 -right-10 w-44 h-44 bg-brand-500/25 rounded-full blur-2xl"></div>
+                
+                <div class="text-xs uppercase font-mono tracking-widest text-indigo-200 font-bold">Predicted Standard Age Score</div>
+                
+                <div class="my-4">
+                  <span id="predicted-sas-score" class="text-7xl sm:text-8xl font-black text-white font-mono tracking-tight tabular-nums">134</span>
+                  <span class="text-indigo-300 text-xl font-mono font-bold">/141</span>
+                </div>
+
+                <div id="status-badge" class="inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/30">
+                  <span class="material-symbols-outlined text-sm">verified</span>
+                  <span id="status-text">Strong Admission Safety Band</span>
+                </div>
+
+                <p id="recommendation-text" class="mt-4 text-xs sm:text-sm text-indigo-100 leading-relaxed max-w-sm mx-auto">
+                  At 134 SAS, your child is within 1 point of the QE Boys safety threshold. Focus on Verbal Reasoning speed drills to guarantee qualification.
+                </p>
+
+                <div class="mt-6 pt-5 border-t border-indigo-800/80">
+                  <a href="index.html#school-predictor" class="text-xs font-bold text-amber-300 hover:text-white inline-flex items-center gap-1 transition-colors">
+                    <span>View full 40+ UK Grammar School Breakdown</span>
+                    <span class="material-symbols-outlined text-xs">arrow_forward</span>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 2: LIVE 11+ QUESTION SAMPLE -->
+        <div id="tab-content-drill" class="demo-tab-panel hidden p-4 sm:p-8">
+          <div class="max-w-2xl mx-auto bg-slate-50 border border-slate-200 rounded-3xl p-6 sm:p-8 text-left">
+            <div class="flex items-center justify-between text-xs text-slate-500 border-b border-slate-200 pb-3 mb-4">
+              <span class="font-mono text-brand-600 font-bold">GL Assessment VR • Antonym Type 12</span>
+              <span class="text-amber-600 font-mono font-bold flex items-center gap-1"><span class="material-symbols-outlined text-sm">timer</span> 45s Recommended Speed</span>
+            </div>
+
+            <p class="text-sm font-bold text-slate-900 mb-5 leading-relaxed">
+              Find the <strong class="text-brand-600 underline">TWO</strong> words, one from each group, that are most opposite in meaning (Antonyms):
             </p>
-            <div class="pt-2 flex items-center gap-4">
-              <button type="button" onclick="flipLexiCard()" class="btn-pressable btn-primary py-2.5 px-5">
-                <span class="material-symbols-outlined text-sm">flip</span>
-                <span>Click to Flip Card & Test Yourself</span>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-5">
+              <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                <span class="text-xs font-mono font-bold text-slate-500 block mb-2">GROUP 1:</span>
+                <div class="space-y-2">
+                  <button onclick="selectQuestionChoice(this, 'g1', 'A')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
+                    <span>(A) Impetuous</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
+                  </button>
+                  <button onclick="selectQuestionChoice(this, 'g1', 'B')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
+                    <span>(B) Benevolent</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
+                  </button>
+                  <button onclick="selectQuestionChoice(this, 'g1', 'C')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
+                    <span>(C) Resilient</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
+                  </button>
+                </div>
+              </div>
+
+              <div class="p-4 rounded-2xl bg-white border border-slate-200 shadow-sm">
+                <span class="text-xs font-mono font-bold text-slate-500 block mb-2">GROUP 2:</span>
+                <div class="space-y-2">
+                  <button onclick="selectQuestionChoice(this, 'g2', 'D')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
+                    <span>(D) Malevolent</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
+                  </button>
+                  <button onclick="selectQuestionChoice(this, 'g2', 'E')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
+                    <span>(E) Cautious</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
+                  </button>
+                  <button onclick="selectQuestionChoice(this, 'g2', 'F')" class="q-opt w-full text-left px-3.5 py-2.5 rounded-xl text-xs font-medium text-slate-800 bg-slate-50 border border-slate-200 hover:border-brand-500 transition-all flex items-center justify-between">
+                    <span>(F) Fragile</span>
+                    <span class="opt-indicator text-[10px] text-slate-400 font-mono">Choice</span>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <div class="flex items-center justify-between pt-2">
+              <span id="drill-feedback-msg" class="text-xs text-slate-500 font-medium">Select one word from Group 1 and one from Group 2.</span>
+              <button id="check-drill-btn" onclick="checkDrillAnswer()" class="btn-tactile px-5 py-2.5 rounded-xl bg-gradient-to-r from-brand-600 to-indigo-600 hover:from-brand-700 hover:to-indigo-700 text-white font-bold text-xs shadow-md">
+                Check Solution
               </button>
-              <a href="index.html#vocab-vault" class="text-xs font-mono font-bold text-[#2C4A8F] hover:underline">
-                Open Full LexiVault →
+            </div>
+
+            <div id="drill-solution-box" class="hidden mt-4 p-4 rounded-2xl bg-emerald-50 border border-emerald-300 text-xs text-slate-800 space-y-1.5">
+              <div class="text-emerald-800 font-bold flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base text-emerald-600">check_circle</span>
+                <span>Correct Pair: (A) Impetuous & (E) Cautious, OR (B) Benevolent & (D) Malevolent.</span>
+              </div>
+              <p class="text-slate-600 leading-relaxed">
+                Latin root <em>bene</em> (well) opposes <em>male</em> (ill). Identifying prefixes instantly eliminates wrong distractors in under 15 seconds.
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- TAB 3: LEXIVAULT 3D FLASHCARD -->
+        <div id="tab-content-vocab" class="demo-tab-panel hidden p-4 sm:p-8">
+          <div class="max-w-sm mx-auto text-center">
+            <p class="text-xs text-slate-500 mb-4 font-mono">Click card to execute 3D spatial flip:</p>
+
+            <div class="flip-card w-full h-72 cursor-pointer" onclick="toggleCardFlip(this)">
+              <div class="flip-card-inner relative w-full h-full rounded-3xl shadow-xl">
+                
+                <div class="flip-card-front absolute inset-0 w-full h-full bg-white border border-slate-200 rounded-3xl p-6 flex flex-col justify-between text-left">
+                  <div class="flex items-center justify-between">
+                    <span class="px-2.5 py-1 rounded-lg bg-purple-50 text-purple-700 text-xs font-mono font-bold border border-purple-200">11+ High Yield #48</span>
+                    <button type="button" onclick="playAudioSimulation(event, 'sagacious')" aria-label="Listen to pronunciation" class="p-2 rounded-full bg-slate-100 hover:bg-purple-100 text-purple-700 transition-colors">
+                      <span class="material-symbols-outlined text-base">volume_up</span>
+                    </button>
+                  </div>
+                  <div>
+                    <h3 class="text-3xl font-black text-slate-900 tracking-tight">Sagacious</h3>
+                    <p class="text-xs text-slate-500 font-mono mt-1">/səˈɡeɪ.ʃəs/ • Adjective</p>
+                    <p class="text-sm text-slate-700 mt-3 leading-relaxed">"Having or showing keen mental discernment and good judgment; wise."</p>
+                  </div>
+                  <div class="flex items-center justify-between text-xs text-slate-400 border-t border-slate-100 pt-3 font-mono">
+                    <span>Click to reveal Antonyms</span>
+                    <span class="material-symbols-outlined text-sm text-purple-600">flip</span>
+                  </div>
+                </div>
+
+                <div class="flip-card-back absolute inset-0 w-full h-full bg-gradient-to-br from-purple-50 to-pink-50 border border-purple-300 rounded-3xl p-6 flex flex-col justify-between text-left">
+                  <div>
+                    <span class="text-[11px] font-mono font-bold uppercase text-purple-700">Etymology & Antonyms</span>
+                    <div class="mt-2 text-xs space-y-1.5 text-slate-700">
+                      <p><strong>Root:</strong> Latin <em>sagax</em> (wise / perceptive).</p>
+                      <p><strong>Synonyms:</strong> Astute, judicious, shrewd.</p>
+                      <p><strong>Antonyms:</strong> Foolish, obtuse, vacuous.</p>
+                    </div>
+                  </div>
+                  <div class="text-[11px] text-emerald-700 font-bold flex items-center justify-between border-t border-purple-200 pt-2 font-mono">
+                    <span>Retained via Spaced Repetition</span>
+                    <span class="material-symbols-outlined text-sm">stars</span>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="mt-6">
+              <a href="index.html#vocab-vault" class="btn-tactile text-xs font-bold text-white bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 px-5 py-2.5 rounded-full inline-flex items-center gap-1.5 shadow-md">
+                <span>Browse Full 1,500-Word LexiVault</span>
+                <span class="material-symbols-outlined text-xs">arrow_forward</span>
               </a>
             </div>
+
           </div>
+        </div>
 
-          <!-- Flip Card Demonstration -->
-          <div class="lg:col-span-5 flex justify-center">
-            <div id="lexi-demo-card" class="lexi-flip-wrapper w-full max-w-sm h-60 cursor-pointer" onclick="flipLexiCard()">
-              <div class="lexi-flip-inner relative w-full h-full shadow-lg">
-                
-                <!-- Front -->
-                <div class="lexi-front absolute inset-0 bg-[#2C4A8F] text-white p-6 flex flex-col justify-between border border-indigo-700">
-                  <div class="flex justify-between items-center text-[10px] font-mono opacity-80">
-                    <span>LEXIVAULT TIER IX</span>
-                    <span>CLICK TO FLIP 🔄</span>
-                  </div>
-                  <div class="text-center my-auto">
-                    <span class="text-[10px] font-mono text-indigo-200 uppercase tracking-wider block">Latin Morpheme Root</span>
-                    <h4 class="text-4xl font-serif mt-1">bene-</h4>
-                    <p class="text-xs font-mono text-indigo-100 mt-2">"Good • Well • Favourable"</p>
-                  </div>
-                  <div class="text-center text-[10px] font-mono bg-indigo-900/60 py-1.5">
-                    Tap to reveal derivative vocabulary
-                  </div>
-                </div>
+      </div>
 
-                <!-- Back -->
-                <div class="lexi-back absolute inset-0 bg-[#141C2B] text-white p-6 flex flex-col justify-between border border-slate-700">
-                  <div class="flex justify-between items-center text-[10px] font-mono text-slate-400">
-                    <span>11+ EXAM DERIVATIVES</span>
-                    <span>CLICK TO RE-FLIP 🔄</span>
-                  </div>
-                  <div class="space-y-2 text-left my-auto font-mono text-xs">
-                    <div class="p-2 bg-slate-900 border border-slate-800">
-                      <span class="text-emerald-400 font-bold">Benevolent</span> (adj.) — Kindly; wishing good.
-                    </div>
-                    <div class="p-2 bg-slate-900 border border-slate-800">
-                      <span class="text-emerald-400 font-bold">Benefactor</span> (n.) — One who provides aid.
-                    </div>
-                    <div class="p-2 bg-slate-900 border border-slate-800">
-                      <span class="text-emerald-400 font-bold">Beneficial</span> (adj.) — Producing advantages.
-                    </div>
-                  </div>
-                  <div class="text-center text-[10px] font-mono text-emerald-400">
-                    ✓ Antonym: Mal- (Malevolent, Malicious)
-                  </div>
-                </div>
+    </div>
+  </section>
 
-              </div>
+  <!-- ================= COLORFUL 6-PILLAR BENTO GRID ================= -->
+  <section id="features" class="py-24 md:py-36 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    
+    <div class="text-center max-w-3xl mx-auto mb-16">
+      <span class="text-xs font-black uppercase tracking-widest text-brand-600 bg-brand-50 border border-brand-200 px-3.5 py-1 rounded-full shadow-sm">
+        Complete Architecture
+      </span>
+      <h2 class="mt-4 text-3xl sm:text-5xl font-black text-slate-900 tracking-tight leading-tight max-w-2xl mx-auto">
+        Engineered for the <span class="whitespace-nowrap gradient-hero-title">top 1% cut-offs.</span>
+      </h2>
+      <p class="mt-4 text-slate-600 text-lg">
+        Grammar school admission is decided by single marks. Every tool inside Learnly is calibrated to eliminate careless errors under pressure.
+      </p>
+    </div>
+
+    <!-- Bento Grid Container -->
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-6">
+      
+      <!-- BENTO CARD 1: ADAPTIVE PRACTICE ARENA (Large span-8) -->
+      <div class="md:col-span-8 bg-gradient-to-br from-blue-50/80 via-white to-indigo-50/80 border border-blue-200/90 rounded-3xl p-8 sm:p-10 shadow-[0_10px_30px_rgba(37,99,235,0.06)] hover:shadow-xl hover:shadow-blue-500/10 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="flex items-center justify-between mb-4">
+            <div class="w-12 h-12 rounded-2xl bg-blue-600 text-white flex items-center justify-center shadow-lg shadow-blue-500/30 group-hover:scale-110 transition-transform">
+              <span class="material-symbols-outlined text-2xl">sports_esports</span>
             </div>
+            <span class="text-xs font-mono font-bold text-blue-700 bg-blue-100/80 border border-blue-200 px-3 py-1 rounded-full">
+              10,000+ Questions Active
+            </span>
           </div>
+          <h3 class="text-2xl sm:text-3xl font-black text-slate-900 tracking-tight">Adaptive Practice Arena</h3>
+          <p class="mt-3 text-slate-600 text-sm leading-relaxed max-w-xl">
+            Never waste time repeating questions your child already knows. The engine dynamically dials difficulty between Foundation, Scholar, and Super-Selective tiers based on their real-time error latency.
+          </p>
+        </div>
 
+        <div class="mt-8 bg-white border border-slate-200 rounded-2xl p-5 space-y-3 shadow-sm">
+          <div class="flex items-center justify-between text-xs font-semibold text-slate-500">
+            <span>Mock Simulation #04 • Verbal Reasoning</span>
+            <span class="text-emerald-700 font-mono font-bold">Question 42 of 100</span>
+          </div>
+          <div class="w-full bg-slate-100 h-2.5 rounded-full overflow-hidden">
+            <div class="bg-gradient-to-r from-blue-600 to-indigo-600 h-full w-[42%] rounded-full"></div>
+          </div>
+          <div class="p-3 bg-slate-50 rounded-xl border border-slate-200 text-xs font-medium text-slate-800">
+            "Find the hidden four-letter word spanning between the two adjacent words: <em class="text-brand-600 font-bold">TH<strong class="underline">E RE</strong>ALM</em>."
+          </div>
+        </div>
+      </div>
+
+      <!-- BENTO CARD 2: REAL-TIME SAS ENGINE (Span-4) -->
+      <div class="md:col-span-4 bg-gradient-to-br from-indigo-950 via-brand-950 to-purple-950 text-white border border-indigo-800/80 rounded-3xl p-8 sm:p-10 shadow-xl flex flex-col justify-between relative overflow-hidden group">
+        <div class="absolute -top-10 -right-10 w-36 h-36 bg-brand-500/20 rounded-full blur-2xl group-hover:scale-125 transition-transform"></div>
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-white/10 text-emerald-300 flex items-center justify-center mb-4 border border-white/20">
+            <span class="material-symbols-outlined text-2xl">ssid_chart</span>
+          </div>
+          <h3 class="text-2xl font-black tracking-tight text-white">Diagnostic SAS Engine</h3>
+          <p class="mt-3 text-indigo-200 text-xs leading-relaxed">
+            Raw percentages lie because older students have a natural advantage. We calculate age-standardised SAS scores (69–141 scale) calibrated to your child's exact birth month.
+          </p>
+        </div>
+
+        <div class="mt-8 pt-6 border-t border-indigo-800/80 text-center">
+          <div class="text-5xl font-black font-mono text-emerald-400 tabular-nums">136.4 SAS</div>
+          <span class="text-xs text-indigo-300 font-semibold uppercase tracking-wider block mt-1">99th Percentile Cohort</span>
+        </div>
+      </div>
+
+      <!-- BENTO CARD 3: LEXIVAULT 11+ VOCABULARY (Span-4) -->
+      <div class="md:col-span-4 bg-gradient-to-br from-purple-50/80 via-white to-pink-50/80 border border-purple-200/90 rounded-3xl p-8 shadow-[0_10px_30px_rgba(168,85,247,0.06)] hover:shadow-xl hover:shadow-purple-500/10 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-purple-600 text-white flex items-center justify-center mb-4 shadow-lg shadow-purple-500/30 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl">auto_stories</span>
+          </div>
+          <h3 class="text-xl font-black text-slate-900 tracking-tight">LexiVault 11+ Power</h3>
+          <p class="mt-2 text-slate-600 text-xs leading-relaxed">
+            1,500 curated high-yield 11+ words with audio pronunciation, Greek/Latin roots, and antonym pairings. Powered by spaced repetition.
+          </p>
+        </div>
+
+        <div class="mt-6 flex flex-wrap gap-2 text-xs font-bold">
+          <span class="px-2.5 py-1 rounded-lg bg-purple-100 text-purple-800">Astute</span>
+          <span class="px-2.5 py-1 rounded-lg bg-blue-100 text-blue-800">Lethargic</span>
+          <span class="px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800">Pugnacious</span>
+          <span class="px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800">Benevolent</span>
+        </div>
+      </div>
+
+      <!-- BENTO CARD 4: MISTAKE MASTERY VAULT (Span-4) -->
+      <div class="md:col-span-4 bg-gradient-to-br from-rose-50/80 via-white to-amber-50/80 border border-rose-200/90 rounded-3xl p-8 shadow-[0_10px_30px_rgba(244,63,94,0.06)] hover:shadow-xl hover:shadow-rose-500/10 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-rose-600 text-white flex items-center justify-center mb-4 shadow-lg shadow-rose-500/30 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl">healing</span>
+          </div>
+          <h3 class="text-xl font-black text-slate-900 tracking-tight">Mistake Mastery Vault</h3>
+          <p class="mt-2 text-slate-600 text-xs leading-relaxed">
+            Every incorrect answer is automatically captured. The AI diagnoses whether the flaw was conceptual, vocabulary gap, or time pressure, and re-tests until cleared.
+          </p>
+        </div>
+
+        <div class="mt-6 p-3 rounded-2xl bg-rose-100/70 border border-rose-200 text-xs text-rose-900 font-bold flex items-center gap-2">
+          <span class="material-symbols-outlined text-base text-rose-600">priority_high</span>
+          <span>14 errors auto-queued for Sunday re-drill</span>
+        </div>
+      </div>
+
+      <!-- BENTO CARD 5: KCSIE SAFEGUARDED TUTORS & CLINICS (Span-4) -->
+      <div class="md:col-span-4 bg-gradient-to-br from-emerald-50/80 via-white to-teal-50/80 border border-emerald-200/90 rounded-3xl p-8 shadow-[0_10px_30px_rgba(16,185,129,0.06)] hover:shadow-xl hover:shadow-emerald-500/10 transition-all flex flex-col justify-between group">
+        <div>
+          <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center mb-4 shadow-lg shadow-emerald-500/30 group-hover:scale-110 transition-transform">
+            <span class="material-symbols-outlined text-2xl">supervisor_account</span>
+          </div>
+          <h3 class="text-xl font-black text-slate-900 tracking-tight">Parent Hub & Clinics</h3>
+          <p class="mt-2 text-slate-600 text-xs leading-relaxed">
+            Weekly digest emails and live progress transparency. When your child hits a conceptual wall, book 1-on-1 video clinic sessions with vetted Oxbridge 11+ tutors.
+          </p>
+        </div>
+
+        <div class="mt-6 flex items-center gap-3 pt-3 border-t border-emerald-100">
+          <div class="w-8 h-8 rounded-full bg-emerald-200 text-emerald-800 font-bold flex items-center justify-center text-xs">OX</div>
+          <div class="text-xs">
+            <div class="font-bold text-slate-900">1-on-1 Diagnostic Clinics</div>
+            <div class="text-emerald-700 font-semibold">Enhanced DBS Verified</div>
+          </div>
         </div>
       </div>
 
     </div>
   </section>
 
-  <!-- ================= SECTION 6: VALUE COMPARISON AUDIT TABLE ================= -->
-  <section id="comparison" class="py-20 md:py-28 bg-[#FAF8F5] border-b border-[rgba(20,28,43,0.14)]">
-    <div class="max-w-6xl mx-auto px-6 sm:px-10">
+  <!-- ================= PARENT RESULTS & SOCIAL PROOF WALL ================= -->
+  <section id="testimonials" class="py-20 bg-slate-50/60 border-y border-slate-200">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="max-w-2xl mx-auto text-center mb-12">
-        <span class="mono-meta">[ V. AUDIT & COMPARISON ]</span>
-        <h2 class="text-3xl sm:text-4xl text-[#141C2B] mt-2 mb-3">
-          Comparing the <em>diagnostic standard</em> to traditional prep.
+      <div class="text-center max-w-2xl mx-auto mb-14">
+        <span class="text-xs font-black uppercase tracking-widest text-emerald-700 bg-emerald-50 border border-emerald-200 px-3.5 py-1 rounded-full shadow-sm">
+          Proven Admissions
+        </span>
+        <h2 class="mt-3 text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          Letters of Offer. Verified by Parents.
         </h2>
-        <p class="text-xs sm:text-sm text-[#4A5364] font-mono leading-relaxed">
-          Why parents substitute static paper workbooks and £60/hr private tuition with Learnly.
-        </p>
-      </div>
-
-      <div class="overflow-x-auto">
-        <table class="w-full text-left text-xs sm:text-sm border-collapse font-mono">
-          <thead>
-            <tr class="border-b-2 border-[#141C2B]">
-              <th class="py-4 px-4 font-bold text-[#141C2B] w-1/3 uppercase text-xs">Key Evaluation Criteria</th>
-              <th class="py-4 px-5 font-bold text-[#2C4A8F] bg-[#EFE9DD] w-1/4 uppercase text-xs">Learnly 11+ Scholar</th>
-              <th class="py-4 px-4 font-bold text-[#767E8C] w-1/5 uppercase text-xs">CGP / Bond Books</th>
-              <th class="py-4 px-4 font-bold text-[#767E8C] w-1/5 uppercase text-xs">Private Tutors (£60/hr)</th>
-            </tr>
-          </thead>
-          <tbody class="divide-y divide-[rgba(20,28,43,0.14)] font-mono text-xs">
-            <tr>
-              <td class="py-4 px-4 font-bold text-[#141C2B]">Standard Age Score (SAS) Calibration</td>
-              <td class="py-4 px-5 font-bold text-[#2C4A8F] bg-[#EFE9DD]/50">Automated Birth-Month Model</td>
-              <td class="py-4 px-4 text-[#767E8C]">Raw Percentage Only</td>
-              <td class="py-4 px-4 text-[#767E8C]">Subjective Estimate</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 font-bold text-[#141C2B]">Dynamic Timed Mock Exams</td>
-              <td class="py-4 px-5 font-bold text-[#2C4A8F] bg-[#EFE9DD]/50">Unlimited Bespoke Tests</td>
-              <td class="py-4 px-4 text-[#767E8C]">4–8 Static Printed Papers</td>
-              <td class="py-4 px-4 text-[#767E8C]">1 paper per session (£60+)</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 font-bold text-[#141C2B]">Instant Error Remediation</td>
-              <td class="py-4 px-5 font-bold text-[#2C4A8F] bg-[#EFE9DD]/50">Instant for all 10,480 items</td>
-              <td class="py-4 px-4 text-[#767E8C]">Answer key letters only</td>
-              <td class="py-4 px-4 text-[#767E8C]">Only during scheduled hour</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 font-bold text-[#141C2B]">LexiVault Spaced Repetition</td>
-              <td class="py-4 px-5 font-bold text-[#2C4A8F] bg-[#EFE9DD]/50">1,500 Latin/Greek Roots</td>
-              <td class="py-4 px-4 text-[#767E8C]">Static alphabetical lists</td>
-              <td class="py-4 px-4 text-[#767E8C]">Handmade paper flashcards</td>
-            </tr>
-            <tr>
-              <td class="py-4 px-4 font-bold text-[#141C2B]">Annual Cost & Commitment</td>
-              <td class="py-4 px-5 font-bold text-[#2C4A8F] bg-[#EFE9DD]/50">Affordable, Cancel Anytime</td>
-              <td class="py-4 px-4 text-[#767E8C]">£15–£25 per book bundle</td>
-              <td class="py-4 px-4 text-[#767E8C]">£2,400+ per academic year</td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= SECTION 7: PARENT TESTIMONIALS & CASE STUDIES ================= -->
-  <section id="reviews" class="py-20 md:py-28 bg-[#F3EEE6] border-b border-[rgba(20,28,43,0.14)]">
-    <div class="max-w-7xl mx-auto px-6 sm:px-10">
-      
-      <div class="max-w-2xl mx-auto text-center mb-12">
-        <span class="mono-meta">[ VERIFIED ADMISSIONS ]</span>
-        <h2 class="text-3xl sm:text-4xl text-[#141C2B] mt-2 mb-3">
-          Trusted by families across the <em>United Kingdom.</em>
-        </h2>
-        <p class="text-xs sm:text-sm text-[#4A5364] font-mono leading-relaxed">
-          Authentic accounts from parents who calibrated with Learnly.
+        <p class="mt-3 text-slate-600 text-base">
+          From anxious mock scores to first-round grammar school admission offers across the UK.
         </p>
       </div>
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         
-        <!-- Review 1 -->
-        <div class="arch-card p-7 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between pb-3 border-b border-[rgba(20,28,43,0.12)] text-xs font-mono mb-4">
-              <span class="text-amber-500 font-bold">★★★★★ Trustpilot</span>
-              <span class="text-emerald-800 font-bold bg-emerald-50 px-2 py-0.5 border border-emerald-200 text-[10px]">QE Boys Offer</span>
+        <!-- Story 1 -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm hover:shadow-lg transition-all space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1 text-amber-400">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
             </div>
-            <p class="text-xs sm:text-[13px] text-[#141C2B] leading-relaxed italic font-serif">
-              "We tried Bond and CGP books, but we had no idea what Oliver's actual score meant for Queen Elizabeth's cut-off. Learnly’s birth-month standardisation showed his true SAS was 129, and the mistake remediation pushed him to 139 SAS on test day. He got his first choice!"
-            </p>
+            <span class="px-2.5 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200 text-[10px] font-bold">QE Boys Offer</span>
           </div>
-          <div class="mt-6 pt-4 border-t border-[rgba(20,28,43,0.12)] font-mono">
-            <div class="text-xs font-bold text-[#141C2B]">Dr. Sarah K.</div>
-            <div class="text-[10px] text-[#767E8C]">Parent of Oliver • Barnet Consortium</div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
+            "Leo was consistently failing Verbal Reasoning speed sections on paper mocks. Learnly's timer pressure mode and mistake vault boosted his SAS from 116 to 139 in 3 months. He got his first-choice offer for QE Boys!"
+          </p>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="font-bold text-slate-900 text-xs">Priya Sharma</div>
+              <div class="text-[11px] text-slate-500">Barnet, London • Year 5 Parent</div>
+            </div>
+            <span class="text-xs font-mono font-black text-emerald-600">+23 SAS</span>
           </div>
         </div>
 
-        <!-- Review 2 -->
-        <div class="arch-card p-7 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between pb-3 border-b border-[rgba(20,28,43,0.12)] text-xs font-mono mb-4">
-              <span class="text-amber-500 font-bold">★★★★★ Trustpilot</span>
-              <span class="text-emerald-800 font-bold bg-emerald-50 px-2 py-0.5 border border-emerald-200 text-[10px]">Henrietta Barnett Offer</span>
+        <!-- Story 2 -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm hover:shadow-lg transition-all space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1 text-amber-400">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
             </div>
-            <p class="text-xs sm:text-[13px] text-[#141C2B] leading-relaxed italic font-serif">
-              "Ananya was terrified of the CEM Cloze vocabulary section. LexiVault with the Latin and Greek roots made words click like puzzle pieces. She went into the exam completely calm and secured her place at Henrietta Barnett."
-            </p>
+            <span class="px-2.5 py-0.5 rounded-full bg-purple-50 text-purple-700 border border-purple-200 text-[10px] font-bold">Henrietta Barnett</span>
           </div>
-          <div class="mt-6 pt-4 border-t border-[rgba(20,28,43,0.12)] font-mono">
-            <div class="text-xs font-bold text-[#141C2B]">Rajesh & Priya P.</div>
-            <div class="text-[10px] text-[#767E8C]">Parents of Ananya • London / Hampstead</div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
+            "The LexiVault vocabulary flashcards with Latin and Greek roots are unlike anything else on the market. Maya remembered 800+ complex words effortlessly. She scored in the Top 20 for HBS Round 2."
+          </p>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="font-bold text-slate-900 text-xs">Dr. David Chen</div>
+              <div class="text-[11px] text-slate-500">Finchley • Year 5 Parent</div>
+            </div>
+            <span class="text-xs font-mono font-black text-emerald-600">+19 SAS</span>
           </div>
         </div>
 
-        <!-- Review 3 -->
-        <div class="arch-card p-7 flex flex-col justify-between">
-          <div>
-            <div class="flex items-center justify-between pb-3 border-b border-[rgba(20,28,43,0.12)] text-xs font-mono mb-4">
-              <span class="text-amber-500 font-bold">★★★★★ Trustpilot</span>
-              <span class="text-emerald-800 font-bold bg-emerald-50 px-2 py-0.5 border border-emerald-200 text-[10px]">Tiffin Boys Offer</span>
+        <!-- Story 3 -->
+        <div class="bg-white rounded-3xl p-6 sm:p-7 border border-slate-200 shadow-sm hover:shadow-lg transition-all space-y-4">
+          <div class="flex items-center justify-between">
+            <div class="flex items-center gap-1 text-amber-400">
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
+              <span class="material-symbols-outlined text-sm" style="font-variation-settings:'FILL' 1">star</span>
             </div>
-            <p class="text-xs sm:text-[13px] text-[#141C2B] leading-relaxed italic font-serif">
-              "Private tutoring was costing us £240 every month and Ethan was still struggling with speed. Learnly’s timed mock exams trained him to pace himself perfectly. He passed both Sutton SET and Tiffin Stage 2 with top percentiles."
-            </p>
+            <span class="px-2.5 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-[10px] font-bold">Tiffin Girls Offer</span>
           </div>
-          <div class="mt-6 pt-4 border-t border-[rgba(20,28,43,0.12)] font-mono">
-            <div class="text-xs font-bold text-[#141C2B]">David M.</div>
-            <div class="text-[10px] text-[#767E8C]">Parent of Ethan • Sutton & Kingston</div>
+          <p class="text-xs sm:text-sm text-slate-700 leading-relaxed italic">
+            "Instead of paying £80 an hour for private tutoring with no data, Learnly gave me exact SAS percentiles every Saturday morning. Best investment we made for grammar prep."
+          </p>
+          <div class="pt-3 border-t border-slate-100 flex items-center justify-between">
+            <div>
+              <div class="font-bold text-slate-900 text-xs">Sarah Jenkins</div>
+              <div class="text-[11px] text-slate-500">Kingston • Year 5 Parent</div>
+            </div>
+            <span class="text-xs font-mono font-black text-emerald-600">134 SAS</span>
           </div>
         </div>
 
@@ -1111,152 +1090,161 @@
     </div>
   </section>
 
-  <!-- ================= SECTION 8: FAQ ACCORDION ================= -->
-  <section class="py-20 md:py-24 bg-[#FAF8F5] border-b border-[rgba(20,28,43,0.14)]">
-    <div class="max-w-4xl mx-auto px-6 sm:px-10">
+  <!-- ================= HEAD-TO-HEAD COMPARISON ================= -->
+  <section id="comparison" class="py-20 md:py-28 bg-white border-b border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center mb-12">
-        <span class="mono-meta">[ QUESTIONS & ANSWERS ]</span>
-        <h2 class="text-3xl sm:text-4xl text-[#141C2B] mt-2 mb-3">
-          Frequently Asked <em>Questions.</em>
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-black uppercase tracking-widest text-brand-600 bg-brand-50 border border-brand-200 px-3.5 py-1 rounded-full shadow-sm">
+          Value & Impact
+        </span>
+        <h2 class="mt-4 text-3xl sm:text-4xl font-black text-slate-900 tracking-tight">
+          Why traditional 11+ prep leaves marks on the table.
         </h2>
-      </div>
-
-      <div class="space-y-4 font-mono text-xs">
-        
-        <details class="group arch-card p-5 cursor-pointer">
-          <summary class="font-bold text-sm text-[#141C2B] flex justify-between items-center list-none">
-            <span>When should my child begin preparing with Learnly?</span>
-            <span class="material-symbols-outlined text-[#767E8C] group-open:rotate-180 transition-transform">expand_more</span>
-          </summary>
-          <p class="text-[#4A5364] mt-3 leading-relaxed">
-            Most families begin in <strong>Year 4</strong> (consolidating core mathematical agility and classical vocabulary roots) or early <strong>Year 5</strong> (advancing to all 21 GL question typologies and full timed mock simulations).
-          </p>
-        </details>
-
-        <details class="group arch-card p-5 cursor-pointer">
-          <summary class="font-bold text-sm text-[#141C2B] flex justify-between items-center list-none">
-            <span>How does the Standard Age Score (SAS) calibration work?</span>
-            <span class="material-symbols-outlined text-[#767E8C] group-open:rotate-180 transition-transform">expand_more</span>
-          </summary>
-          <p class="text-[#4A5364] mt-3 leading-relaxed">
-            Official 11+ providers (GL Assessment and CEM) calibrate test scores using an actuarial normal distribution with mean 100 and standard deviation 15. A summer-born child (July/August) receives statistical adjustment points to ensure fair parity with September-born peers.
-          </p>
-        </details>
-
-        <details class="group arch-card p-5 cursor-pointer">
-          <summary class="font-bold text-sm text-[#141C2B] flex justify-between items-center list-none">
-            <span>Does Learnly cover GL Assessment, CEM Select, and CSSE formats?</span>
-            <span class="material-symbols-outlined text-[#767E8C] group-open:rotate-180 transition-transform">expand_more</span>
-          </summary>
-          <p class="text-[#4A5364] mt-3 leading-relaxed">
-            Yes. You can toggle between GL Assessment (all 21 standard question types), CEM Select (speed cloze passages and numerical agility), and CSSE Essex papers directly in the Practice Arena.
-          </p>
-        </details>
-
-        <details class="group arch-card p-5 cursor-pointer">
-          <summary class="font-bold text-sm text-[#141C2B] flex justify-between items-center list-none">
-            <span>Can I cancel at any time?</span>
-            <span class="material-symbols-outlined text-[#767E8C] group-open:rotate-180 transition-transform">expand_more</span>
-          </summary>
-          <p class="text-[#4A5364] mt-3 leading-relaxed">
-            Yes, completely. There are no lock-in contracts or cancellation penalties. Subscriptions can be managed with 1 click directly inside the Parent Oversight Portal.
-          </p>
-        </details>
-
-      </div>
-
-    </div>
-  </section>
-
-  <!-- ================= SECTION 9: FINAL PRE-FOOTER BANNER ================= -->
-  <section class="py-16 bg-[#F3EEE6] border-b border-[rgba(20,28,43,0.14)]">
-    <div class="max-w-5xl mx-auto px-6 sm:px-10 text-center">
-      <div class="bg-[#141C2B] text-white p-8 sm:p-14 border border-[rgba(20,28,43,0.2)]">
-        <span class="mono-meta text-indigo-300 block mb-3">[ 5-DAY FULL ACCESS EVALUATION ]</span>
-        <h2 class="text-3xl sm:text-5xl font-serif text-white leading-tight">
-          Equip the candidate with the <em>calibrated standard.</em>
-        </h2>
-        <p class="text-xs sm:text-sm font-mono text-slate-300 max-w-lg mx-auto mt-4 leading-relaxed">
-          Calm, methodical preparation on the precise examination formats. Five days full platform access. No lock-in contracts.
+        <p class="mt-3 text-slate-600 text-base">
+          See why modern parents are shifting from expensive £75/hr private tutoring and dusty paper mock books to Learnly 11+.
         </p>
+      </div>
 
-        <div class="mt-8 flex flex-col sm:flex-row items-center justify-center gap-4">
-          <a href="index.html#practice-arena" class="btn-pressable btn-primary py-3.5 px-8 bg-white hover:bg-slate-100 text-[#141C2B]">
-            <span>Start Free 5-Day Trial</span>
-            <span class="material-symbols-outlined text-base">arrow_forward</span>
-          </a>
-          <a href="#predictor" class="btn-pressable btn-secondary py-3.5 px-6 border-slate-700 text-white hover:bg-slate-800">
-            <span>Calculate School Cut-off</span>
-          </a>
-        </div>
-
-        <div class="mt-6 flex flex-wrap items-center justify-center gap-6 text-[11px] font-mono text-slate-400">
-          <span>✓ Instant access</span>
-          <span>✓ No credit card required</span>
-          <span>✓ 1-click parent cancellation</span>
+      <div class="bg-white border border-slate-200 rounded-3xl shadow-lg overflow-hidden">
+        <div class="overflow-x-auto">
+          <table class="w-full text-left border-collapse">
+            <thead>
+              <tr class="border-b border-slate-200 bg-slate-100/60">
+                <th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-slate-600">Feature</th>
+                <th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-slate-500">Traditional £75/hr Tutor</th>
+                <th class="py-4 px-6 text-xs font-bold uppercase tracking-wider text-brand-600 bg-brand-50/50">Learnly 11+ Scholar</th>
+              </tr>
+            </thead>
+            <tbody class="divide-y divide-slate-100 text-sm">
+              <tr>
+                <td class="py-4 px-6 font-bold text-slate-900">Standard Age Score (SAS) Calibrator</td>
+                <td class="py-4 px-6 text-slate-500">❌ Gives rough raw percentages only</td>
+                <td class="py-4 px-6 font-bold text-brand-700 bg-brand-50/20">✅ Exact age-standardised SAS (69–141 scale)</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-6 font-bold text-slate-900">Grammar School Cut-off Safety Benchmarks</td>
+                <td class="py-4 px-6 text-slate-500">❌ Anxious guessing until results day</td>
+                <td class="py-4 px-6 font-bold text-brand-700 bg-brand-50/20">✅ Live comparison against historical cut-offs</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-6 font-bold text-slate-900">Mistake Diagnostic & Memory Cycle</td>
+                <td class="py-4 px-6 text-slate-500">❌ Mistakes buried in physical paper piles</td>
+                <td class="py-4 px-6 font-bold text-brand-700 bg-brand-50/20">✅ Auto-categorised Mistake Vault with re-drill</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-6 font-bold text-slate-900">Mock Exam Volume</td>
+                <td class="py-4 px-6 text-slate-500">❌ 5–10 expensive paper books (£150+)</td>
+                <td class="py-4 px-6 font-bold text-brand-700 bg-brand-50/20">✅ 100+ full mock exam simulations (100 Qs each)</td>
+              </tr>
+              <tr>
+                <td class="py-4 px-6 font-bold text-slate-900">Typical Annual Cost</td>
+                <td class="py-4 px-6 text-slate-500">£2,400 – £4,500 / year</td>
+                <td class="py-4 px-6 font-black text-emerald-600 bg-brand-50/20">Fraction of the cost with unlimited access</td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
+
     </div>
   </section>
 
-  <!-- ================= SECTION 10: MONUMENTAL DARK CORPORATE FOOTER ================= -->
-  <footer class="bg-[#090E17] text-slate-300 pt-16 pb-12 border-t border-slate-800 relative overflow-hidden">
-    <div class="max-w-7xl mx-auto px-6 sm:px-10 relative z-10">
+  <!-- ================= MONUMENTAL DARK FOOTER WITH BIG WIDE COMPANY NAME ================= -->
+  <!-- User requirement: "Also at the footer keep the company name big and wide in dark background." -->
+  <footer class="bg-[#06080e] text-slate-400 text-xs pt-20 pb-10 border-t border-slate-900 relative overflow-hidden">
+    
+    <!-- Subtle Ambient Bottom Glow -->
+    <div class="absolute bottom-0 left-1/2 -translate-x-1/2 w-[800px] h-[300px] bg-brand-600/10 rounded-full blur-[140px] pointer-events-none"></div>
+
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
       
-      <!-- 4 Columns Directory -->
-      <div class="grid grid-cols-1 md:grid-cols-4 gap-10 pb-12 border-b border-slate-800 text-xs font-mono">
+      <!-- 5-Column Footer Grid -->
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-16 border-b border-slate-800/80">
         
-        <!-- Col 1: Corporate Identity -->
-        <div class="space-y-4">
-          <div class="flex items-center gap-2">
-            <span class="text-xl font-serif text-white">Learnly<span class="text-[#2C4A8F]">.</span></span>
-            <span class="text-[9px] uppercase px-2 py-0.5 bg-slate-800 text-slate-300 border border-slate-700">UK Registered #14892104</span>
+        <!-- Col 1: Brand Info -->
+        <div class="lg:col-span-2 space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-2xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-fuchsia-600 flex items-center justify-center text-white font-bold text-base shadow-lg shadow-brand-500/25">
+              <span class="material-symbols-outlined text-xl">school</span>
+            </div>
+            <div>
+              <div class="font-black text-white text-base tracking-tight">Learnly 11+ Scholar Edition</div>
+              <div class="text-[11px] text-slate-400 font-medium">The Modern Standard for UK Grammar School Admissions</div>
+            </div>
           </div>
-          <p class="text-slate-400 leading-relaxed text-[11px]">
-            The empirical diagnostic standard for Year 4 and Year 5 candidates targeting GL Assessment, CEM Select, CSSE, and super-selective UK grammar school entrance examinations.
+          <p class="text-slate-400 text-xs leading-relaxed max-w-sm">
+            Age-standardised diagnostic assessment platform engineered for Year 4 & Year 5 pupils targeting GL Assessment, CEM Select, CSSE, and super-selective entrance exams.
           </p>
-          <div class="text-[10px] text-emerald-400">
-            ● ICO REGISTERED • KCSIE 2026/27 COMPLIANT
+          <div class="flex items-center gap-3 text-slate-500 text-xs pt-1 font-mono">
+            <span class="text-emerald-400 font-bold">● ICO Registered</span>
+            <span>•</span>
+            <span>KCSIE Safeguarded</span>
+            <span>•</span>
+            <span>UK GDPR Compliant</span>
           </div>
         </div>
 
-        <!-- Col 2: Platform Engine -->
-        <div>
-          <h4 class="text-[10px] uppercase tracking-wider text-slate-400 mb-4 font-bold">Platform Engine</h4>
-          <ul class="space-y-2 text-[11px] text-slate-400 list-none p-0">
-            <li><a href="index.html#practice-arena" class="hover:text-white transition-colors">Practice Arena (Adaptive Drills)</a></li>
-            <li><a href="index.html#dashboard" class="hover:text-white transition-colors">Standard Age Score (SAS) Diagnostics</a></li>
-            <li><a href="index.html#vocab-vault" class="hover:text-white transition-colors">LexiVault 11+ (Root Words)</a></li>
-            <li><a href="#predictor" class="hover:text-white transition-colors">Grammar School Cut-off Models</a></li>
-            <li><a href="index.html#dashboard" class="hover:text-white transition-colors">Parent Oversight Portal</a></li>
+        <!-- Col 2: Platform -->
+        <div class="space-y-3">
+          <div class="text-xs font-bold uppercase tracking-wider text-white">Platform</div>
+          <ul class="space-y-2">
+            <li><a href="index.html#practice-arena" class="hover:text-white transition-colors">Practice Arena</a></li>
+            <li><a href="index.html#mock-exams" class="hover:text-white transition-colors">Mock Exams</a></li>
+            <li><a href="index.html#vocab-vault" class="hover:text-white transition-colors">LexiVault 11+</a></li>
+            <li><a href="index.html#school-predictor" class="hover:text-white transition-colors">School Predictor</a></li>
+            <li><a href="index.html#parent-portal" class="hover:text-white transition-colors">Parent Portal</a></li>
           </ul>
         </div>
 
-        <!-- Col 3: Exam Consortia -->
-        <div>
-          <h4 class="text-[10px] uppercase tracking-wider text-slate-400 mb-4 font-bold">Exam Consortia</h4>
-          <ul class="space-y-2 text-[11px] text-slate-400 list-none p-0">
-            <li><a href="#predictor" class="hover:text-white transition-colors">Barnet (QE Boys & Henrietta Barnett)</a></li>
-            <li><a href="#predictor" class="hover:text-white transition-colors">Sutton SET & Tiffin Boys / Girls</a></li>
-            <li><a href="#predictor" class="hover:text-white transition-colors">Buckinghamshire Transfer Test (GL)</a></li>
-            <li><a href="#predictor" class="hover:text-white transition-colors">CSSE Essex Grammar Consortium</a></li>
-            <li><a href="#predictor" class="hover:text-white transition-colors">King Edward VI Birmingham</a></li>
+        <!-- Col 3: Exam Boards -->
+        <div class="space-y-3">
+          <div class="text-xs font-bold uppercase tracking-wider text-white">Exam Boards</div>
+          <ul class="space-y-2">
+            <li><a href="#syllabus" class="hover:text-white transition-colors">GL Assessment (21 VR Types)</a></li>
+            <li><a href="#syllabus" class="hover:text-white transition-colors">CEM Select (Cloze & Speed)</a></li>
+            <li><a href="#syllabus" class="hover:text-white transition-colors">CSSE Essex Consortium</a></li>
+            <li><a href="#syllabus" class="hover:text-white transition-colors">Sutton SET & London Grammar</a></li>
           </ul>
         </div>
 
-        <!-- Col 4: Statutory Governance -->
-        <div>
-          <h4 class="text-[10px] uppercase tracking-wider text-slate-400 mb-4 font-bold">Statutory Governance</h4>
-          <ul class="space-y-2 text-[11px] text-slate-400 list-none p-0">
-            <li><button type="button" onclick="openLegalPolicy('terms')" class="hover:text-white text-left cursor-pointer bg-transparent border-0 p-0 text-[11px] text-slate-400 font-mono">Terms of Service</button></li>
-            <li><button type="button" onclick="openLegalPolicy('privacy')" class="hover:text-white text-left cursor-pointer bg-transparent border-0 p-0 text-[11px] text-slate-400 font-mono">Privacy Policy (ICO Children's Code)</button></li>
-            <li><button type="button" onclick="openLegalPolicy('cookies')" class="hover:text-white text-left cursor-pointer bg-transparent border-0 p-0 text-[11px] text-slate-400 font-mono">Cookie Policy</button></li>
-            <li><button type="button" onclick="openLegalPolicy('safeguarding')" class="text-emerald-400 hover:underline text-left cursor-pointer bg-transparent border-0 p-0 text-[11px] font-bold font-mono">Safeguarding (KCSIE)</button></li>
-            <li><button type="button" onclick="openLegalPolicy('gdpr')" class="hover:text-white text-left cursor-pointer bg-transparent border-0 p-0 text-[11px] text-slate-400 font-mono">GDPR & Statutory Rights</button></li>
-            <li class="pt-2">
-              <button type="button" onclick="openLegalPolicy('cookies')" class="px-3 py-1 bg-slate-900 border border-slate-700 text-slate-300 hover:text-white text-[10px] cursor-pointer">
-                Cookie Settings
+        <!-- Col 4: LEGAL (Requested Policies) -->
+        <div class="space-y-3">
+          <div class="text-xs font-bold uppercase tracking-wider text-white flex items-center gap-1.5">
+            <span class="material-symbols-outlined text-sm text-brand-400">gavel</span>
+            <span>Legal & Safety</span>
+          </div>
+          <ul class="space-y-2 font-medium">
+            <li>
+              <button type="button" onclick="openLegalPolicy('terms')" class="hover:text-white transition-colors text-left">
+                Terms of Service
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="openLegalPolicy('privacy')" class="hover:text-white transition-colors text-left">
+                Privacy Policy (ICO Code)
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="openLegalPolicy('cookies')" class="hover:text-white transition-colors text-left">
+                Cookie Policy
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="openLegalPolicy('safeguarding')" class="hover:text-emerald-300 transition-colors text-left text-emerald-400 flex items-center gap-1 font-bold">
+                <span class="material-symbols-outlined text-xs">shield</span>
+                <span>Safeguarding (KCSIE)</span>
+              </button>
+            </li>
+            <li>
+              <button type="button" onclick="openLegalPolicy('gdpr')" class="hover:text-white transition-colors text-left">
+                GDPR & Data Rights
+              </button>
+            </li>
+            <li class="pt-1">
+              <button type="button" onclick="openCookieSettingsModal()" class="px-2.5 py-1 rounded-lg bg-white/10 hover:bg-white/20 text-white transition-all flex items-center gap-1 text-[11px] font-mono">
+                <span class="material-symbols-outlined text-xs text-amber-400">tune</span>
+                <span>Cookie Settings</span>
               </button>
             </li>
           </ul>
@@ -1264,85 +1252,231 @@
 
       </div>
 
-      <!-- Copyright & Disclaimer -->
-      <div class="py-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-[10px] font-mono text-slate-500 border-b border-slate-900">
-        <div>
-          © 2026 Learnly Education Ltd. All rights reserved. Registered in England & Wales.
-        </div>
-        <div class="text-center sm:text-right">
-          Statutory Disclosure: GL Assessment, CEM Select, and CSSE are registered trademarks of their respective examination authorities.
+      <!-- Copyright & Disclaimers -->
+      <div class="pt-8 flex flex-col md:flex-row items-center justify-between gap-4 text-[11px] text-slate-500">
+        <div>© 2026 Learnly Education Ltd. Company No. 14892104. Registered in England & Wales.</div>
+        <div class="text-center md:text-right max-w-xl">
+          Disclaimer: Learnly 11+ is an independent preparation resource. GL Assessment, CEM, and CSSE are registered trademarks of their respective governing bodies.
         </div>
       </div>
 
-      <!-- ================= GIANT ULTRA-WIDE WORDMARK ================= -->
-      <div class="mt-8 text-center overflow-hidden">
-        <h1 class="giant-footer-title">
+      <!-- ================= BIG AND WIDE COMPANY LOGO & NAME DISPLAY ================= -->
+      <div class="mt-14 pt-8 border-t border-slate-900 text-center overflow-hidden flex flex-col items-center justify-center gap-4">
+        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-tr from-brand-600 via-indigo-600 to-violet-500 text-white shadow-2xl shadow-brand-500/30 border border-white/10">
+          <span class="material-symbols-outlined text-[34px]">school</span>
+        </div>
+        <h2 class="giant-footer-title tracking-tighter">
           LEARNLY 11+
-        </h1>
+        </h2>
       </div>
 
     </div>
   </footer>
 
-  <!-- ================= STATUTORY LEGAL POLICY MODAL ================= -->
-  <div id="legal-modal" class="fixed inset-0 z-[150] hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-    <div class="fixed inset-0 bg-[#090E17]/80 backdrop-blur-sm" onclick="closeLegalModal()"></div>
+  <!-- ================= LEGAL POLICIES INTERACTIVE MODAL ================= -->
+  <div id="legal-modal" class="fixed inset-0 z-[150] hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true" aria-labelledby="legal-modal-title">
+    <div class="fixed inset-0 bg-slate-950/80 backdrop-blur-md" onclick="closeLegalModal()"></div>
 
-    <div class="relative bg-[#FAF8F5] border border-[#141C2B] max-w-3xl w-full max-h-[85vh] overflow-hidden shadow-2xl z-10 text-[#141C2B] font-mono">
-      <!-- Modal Header -->
-      <div class="p-6 border-b border-[rgba(20,28,43,0.14)] flex items-center justify-between bg-[#F3EEE6]">
-        <div>
-          <span class="mono-meta">[ STATUTORY GOVERNANCE ]</span>
-          <h3 id="modal-title" class="text-xl font-serif mt-0.5">Learnly Legal & Safeguarding Policy</h3>
+    <div class="relative bg-white rounded-3xl max-w-4xl w-full max-h-[85vh] flex flex-col shadow-2xl border border-slate-200 overflow-hidden z-10 text-slate-900">
+      
+      <div class="px-6 py-4 border-b border-slate-100 flex items-center justify-between bg-slate-50">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center border border-brand-100">
+            <span class="material-symbols-outlined text-lg">verified_user</span>
+          </div>
+          <div>
+            <h2 id="legal-modal-title" class="text-base font-extrabold text-slate-900">Legal Governance & Child Safety</h2>
+            <p class="text-[11px] text-slate-500">Learnly Education Ltd • Compliant with UK Law & Statutory Child Safety Guidelines</p>
+          </div>
         </div>
-        <button type="button" onclick="closeLegalModal()" class="btn-pressable px-3 py-1.5 border border-[#141C2B] bg-white text-xs font-bold cursor-pointer">
-          ✕ CLOSE
+
+        <button onclick="closeLegalModal()" class="w-8 h-8 rounded-full bg-slate-200/70 hover:bg-slate-200 text-slate-600 flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-lg">close</span>
         </button>
       </div>
 
-      <!-- Tab Strip -->
-      <div class="flex border-b border-[rgba(20,28,43,0.14)] bg-[#FAF8F5] overflow-x-auto text-[11px] font-bold uppercase">
-        <button type="button" id="tab-terms" onclick="showLegalTab('terms')" class="p-3 border-r border-[rgba(20,28,43,0.14)] bg-[#F3EEE6] cursor-pointer">Terms</button>
-        <button type="button" id="tab-privacy" onclick="showLegalTab('privacy')" class="p-3 border-r border-[rgba(20,28,43,0.14)] text-[#4A5364] cursor-pointer">Privacy (ICO)</button>
-        <button type="button" id="tab-cookies" onclick="showLegalTab('cookies')" class="p-3 border-r border-[rgba(20,28,43,0.14)] text-[#4A5364] cursor-pointer">Cookies</button>
-        <button type="button" id="tab-safeguarding" onclick="showLegalTab('safeguarding')" class="p-3 border-r border-[rgba(20,28,43,0.14)] text-[#2C4A8F] cursor-pointer">Safeguarding</button>
-        <button type="button" id="tab-gdpr" onclick="showLegalTab('gdpr')" class="p-3 text-[#4A5364] cursor-pointer">GDPR Rights</button>
+      <div class="flex overflow-x-auto border-b border-slate-100 bg-white px-6 py-2 gap-2 text-xs font-bold scrollbar-none" role="tablist">
+        <button id="legal-tab-btn-terms" onclick="switchLegalTab('terms')" class="legal-tab px-3.5 py-2 rounded-xl text-brand-600 bg-brand-50 border border-brand-200 whitespace-nowrap transition-all">
+          Terms of Service
+        </button>
+        <button id="legal-tab-btn-privacy" onclick="switchLegalTab('privacy')" class="legal-tab px-3.5 py-2 rounded-xl text-slate-600 hover:text-black hover:bg-slate-50 whitespace-nowrap transition-all">
+          Privacy Policy (ICO Children's Code)
+        </button>
+        <button id="legal-tab-btn-cookies" onclick="switchLegalTab('cookies')" class="legal-tab px-3.5 py-2 rounded-xl text-slate-600 hover:text-black hover:bg-slate-50 whitespace-nowrap transition-all">
+          Cookie Policy
+        </button>
+        <button id="legal-tab-btn-safeguarding" onclick="switchLegalTab('safeguarding')" class="legal-tab px-3.5 py-2 rounded-xl text-slate-600 hover:text-black hover:bg-slate-50 whitespace-nowrap transition-all">
+          Safeguarding (KCSIE)
+        </button>
+        <button id="legal-tab-btn-gdpr" onclick="switchLegalTab('gdpr')" class="legal-tab px-3.5 py-2 rounded-xl text-slate-600 hover:text-black hover:bg-slate-50 whitespace-nowrap transition-all">
+          GDPR & Data Rights
+        </button>
       </div>
 
-      <!-- Modal Body -->
-      <div class="p-6 sm:p-8 overflow-y-auto text-xs leading-relaxed text-[#4A5364] space-y-4 max-h-[calc(85vh-140px)]">
-        <article id="panel-terms">
-          <div class="mono-accent mb-2">TERMS OF SERVICE // OCTOBER 2026</div>
-          <p>Candidate accounts must be created and supervised by a parent or legal guardian over 18 years of age. All adaptive diagnostic algorithms, mock examination papers, and scoring engines are the exclusive intellectual property of Learnly Education Ltd under the Copyright, Designs and Patents Act 1988.</p>
-          <p class="mt-2">Subscriptions operate on an active monthly cadence with instant 1-click cancellation available inside the Parent Portal without penalty clauses.</p>
+      <div class="p-6 sm:p-8 overflow-y-auto space-y-6 text-xs sm:text-sm text-slate-700 leading-relaxed max-h-[calc(85vh-130px)]">
+
+        <article id="legal-panel-terms" class="legal-panel space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h3 class="text-xl font-bold text-slate-900">Terms of Service</h3>
+            <span class="text-xs text-slate-400 font-mono">Last Updated: October 2026</span>
+          </div>
+          <p>
+            Welcome to <strong>Learnly 11+</strong>, operated by <strong>Learnly Education Ltd</strong>. Accounts must be registered and supervised by a parent or legal guardian over 18 years of age.
+          </p>
+          <h4 class="font-bold text-slate-900 text-sm mt-4">1. Proprietary Intellectual Property</h4>
+          <p>
+            All questions, adaptive algorithms, mock examination papers, and scoring engines are the copyright of Learnly Education Ltd under the Copyright, Designs and Patents Act 1988. Unauthorized scraping, copying, or sharing is strictly prohibited.
+          </p>
+          <h4 class="font-bold text-slate-900 text-sm mt-4">2. Subscription & Instant Cancellation</h4>
+          <p>
+            Following your 7-day free trial, subscriptions are billed monthly with instant 1-click cancellation anytime in the Parent Portal with no lock-in.
+          </p>
         </article>
 
-        <article id="panel-privacy" class="hidden">
-          <div class="mono-accent mb-2">ICO CHILDREN'S CODE COMPLIANCE</div>
-          <p>We adhere strictly to the UK Information Commissioner's Office (ICO) Age Appropriate Design Code. We never sell personal child data, nor do we run behavioral tracking scripts. Pupil date of birth is collected strictly to mathematically calibrate Standard Age Scores (SAS) and is never transferred externally.</p>
+        <article id="legal-panel-privacy" class="legal-panel hidden space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h3 class="text-xl font-bold text-slate-900">Privacy Policy</h3>
+            <span class="text-xs text-slate-400 font-mono">ICO Children's Code Compliant</span>
+          </div>
+          <p>
+            We adhere strictly to the UK Information Commissioner's Office (ICO) <strong>Age Appropriate Design Code (Children's Code)</strong>.
+          </p>
+          <h4 class="font-bold text-slate-900 text-sm mt-4">1. Zero Behavioural Advertising</h4>
+          <p>
+            We <strong>never sell child or parent personal data</strong>, nor do we run 3rd-party advertising tracking scripts.
+          </p>
+          <h4 class="font-bold text-slate-900 text-sm mt-4">2. Pupil Data Minimisation</h4>
+          <p>
+            Pupil date of birth is collected strictly to mathematically standardise Standard Age Scores (SAS) and is never shared externally.
+          </p>
         </article>
 
-        <article id="panel-cookies" class="hidden">
-          <div class="mono-accent mb-2">COOKIE POLICY // PECR COMPLIANT</div>
-          <p>We deploy strictly necessary cookies for candidate session authentication and exam timer persistence. Telemetry preferences may be configured at any time.</p>
+        <article id="legal-panel-cookies" class="legal-panel hidden space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h3 class="text-xl font-bold text-slate-900">Cookie Policy</h3>
+            <span class="text-xs text-slate-400 font-mono">PECR & ePrivacy Compliant</span>
+          </div>
+          <p>
+            We use Strictly Necessary cookies for secure session authentication (Firebase Auth) and exam timer sync. Functional and Performance telemetry can be customized anytime via the Cookie Settings button.
+          </p>
         </article>
 
-        <article id="panel-safeguarding" class="hidden">
-          <div class="mono-accent mb-2">SAFEGUARDING (KCSIE 2026/27)</div>
-          <p>Operating under statutory guidance issued by the Department for Education: Keeping Children Safe in Education (KCSIE). All platform educators undergo Enhanced Disclosure and Barring Service (DBS) verification with Children's Barred List vetting. Contact our Designated Safeguarding Lead at: safeguarding@learnly11plus.co.uk.</p>
+        <article id="legal-panel-safeguarding" class="legal-panel hidden space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h3 class="text-xl font-bold text-slate-900">Safeguarding & Child Protection Policy</h3>
+            <span class="text-xs text-emerald-600 font-mono font-bold bg-emerald-50 px-2 py-0.5 rounded border border-emerald-200">KCSIE Statutory Guidance</span>
+          </div>
+          <p>
+            Operating under the UK Department for Education statutory guidance: <strong>Keeping Children Safe in Education (KCSIE)</strong>.
+          </p>
+          <h4 class="font-bold text-slate-900 text-sm mt-4">1. Safer Recruitment & Enhanced DBS</h4>
+          <p>
+            All 1-on-1 clinic tutors undergo Enhanced Disclosure and Barring Service (DBS) checks including verification against the Children's Barred List, verified degrees, and annual Level 2 Safeguarding training.
+          </p>
+          <h4 class="font-bold text-slate-900 text-sm mt-4">2. Designated Safeguarding Lead (DSL)</h4>
+          <p>
+            Any welfare concerns can be directed immediately to our DSL at: <strong class="text-brand-600">safeguarding@learnly11plus.co.uk</strong>.
+          </p>
         </article>
 
-        <article id="panel-gdpr" class="hidden">
-          <div class="mono-accent mb-2">GDPR & STATUTORY DATA RIGHTS</div>
-          <p>Under the Data Protection Act 2018, parents hold the statutory Right of Access (SAR), Right to Rectification, and Right to Erasure. Direct requests to our Data Protection Officer at: dpo@learnly11plus.co.uk.</p>
+        <article id="legal-panel-gdpr" class="legal-panel hidden space-y-4">
+          <div class="flex items-center justify-between border-b border-slate-100 pb-3">
+            <h3 class="text-xl font-bold text-slate-900">GDPR & Statutory Data Rights</h3>
+            <span class="text-xs text-slate-400 font-mono">Data Protection Act 2018</span>
+          </div>
+          <p>
+            Under UK GDPR, you have the statutory Right of Access (SAR), Right to Erasure ("To Be Forgotten"), and Data Portability. Contact our Data Protection Officer at: <strong class="text-brand-600">dpo@learnly11plus.co.uk</strong>.
+          </p>
         </article>
+
+      </div>
+
+      <div class="px-6 py-4 border-t border-slate-100 flex items-center justify-between bg-slate-50 text-xs">
+        <span class="text-slate-500">Questions? Contact support@learnly11plus.co.uk</span>
+        <button onclick="closeLegalModal()" class="btn-tactile px-5 py-2 rounded-xl bg-slate-900 text-white font-bold">
+          Close
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ================= COOKIE SETTINGS MODAL ================= -->
+  <div id="cookie-settings-modal" class="fixed inset-0 z-[160] hidden items-center justify-center p-4 sm:p-6" role="dialog" aria-modal="true">
+    <div class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm" onclick="closeCookieSettingsModal()"></div>
+
+    <div class="relative bg-white rounded-3xl max-w-xl w-full p-6 sm:p-8 shadow-2xl border border-slate-200 z-10 text-slate-900">
+      <div class="flex items-center justify-between border-b border-slate-100 pb-4 mb-5">
+        <div>
+          <h3 class="text-base font-bold text-slate-900">Cookie & Privacy Preferences</h3>
+          <p class="text-xs text-slate-500">Customise local telemetry preferences</p>
+        </div>
+        <button onclick="closeCookieSettingsModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <div class="space-y-4 text-xs">
+        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 flex items-start justify-between gap-4">
+          <div>
+            <div class="font-bold text-slate-900">Strictly Necessary (Required)</div>
+            <p class="text-slate-500 mt-1">Required for authentication sessions and mock exam timer sync.</p>
+          </div>
+          <input type="checkbox" checked disabled class="mt-1 w-4 h-4 rounded accent-brand-600 cursor-not-allowed"/>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 flex items-start justify-between gap-4">
+          <div>
+            <div class="font-bold text-slate-900">Functional Customisations</div>
+            <p class="text-slate-500 mt-1">Remembers your font size and sound synthesis preferences.</p>
+          </div>
+          <input id="pref-functional" type="checkbox" checked class="mt-1 w-4 h-4 rounded accent-brand-600 cursor-pointer"/>
+        </div>
+        <div class="p-3.5 rounded-2xl bg-white border border-slate-200 flex items-start justify-between gap-4">
+          <div>
+            <div class="font-bold text-slate-900">Diagnostic Performance Telemetry</div>
+            <p class="text-slate-500 mt-1">Anonymous metrics to measure question latency.</p>
+          </div>
+          <input id="pref-analytics" type="checkbox" checked class="mt-1 w-4 h-4 rounded accent-brand-600 cursor-pointer"/>
+        </div>
+      </div>
+
+      <div class="mt-6 pt-4 border-t border-slate-100 flex items-center justify-between gap-3">
+        <button onclick="acceptAllCookies()" class="btn-tactile px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs">
+          Accept All
+        </button>
+        <button onclick="saveCookiePreferences()" class="btn-tactile px-5 py-2 rounded-xl bg-brand-600 hover:bg-brand-500 text-white font-bold text-xs shadow-md">
+          Save Preferences
+        </button>
       </div>
     </div>
   </div>
 
+  <!-- ================= COOKIE CONSENT BANNER ================= -->
+  <aside id="cookie-banner" class="fixed bottom-4 left-4 right-4 sm:left-auto sm:right-6 sm:max-w-md z-50 bg-slate-950/95 backdrop-blur-md text-white p-5 rounded-2xl border border-slate-800 shadow-2xl">
+    <div class="flex items-start gap-3">
+      <span class="material-symbols-outlined text-amber-400 text-xl shrink-0">cookie</span>
+      <div class="text-xs">
+        <p class="font-bold text-white">Privacy & Cookie Notice</p>
+        <p class="text-slate-400 mt-1 leading-relaxed">
+          We use strictly necessary cookies for secure exam sessions. We never sell data or run 3rd party ads.
+        </p>
+        <div class="mt-3.5 flex flex-wrap items-center gap-2">
+          <button onclick="acceptAllCookies()" class="btn-tactile px-3.5 py-1.5 rounded-lg bg-brand-600 text-white font-bold text-xs">
+            Accept All
+          </button>
+          <button onclick="rejectNonEssentialCookies()" class="btn-tactile px-3.5 py-1.5 rounded-lg bg-slate-800 text-slate-300 font-bold text-xs border border-slate-700">
+            Necessary Only
+          </button>
+          <button onclick="openCookieSettingsModal()" class="text-xs text-brand-400 hover:underline ml-1">
+            Customise
+          </button>
+        </div>
+      </div>
+    </div>
+  </aside>
+
   <!-- ================= JAVASCRIPT CONTROLLERS ================= -->
   <script>
-    // Web Audio Synthesizer for tactile feedback
     const audioCtx = (typeof window !== 'undefined' && (window.AudioContext || window.webkitAudioContext)) 
       ? new (window.AudioContext || window.webkitAudioContext)() 
       : null;
@@ -1364,205 +1498,21 @@
       } catch (e) {}
     }
 
-    // Mini Drill Click Handler
-    function handleMiniDrill(btn, isCorrect) {
-      document.querySelectorAll('.mini-choice-btn').forEach(b => {
-        b.classList.remove('bg-[#2C4A8F]', 'text-white', 'border-[#2C4A8F]', 'bg-rose-50', 'text-rose-700', 'border-rose-300');
-        b.classList.add('bg-white', 'text-[#141C2B]');
+    function switchDemoTab(tabName) {
+      playAudioTone(580, 'sine', 0.04);
+      document.querySelectorAll('.demo-tab-btn').forEach(btn => {
+        btn.classList.remove('text-white', 'bg-gradient-to-r', 'from-brand-600', 'to-indigo-600', 'shadow-md');
+        btn.classList.add('text-slate-600');
       });
-
-      if (isCorrect) {
-        playAudioTone(880, 'sine', 0.12);
-        btn.classList.add('bg-emerald-600', 'text-white', 'border-emerald-600');
-        btn.classList.remove('bg-white', 'text-[#141C2B]');
-        const fb = document.getElementById('mini-drill-feedback');
-        if (fb) fb.classList.remove('hidden');
-      } else {
-        playAudioTone(300, 'triangle', 0.08);
-        btn.classList.add('bg-rose-50', 'text-rose-700', 'border-rose-300');
-      }
-    }
-
-    // LexiCard Flip Handler
-    function flipLexiCard() {
-      playAudioTone(600, 'sine', 0.04);
-      const card = document.getElementById('lexi-demo-card');
-      if (card) {
-        card.classList.toggle('is-flipped');
-      }
-    }
-
-    // Motion Models: Travelling Product & Wordmark Spread
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    const travellingProduct = document.getElementById('travelling-product');
-    const heroWordmark = document.getElementById('hero-wordmark');
-    const heroLetters = heroWordmark ? heroWordmark.querySelectorAll('span') : [];
-
-    const travelKeyframes = [
-      { progress: 0.00, x: 58, y: 18, rot: 4,  scale: 1.00, opacity: 1 },
-      { progress: 0.18, x: 50, y: 30, rot: -4, scale: 0.90, opacity: 1 },
-      { progress: 0.38, x: 62, y: 45, rot: 6,  scale: 0.82, opacity: 1 },
-      { progress: 0.60, x: 54, y: 52, rot: -5, scale: 0.76, opacity: 1 },
-      { progress: 0.78, x: 44, y: 64, rot: 2,  scale: 0.66, opacity: 0.3 },
-      { progress: 0.90, x: 34, y: 70, rot: 0,  scale: 0.55, opacity: 0 },
-    ];
-
-    function updateScrollMotion() {
-      if (prefersReducedMotion) return;
-
-      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-      if (maxScroll <= 0) return;
-      const progress = Math.min(Math.max(window.scrollY / maxScroll, 0), 1);
-
-      let p1 = travelKeyframes[0];
-      let p2 = travelKeyframes[travelKeyframes.length - 1];
-
-      for (let i = 0; i < travelKeyframes.length - 1; i++) {
-        if (progress >= travelKeyframes[i].progress && progress <= travelKeyframes[i + 1].progress) {
-          p1 = travelKeyframes[i];
-          p2 = travelKeyframes[i + 1];
-          break;
-        }
+      const activeBtn = document.getElementById(`tab-btn-${tabName}`);
+      if (activeBtn) {
+        activeBtn.classList.add('text-white', 'bg-gradient-to-r', 'from-brand-600', 'to-indigo-600', 'shadow-md');
+        activeBtn.classList.remove('text-slate-600');
       }
 
-      const span = p2.progress - p1.progress;
-      const t = span === 0 ? 0 : (progress - p1.progress) / span;
-
-      const x = p1.x + (p2.x - p1.x) * t;
-      const y = p1.y + (p2.y - p1.y) * t;
-      const rot = p1.rot + (p2.rot - p1.rot) * t;
-      const scale = p1.scale + (p2.scale - p1.scale) * t;
-      const opacity = p1.opacity + (p2.opacity - p1.opacity) * t;
-
-      if (travellingProduct) {
-        if (opacity <= 0.01) {
-          travellingProduct.style.visibility = 'hidden';
-          travellingProduct.style.opacity = '0';
-        } else {
-          travellingProduct.style.visibility = 'visible';
-          travellingProduct.style.opacity = opacity.toFixed(3);
-          travellingProduct.style.left = `${x}vw`;
-          travellingProduct.style.top = `${y}vh`;
-          travellingProduct.style.transform = `rotate(${rot}deg) scale(${scale})`;
-        }
-      }
-
-      // Wordmark spread
-      const heroScroll = Math.min(window.scrollY / 600, 1);
-      heroLetters.forEach((letter, index) => {
-        const offsetMultiplier = (index - 3);
-        const spreadX = offsetMultiplier * heroScroll * 30;
-        const sinkY = heroScroll * 36;
-        letter.style.transform = `translate(${spreadX}px, ${sinkY}px)`;
-      });
-    }
-
-    window.addEventListener('scroll', updateScrollMotion, { passive: true });
-    window.addEventListener('resize', updateScrollMotion, { passive: true });
-
-    // Self-Drawing Demonstration
-    const demoPath = document.getElementById('self-drawing-path');
-
-    function initDrawing() {
-      if (!demoPath) return;
-      const len = demoPath.getTotalLength();
-      demoPath.style.strokeDasharray = `${len} ${len}`;
-      demoPath.style.strokeDashoffset = `${len}`;
-      
-      requestAnimationFrame(() => {
-        setTimeout(() => {
-          demoPath.style.strokeDashoffset = '0';
-        }, 120);
-      });
-    }
-
-    const variants = [
-      {
-        indicator: 'PLOT 01 // GAUSSIAN ADMISSIONS DENSITY',
-        d: 'M 60,220 C 220,220 320,40 400,40 C 480,40 580,220 740,220',
-        strokeWidth: 1.75,
-        f1Label: 'OBSERVED SAMPLE:',
-        f1Val: '14,200 Cohort Pupils',
-        f2Label: 'STANDARD DEVIATION:',
-        f2Val: '15.0 SAS Points',
-        f3Label: 'SELECTIVITY BAND:',
-        f3Val: 'Top 2.5% of National Year 5'
-      },
-      {
-        indicator: 'PLOT 02 // 21-VR LOGIC DERIVATION MATRIX',
-        d: 'M 60,180 L 160,80 L 260,180 L 360,60 L 460,200 L 560,90 L 660,150 L 740,40',
-        strokeWidth: 2,
-        f1Label: 'TYPOLOGY SEQUENCE:',
-        f1Val: 'Compound Code Multipliers',
-        f2Label: 'VERIFICATION SPEED:',
-        f2Val: '38s Average Completion',
-        f3Label: 'ACCURACY CEILING:',
-        f3Val: '99.4th Percentile Safe'
-      },
-      {
-        indicator: 'PLOT 03 // 3D CUBE NET PLAN PROJECTION',
-        d: 'M 240,60 L 400,60 L 400,140 L 560,140 L 560,220 L 400,220 L 400,260 L 240,260 L 240,140 L 80,140 L 80,60 Z',
-        strokeWidth: 1.5,
-        f1Label: 'SPATIAL TRANSFORM:',
-        f1Val: 'Hexahedral Net Foldings',
-        f2Label: 'ISOMETRIC PROJECTION:',
-        f2Val: '30° True Orthogonal',
-        f3Label: 'ERROR MITIGATION:',
-        f3Val: 'Zero Mirror-Confusion'
-      }
-    ];
-
-    function selectVariant(index) {
-      const v = variants[index];
-      if (!v || !demoPath) return;
-
-      document.querySelectorAll('.variant-btn').forEach((btn, i) => {
-        btn.setAttribute('aria-pressed', i === index ? 'true' : 'false');
-      });
-
-      document.getElementById('demo-indicator').textContent = v.indicator;
-      document.getElementById('fact-1-label').textContent = v.f1Label;
-      document.getElementById('fact-1-val').textContent = v.f1Val;
-      document.getElementById('fact-2-label').textContent = v.f2Label;
-      document.getElementById('fact-2-val').textContent = v.f2Val;
-      document.getElementById('fact-3-label').textContent = v.f3Label;
-      document.getElementById('fact-3-val').textContent = v.f3Val;
-
-      demoPath.style.transition = 'none';
-      demoPath.setAttribute('d', v.d);
-      demoPath.style.strokeWidth = v.strokeWidth;
-      const newLen = demoPath.getTotalLength();
-      demoPath.style.strokeDasharray = `${newLen} ${newLen}`;
-      demoPath.style.strokeDashoffset = `${newLen}`;
-
-      requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          demoPath.style.transition = 'stroke-dashoffset 1.8s cubic-bezier(0.16, 1, 0.3, 1)';
-          demoPath.style.strokeDashoffset = '0';
-        });
-      });
-    }
-
-    // Birth Season state for SAS calculation
-    let currentBirthSeason = 'summer';
-
-    function setBirthSeason(season) {
-      playAudioTone(540, 'sine', 0.03);
-      currentBirthSeason = season;
-      const btnSummer = document.getElementById('btn-season-summer');
-      const btnAutumn = document.getElementById('btn-season-autumn');
-      const label = document.getElementById('birth-month-label');
-
-      if (season === 'summer') {
-        btnSummer.className = "py-2.5 px-3 bg-[#2C4A8F] text-white border border-indigo-400 text-center btn-pressable";
-        btnAutumn.className = "py-2.5 px-3 bg-[#1E293B] text-slate-300 border border-slate-700 text-center btn-pressable";
-        label.textContent = "August (Summer Born +4.5 pts)";
-      } else {
-        btnAutumn.className = "py-2.5 px-3 bg-[#2C4A8F] text-white border border-indigo-400 text-center btn-pressable";
-        btnSummer.className = "py-2.5 px-3 bg-[#1E293B] text-slate-300 border border-slate-700 text-center btn-pressable";
-        label.textContent = "September (Autumn Born Standard)";
-      }
-      calculateSASPredictor();
+      document.querySelectorAll('.demo-tab-panel').forEach(p => p.classList.add('hidden'));
+      const activePanel = document.getElementById(`tab-content-${tabName}`);
+      if (activePanel) activePanel.classList.remove('hidden');
     }
 
     function calculateSASPredictor() {
@@ -1575,96 +1525,186 @@
       const acc = parseInt(slider.value, 10);
       document.getElementById('accuracy-display').textContent = acc + '%';
 
-      let rawSas = Math.round(85 + ((acc - 50) / 50) * 56);
-      if (currentBirthSeason === 'summer') {
-        rawSas += 4;
-      }
-      if (rawSas > 141) rawSas = 141;
-      if (rawSas < 70) rawSas = 70;
+      let sas = Math.round(100 + ((acc - 50) / 38) * 35);
+      if (sas > 141) sas = 141;
+      if (sas < 85) sas = 85;
 
-      document.getElementById('predicted-sas-score').textContent = rawSas;
+      document.getElementById('predicted-sas-score').textContent = sas;
+      document.getElementById('target-cutoff-val').textContent = cutoff + ' SAS';
 
-      let pText = "Top 25% (75th Percentile)";
-      if (rawSas >= 135) pText = "Top 0.8% (99.2th Percentile)";
-      else if (rawSas >= 130) pText = "Top 2.5% (97.5th Percentile)";
-      else if (rawSas >= 125) pText = "Top 5% (95th Percentile)";
-      else if (rawSas >= 115) pText = "Top 15% (85th Percentile)";
-      else if (rawSas >= 100) pText = "National Average (50th Percentile)";
+      let pText = "Top 20% (80th Percentile)";
+      if (sas >= 135) pText = "Top 0.8% (99th+ Percentile)";
+      else if (sas >= 130) pText = "Top 2.5% (98th Percentile)";
+      else if (sas >= 125) pText = "Top 5% (95th Percentile)";
+      else if (sas >= 115) pText = "Top 15% (85th Percentile)";
       document.getElementById('percentile-val').textContent = pText;
-
-      const markerX = 15 + ((rawSas - 70) / 71) * 270;
-      const marker = document.getElementById('bell-marker');
-      if (marker) {
-        marker.setAttribute('x1', markerX);
-        marker.setAttribute('x2', markerX);
-      }
 
       const badge = document.getElementById('status-badge');
       const badgeText = document.getElementById('status-text');
       const rec = document.getElementById('recommendation-text');
 
-      if (rawSas >= cutoff + 2) {
-        badge.className = "px-2.5 py-0.5 text-[11px] font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-400/30";
+      if (sas >= cutoff + 2) {
+        badge.className = "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-black bg-emerald-500/20 text-emerald-300 border border-emerald-400/30";
         badgeText.textContent = "Strong Admission Safety Band";
-        rec.textContent = `At ${rawSas} SAS, candidate scores ${rawSas - cutoff} points above the historic entry threshold for ${schoolName}. Pacing in timed simulations cements qualification.`;
-      } else if (rawSas >= cutoff - 1) {
-        badge.className = "px-2.5 py-0.5 text-[11px] font-bold bg-amber-500/20 text-amber-300 border border-amber-400/30";
+        rec.textContent = `At ${sas} SAS, your child is ${sas - cutoff} points above the historic entry threshold for ${schoolName}. Pacing in timed mocks will cement an offer.`;
+      } else if (sas >= cutoff - 1) {
+        badge.className = "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-black bg-amber-500/20 text-amber-300 border border-amber-400/30";
         badgeText.textContent = "Competitive Borderline Band";
-        rec.textContent = `At ${rawSas} SAS, candidate is within competitive range of ${schoolName} (cutoff ${cutoff} SAS). Remedying spatial reasoning errors crosses the threshold.`;
+        rec.textContent = `At ${sas} SAS, your child is within range of ${schoolName} (cutoff ${cutoff} SAS). Remedying spatial reasoning errors will cross the threshold.`;
       } else {
-        badge.className = "px-2.5 py-0.5 text-[11px] font-bold bg-rose-500/20 text-rose-300 border border-rose-400/30";
+        badge.className = "inline-flex items-center gap-1.5 px-4 py-1.5 rounded-full text-xs font-black bg-rose-500/20 text-rose-300 border border-rose-400/30";
         badgeText.textContent = "Target School Stretch Zone";
-        rec.textContent = `Candidate is currently ${cutoff - rawSas} points below the typical cutoff for ${schoolName}. Systematic automated error remediation closes the margin.`;
+        rec.textContent = `Your child is currently ${cutoff - sas} points below the typical cutoff for ${schoolName}. Daily Mistake Mastery practice will close the gap.`;
       }
     }
 
-    // Legal Modals
-    function openLegalPolicy(tab = 'terms') {
-      const modal = document.getElementById('legal-modal');
-      if (modal) {
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        document.body.style.overflow = 'hidden';
-        showLegalTab(tab);
+    let selectedGroup1 = null;
+    let selectedGroup2 = null;
+
+    function selectQuestionChoice(btn, group, code) {
+      playAudioTone(640, 'triangle', 0.04);
+      const parent = btn.parentElement;
+      parent.querySelectorAll('.q-opt').forEach(el => {
+        el.classList.remove('bg-brand-600', 'text-white', 'border-brand-600');
+        el.classList.add('bg-slate-50', 'text-slate-800');
+        const ind = el.querySelector('.opt-indicator');
+        if (ind) ind.textContent = 'Choice';
+      });
+
+      btn.classList.add('bg-brand-600', 'text-white', 'border-brand-600');
+      btn.classList.remove('bg-slate-50', 'text-slate-800');
+      const ind = btn.querySelector('.opt-indicator');
+      if (ind) ind.textContent = 'Selected ✓';
+
+      if (group === 'g1') selectedGroup1 = code;
+      if (group === 'g2') selectedGroup2 = code;
+
+      document.getElementById('drill-feedback-msg').textContent = 
+        `Selected: (${selectedGroup1 || '_'}) and (${selectedGroup2 || '_'})`;
+    }
+
+    function checkDrillAnswer() {
+      if (!selectedGroup1 || !selectedGroup2) {
+        alert("Please select one word from Group 1 and one word from Group 2!");
+        return;
       }
+      playAudioTone(880, 'sine', 0.12);
+      document.getElementById('drill-solution-box').classList.remove('hidden');
+    }
+
+    function toggleCardFlip(card) {
+      playAudioTone(480, 'sine', 0.05);
+      card.classList.toggle('flipped');
+    }
+
+    function playAudioSimulation(event, word) {
+      event.stopPropagation();
+      playAudioTone(720, 'sine', 0.08);
+      if ('speechSynthesis' in window) {
+        const utter = new SpeechSynthesisUtterance(word);
+        utter.rate = 0.85;
+        window.speechSynthesis.speak(utter);
+      }
+    }
+
+    function openLegalPolicy(policyKey = 'terms') {
+      playAudioTone(500, 'sine', 0.04);
+      const modal = document.getElementById('legal-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      switchLegalTab(policyKey);
     }
 
     function closeLegalModal() {
+      playAudioTone(380, 'sine', 0.04);
       const modal = document.getElementById('legal-modal');
-      if (modal) {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-        document.body.style.overflow = '';
-      }
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
     }
 
-    function showLegalTab(tabId) {
-      ['terms', 'privacy', 'cookies', 'safeguarding', 'gdpr'].forEach(t => {
-        const panel = document.getElementById(`panel-${t}`);
-        const btn = document.getElementById(`tab-${t}`);
-        if (panel) panel.classList.add('hidden');
-        if (btn) {
-          btn.classList.remove('bg-[#F3EEE6]', 'font-bold');
-          btn.classList.add('text-[#4A5364]');
-        }
+    function switchLegalTab(tabKey) {
+      playAudioTone(540, 'sine', 0.03);
+      document.querySelectorAll('.legal-tab').forEach(btn => {
+        btn.classList.remove('text-brand-600', 'bg-brand-50', 'border', 'border-brand-200');
+        btn.classList.add('text-slate-600');
       });
-      const activePanel = document.getElementById(`panel-${tabId}`);
-      const activeBtn = document.getElementById(`tab-${tabId}`);
-      if (activePanel) activePanel.classList.remove('hidden');
+      const activeBtn = document.getElementById(`legal-tab-btn-${tabKey}`);
       if (activeBtn) {
-        activeBtn.classList.add('bg-[#F3EEE6]', 'font-bold');
-        activeBtn.classList.remove('text-[#4A5364]');
+        activeBtn.classList.add('text-brand-600', 'bg-brand-50', 'border', 'border-brand-200');
+        activeBtn.classList.remove('text-slate-600');
       }
+
+      document.querySelectorAll('.legal-panel').forEach(p => p.classList.add('hidden'));
+      const activePanel = document.getElementById(`legal-panel-${tabKey}`);
+      if (activePanel) activePanel.classList.remove('hidden');
+    }
+
+    function checkCookieConsent() {
+      const consent = localStorage.getItem('learnly_cookie_consent');
+      const banner = document.getElementById('cookie-banner');
+      if (consent && banner) banner.classList.add('hidden');
+    }
+
+    function openCookieSettingsModal() {
+      playAudioTone(520, 'sine', 0.04);
+      const modal = document.getElementById('cookie-settings-modal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeCookieSettingsModal() {
+      playAudioTone(380, 'sine', 0.04);
+      const modal = document.getElementById('cookie-settings-modal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+      document.body.style.overflow = '';
+    }
+
+    function saveCookiePreferences() {
+      playAudioTone(640, 'sine', 0.08);
+      const functional = document.getElementById('pref-functional').checked;
+      const analytics = document.getElementById('pref-analytics').checked;
+      localStorage.setItem('learnly_pref_functional', functional);
+      localStorage.setItem('learnly_pref_analytics', analytics);
+      localStorage.setItem('learnly_cookie_consent', 'customised');
+      const banner = document.getElementById('cookie-banner');
+      if (banner) banner.classList.add('hidden');
+      closeCookieSettingsModal();
+    }
+
+    function acceptAllCookies() {
+      playAudioTone(700, 'sine', 0.08);
+      localStorage.setItem('learnly_pref_functional', 'true');
+      localStorage.setItem('learnly_pref_analytics', 'true');
+      localStorage.setItem('learnly_cookie_consent', 'accepted_all');
+      const banner = document.getElementById('cookie-banner');
+      if (banner) banner.classList.add('hidden');
+      closeCookieSettingsModal();
+    }
+
+    function rejectNonEssentialCookies() {
+      playAudioTone(450, 'sine', 0.05);
+      localStorage.setItem('learnly_pref_functional', 'false');
+      localStorage.setItem('learnly_pref_analytics', 'false');
+      localStorage.setItem('learnly_cookie_consent', 'necessary_only');
+      const banner = document.getElementById('cookie-banner');
+      if (banner) banner.classList.add('hidden');
+      closeCookieSettingsModal();
     }
 
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape') closeLegalModal();
+      if (e.key === 'Escape') {
+        closeLegalModal();
+        closeCookieSettingsModal();
+      }
     });
 
     window.addEventListener('DOMContentLoaded', () => {
-      initDrawing();
-      updateScrollMotion();
       calculateSASPredictor();
+      checkCookieConsent();
     });
   </script>
 </body>
