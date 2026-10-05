@@ -17,7 +17,7 @@ window.LearnlyLogin = (function() {
                 <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1">school</span>
               </div>
               <div>
-                <h2 class="text-2xl font-black text-white tracking-tight leading-none">Learnly</h2>
+                <h2 class="text-2xl font-black text-white tracking-tight leading-none">Karat.Academy</h2>
                 <div class="text-sm font-bold text-white/80 uppercase tracking-[0.2em]">11+ Scholar &amp; Tutor Portal</div>
               </div>
             </div>
@@ -49,7 +49,7 @@ window.LearnlyLogin = (function() {
               <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">school</span>
             </div>
             <div>
-              <h2 class="text-xl font-black text-on-surface tracking-tight leading-none">Learnly 11+</h2>
+              <h2 class="text-xl font-black text-on-surface tracking-tight leading-none">Karat.Academy</h2>
             </div>
           </div>
 
@@ -130,7 +130,7 @@ window.LearnlyLogin = (function() {
               <div class="space-y-2">
                 <span class="text-[10px] font-extrabold uppercase tracking-wider text-slate-400 block text-center">1-Click Specialist Sign-in:</span>
                 
-                <button type="button" class="quick-tutor-login-btn w-full p-3.5 rounded-2xl border-2 border-indigo-200 hover:border-indigo-600 bg-indigo-50/50 hover:bg-indigo-50 flex items-center justify-between text-left transition-all group cursor-pointer" data-tutor="Mr. Thompson" data-email="mr.thompson@learnly11plus.co.uk" data-spec="NVR & Spatial Reasoning Specialist">
+                <button type="button" class="quick-tutor-login-btn w-full p-3.5 rounded-2xl border-2 border-indigo-200 hover:border-indigo-600 bg-indigo-50/50 hover:bg-indigo-50 flex items-center justify-between text-left transition-all group cursor-pointer" data-tutor="Mr. Thompson" data-email="mr.thompson@karat.academy" data-spec="NVR & Spatial Reasoning Specialist">
                   <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl bg-indigo-600 text-white flex items-center justify-center font-bold text-sm">MT</div>
                     <div>
@@ -141,7 +141,7 @@ window.LearnlyLogin = (function() {
                   <span class="material-symbols-outlined text-indigo-600 text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 </button>
 
-                <button type="button" class="quick-tutor-login-btn w-full p-3.5 rounded-2xl border-2 border-purple-200 hover:border-purple-600 bg-purple-50/50 hover:bg-purple-50 flex items-center justify-between text-left transition-all group cursor-pointer" data-tutor="Ms. Patel" data-email="ms.patel@learnly11plus.co.uk" data-spec="English & VR Expert">
+                <button type="button" class="quick-tutor-login-btn w-full p-3.5 rounded-2xl border-2 border-purple-200 hover:border-purple-600 bg-purple-50/50 hover:bg-purple-50 flex items-center justify-between text-left transition-all group cursor-pointer" data-tutor="Ms. Patel" data-email="ms.patel@karat.academy" data-spec="English & VR Expert">
                   <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl bg-purple-600 text-white flex items-center justify-center font-bold text-sm">MP</div>
                     <div>
@@ -152,7 +152,7 @@ window.LearnlyLogin = (function() {
                   <span class="material-symbols-outlined text-purple-600 text-lg group-hover:translate-x-1 transition-transform">arrow_forward</span>
                 </button>
 
-                <button type="button" class="quick-tutor-login-btn w-full p-3.5 rounded-2xl border-2 border-emerald-200 hover:border-emerald-600 bg-emerald-50/50 hover:bg-emerald-50 flex items-center justify-between text-left transition-all group cursor-pointer" data-tutor="Dr. Khan" data-email="dr.khan@learnly11plus.co.uk" data-spec="Mathematics & Sequences Specialist">
+                <button type="button" class="quick-tutor-login-btn w-full p-3.5 rounded-2xl border-2 border-emerald-200 hover:border-emerald-600 bg-emerald-50/50 hover:bg-emerald-50 flex items-center justify-between text-left transition-all group cursor-pointer" data-tutor="Dr. Khan" data-email="dr.khan@karat.academy" data-spec="Mathematics & Sequences Specialist">
                   <div class="flex items-center gap-3">
                     <div class="w-10 h-10 rounded-xl bg-emerald-600 text-white flex items-center justify-center font-bold text-sm">DK</div>
                     <div>
@@ -168,7 +168,7 @@ window.LearnlyLogin = (function() {
               <form id="tutor-custom-form" class="space-y-3 pt-2 border-t border-slate-100">
                 <div>
                   <label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-1 ml-1">Other Tutor Email</label>
-                  <input type="email" id="tutor-email-input" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900" placeholder="tutor@learnly11plus.co.uk">
+                  <input type="email" id="tutor-email-input" class="w-full px-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-xs text-slate-900" placeholder="tutor@karat.academy">
                 </div>
                 <button type="submit" class="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs shadow transition-all cursor-pointer">
                   Log in to Tutor Clinic

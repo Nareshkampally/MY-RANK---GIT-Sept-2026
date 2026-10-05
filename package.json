@@ -1,7 +1,7 @@
 {
-  "name": "my-rank-learnly-11plus",
+  "name": "karat-academy-11plus",
   "version": "1.0.0",
-  "description": "Learnly 11+ & MyRank 11+ — Production Full-Stack 11+ Exam Prep Portal",
+  "description": "Karat.Academy — Production Full-Stack 11+ Exam Prep Portal",
   "main": "server/server.js",
   "type": "commonjs",
   "scripts": {

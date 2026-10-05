@@ -19,8 +19,8 @@ LearnlyRouter.register('mastery-certificate', function() {
       <div class="absolute -left-12 -bottom-12 w-40 h-40 bg-primary/5 rounded-full blur-3xl pointer-events-none group-hover:scale-125 transition-transform duration-700"></div>
       <div class="text-center relative z-10">
         <div class="flex items-center justify-center gap-3 mb-8">
-          <img alt="Learnly Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7HEuIV8rXxij6TrRi9z77NhdRSarsDFDi15cgUUgmWRWB74IrDneXs8gQEDdEK1dQhX28KkqoVJhox1PRU3xsfKYA2b6AOf2wiPXYpojve4dVZAo-JOyXZbaL1IcsYtLwE4D0thqG9YORfkljYSeEbOnMruvcb3LuLIqBwhrGFcPUjturAKdeYJ-PQ7wxvOyjQfGw1wePrq8yWkNN04lhDqK7IKkSD2-lubdUL0OzXDzMSKd9EH36Ig"/>
-          <span class="text-xl font-extrabold text-primary tracking-tight">Learnly 11+ Scholar Edition</span>
+          <img alt="Karat.Academy Logo" class="h-8 w-auto" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7HEuIV8rXxij6TrRi9z77NhdRSarsDFDi15cgUUgmWRWB74IrDneXs8gQEDdEK1dQhX28KkqoVJhox1PRU3xsfKYA2b6AOf2wiPXYpojve4dVZAo-JOyXZbaL1IcsYtLwE4D0thqG9YORfkljYSeEbOnMruvcb3LuLIqBwhrGFcPUjturAKdeYJ-PQ7wxvOyjQfGw1wePrq8yWkNN04lhDqK7IKkSD2-lubdUL0OzXDzMSKd9EH36Ig"/>
+          <span class="text-xl font-extrabold text-primary tracking-tight">Karat.Academy 11+ Scholar</span>
         </div>
         <div class="w-20 h-20 mx-auto rounded-3xl bg-secondary/10 flex items-center justify-center mb-6 shadow-inner border border-secondary/20">
           <span class="material-symbols-outlined text-4xl text-secondary" style="font-variation-settings:'FILL' 1">military_tech</span>
