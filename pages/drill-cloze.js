@@ -9,7 +9,7 @@ LearnlyRouter.register('drill-cloze', function() {
         <h1 class="text-3xl text-on-surface font-extrabold tracking-tight mt-1">Drill #2: Qualifier &amp; Negation Cloze</h1></div>
       </div>
       <div class="flex items-center gap-4">
-        <div class="flex items-center gap-2 px-6 py-2 rounded-full bg-surface-container-low shadow-sm border border-outline-variant/20"><span class="font-bold text-primary">5 / 12</span></div>
+        <div class="flex items-center gap-2 px-6 py-2 rounded-full bg-surface-container-low shadow-sm border border-outline-variant/20"><span class="font-bold text-primary">Question 1 / 10</span></div>
         <div class="flex items-center gap-2 px-6 py-2 rounded-full bg-tertiary/10 border border-tertiary/20 shadow-sm"><span class="material-symbols-outlined text-tertiary text-base">timer</span><span class="font-bold text-tertiary">7:15</span></div>
       </div>
     </section>

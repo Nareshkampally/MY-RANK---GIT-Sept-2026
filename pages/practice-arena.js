@@ -177,14 +177,28 @@ LearnlyRouter.register('practice-arena', function() {
           </button>
         </div>
 
-        <!-- Weak Topics List for selected subject -->
-        <div class="mb-5">
+        <!-- Test Length Selector (Questions Count) -->
+        <div class="mb-4 p-3.5 bg-slate-50 rounded-2xl border border-slate-200">
           <div class="flex items-center justify-between mb-2">
-            <span class="text-xs font-extrabold uppercase text-slate-600 tracking-wider">Select Topic Focus (Weak Area Practice):</span>
-            <span class="text-[11px] text-indigo-600 font-bold cursor-pointer hover:underline" id="select-all-topics-btn">Or Practice Full Subject Mock</span>
+            <span class="text-xs font-extrabold uppercase text-slate-700 tracking-wider flex items-center gap-1.5">
+              <span class="material-symbols-outlined text-sm text-indigo-600">quiz</span>
+              <span>Test Length (Number of Questions):</span>
+            </span>
+            <span class="text-[11px] text-indigo-700 font-bold" id="selected-length-label">Standard 11+ Mock (25 Questions)</span>
           </div>
-          <div id="modal-topic-options" class="grid grid-cols-1 md:grid-cols-2 gap-2 max-h-56 overflow-y-auto pr-1">
-            <!-- Dynamic topics rendered by JS -->
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-2" id="length-selector-container">
+            <button type="button" class="test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all text-center" data-length="10">
+              10 Qs <span class="text-[10px] text-slate-400 block font-normal">Quick Sprint</span>
+            </button>
+            <button type="button" class="test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border-2 border-indigo-600 bg-indigo-50 text-indigo-900 shadow-sm transition-all text-center" data-length="25">
+              25 Qs <span class="text-[10px] text-indigo-700 block font-bold">Standard 11+</span>
+            </button>
+            <button type="button" class="test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all text-center" data-length="50">
+              50 Qs <span class="text-[10px] text-slate-400 block font-normal">Half Mock</span>
+            </button>
+            <button type="button" class="test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all text-center" data-length="100">
+              100 Qs <span class="text-[10px] text-slate-400 block font-normal">Full Consortium</span>
+            </button>
           </div>
         </div>
 
@@ -203,7 +217,7 @@ LearnlyRouter.register('practice-arena', function() {
     </div>
   </div>`;
 }, function() {
-  // Comprehensive 4-Subject Question Bank organized by Subject and Weak Topics
+  // Comprehensive 4-Subject Question Bank with Generative Multi-Question Scaling (25 to 100 Qs)
   const QUESTION_BANK = {
     maths: {
       name: 'Mathematics',
@@ -216,12 +230,17 @@ LearnlyRouter.register('practice-arena', function() {
         { id: 'speed-distance', name: 'Speed, Distance & Time Problems' },
         { id: 'geometry-shapes', name: 'Geometry, Angles & Perimeters' }
       ],
-      questions: [
+      baseQuestions: [
         { id: 'MATH-Q1', topic: 'speed-distance', topicName: 'Speed, Distance & Time', subject: 'Mathematics', stem: 'A train travels 360 km in 4 hours. If it increases its speed by 25%, how long will it take to travel 450 km?', passage_context: '<p>Formula reminder: <strong>Speed = Distance ÷ Time</strong>. Calculate initial speed, apply +25%, then calculate the new duration: <em>Time = Distance ÷ New Speed</em>.</p>', options: [{ letter: 'A', text: '3 hours' }, { letter: 'B', text: '3 hours 20 minutes' }, { letter: 'C', text: '4 hours' }, { letter: 'D', text: '3 hours 45 minutes' }, { letter: 'E', text: '2 hours 30 minutes' }], correct_answer: 'C', explanation: 'Initial speed = 360 ÷ 4 = 90 km/h. +25% speed = 90 × 1.25 = 112.5 km/h. New time = 450 ÷ 112.5 = 4 hours. Correct Answer: C.' },
-        { id: 'MATH-Q2', topic: 'remainder-theory', topicName: 'Remainder Theory', subject: 'Mathematics', stem: 'When a number N is divided by 7, the remainder is 5. What is the remainder when (3N + 4) is divided by 7?', passage_context: '<p>Remainder arithmetic rule: substitute N = 5 directly into (3N + 4) or test with small integers like N = 12.</p>', options: [{ letter: 'A', text: '1' }, { letter: 'B', text: '3' }, { letter: 'C', text: '5' }, { letter: 'D', text: '6' }, { letter: 'E', text: '2' }], correct_answer: '3', options: [{ letter: 'A', text: '1' }, { letter: 'B', text: '3' }, { letter: 'C', text: '5' }, { letter: 'D', text: '6' }, { letter: 'E', text: '4' }], correct_answer: 'C', explanation: 'N ≡ 5 (mod 7). 3N + 4 ≡ 3(5) + 4 = 15 + 4 = 19. 19 ÷ 7 = 2 remainder 5. Correct Answer: C.' },
+        { id: 'MATH-Q2', topic: 'remainder-theory', topicName: 'Remainder Theory', subject: 'Mathematics', stem: 'When a number N is divided by 7, the remainder is 5. What is the remainder when (3N + 4) is divided by 7?', passage_context: '<p>Remainder arithmetic rule: substitute N = 5 directly into (3N + 4) or test with small integers like N = 12.</p>', options: [{ letter: 'A', text: '1' }, { letter: 'B', text: '3' }, { letter: 'C', text: '5' }, { letter: 'D', text: '6' }, { letter: 'E', text: '4' }], correct_answer: 'C', explanation: 'N ≡ 5 (mod 7). 3N + 4 ≡ 3(5) + 4 = 15 + 4 = 19. 19 ÷ 7 = 2 remainder 5. Correct Answer: C.' },
         { id: 'MATH-Q3', topic: 'algebra-sequences', topicName: 'Algebra & Sequences', subject: 'Mathematics', stem: 'What is the 8th term of the quadratic sequence: 3, 8, 15, 24, 35...?', passage_context: '<p>First differences: 5, 7, 9, 11... Second differences are constant at 2. The formula is n² + 2n.</p>', options: [{ letter: 'A', text: '72' }, { letter: 'B', text: '80' }, { letter: 'C', text: '63' }, { letter: 'D', text: '84' }, { letter: 'E', text: '99' }], correct_answer: 'B', explanation: 'Formula is n(n + 2). For n = 8: 8 × (8 + 2) = 8 × 10 = 80. Correct Answer: B.' },
         { id: 'MATH-Q4', topic: 'fractions-decimals', topicName: 'Fractions & Percentages', subject: 'Mathematics', stem: 'What percentage of 80 is 60?', passage_context: '<p>Percentage calculation: <strong>(Part ÷ Whole) × 100</strong>.</p>', options: [{ letter: 'A', text: '70%' }, { letter: 'B', text: '80%' }, { letter: 'C', text: '75%' }, { letter: 'D', text: '65%' }, { letter: 'E', text: '60%' }], correct_answer: 'C', explanation: '60/80 = 3/4 = 0.75 = 75%. Correct Answer: C.' },
-        { id: 'MATH-Q5', topic: 'ratio-scaling', topicName: 'Ratio & Proportions', subject: 'Mathematics', stem: 'In a school of 420 students, the ratio of boys to girls is 4:3. If 20 more girls join, what is the new ratio?', passage_context: '<p>Total parts = 4 + 3 = 7 parts. Find the value of 1 part, calculate initial numbers, add 20 girls, then simplify.</p>', options: [{ letter: 'A', text: '6:5' }, { letter: 'B', text: '1:1' }, { letter: 'C', text: '5:4' }, { letter: 'D', text: '7:6' }, { letter: 'E', text: '4:3' }], correct_answer: 'A', explanation: '1 part = 420 ÷ 7 = 60. Boys = 240, Girls = 180. Add 20 girls = 200 girls. New ratio = 240:200 = 6:5. Correct Answer: A.' }
+        { id: 'MATH-Q5', topic: 'ratio-scaling', topicName: 'Ratio & Proportions', subject: 'Mathematics', stem: 'In a school of 420 students, the ratio of boys to girls is 4:3. If 20 more girls join, what is the new ratio?', passage_context: '<p>Total parts = 4 + 3 = 7 parts. Find the value of 1 part, calculate initial numbers, add 20 girls, then simplify.</p>', options: [{ letter: 'A', text: '6:5' }, { letter: 'B', text: '1:1' }, { letter: 'C', text: '5:4' }, { letter: 'D', text: '7:6' }, { letter: 'E', text: '4:3' }], correct_answer: 'A', explanation: '1 part = 420 ÷ 7 = 60. Boys = 240, Girls = 180. Add 20 girls = 200 girls. New ratio = 240:200 = 6:5. Correct Answer: A.' },
+        { id: 'MATH-Q6', topic: 'geometry-shapes', topicName: 'Geometry & Angles', subject: 'Mathematics', stem: 'Two angles in a triangle are 48° and 76°. What is the third angle?', passage_context: '<p>Rule: The sum of interior angles in any Euclidean triangle is always 180°.</p>', options: [{ letter: 'A', text: '56°' }, { letter: 'B', text: '66°' }, { letter: 'C', text: '46°' }, { letter: 'D', text: '58°' }, { letter: 'E', text: '62°' }], correct_answer: 'A', explanation: '180° - (48° + 76°) = 180° - 124° = 56°. Correct Answer: A.' },
+        { id: 'MATH-Q7', topic: 'speed-distance', topicName: 'Speed, Distance & Time', subject: 'Mathematics', stem: 'A cyclist rides at 18 km/h. How many metres does she travel in 40 seconds?', passage_context: '<p>Conversion: 18 km/h = 18,000 m ÷ 3,600 s = 5 m/s. Then multiply by 40 seconds.</p>', options: [{ letter: 'A', text: '180 m' }, { letter: 'B', text: '200 m' }, { letter: 'C', text: '240 m' }, { letter: 'D', text: '160 m' }, { letter: 'E', text: '220 m' }], correct_answer: 'B', explanation: '18 km/h = 5 m/s. Distance = 5 × 40 = 200 metres. Correct Answer: B.' },
+        { id: 'MATH-Q8', topic: 'remainder-theory', topicName: 'Remainder Theory', subject: 'Mathematics', stem: 'What is the smallest positive integer that leaves a remainder of 2 when divided by 3, and a remainder of 3 when divided by 4?', passage_context: '<p>List integers congruent to 2 (mod 3): 2, 5, 8, 11, 14... and check which gives remainder 3 when divided by 4.</p>', options: [{ letter: 'A', text: '7' }, { letter: 'B', text: '8' }, { letter: 'C', text: '11' }, { letter: 'D', text: '14' }, { letter: 'E', text: '17' }], correct_answer: 'C', explanation: '11 ÷ 3 = 3 rem 2. 11 ÷ 4 = 2 rem 3. Correct Answer: C.' },
+        { id: 'MATH-Q9', topic: 'algebra-sequences', topicName: 'Algebra & Sequences', subject: 'Mathematics', stem: 'Solve for x: 5(2x - 3) = 3(x + 9) - 7', passage_context: '<p>Expand brackets first: 10x - 15 = 3x + 27 - 7. Simplify both sides, then collect like terms.</p>', options: [{ letter: 'A', text: 'x = 4' }, { letter: 'B', text: 'x = 5' }, { letter: 'C', text: 'x = 6' }, { letter: 'D', text: 'x = 3' }, { letter: 'E', text: 'x = 7' }], correct_answer: 'B', explanation: '10x - 15 = 3x + 20 -> 7x = 35 -> x = 5. Correct Answer: B.' },
+        { id: 'MATH-Q10', topic: 'fractions-decimals', topicName: 'Fractions & Percentages', subject: 'Mathematics', stem: 'Calculate: (3/5 ÷ 9/20) + 1/3', passage_context: '<p>Division rule for fractions: multiply by the reciprocal (3/5 × 20/9). Simplify before adding 1/3.</p>', options: [{ letter: 'A', text: '5/3' }, { letter: 'B', text: '4/3' }, { letter: 'C', text: '2/3' }, { letter: 'D', text: '7/3' }, { letter: 'E', text: '1' }], correct_answer: 'A', explanation: '3/5 × 20/9 = 60/45 = 4/3. 4/3 + 1/3 = 5/3 (or 1 2/3). Correct Answer: A.' }
       ]
     },
     vr: {
@@ -234,12 +253,15 @@ LearnlyRouter.register('practice-arena', function() {
         { id: 'analogies-logic', name: 'Analogies & Deductive Logic' },
         { id: 'inversion-logic', name: 'Inversion Logic & Clause Markers' }
       ],
-      questions: [
+      baseQuestions: [
         { id: 'VR-Q1', topic: 'antonyms-synonyms', topicName: 'Antonyms & Synonyms', subject: 'Verbal Reasoning', stem: 'Select the word that is most OPPOSITE in meaning to SAGACIOUS:', passage_context: '<p>Context: <em>"The elder councillor was admired for her sagacious guidance during the tribunal."</em></p>', options: [{ letter: 'A', text: 'Prudent' }, { letter: 'B', text: 'Fatuous' }, { letter: 'C', text: 'Astute' }, { letter: 'D', text: 'Meticulous' }, { letter: 'E', text: 'Lucid' }], correct_answer: 'B', explanation: 'Sagacious means having sound judgment and wisdom. Its direct antonym is FATUOUS (silly, foolish, lacking thought). Correct Answer: B.' },
-        { id: 'VR-Q2', topic: 'hidden-words', topicName: 'Hidden Words', subject: 'Verbal Reasoning', stem: 'Find the hidden 4-letter word spanning two words: "The boat anchored near the cliff."', passage_context: '<p>Hidden words span the boundary between two adjacent words without changing letter order.</p>', options: [{ letter: 'A', text: 'RANCH' }, { letter: 'B', text: 'TORE' }, { letter: 'C', text: 'NOTE' }, { letter: 'D', text: 'ARCH' }, { letter: 'E', text: 'ROAR' }], correct_answer: 'D', explanation: '"anchORED Near" -> The letters span "anchORED Near" or "anchORed Near" -> A-R-C-H in anchORed. Or "anchORED Near" -> R-E-A-D? Look at "anchORED Near": E-D-N-E? Look at "boAT ANchored" -> A-T-A-N? Look at "anchORED Near" -> "clifF"? In "anchORed": A-R-C-H is inside anchored. Correct Answer: D.' },
+        { id: 'VR-Q2', topic: 'hidden-words', topicName: 'Hidden Words', subject: 'Verbal Reasoning', stem: 'Find the hidden 4-letter word spanning two words: "The boat anchored near the cliff."', passage_context: '<p>Hidden words span the boundary between two adjacent words without changing letter order.</p>', options: [{ letter: 'A', text: 'RANCH' }, { letter: 'B', text: 'TORE' }, { letter: 'C', text: 'NOTE' }, { letter: 'D', text: 'ARCH' }, { letter: 'E', text: 'ROAR' }], correct_answer: 'D', explanation: 'The letters inside "anchored" span A-R-C-H. Correct Answer: D.' },
         { id: 'VR-Q3', topic: 'codes-ciphers', topicName: 'Letter Codes', subject: 'Verbal Reasoning', stem: 'If MAPLE is coded as 14-1-17-12-5, how would APPLE be coded?', passage_context: '<p>Examine the alphabetical positions: M is usually letter 13, but coded as 14 (+1 shift for the first letter).</p>', options: [{ letter: 'A', text: '1-17-17-13-6' }, { letter: 'B', text: '2-17-17-13-6' }, { letter: 'C', text: '1-16-16-12-5' }, { letter: 'D', text: '2-16-16-12-5' }, { letter: 'E', text: '2-17-17-12-5' }], correct_answer: 'B', explanation: 'Every letter position is shifted +1: A(1+1=2), P(16+1=17), P(16+1=17), L(12+1=13), E(5+1=6). Correct Answer: B.' },
         { id: 'VR-Q4', topic: 'analogies-logic', topicName: 'Analogies & Logic', subject: 'Verbal Reasoning', stem: 'Find the word that means the SAME as BENEVOLENT:', passage_context: '<p>Root word: Latin "bene" meaning good. "Volent" meaning wishing.</p>', options: [{ letter: 'A', text: 'Malicious' }, { letter: 'B', text: 'Magnanimous' }, { letter: 'C', text: 'Belligerent' }, { letter: 'D', text: 'Mendacious' }, { letter: 'E', text: 'Tenacious' }], correct_answer: 'B', explanation: 'Benevolent and Magnanimous both describe noble generosity and goodwill. Correct Answer: B.' },
-        { id: 'VR-Q5', topic: 'inversion-logic', topicName: 'Inversion Logic', subject: 'Verbal Reasoning', stem: 'Which pair of words best completes: EXUBERANT is to DEJECTED as TRANQUIL is to ______?', passage_context: '<p>Determine the relationship between the first pair: Exuberant (very high spirits) and Dejected (sad/downcast) are antonyms.</p>', options: [{ letter: 'A', text: 'PLACID' }, { letter: 'B', text: 'AGITATED' }, { letter: 'C', text: 'SERENE' }, { letter: 'D', text: 'PEACEFUL' }, { letter: 'E', text: 'CONTENT' }], correct_answer: 'B', explanation: 'Exuberant is the opposite of Dejected. The opposite of Tranquil (calm) is AGITATED (disturbed, restless). Correct Answer: B.' }
+        { id: 'VR-Q5', topic: 'inversion-logic', topicName: 'Inversion Logic', subject: 'Verbal Reasoning', stem: 'Which pair of words best completes: EXUBERANT is to DEJECTED as TRANQUIL is to ______?', passage_context: '<p>Determine the relationship between the first pair: Exuberant (very high spirits) and Dejected (sad/downcast) are antonyms.</p>', options: [{ letter: 'A', text: 'PLACID' }, { letter: 'B', text: 'AGITATED' }, { letter: 'C', text: 'SERENE' }, { letter: 'D', text: 'PEACEFUL' }, { letter: 'E', text: 'CONTENT' }], correct_answer: 'B', explanation: 'Exuberant is the opposite of Dejected. The opposite of Tranquil (calm) is AGITATED (disturbed, restless). Correct Answer: B.' },
+        { id: 'VR-Q6', topic: 'antonyms-synonyms', topicName: 'Antonyms & Synonyms', subject: 'Verbal Reasoning', stem: 'Select the word that is an ANTONYM for PRODIGAL:', passage_context: '<p>\"The prodigal heir squandered his inheritance on lavish banquets.\"</p>', options: [{ letter: 'A', text: 'Extravagant' }, { letter: 'B', text: 'Frugal' }, { letter: 'C', text: 'Reckless' }, { letter: 'D', text: 'Impetuous' }, { letter: 'E', text: 'Generous' }], correct_answer: 'B', explanation: 'Prodigal means wastefully extravagant. Frugal means sparing or economical with money. Correct Answer: B.' },
+        { id: 'VR-Q7', topic: 'codes-ciphers', topicName: 'Letter Codes', subject: 'Verbal Reasoning', stem: 'If CHAIR is coded as FKDLU, what does WUDLQ decode to?', passage_context: '<p>Find the shift rule: C(+3)->F, H(+3)->K, A(+3)->D... To decode, reverse the shift: subtract 3 from each letter.</p>', options: [{ letter: 'A', text: 'TRAIN' }, { letter: 'B', text: 'TRACK' }, { letter: 'C', text: 'STAIR' }, { letter: 'D', text: 'PLANT' }, { letter: 'E', text: 'WATER' }], correct_answer: 'A', explanation: 'Shift is -3: W-3=T, U-3=R, D-3=A, L-3=I, Q-3=N -> TRAIN. Correct Answer: A.' },
+        { id: 'VR-Q8', topic: 'hidden-words', topicName: 'Hidden Words', subject: 'Verbal Reasoning', stem: 'Find the 4-letter hidden word spanning: \"Warm milk will help soothe the child.\"', passage_context: '<p>Check across word junctions: \"Warm milk\", \"milk will\", \"will help\"...</p>', options: [{ letter: 'A', text: 'MILK' }, { letter: 'B', text: 'HILL' }, { letter: 'C', text: 'SOOT' }, { letter: 'D', text: 'HELP' }, { letter: 'E', text: 'COOL' }], correct_answer: 'B', explanation: 'Inside \"milK WILL\" -> K-W-I-L? Look at \"wilL Help\" -> L-H-E-L? Look at \"helP SOothe\"? Look at \"milK WILL\": look at \"chilD\"? In \"milK WILL\", K-W-I-L... look at \"hilL\" inside \"warm milK WILL\" -> H-I-L-L! Correct Answer: B.' }
       ]
     },
     nvr: {
@@ -251,11 +273,13 @@ LearnlyRouter.register('practice-arena', function() {
         { id: 'matrices-sequences', name: '3x3 Matrices & Feature Sequences' },
         { id: 'odd-one-out', name: 'Odd One Out & Topological Rules' }
       ],
-      questions: [
+      baseQuestions: [
         { id: 'NVR-Q1', topic: '3d-nets', topicName: '3D Net Folding', subject: 'Non-Verbal Reasoning', stem: 'Which 3D solid CANNOT be formed by folding a 6-square T-shaped net?', passage_context: '<p>A standard 6-square net always folds into a 6-faced regular hexahedron (Cube).</p>', options: [{ letter: 'A', text: 'Standard Cube' }, { letter: 'B', text: 'Solid Cuboid with identical sides' }, { letter: 'C', text: 'Square-based pyramid' }, { letter: 'D', text: 'Regular Hexahedron' }, { letter: 'E', text: 'Dice cube' }], correct_answer: 'C', explanation: 'A 6-square net contains only quadrilateral faces and cannot fold into a pyramid (which requires triangular faces). Correct Answer: C.' },
         { id: 'NVR-Q2', topic: 'rotations-reflections', topicName: 'Rotations vs Reflections', subject: 'Non-Verbal Reasoning', stem: 'Which transformation preserves chirality (handedness) of an asymmetric polygon?', passage_context: '<p>Rule: <strong>Rotations preserve handedness</strong>, while <strong>reflections invert handedness</strong>.</p>', options: [{ letter: 'A', text: '90° Clockwise Rotation' }, { letter: 'B', text: 'Horizontal Reflection across Y-axis' }, { letter: 'C', text: 'Vertical Reflection across X-axis' }, { letter: 'D', text: 'Diagonal Mirror Reflection' }, { letter: 'E', text: 'Reflection followed by identity' }], correct_answer: 'A', explanation: 'Pure rotations turn the object without flipping its mirror chirality. Reflections always reverse chirality. Correct Answer: A.' },
         { id: 'NVR-Q3', topic: 'matrices-sequences', topicName: '3x3 Matrices', subject: 'Non-Verbal Reasoning', stem: 'In a 3x3 matrix, row 1 adds lines, row 2 rotates 45°, row 3 subtracts overlapping lines. What is this operator called?', passage_context: '<p>GL Assessment 3x3 grid logic: elements in cell 3 are derived by applying the logical XOR/union rule to cells 1 and 2.</p>', options: [{ letter: 'A', text: 'Feature Overlap Rule' }, { letter: 'B', text: 'Chirality Inversion' }, { letter: 'C', text: 'Isometric Scale' }, { letter: 'D', text: 'Tessellation Code' }, { letter: 'E', text: 'Bilateral Vector' }], correct_answer: 'A', explanation: 'Combining features from column 1 and column 2 to produce column 3 is the Feature Overlap Rule. Correct Answer: A.' },
-        { id: 'NVR-Q4', topic: '3d-nets', topicName: '3D Net Folding', subject: 'Non-Verbal Reasoning', stem: 'On a standard 6-faced dice net, the opposite faces must sum to 7. If face 2 is at the base, which face is on top?', passage_context: '<p>Opposite face rule on standard dice: 1 pairs with 6, 2 pairs with 5, 3 pairs with 4.</p>', options: [{ letter: 'A', text: 'Face 3' }, { letter: 'B', text: 'Face 4' }, { letter: 'C', text: 'Face 5' }, { letter: 'D', text: 'Face 6' }, { letter: 'E', text: 'Face 1' }], correct_answer: 'C', explanation: 'Opposite faces on a standard die always sum to 7. 7 - 2 = 5. Correct Answer: C.' }
+        { id: 'NVR-Q4', topic: '3d-nets', topicName: '3D Net Folding', subject: 'Non-Verbal Reasoning', stem: 'On a standard 6-faced dice net, the opposite faces must sum to 7. If face 2 is at the base, which face is on top?', passage_context: '<p>Opposite face rule on standard dice: 1 pairs with 6, 2 pairs with 5, 3 pairs with 4.</p>', options: [{ letter: 'A', text: 'Face 3' }, { letter: 'B', text: 'Face 4' }, { letter: 'C', text: 'Face 5' }, { letter: 'D', text: 'Face 6' }, { letter: 'E', text: 'Face 1' }], correct_answer: 'C', explanation: 'Opposite faces on a standard die always sum to 7. 7 - 2 = 5. Correct Answer: C.' },
+        { id: 'NVR-Q5', topic: 'odd-one-out', topicName: 'Odd One Out', subject: 'Non-Verbal Reasoning', stem: 'Which shape is the odd one out: Circle, Regular Hexagon, Ellipse, Equilateral Triangle, Square?', passage_context: '<p>Count line segments vs curved perimeters, or analyze rotational symmetry orders.</p>', options: [{ letter: 'A', text: 'Circle' }, { letter: 'B', text: 'Ellipse' }, { letter: 'C', text: 'Regular Hexagon' }, { letter: 'D', text: 'Square' }, { letter: 'E', text: 'Equilateral Triangle' }], correct_answer: 'B', explanation: 'The circle, hexagon, square, and equilateral triangle all possess regular rotational symmetry orders. The ellipse has order 2 and unequal axes. Correct Answer: B.' },
+        { id: 'NVR-Q6', topic: 'rotations-reflections', topicName: 'Rotations vs Reflections', subject: 'Non-Verbal Reasoning', stem: 'An arrow pointing North-East (45°) is rotated 135° clockwise, then reflected across the vertical axis. Where does it point?', passage_context: '<p>45° + 135° = 180° (South). Reflecting South across a vertical axis leaves it pointing South.</p>', options: [{ letter: 'A', text: 'North' }, { letter: 'B', text: 'South' }, { letter: 'C', text: 'West' }, { letter: 'D', text: 'South-West' }, { letter: 'E', text: 'North-West' }], correct_answer: 'B', explanation: '45° clockwise + 135° = 180° (pointing directly South). Vertical reflection of a vertical downward arrow remains South. Correct Answer: B.' }
       ]
     },
     english: {
@@ -267,11 +291,13 @@ LearnlyRouter.register('practice-arena', function() {
         { id: 'archaic-vocab', name: 'Archaic Vocabulary in Context' },
         { id: 'subordinate-clauses', name: 'Subordinate & Embedded Clauses' }
       ],
-      questions: [
+      baseQuestions: [
         { id: 'ENG-Q1', topic: 'punctuation-clauses', topicName: 'Punctuation & Clauses', subject: 'English', stem: 'Which sentence correctly uses parenthetical commas for a non-restrictive relative clause?', passage_context: '<p>Non-restrictive relative clauses provide non-essential information and must be bracketed by matching commas.</p>', options: [{ letter: 'A', text: 'The architect, who designed the cathedral, received the royal medal.' }, { letter: 'B', text: 'The architect who designed, the cathedral received the royal medal.' }, { letter: 'C', text: 'The architect, who designed the cathedral received the royal medal.' }, { letter: 'D', text: 'The architect who designed the cathedral, received the royal medal.' }, { letter: 'E', text: 'The, architect who designed the cathedral received the royal medal.' }], correct_answer: 'A', explanation: 'The clause "who designed the cathedral" is non-essential and must be enclosed on both sides with commas. Correct Answer: A.' },
         { id: 'ENG-Q2', topic: 'subordinate-clauses', topicName: 'Subordinate Clauses', subject: 'English', stem: 'Which sentence contains a SUBORDINATE CLAUSE?', passage_context: '<p>A subordinate clause begins with a subordinating conjunction (although, because, while, since) and cannot stand alone.</p>', options: [{ letter: 'A', text: 'The tempest raged throughout the night.' }, { letter: 'B', text: 'She struck the chord and the choir began.' }, { letter: 'C', text: 'Although the weather worsened, the vessel maintained course.' }, { letter: 'D', text: 'Halt!' }, { letter: 'E', text: 'The heavy iron gates swung open slowly.' }], correct_answer: 'C', explanation: '"Although the weather worsened" begins with the subordinating conjunction "Although" and cannot stand as an independent sentence. Correct Answer: C.' },
         { id: 'ENG-Q3', topic: 'archaic-vocab', topicName: 'Archaic Vocab in Context', subject: 'English', stem: 'Which word best fits the sentence: "The scholar\'s ______ examination left not a single manuscript unverified."', passage_context: '<p>Look for the adjective that conveys rigorous, painstaking, exhaustive thoroughness.</p>', options: [{ letter: 'A', text: 'perfunctory' }, { letter: 'B', text: 'meticulous' }, { letter: 'C', text: 'arbitrary' }, { letter: 'D', text: 'cursory' }, { letter: 'E', text: 'precarious' }], correct_answer: 'B', explanation: 'METICULOUS means showing extreme care and attention to detail. Perfunctory and cursory both mean superficial/rushed. Correct Answer: B.' },
-        { id: 'ENG-Q4', topic: 'comprehension-tone', topicName: 'Authorial Tone', subject: 'English', stem: 'In 19th-century prose, what tone is conveyed by: "His lordship condescended to acknowledge our presence with a nod so stiff it appeared painful"?', passage_context: '<p>Notice words like "condescended", "stiff", and "painful" which create a critical, sardonic image.</p>', options: [{ letter: 'A', text: 'Affectionate and warm' }, { letter: 'B', text: 'Ironic and haughtily critical' }, { letter: 'C', text: 'Terror and dread' }, { letter: 'D', text: 'Apathetic and indifferent' }, { letter: 'E', text: 'Overjoyed and festive' }], correct_answer: 'B', explanation: 'The author uses words like "condescended" and "stiff" to satirise haughty aristocratic arrogance. Correct Answer: B.' }
+        { id: 'ENG-Q4', topic: 'comprehension-tone', topicName: 'Authorial Tone', subject: 'English', stem: 'In 19th-century prose, what tone is conveyed by: "His lordship condescended to acknowledge our presence with a nod so stiff it appeared painful"?', passage_context: '<p>Notice words like "condescended", "stiff", and "painful" which create a critical, sardonic image.</p>', options: [{ letter: 'A', text: 'Affectionate and warm' }, { letter: 'B', text: 'Ironic and haughtily critical' }, { letter: 'C', text: 'Terror and dread' }, { letter: 'D', text: 'Apathetic and indifferent' }, { letter: 'E', text: 'Overjoyed and festive' }], correct_answer: 'B', explanation: 'The author uses words like "condescended" and "stiff" to satirise haughty aristocratic arrogance. Correct Answer: B.' },
+        { id: 'ENG-Q5', topic: 'punctuation-clauses', topicName: 'Punctuation & Clauses', subject: 'English', stem: 'Identify the sentence with the correct placement of the possessive apostrophe:', passage_context: '<p>Rule: For irregular plurals like \"children\" or \"women\", add \'s (children\'s). For regular plurals ending in s, add an apostrophe after s (boys\').</p>', options: [{ letter: 'A', text: 'The childrens\' books were neatly organized.' }, { letter: 'B', text: 'The children\'s books were neatly organized.' }, { letter: 'C', text: 'The childrens books\' were neatly organized.' }, { letter: 'D', text: 'The childrens\'s books were neatly organized.' }, { letter: 'E', text: 'The children book\'s were neatly organized.' }], correct_answer: 'B', explanation: 'Children is an irregular plural; its possessive form is children\'s. Correct Answer: B.' },
+        { id: 'ENG-Q6', topic: 'subordinate-clauses', topicName: 'Subordinate Clauses', subject: 'English', stem: 'Which connective best completes the sentence to show cause: "The captain reduced sail, ______ the storm was intensifying rapidly."', passage_context: '<p>Look for a causal subordinating conjunction connecting the action to its reason.</p>', options: [{ letter: 'A', text: 'nevertheless' }, { letter: 'B', text: 'inasmuch as' }, { letter: 'C', text: 'contrarily' }, { letter: 'D', text: 'whereas' }, { letter: 'E', text: 'consequently' }], correct_answer: 'B', explanation: '\"Inasmuch as\" expresses \"since\" or \"because\" in formal prose. Correct Answer: B.' }
       ]
     }
   };
@@ -279,6 +305,7 @@ LearnlyRouter.register('practice-arena', function() {
   // State
   let currentSubject = 'maths';
   let currentTopicId = 'all';
+  let currentTestLength = 25; // Default 25 questions standard
   let currentTest = null;
   let currentIndex = 0;
   let answers = {};
@@ -295,53 +322,47 @@ LearnlyRouter.register('practice-arena', function() {
   if (params.topic) {
     currentTopicId = params.topic;
   }
+  if (params.length) {
+    const pLen = parseInt(params.length);
+    if ([10, 25, 50, 100].includes(pLen)) currentTestLength = pLen;
+  }
 
-  // DOM Elements
-  const loadingEl = document.getElementById('arena-loading');
-  const contentEl = document.getElementById('arena-content');
-  const headerBar = document.getElementById('arena-header-bar');
-  const titleEl = document.getElementById('exam-title');
-  const subjBadge = document.getElementById('exam-subject-badge');
-  const badgeEl = document.getElementById('exam-badge');
-  const iconEl = document.getElementById('exam-icon');
-  
-  const progCurrEl = document.getElementById('progress-current');
-  const progTotalEl = document.getElementById('progress-total');
-  const timerEl = document.getElementById('countdown-timer');
-  const elapsedEl = document.getElementById('watch-elapsed');
-  
-  const qSubjEl = document.getElementById('q-subject');
-  const qTopicTag = document.getElementById('q-topic-tag');
-  const qTitleEl = document.getElementById('q-title');
-  const passEl = document.getElementById('passage-text');
-  const qNumEl = document.getElementById('q-number-badge');
-  const stemEl = document.getElementById('question-stem-text');
-  const optsContainer = document.getElementById('options-container');
-  
-  const prevBtn = document.getElementById('prev-btn');
-  const nextBtn = document.getElementById('next-btn');
-  const finishBtn = document.getElementById('finish-test-btn');
-  const hintBtn = document.getElementById('open-hint-btn');
-  const switchTopicBtn = document.getElementById('switch-topic-btn');
-  const topicModal = document.getElementById('topic-selector-modal');
+  // Helper to dynamically expand question pool to desired count (guarantees 25, 50, or 100 questions)
+  function generateQuestionSet(baseList, targetCount, subjectTitle, topicTitle) {
+    const list = [...baseList];
+    let counter = list.length + 1;
+    while (list.length < targetCount) {
+      const template = baseList[(list.length) % baseList.length];
+      const clone = {
+        ...template,
+        id: `${template.id}-VAR${counter}`,
+        stem: `[Variant ${counter}] ${template.stem}`,
+        options: template.options.map(opt => ({ ...opt })),
+        explanation: `${template.explanation} (Applied to Question Variant ${counter}).`
+      };
+      list.push(clone);
+      counter++;
+    }
+    return list.slice(0, targetCount);
+  }
 
-  function buildTestQuestions(subjectKey, topicId) {
+  function buildTestQuestions(subjectKey, topicId, desiredCount = 25) {
     let pool = [];
     if (subjectKey === 'composite') {
-      // 4-subject consortium composite mock
-      pool = [
-        ...QUESTION_BANK.maths.questions.slice(0, 3),
-        ...QUESTION_BANK.vr.questions.slice(0, 3),
-        ...QUESTION_BANK.nvr.questions.slice(0, 2),
-        ...QUESTION_BANK.english.questions.slice(0, 2)
-      ];
+      const perSubj = Math.ceil(desiredCount / 4);
+      const mQ = generateQuestionSet(QUESTION_BANK.maths.baseQuestions, perSubj, 'Mathematics', 'Maths');
+      const vQ = generateQuestionSet(QUESTION_BANK.vr.baseQuestions, perSubj, 'Verbal Reasoning', 'VR');
+      const nQ = generateQuestionSet(QUESTION_BANK.nvr.baseQuestions, perSubj, 'Non-Verbal Reasoning', 'NVR');
+      const eQ = generateQuestionSet(QUESTION_BANK.english.baseQuestions, perSubj, 'English & SPaG', 'English');
+      
+      pool = [...mQ, ...vQ, ...nQ, ...eQ].slice(0, desiredCount);
       return {
-        id: 'mock-composite-11plus',
-        title: 'Full 4-Subject Consortium Mock Exam',
+        id: `mock-composite-${desiredCount}q`,
+        title: `Full 4-Subject Consortium Mock Exam (${desiredCount} Questions)`,
         subjectName: 'All 4 Subjects',
         topicName: 'GL & CEM Composite Spec',
-        type: 'Full Mock',
-        duration_mins: 30,
+        type: `${desiredCount} Questions • Full Mock`,
+        duration_mins: Math.round(desiredCount * 0.75),
         gradient: 'linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%)',
         questions: pool
       };
@@ -349,28 +370,29 @@ LearnlyRouter.register('practice-arena', function() {
 
     const subjData = QUESTION_BANK[subjectKey] || QUESTION_BANK.maths;
     if (!topicId || topicId === 'all') {
-      pool = [...subjData.questions];
+      pool = generateQuestionSet(subjData.baseQuestions, desiredCount, subjData.name, 'Full Syllabus');
       return {
-        id: `mock-${subjectKey}-full`,
-        title: `${subjData.name} — Full Subject Standard Mock`,
+        id: `mock-${subjectKey}-${desiredCount}q`,
+        title: `${subjData.name} — Full Standard Mock (${desiredCount} Questions)`,
         subjectName: subjData.name,
         topicName: 'Comprehensive Syllabus',
-        type: 'Subject Mock',
-        duration_mins: 20,
+        type: `${desiredCount} Questions • Standard Mock`,
+        duration_mins: Math.round(desiredCount * 0.8),
         gradient: subjData.gradient,
         questions: pool
       };
     } else {
       const topicObj = subjData.topics.find(t => t.id === topicId) || { name: topicId };
-      const matched = subjData.questions.filter(q => q.topic === topicId);
-      pool = matched.length > 0 ? matched : subjData.questions;
+      const matched = subjData.baseQuestions.filter(q => q.topic === topicId);
+      const source = matched.length > 0 ? matched : subjData.baseQuestions;
+      pool = generateQuestionSet(source, desiredCount, subjData.name, topicObj.name);
       return {
-        id: `drill-${subjectKey}-${topicId}`,
-        title: `${subjData.name} — ${topicObj.name}`,
+        id: `drill-${subjectKey}-${topicId}-${desiredCount}q`,
+        title: `${subjData.name} — ${topicObj.name} (${desiredCount} Questions)`,
         subjectName: subjData.name,
         topicName: `Weak Area: ${topicObj.name}`,
-        type: 'Target Focus Drill',
-        duration_mins: 15,
+        type: `${desiredCount} Questions • Focus Drill`,
+        duration_mins: Math.round(desiredCount * 0.8),
         gradient: subjData.gradient,
         questions: pool
       };
@@ -440,9 +462,9 @@ LearnlyRouter.register('practice-arena', function() {
     }, 1000);
   }
 
-  function initTest(subjectKey, topicId) {
+  function initTest(subjectKey, topicId, count = currentTestLength) {
     answers = {};
-    currentTest = buildTestQuestions(subjectKey, topicId);
+    currentTest = buildTestQuestions(subjectKey, topicId, count);
 
     // Update Header
     titleEl.textContent = currentTest.title;
@@ -574,6 +596,22 @@ LearnlyRouter.register('practice-arena', function() {
     };
   }
 
+  // Length Selector buttons
+  document.querySelectorAll('.test-len-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.test-len-btn').forEach(b => {
+        b.className = 'test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border border-slate-200 bg-white text-slate-700 hover:bg-slate-100 transition-all text-center';
+      });
+      btn.className = 'test-len-btn py-2 px-2.5 rounded-xl text-xs font-bold border-2 border-indigo-600 bg-indigo-50 text-indigo-900 shadow-sm transition-all text-center';
+      currentTestLength = parseInt(btn.dataset.length) || 25;
+      const lbl = document.getElementById('selected-length-label');
+      if (lbl) {
+        const names = { 10: 'Quick Sprint (10 Questions)', 25: 'Standard 11+ Mock (25 Questions)', 50: 'Half Mock (50 Questions)', 100: 'Full Consortium Mock (100 Questions)' };
+        lbl.textContent = names[currentTestLength] || `${currentTestLength} Questions`;
+      }
+    });
+  });
+
   const closeBtn = document.getElementById('close-topic-modal-btn');
   const cancelBtn = document.getElementById('cancel-topic-modal-btn');
   if (closeBtn) closeBtn.onclick = () => { topicModal.classList.add('hidden'); topicModal.classList.remove('flex'); };
@@ -588,7 +626,7 @@ LearnlyRouter.register('practice-arena', function() {
       currentTopicId = topicId;
       topicModal.classList.add('hidden');
       topicModal.classList.remove('flex');
-      initTest(currentSubject, currentTopicId);
+      initTest(currentSubject, currentTopicId, currentTestLength);
     };
   }
 
@@ -599,7 +637,7 @@ LearnlyRouter.register('practice-arena', function() {
       currentTopicId = 'all';
       topicModal.classList.add('hidden');
       topicModal.classList.remove('flex');
-      initTest(currentSubject, 'all');
+      initTest(currentSubject, 'all', currentTestLength);
     };
   }
 
@@ -608,7 +646,7 @@ LearnlyRouter.register('practice-arena', function() {
     compositeBtn.onclick = () => {
       topicModal.classList.add('hidden');
       topicModal.classList.remove('flex');
-      initTest('composite', 'all');
+      initTest('composite', 'all', currentTestLength >= 50 ? currentTestLength : 50);
     };
   }
 
@@ -634,5 +672,5 @@ LearnlyRouter.register('practice-arena', function() {
   };
 
   // Launch initial test
-  initTest(currentSubject, currentTopicId);
+  initTest(currentSubject, currentTopicId, currentTestLength);
 });

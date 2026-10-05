@@ -4,6 +4,61 @@ const router = express.Router();
 const { getFirestoreDb } = require('../db/firebase');
 const { generateSocraticHints } = require('../services/aiTutor');
 
+// GET /api/questions — query question catalog with customizable limit and subject
+router.get('/', async (req, res) => {
+  try {
+    const { subject, limit = 25, paper_id } = req.query;
+    const db = getFirestoreDb();
+    const parsedLimit = Math.min(Math.max(parseInt(limit) || 25, 5), 100);
+
+    let query = db.collection('questions');
+
+    const subjectMap = {
+      maths: 'Mathematics',
+      mathematics: 'Mathematics',
+      vr: 'Verbal Reasoning',
+      'verbal reasoning': 'Verbal Reasoning',
+      nvr: 'Non-Verbal Reasoning',
+      'non-verbal reasoning': 'Non-Verbal Reasoning',
+      english: 'English'
+    };
+
+    const targetSubject = subject ? subjectMap[subject.toLowerCase()] || subject : null;
+
+    if (paper_id) {
+      query = query.where('test_paper_id', '==', paper_id);
+    } else if (targetSubject && targetSubject !== 'composite' && targetSubject !== 'all') {
+      query = query.where('subject', '==', targetSubject);
+    }
+
+    const snapshot = await query.limit(parsedLimit).get();
+    let questions = snapshot.docs.map(doc => {
+      const data = doc.data();
+      return {
+        id: doc.id,
+        test_paper_id: data.test_paper_id,
+        question_number: data.question_number,
+        subject: data.subject,
+        stem: data.stem,
+        passage_context: data.passage_context,
+        options: data.options || [],
+        correct_answer: data.correct_answer,
+        explanation: data.explanation,
+        socratic_hints: data.socratic_hints
+      };
+    });
+
+    res.json({
+      count: questions.length,
+      limit: parsedLimit,
+      questions
+    });
+  } catch (err) {
+    console.error('Failed to fetch questions:', err);
+    res.status(500).json({ error: 'Failed to fetch questions' });
+  }
+});
+
 // GET /api/questions/:id — fetch question stem, options, and passage
 router.get('/:id', async (req, res) => {
   try {

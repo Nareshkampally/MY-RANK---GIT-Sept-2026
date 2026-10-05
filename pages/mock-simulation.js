@@ -36,8 +36,8 @@ LearnlyRouter.register('mock-simulation', function() {
             <div><span class="font-headline-md text-headline-md text-on-surface font-bold">SAS</span><br><span class="font-label-md text-label-md text-on-surface-variant">Scored</span></div>
           </div>
         </div>
-        <button class="px-space-2xl py-3.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-xl hover:scale-105 transition-all text-lg" data-navigate="practice-arena" type="button">
-          <span class="material-symbols-outlined text-xl mr-2 align-middle">play_arrow</span> Begin Full Mock Exam
+        <button class="px-space-2xl py-3.5 rounded-full bg-primary-container text-on-primary font-label-lg text-label-lg font-bold shadow-xl hover:scale-105 transition-all text-lg" data-navigate="practice-arena?subject=composite&length=100" type="button">
+          <span class="material-symbols-outlined text-xl mr-2 align-middle">play_arrow</span> Begin Full Mock Exam (100 Questions)
         </button>
       </div>
     </div>

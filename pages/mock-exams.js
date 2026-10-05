@@ -146,15 +146,15 @@ LearnlyRouter.register('mock-exams', function() {
       </div>
       
       <div class="flex flex-col gap-3 shrink-0">
-        <button class="px-8 py-4 rounded-[2.5rem] bg-white text-primary font-bold text-lg shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 border border-white/30" data-navigate="mock-simulation">
+        <button class="px-8 py-4 rounded-[2.5rem] bg-white text-primary font-bold text-lg shadow-xl hover:scale-105 active:scale-95 transition-all flex items-center gap-2 border border-white/30" data-navigate="practice-arena?subject=composite&length=100">
           <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1">play_circle</span>
-          Start Full Exam
+          Start Full Exam (100Q)
         </button>
-        <button class="px-6 py-3 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-colors flex items-center gap-2 backdrop-blur-md">
+        <button class="px-6 py-3 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-colors flex items-center gap-2 backdrop-blur-md" data-navigate="practice-arena?length=25">
           <span class="material-symbols-outlined text-lg">subject</span>
-          Practice Mode
+          Practice Mode (25Q)
         </button>
-        <button class="px-6 py-3 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-colors flex items-center gap-2 backdrop-blur-md">
+        <button class="px-6 py-3 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-colors flex items-center gap-2 backdrop-blur-md" data-navigate="mock-simulation">
           <span class="material-symbols-outlined text-lg">preview</span>
           Preview Format
         </button>
@@ -170,11 +170,11 @@ LearnlyRouter.register('mock-exams', function() {
     </h3>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
       ${[
-        { icon: 'history_edu', name: 'Full Consortium Mock', sub: 'GL + CEM · All 4 subjects · 100Q · 60min', xp: '+500 XP', color: 'border-primary hover:bg-primary/5', badge: 'RECOMMENDED' },
-        { icon: 'subject', name: 'Single Subject Mock', sub: 'Pick one subject · 30Q · 20 minutes', xp: '+120 XP', color: 'border-emerald-400 hover:bg-emerald-50', badge: 'FOCUSED' },
-        { icon: 'speed', name: 'Speed Challenge', sub: 'Mixed · 50Q · 25 minutes · Fast pace', xp: '+250 XP', color: 'border-amber-400 hover:bg-amber-50', badge: 'TIMED' },
+        { icon: 'history_edu', name: 'Full Consortium Mock', sub: 'GL + CEM · All 4 subjects · 100Q · 60min', xp: '+500 XP', color: 'border-primary hover:bg-primary/5', badge: 'RECOMMENDED', nav: 'practice-arena?subject=composite&length=100' },
+        { icon: 'subject', name: 'Single Subject Mock', sub: 'Pick one subject · 25Q · 20 minutes', xp: '+120 XP', color: 'border-emerald-400 hover:bg-emerald-50', badge: 'FOCUSED', nav: 'practice-arena?length=25' },
+        { icon: 'speed', name: 'Speed Challenge', sub: 'Mixed · 50Q · 25 minutes · Fast pace', xp: '+250 XP', color: 'border-amber-400 hover:bg-amber-50', badge: 'TIMED', nav: 'practice-arena?subject=composite&length=50' },
       ].map(t => `
-      <button class="p-5 rounded-[2.5rem] bg-surface-container-lowest border-2 ${t.color} transition-all cursor-pointer text-left group" data-navigate="mock-simulation">
+      <button class="p-5 rounded-[2.5rem] bg-surface-container-lowest border-2 ${t.color} transition-all cursor-pointer text-left group" data-navigate="${t.nav}">
         <div class="flex items-center justify-between mb-3">
           <div class="w-10 h-10 rounded-xl bg-surface-container-low flex items-center justify-center text-primary">
             <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1">${t.icon}</span>
@@ -208,8 +208,8 @@ LearnlyRouter.register('mock-exams', function() {
       </div>
       <h3 class="text-xl font-bold text-on-surface mb-2">No completed exams yet</h3>
       <p class="text-on-surface-variant max-w-xs mx-auto text-sm">Start your first mock exam to begin tracking your score history and improvement.</p>
-      <button class="mt-6 px-8 py-3 rounded-xl bg-primary text-on-primary font-bold hover:bg-primary/90 transition-all" data-navigate="mock-simulation">
-        Take First Mock →
+      <button class="mt-6 px-8 py-3 rounded-xl bg-primary text-on-primary font-bold hover:bg-primary/90 transition-all" data-navigate="practice-arena?subject=composite&length=100">
+        Take First Mock (100Q) →
       </button>
     </div>` : `
     <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-5">
