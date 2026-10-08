@@ -200,38 +200,44 @@
     /* Signature Monumental Footer Typography */
     .giant-clay-footer-title {
       font-family: 'Plus Jakarta Sans', sans-serif;
-      font-size: clamp(3rem, 12vw, 13rem);
-      letter-spacing: -0.05em;
-      line-height: 0.88;
+      font-size: clamp(1.8rem, 6.5vw, 7.5rem);
+      letter-spacing: -0.04em;
+      line-height: 0.95;
       text-transform: uppercase;
       font-weight: 800;
       color: #ebe6d6;
       user-select: none;
+      white-space: nowrap;
+      display: inline-block;
+      max-width: 100%;
     }
   </style>
 </head>
 <body class="bg-canvas text-body selection:bg-brand-pink selection:text-white antialiased overflow-x-hidden">
 
   <!-- ================= TOP ANNOUNCEMENT PILL ================= -->
-  <aside class="relative z-50 bg-surface-soft border-b border-hairline py-2 px-4 text-center text-xs text-ink font-medium flex items-center justify-center gap-3">
-    <span class="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-white border border-hairline text-ink text-[11px] font-bold shadow-xs">
-      <span class="w-2 h-2 rounded-full bg-brand-pink animate-pulse"></span>
-      2026/2027 Admissions
-    </span>
-    <span class="hidden sm:inline">GL Assessment, CEM Select & CSSE Syllabi Fully Synchronised</span>
-    <a href="#interactive-preview" class="text-ink font-bold underline underline-offset-4 hover:text-brand-pink transition-colors inline-flex items-center gap-0.5">
-      <span>Try Live Diagnostic Demo</span>
-      <span class="material-symbols-outlined text-xs">arrow_forward</span>
-    </a>
+  <aside class="relative z-50 bg-surface-soft border-b border-hairline py-2 px-4 text-center text-xs text-ink font-medium">
+    <div class="max-w-7xl mx-auto flex items-center justify-center gap-2 sm:gap-3 flex-wrap">
+      <span class="inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full bg-white border border-hairline text-ink text-[11px] font-bold shadow-2xs whitespace-nowrap">
+        <span class="w-2 h-2 rounded-full bg-brand-pink animate-pulse"></span>
+        2026/2027 Admissions
+      </span>
+      <span class="text-body text-xs hidden md:inline">GL Assessment, CEM Select &amp; CSSE Syllabi Fully Synchronised</span>
+      <span class="text-hairline hidden md:inline">•</span>
+      <a href="#interactive-preview" class="text-ink font-bold hover:text-brand-pink transition-colors inline-flex items-center gap-1 text-xs whitespace-nowrap">
+        <span>Try Live Diagnostic Demo</span>
+        <span class="material-symbols-outlined text-xs">arrow_forward</span>
+      </a>
+    </div>
   </aside>
 
-  <!-- ================= STICKY TOP NAVIGATION (Clay 64px standard) ================= -->
-  <header class="sticky top-0 z-40 bg-canvas/90 backdrop-blur-md border-b border-hairline transition-all">
-    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+  <!-- ================= STICKY TOP NAVIGATION ================= -->
+  <header class="sticky top-0 z-40 bg-canvas/95 backdrop-blur-md border-b border-hairline transition-all">
+    <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-18 flex items-center justify-between gap-4">
       
       <!-- Brand Logo -->
-      <a href="#" class="flex items-center gap-3 group">
-        <div class="w-10 h-10 rounded-xl bg-ink text-white flex items-center justify-center shadow-md group-hover:scale-105 transition-transform">
+      <a href="#" class="flex items-center gap-3 group shrink-0">
+        <div class="w-10 h-10 rounded-xl bg-ink text-white flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform">
           <span class="material-symbols-outlined text-xl">school</span>
         </div>
         <div>
@@ -243,32 +249,78 @@
         </div>
       </a>
 
-      <!-- Desktop Navigation Links -->
-      <div class="hidden lg:flex items-center gap-7 text-sm font-medium text-body">
-        <a href="#features" class="hover:text-ink transition-colors">Features</a>
-        <a href="#syllabus" class="hover:text-ink transition-colors">12 Modules</a>
-        <a href="#interactive-preview" class="hover:text-ink transition-colors flex items-center gap-1">
-          <span>Live Demo</span>
+      <!-- Desktop Navigation Links (Clean, No-Wrap, Curated) -->
+      <div class="hidden xl:flex items-center gap-6 text-sm font-semibold text-body">
+        <a href="#features" class="whitespace-nowrap hover:text-ink transition-colors">Features</a>
+        <a href="#syllabus" class="whitespace-nowrap hover:text-ink transition-colors flex items-center gap-1.5">
+          <span>12 Modules</span>
+          <span class="px-1.5 py-0.5 rounded-full bg-surface-card text-[10px] font-mono font-bold text-muted border border-hairline">Arsenal</span>
+        </a>
+        <a href="#interactive-preview" class="whitespace-nowrap hover:text-ink transition-colors flex items-center gap-1.5">
+          <span>Live Studio</span>
           <span class="w-2 h-2 rounded-full bg-brand-pink"></span>
         </a>
-        <a href="#grammar-schools" class="hover:text-ink transition-colors">Target Schools</a>
-        <a href="#testimonials" class="hover:text-ink transition-colors">Results</a>
-        <a href="#comparison" class="hover:text-ink transition-colors">Why Karat</a>
-        <a href="#pricing" class="hover:text-ink transition-colors">Pricing</a>
-        <button type="button" onclick="openLegalPolicy('terms')" class="hover:text-ink transition-colors">Legal & Safety</button>
+        <a href="#grammar-schools" class="whitespace-nowrap hover:text-ink transition-colors">Target Schools</a>
+        <a href="#testimonials" class="whitespace-nowrap hover:text-ink transition-colors">Outcomes</a>
+        <a href="#comparison" class="whitespace-nowrap hover:text-ink transition-colors">Why Karat</a>
+        <a href="#pricing" class="whitespace-nowrap hover:text-ink transition-colors">Pricing</a>
       </div>
 
-      <!-- Action Buttons -->
-      <div class="flex items-center gap-3">
-        <a href="index.html#dashboard" class="hidden sm:inline-flex text-sm font-semibold text-ink px-4 py-2 rounded-xl hover:bg-surface-card transition-colors">
+      <!-- Action Buttons + Mobile Toggle -->
+      <div class="flex items-center gap-3 shrink-0">
+        <a href="index.html#dashboard" class="hidden sm:inline-flex text-xs font-bold text-ink px-3.5 py-2 rounded-xl bg-surface-card border border-hairline hover:bg-surface-soft transition-colors whitespace-nowrap">
           Sign In
         </a>
-        <a href="index.html#practice-arena" class="clay-btn-primary">
+        <a href="index.html#practice-arena" class="clay-btn-primary text-xs sm:text-sm whitespace-nowrap">
           <span>Start Free Trial</span>
           <span class="material-symbols-outlined text-base">arrow_forward</span>
         </a>
+
+        <!-- Mobile/Tablet Menu Button -->
+        <button type="button" onclick="toggleMobileNav()" class="xl:hidden w-10 h-10 rounded-xl bg-surface-card border border-hairline flex items-center justify-center text-ink hover:bg-surface-soft transition-colors" aria-label="Toggle navigation">
+          <span id="mobile-nav-icon" class="material-symbols-outlined text-xl">menu</span>
+        </button>
       </div>
+
     </nav>
+
+    <!-- Mobile Slide-Down Menu Drawer -->
+    <div id="mobile-nav-drawer" class="hidden xl:hidden bg-canvas border-b border-hairline px-4 py-4 space-y-2 animate-fade-in shadow-md">
+      <div class="grid grid-cols-2 gap-2 text-xs font-bold text-ink">
+        <a href="#features" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-surface-card border border-hairline hover:bg-surface-soft flex items-center gap-2">
+          <span class="material-symbols-outlined text-base text-brand-pink">category</span>
+          <span>Features</span>
+        </a>
+        <a href="#syllabus" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-surface-card border border-hairline hover:bg-surface-soft flex items-center gap-2">
+          <span class="material-symbols-outlined text-base text-brand-teal">grid_view</span>
+          <span>12 Modules</span>
+        </a>
+        <a href="#interactive-preview" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-surface-card border border-hairline hover:bg-surface-soft flex items-center gap-2">
+          <span class="material-symbols-outlined text-base text-brand-lavender">play_circle</span>
+          <span>Live Studio</span>
+        </a>
+        <a href="#grammar-schools" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-surface-card border border-hairline hover:bg-surface-soft flex items-center gap-2">
+          <span class="material-symbols-outlined text-base text-brand-peach">school</span>
+          <span>Target Schools</span>
+        </a>
+        <a href="#testimonials" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-surface-card border border-hairline hover:bg-surface-soft flex items-center gap-2">
+          <span class="material-symbols-outlined text-base text-brand-ochre">star</span>
+          <span>Outcomes</span>
+        </a>
+        <a href="#pricing" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-surface-card border border-hairline hover:bg-surface-soft flex items-center gap-2">
+          <span class="material-symbols-outlined text-base text-emerald-600">payments</span>
+          <span>Pricing</span>
+        </a>
+      </div>
+      <div class="pt-2 flex items-center gap-2">
+        <a href="index.html#dashboard" class="w-1/2 py-2 text-center rounded-xl bg-surface-soft border border-hairline text-xs font-bold text-ink">
+          Sign In
+        </a>
+        <button type="button" onclick="openLegalPolicy('terms'); toggleMobileNav();" class="w-1/2 py-2 text-center rounded-xl bg-surface-soft border border-hairline text-xs font-bold text-muted">
+          Legal &amp; Safety
+        </button>
+      </div>
+    </div>
   </header>
 
   <!-- ================= HERO BAND (Clay 7-5 Grid on Cream Canvas) ================= -->
@@ -730,228 +782,547 @@
       </div>
 
     </div>
+  </section>
 
-    <!-- ================= THE 12-MODULE SCHOLAR ARSENAL (CURRICULUM & SYLLABUS) ================= -->
-    <div id="syllabus" class="mt-20 pt-16 border-t border-hairline">
+  <!-- ================= THE 12-MODULE SCHOLAR ARSENAL (CURRICULUM & SYLLABUS) ================= -->
+  <section id="syllabus" class="py-24 bg-surface-soft border-t border-hairline relative">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
-      <div class="text-center max-w-3xl mx-auto mb-14 space-y-3">
-        <span class="text-xs font-bold uppercase tracking-widest text-ink bg-surface-card border border-hairline px-3.5 py-1 rounded-full">
-          Complete Application Architecture
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-4">
+        <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-ink bg-white border border-hairline px-4 py-1.5 rounded-full shadow-2xs">
+          <span class="w-2 h-2 rounded-full bg-brand-teal"></span>
+          Comprehensive 11+ Curriculum Architecture
         </span>
-        <h2 class="clay-display-lg text-3xl sm:text-4xl text-ink">
+        <h2 class="clay-display-lg text-3xl sm:text-5xl text-ink">
           The 12-Module Scholar Arsenal.
         </h2>
-        <p class="text-sm sm:text-base text-body">
-          Every capability built inside Karat.Academy maps directly to the rigours of 11+ grammar and independent school entrance examinations.
+        <p class="text-sm sm:text-base text-body max-w-2xl mx-auto leading-relaxed">
+          Every tool inside Karat.Academy maps directly to the rigours of 11+ grammar and independent school admissions. Filter by academic pillar or explore the complete curriculum below.
         </p>
+
+        <!-- Executive Architecture Metrics Strip -->
+        <div class="grid grid-cols-2 md:grid-cols-4 gap-3 max-w-4xl mx-auto pt-3 pb-2 text-left">
+          <div class="bg-white/95 rounded-2xl p-3.5 border border-hairline flex items-center gap-3 shadow-2xs">
+            <div class="w-10 h-10 rounded-xl bg-brand-pink/15 text-brand-pink flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-xl">view_in_ar</span>
+            </div>
+            <div>
+              <div class="font-extrabold text-ink text-sm">40 Visual CPA</div>
+              <div class="text-[11px] text-muted leading-tight">3D Nets &amp; Singapore Bars</div>
+            </div>
+          </div>
+          <div class="bg-white/95 rounded-2xl p-3.5 border border-hairline flex items-center gap-3 shadow-2xs">
+            <div class="w-10 h-10 rounded-xl bg-brand-teal/15 text-brand-teal flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-xl">timer</span>
+            </div>
+            <div>
+              <div class="font-extrabold text-ink text-sm">100-Q Mocks</div>
+              <div class="text-[11px] text-muted leading-tight">Authentic Exam Timers</div>
+            </div>
+          </div>
+          <div class="bg-white/95 rounded-2xl p-3.5 border border-hairline flex items-center gap-3 shadow-2xs">
+            <div class="w-10 h-10 rounded-xl bg-rose-50 text-rose-600 border border-rose-100 flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-xl">ssid_chart</span>
+            </div>
+            <div>
+              <div class="font-extrabold text-ink text-sm">SAS 69–141 Engine</div>
+              <div class="text-[11px] text-muted leading-tight">Age-Calibrated Scores</div>
+            </div>
+          </div>
+          <div class="bg-white/95 rounded-2xl p-3.5 border border-hairline flex items-center gap-3 shadow-2xs">
+            <div class="w-10 h-10 rounded-xl bg-brand-ochre/25 text-ink flex items-center justify-center shrink-0">
+              <span class="material-symbols-outlined text-xl">swords</span>
+            </div>
+            <div>
+              <div class="font-extrabold text-ink text-sm">1v1 Battle Arena</div>
+              <div class="text-[11px] text-muted leading-tight">Live Speed Multiplayer</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Category Filter Pills Container -->
+        <div class="pt-2 flex justify-center">
+          <div class="inline-flex p-1.5 bg-surface-card rounded-2xl border border-hairline gap-1.5 flex-wrap justify-center shadow-2xs">
+            <button type="button" id="filter-btn-all" onclick="filterSyllabusModules('all')" class="syllabus-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-ink shadow-sm border border-ink transition-all">
+              All 12 Modules (12)
+            </button>
+            <button type="button" id="filter-btn-cpa" onclick="filterSyllabusModules('cpa')" class="syllabus-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-body hover:text-ink hover:bg-surface-soft bg-transparent border border-transparent transition-all">
+              Visual CPA Studio (3)
+            </button>
+            <button type="button" id="filter-btn-exam" onclick="filterSyllabusModules('exam')" class="syllabus-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-body hover:text-ink hover:bg-surface-soft bg-transparent border border-transparent transition-all">
+              Exam Simulation (4)
+            </button>
+            <button type="button" id="filter-btn-ai" onclick="filterSyllabusModules('ai')" class="syllabus-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-body hover:text-ink hover:bg-surface-soft bg-transparent border border-transparent transition-all">
+              AI &amp; Diagnostics (3)
+            </button>
+            <button type="button" id="filter-btn-duels" onclick="filterSyllabusModules('duels')" class="syllabus-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-body hover:text-ink hover:bg-surface-soft bg-transparent border border-transparent transition-all">
+              Duels &amp; Competition (2)
+            </button>
+          </div>
+        </div>
       </div>
 
-      <!-- 12-Card High-Density Grid (4 columns on lg, 2 on md, 1 on sm) -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-5">
+      <!-- 12-Card High-Density Grid (4 cols on xl, 3 on lg, 2 on md, 1 on sm) -->
+      <div id="syllabus-cards-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
         
         <!-- Module 1: 40 CPA Master Methods -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-pink/10 text-brand-pink flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">view_in_ar</span>
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="cpa">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-pink via-brand-pink/90 to-brand-peach"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 01</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-pink/10 text-brand-pink border border-brand-pink/20">CPA Pedagogy</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-pink text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">view_in_ar</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-brand-pink transition-colors">40 CPA Master Methods</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  Concrete-Pictorial-Abstract visual math: Singapore bar models, 3D net folding, and balance scales across 10 progressive ladder levels.
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">400 questions across 10 progressive ladders</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">Interactive 3D folding nets &amp; bar strips</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">40 CPA Master Methods</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              Concrete-Pictorial-Abstract visual math: Singapore bar models, 3D net folding, and balance scales across 10 progressive ladder levels.
-            </p>
-          </div>
-          <a href="index.html#learn-solve" class="text-xs font-bold text-brand-pink hover:underline inline-flex items-center gap-1">
-            <span>Launch Studio</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#learn-solve" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Launch 3D Studio</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
 
         <!-- Module 2: Ms. Clara British Voice Tutor -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-teal/10 text-brand-teal flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">record_voice_over</span>
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="cpa">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-teal via-brand-teal/90 to-brand-mint"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 02</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-teal/10 text-brand-teal border border-brand-teal/20">Speech AI Coach</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-teal text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">record_voice_over</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-brand-teal transition-colors">British Voice Tutor "Ms. Clara"</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  Senior British 11+ voice tutor coaching your pupil through complex multi-step reasoning questions step-by-step with zero exam hall panic.
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">British accent received pronunciation</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">Step-by-step logic hints on hesitation</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">British Voice Tutor "Ms. Clara"</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              Senior 11+ specialist voice coaching guiding your child through complex multi-step reasoning questions step-by-step with zero anxiety.
-            </p>
-          </div>
-          <a href="index.html#learn-solve" class="text-xs font-bold text-brand-teal hover:underline inline-flex items-center gap-1">
-            <span>Listen to Demo</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#learn-solve" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Listen to Coaching</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
 
-        <!-- Module 3: Adaptive Practice Arena -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-lavender/30 text-ink flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">timer</span>
+        <!-- Module 3: LexiVault 11+ Vocabulary -->
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="cpa">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-lavender via-purple-300 to-brand-pink"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 03</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-lavender/30 text-ink border border-brand-lavender">2,500+ Words SRS</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-lavender text-ink flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">auto_stories</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-brand-pink transition-colors">LexiVault 11+ Vocabulary</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  Master GL &amp; CEM Verbal Reasoning words with native audio pronunciation, Greek and Latin etymology root breakdowns, and Spaced Repetition.
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">Greek &amp; Latin etymology root breakdowns</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">1, 3, 7, 21-day spaced recall intervals</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">Adaptive Practice Arena</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              10,000+ curated questions categorized by GL, CEM, CSSE, and ISEB. Automatically dials difficulty and measures error latency in milliseconds.
-            </p>
-          </div>
-          <a href="index.html#practice-arena" class="text-xs font-bold text-ink hover:underline inline-flex items-center gap-1">
-            <span>Start Practice</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#vocab-vault" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Explore LexiVault</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
 
-        <!-- Module 4: Proctored Full Mock Exams -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-peach/30 text-ink flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">quiz</span>
+        <!-- Module 4: Adaptive Practice Arena -->
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="exam">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-peach via-amber-300 to-brand-ochre"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 04</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-peach/30 text-ink border border-brand-peach">10k Question Bank</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-peach text-ink flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">timer</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-brand-pink transition-colors">Adaptive Practice Arena</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  10,000+ curated questions spanning Maths, English, Verbal &amp; Non-Verbal. Real-time latency tracking dials difficulty to eliminate weak points.
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">GL, CEM, CSSE &amp; ISEB syllabi aligned</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">Latency tracking &amp; rush penalty diagnostics</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">Proctored Full Mocks</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              100-question authentic mock papers mimicking real exam hall pressures. Covers all 21 GL Verbal typologies and CEM speed tests.
-            </p>
-          </div>
-          <a href="index.html#mock-exams" class="text-xs font-bold text-ink hover:underline inline-flex items-center gap-1">
-            <span>Simulate Exam</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#practice-arena" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Enter Practice Arena</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
 
-        <!-- Module 5: Split-Screen Passage Simulator -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-ochre/20 text-ink flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">vertical_split</span>
+        <!-- Module 5: Proctored Full Mock Exams -->
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="exam">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-teal via-emerald-500 to-brand-mint"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 05</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-teal/10 text-brand-teal border border-brand-teal/20">Full 100-Q Mocks</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-teal text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">quiz</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-brand-teal transition-colors">Proctored Full Mocks</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  Full-length 100-question timed papers mimicking genuine exam hall stress. Tests all 21 GL Verbal typologies, CEM speed, and CSSE math rigor.
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">Authentic 50-minute exam countdown timers</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">Instant percentile and SAS breakdown</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">Split-Screen Passage Reader</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              Dual-pane interface with passage text pinned on the left and reading comprehension questions on the right, exactly like computerised exams.
-            </p>
-          </div>
-          <a href="index.html#mock-exams" class="text-xs font-bold text-ink hover:underline inline-flex items-center gap-1">
-            <span>View Simulator</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#mock-exams" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Simulate Full Mock</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
 
-        <!-- Module 6: Digital Scratchpad Canvas -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-mint/20 text-ink flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">draw</span>
+        <!-- Module 6: Split-Screen Passage Reader -->
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="exam">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-ochre via-amber-400 to-brand-peach"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 06</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-ochre/20 text-ink border border-brand-ochre">Dual-Pane Reader</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-ochre text-ink flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">vertical_split</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-brand-pink transition-colors">Split-Screen Passage Reader</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  Dual-pane interface with passage text pinned on the left and comprehension questions on the right. Mirrors modern computerised 11+ exams.
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">Line-number reference &amp; keyword highlighting</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">Eliminates tedious page-turning fatigue</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">Digital Whiteboard Scratchpad</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              On-screen calculation canvas integrated directly into practice and mock interfaces. Draw out column additions, bar strips, and prime trees.
-            </p>
-          </div>
-          <a href="index.html#practice-arena" class="text-xs font-bold text-ink hover:underline inline-flex items-center gap-1">
-            <span>Try Scratchpad</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#mock-exams" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Try Passage Simulator</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
 
-        <!-- Module 7: Standard Age Score (SAS) Engine -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-coral/20 text-ink flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">ssid_chart</span>
+        <!-- Module 7: Digital Whiteboard Scratchpad -->
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="exam">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-emerald-600 via-teal-500 to-brand-mint"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 07</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-mint/20 text-emerald-800 border border-brand-mint">Rough Work Pad</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-emerald-600 text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">draw</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-emerald-700 transition-colors">Digital Scratchpad Canvas</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  On-screen drawing canvas built right into timed exams. Allows pupils to scribble column additions, bar model strips, and Venn diagrams.
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">Supports mouse, stylus, or fingertip drawing</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">Integrated scratchpad overlay per question</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">Age-Standardised SAS Engine</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              Computes genuine Standard Age Scores (69–141 scale) calibrated to your pupil's exact birth month, eliminating raw percentage distortion.
-            </p>
-          </div>
-          <a href="index.html#school-predictor" class="text-xs font-bold text-ink hover:underline inline-flex items-center gap-1">
-            <span>Calculate SAS</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#practice-arena" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Open Digital Canvas</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
 
-        <!-- Module 8: LexiVault 11+ Vocabulary -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-lavender/30 text-ink flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">auto_stories</span>
+        <!-- Module 8: Age-Standardised SAS Engine -->
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="ai">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-rose-500 via-brand-coral to-brand-pink"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 08</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-coral/20 text-rose-800 border border-brand-coral">Scale 69–141</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-coral text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">ssid_chart</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-rose-700 transition-colors">Age-Standardised SAS Engine</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  Computes genuine Standard Age Scores (69–141 scale) calibrated to your pupil's exact birth month, removing the raw score disadvantage.
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">Birth-month mathematical standardization</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">National percentile bell-curve projection</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">LexiVault 11+ Vocabulary</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              2,500+ curated high-yield words with audio pronunciation, Greek/Latin etymology roots, antonym pairs, and Spaced Repetition (SRS).
-            </p>
-          </div>
-          <a href="index.html#vocab-vault" class="text-xs font-bold text-ink hover:underline inline-flex items-center gap-1">
-            <span>Open LexiVault</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#school-predictor" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Calculate SAS Benchmark</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
 
         <!-- Module 9: Mistake Mastery Vault -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-pink/10 text-brand-pink flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">healing</span>
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="ai">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-pink via-rose-500 to-brand-coral"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 09</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-pink/10 text-brand-pink border border-brand-pink/20">Error Taxonomy</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-pink text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">healing</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-brand-pink transition-colors">Mistake Mastery Vault</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  Smart error taxonomy categorises every mistake into Calculation Slip, Stem Misread, Time Rush, or Concept Gap. Auto-queues redemption drills.
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">4-tier root-cause flaw categorization</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">Auto-queues 24h &amp; 7-day re-testing drills</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">Mistake Mastery Vault</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              Smart error taxonomy: isolates Calculation Slips, Question Stem Misreads, Time Rushes, and Concept Gaps. Queues automated redemption drills.
-            </p>
-          </div>
-          <a href="index.html#mistake-mastery" class="text-xs font-bold text-brand-pink hover:underline inline-flex items-center gap-1">
-            <span>Review Mistakes</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#mistake-mastery" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Review Mistake Vault</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
 
-        <!-- Module 10: AI Homework & Worksheet Scanner -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-teal/10 text-brand-teal flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">document_scanner</span>
+        <!-- Module 10: AI Homework Scanner -->
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="ai">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-teal via-teal-600 to-brand-coral"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 10</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-teal/10 text-brand-teal border border-brand-teal/20">Camera OCR</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-teal text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">document_scanner</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-brand-teal transition-colors">AI Homework Scanner</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  Photograph paper worksheets and test booklets. AI OCR automatically extracts incorrect answers and imports them directly into digital drills.
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">Instant handwritten OCR error extraction</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">Converts physical school paper to digital drills</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">AI Homework Scanner</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              Photograph handwritten school worksheets and test papers. AI OCR automatically extracts errors and imports them directly into your child's re-drill queue.
-            </p>
-          </div>
-          <a href="index.html#homework-scanner" class="text-xs font-bold text-brand-teal hover:underline inline-flex items-center gap-1">
-            <span>Scan Worksheet</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#homework-scanner" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Scan Paper Worksheet</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
 
         <!-- Module 11: Target Grammar School Predictor -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-peach/30 text-ink flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">school</span>
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="ai">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-peach via-rose-400 to-brand-coral"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 11</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-peach/30 text-ink border border-brand-peach">Historic Cutoffs</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-peach text-ink flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">school</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-brand-pink transition-colors">School Cutoff Predictor</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  Historic admissions benchmark matching for Queen Elizabeth's (135), Henrietta Barnett (132), Tiffin (128), Wilson's (130), and St Olave's (133).
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">Verified historic cut-off thresholds</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">Traffic light admission safety probability</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">School Cutoff Predictor</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              Historic admissions benchmark matching for Queen Elizabeth's, Henrietta Barnett, Tiffin, Wilson's, St Olave's, KEGS, and Altrincham.
-            </p>
-          </div>
-          <a href="index.html#school-predictor" class="text-xs font-bold text-ink hover:underline inline-flex items-center gap-1">
-            <span>Check Cutoffs</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#school-predictor" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Check School Cutoffs</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
 
         <!-- Module 12: 1v1 Battle Arena & Focus Room -->
-        <div class="bg-white border border-hairline rounded-2xl p-5 shadow-xs space-y-3 hover:border-ink transition-colors">
-          <div class="w-9 h-9 rounded-xl bg-brand-ochre/20 text-ink flex items-center justify-center font-bold">
-            <span class="material-symbols-outlined text-xl">swords</span>
+        <div class="module-card relative rounded-[24px] p-6 bg-white border border-hairline shadow-xs hover:shadow-xl hover:-translate-y-1.5 transition-all duration-300 flex flex-col justify-between space-y-5 group overflow-hidden" data-cat="duels">
+          <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-brand-ochre via-amber-500 to-brand-peach"></div>
+          <div class="space-y-4 pt-1">
+            <div class="flex items-center justify-between">
+              <span class="font-mono text-[11px] font-bold text-muted uppercase tracking-wider">MOD · 12</span>
+              <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-brand-ochre/20 text-ink border border-brand-ochre">Live Multiplayer</span>
+            </div>
+            <div class="flex items-start gap-3.5">
+              <div class="w-12 h-12 rounded-2xl bg-brand-ochre text-ink flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 group-hover:rotate-1 transition-all">
+                <span class="material-symbols-outlined text-2xl">swords</span>
+              </div>
+              <div>
+                <h4 class="font-extrabold text-ink text-base group-hover:text-brand-pink transition-colors">1v1 Battle Arena &amp; Lofi Room</h4>
+                <p class="text-xs text-body mt-1 leading-relaxed">
+                  Real-time 1v1 peer speed duels with live leaderboard ranking. Plus Pomodoro ambient lo-fi focus beats to build calm mental stamina without fatigue.
+                </p>
+              </div>
+            </div>
+            <div class="p-3.5 rounded-2xl bg-surface-soft/80 border border-hairline text-[11px] text-body space-y-2">
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight font-medium text-ink">Live 60-second multiplayer arithmetic duels</span>
+              </div>
+              <div class="flex items-start gap-2">
+                <span class="material-symbols-outlined text-xs text-emerald-600 shrink-0 mt-0.5">check_circle</span>
+                <span class="leading-tight text-body">Pomodoro ambient lo-fi audio room</span>
+              </div>
+            </div>
           </div>
-          <div>
-            <h4 class="font-bold text-ink text-sm">Battle Arena &amp; Focus Room</h4>
-            <p class="text-xs text-muted mt-1 leading-relaxed">
-              Real-time multiplayer 1v1 peer speed duels + Pomodoro ambient lo-fi focus beats to build deep exam composure without digital fatigue.
-            </p>
-          </div>
-          <a href="index.html#battle-arena" class="text-xs font-bold text-ink hover:underline inline-flex items-center gap-1">
-            <span>Enter Battle</span>
-            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          <a href="index.html#battle-arena" class="clay-btn-secondary w-full py-2.5 text-xs font-bold justify-between group-hover:bg-ink group-hover:text-white group-hover:border-ink transition-all shadow-2xs">
+            <span>Enter Battle Arena</span>
+            <span class="w-6 h-6 rounded-full bg-surface-card group-hover:bg-white/20 flex items-center justify-center transition-colors">
+              <span class="material-symbols-outlined text-xs group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+            </span>
           </a>
         </div>
+
+      </div>
 
     </div>
   </section>
@@ -1698,30 +2069,38 @@
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
       
       <!-- 4-Column Navigation -->
-      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-hairline">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-hairline items-start">
         
-        <div class="lg:col-span-2 space-y-3">
-          <div class="flex items-center gap-3">
-            <div class="w-8 h-8 rounded-lg bg-ink text-white flex items-center justify-center font-bold text-sm">
-              <span class="material-symbols-outlined text-base">school</span>
+        <div class="lg:col-span-2 space-y-4">
+          <a href="landing.html" class="inline-flex items-center gap-3 group">
+            <div class="w-10 h-10 rounded-xl bg-ink text-white flex items-center justify-center shadow-xs group-hover:scale-105 transition-transform shrink-0">
+              <span class="material-symbols-outlined text-xl">school</span>
             </div>
-            <span class="font-bold text-ink text-base">Karat.Academy</span>
-          </div>
+            <div>
+              <div class="flex items-center gap-1.5 leading-none">
+                <span class="text-xl font-bold tracking-tight text-ink group-hover:text-brand-pink transition-colors">Karat.Academy</span>
+                <span class="text-[10px] font-bold uppercase px-2 py-0.5 rounded-full bg-white text-ink border border-hairline">11+</span>
+              </div>
+              <span class="text-[10px] uppercase font-semibold tracking-wider text-muted block mt-1 leading-none">Scholar Platform</span>
+            </div>
+          </a>
           <p class="text-muted text-xs leading-relaxed max-w-sm">
             Age-standardised diagnostic assessment platform engineered for Year 4 &amp; Year 5 pupils targeting GL Assessment, CEM Select, CSSE, and super-selective entrance exams.
           </p>
-          <div class="flex items-center gap-2 text-muted text-[11px] pt-1">
-            <span class="text-emerald-700 font-bold">● ICO Registered</span>
-            <span>•</span>
+          <div class="flex flex-wrap items-center gap-2 text-muted text-[11px] pt-1 font-medium">
+            <span class="inline-flex items-center gap-1 text-emerald-700 font-bold bg-white px-2.5 py-0.5 rounded-full border border-hairline shadow-2xs">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-600"></span> ICO Registered
+            </span>
+            <span class="text-muted">•</span>
             <span>KCSIE Safeguarded</span>
-            <span>•</span>
+            <span class="text-muted">•</span>
             <span>UK GDPR Compliant</span>
           </div>
         </div>
 
-        <div class="space-y-2.5">
+        <div class="space-y-3 pt-2">
           <div class="font-bold uppercase tracking-wider text-ink text-xs">Platform</div>
-          <ul class="space-y-2 text-muted">
+          <ul class="space-y-2.5 text-muted">
             <li><a href="index.html#practice-arena" class="hover:text-ink transition-colors">Practice Arena</a></li>
             <li><a href="index.html#learn-solve" class="hover:text-ink transition-colors">40 Master Methods</a></li>
             <li><a href="index.html#mock-exams" class="hover:text-ink transition-colors">Mock Exams</a></li>
@@ -1730,9 +2109,9 @@
           </ul>
         </div>
 
-        <div class="space-y-2.5">
+        <div class="space-y-3 pt-2">
           <div class="font-bold uppercase tracking-wider text-ink text-xs">Exam Boards</div>
-          <ul class="space-y-2 text-muted">
+          <ul class="space-y-2.5 text-muted">
             <li><a href="#syllabus" class="hover:text-ink transition-colors">GL Assessment (21 VR Types)</a></li>
             <li><a href="#syllabus" class="hover:text-ink transition-colors">CEM Select (Cloze &amp; Speed)</a></li>
             <li><a href="#syllabus" class="hover:text-ink transition-colors">CSSE Essex Consortium</a></li>
@@ -1740,9 +2119,9 @@
           </ul>
         </div>
 
-        <div class="space-y-2.5">
+        <div class="space-y-3 pt-2">
           <div class="font-bold uppercase tracking-wider text-ink text-xs">Legal &amp; Safety</div>
-          <ul class="space-y-2 text-muted">
+          <ul class="space-y-2.5 text-muted">
             <li><button type="button" onclick="openLegalPolicy('terms')" class="hover:text-ink transition-colors text-left">Terms of Service</button></li>
             <li><button type="button" onclick="openLegalPolicy('privacy')" class="hover:text-ink transition-colors text-left">Privacy Policy (ICO)</button></li>
             <li><button type="button" onclick="openLegalPolicy('cookies')" class="hover:text-ink transition-colors text-left">Cookie Policy</button></li>
@@ -2086,6 +2465,48 @@
         osc.start();
         osc.stop(audioCtx.currentTime + duration);
       } catch (e) {}
+    }
+
+    function toggleMobileNav() {
+      playAudioTone(480, 'sine', 0.04);
+      const drawer = document.getElementById('mobile-nav-drawer');
+      const icon = document.getElementById('mobile-nav-icon');
+      if (drawer) {
+        if (drawer.classList.contains('hidden')) {
+          drawer.classList.remove('hidden');
+          if (icon) icon.textContent = 'close';
+        } else {
+          drawer.classList.add('hidden');
+          if (icon) icon.textContent = 'menu';
+        }
+      }
+    }
+
+    // ================= 12-MODULE ARSENAL CATEGORY FILTER =================
+    function filterSyllabusModules(cat) {
+      playAudioTone(520, 'sine', 0.04);
+      
+      // Update filter button styling
+      document.querySelectorAll('.syllabus-filter-btn').forEach(btn => {
+        btn.className = 'syllabus-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-semibold text-body hover:text-ink hover:bg-surface-soft bg-transparent border border-transparent transition-all';
+      });
+      const activeBtn = document.getElementById(`filter-btn-${cat}`);
+      if (activeBtn) {
+        activeBtn.className = 'syllabus-filter-btn px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-white bg-ink shadow-sm border border-ink transition-all';
+      }
+
+      // Filter cards
+      const cards = document.querySelectorAll('.module-card');
+      cards.forEach(card => {
+        const cardCat = card.getAttribute('data-cat');
+        if (cat === 'all' || cardCat === cat) {
+          card.classList.remove('hidden');
+          card.classList.add('flex');
+        } else {
+          card.classList.add('hidden');
+          card.classList.remove('flex');
+        }
+      });
     }
 
     // ================= INTERACTIVE STUDIO CONTROLLERS =================
