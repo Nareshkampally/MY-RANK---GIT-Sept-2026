@@ -265,10 +265,10 @@ LearnlyRouter.register('analytics', function() {
   // ── RENDER CHARTS WITH LIVE DATA ─────────────────────────────────
   function renderCharts() {
     const isMyRank = document.documentElement.getAttribute('data-theme') === 'myrank';
-    const primaryColor = isMyRank ? '#c7ff24' : '#4f46e5';
-    const primaryBg = isMyRank ? 'rgba(199,255,36,0.18)' : 'rgba(79,70,229,0.1)';
-    const textColor = isMyRank ? '#e1e4d0' : '#0b1c30';
-    const gridColor = isMyRank ? 'rgba(255,255,255,0.08)' : 'rgba(0,0,0,0.04)';
+    const primaryColor = isMyRank ? '#818cf8' : '#4f46e5';
+    const primaryBg = isMyRank ? 'rgba(129, 140, 248, 0.18)' : 'rgba(79, 70, 229, 0.1)';
+    const textColor = isMyRank ? '#f8fafc' : '#0b1c30';
+    const gridColor = isMyRank ? 'rgba(255, 255, 255, 0.08)' : 'rgba(0, 0, 0, 0.04)';
 
     const sasCtx = document.getElementById('sas-trend-chart');
     if (sasCtx) {

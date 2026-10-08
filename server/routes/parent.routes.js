@@ -3,17 +3,54 @@ const express = require('express');
 const router = express.Router();
 const { getFirestoreDb } = require('../db/firebase');
 
+// GET /api/parent/overview — consolidated overview for parent portal
+router.get('/overview', async (req, res) => {
+  try {
+    const db = getFirestoreDb();
+    const userId = req.user.uid;
+
+    const [userDoc, cheersSnapshot, clinicsSnapshot] = await Promise.all([
+      db.collection('users').doc(userId).get(),
+      db.collection('parent_cheers').where('user_id', '==', userId).limit(20).get(),
+      db.collection('clinic_bookings').where('user_id', '==', userId).limit(20).get()
+    ]);
+
+    const student = userDoc.exists ? userDoc.data() : { name: req.user.name || 'Student', level: 1, xp: 0 };
+    const cheers = cheersSnapshot.docs
+      .map(d => ({ id: d.id, ...d.data() }))
+      .sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''))
+      .slice(0, 5);
+      
+    const clinics = clinicsSnapshot.docs
+      .map(d => ({ id: d.id, ...d.data() }))
+      .sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''))
+      .slice(0, 5);
+
+    res.json({
+      success: true,
+      student,
+      cheers,
+      clinics
+    });
+  } catch (err) {
+    res.status(500).json({ error: 'Failed to fetch parent overview', details: err.message });
+  }
+});
+
 // GET /api/parent/cheers — retrieve delivered cheer messages
 router.get('/cheers', async (req, res) => {
   try {
     const db = getFirestoreDb();
     const snapshot = await db.collection('parent_cheers')
       .where('user_id', '==', req.user.uid)
-      .orderBy('created_at', 'desc')
-      .limit(10)
+      .limit(20)
       .get();
       
-    const cheers = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    const cheers = snapshot.docs
+      .map(doc => ({ id: doc.id, ...doc.data() }))
+      .sort((a, b) => (b.created_at || '').localeCompare(a.created_at || ''))
+      .slice(0, 10);
+      
     res.json({ cheers });
   } catch (err) {
     res.status(500).json({ error: 'Failed to fetch parent cheers' });

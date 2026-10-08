@@ -226,7 +226,7 @@ LearnlyRouter.register('tutor-portal', function() {
           <span class="material-symbols-outlined text-sm text-slate-400">schedule</span>
           ${b.date}, ${b.time}
         </span>
-        <button onclick="alert('Launching Live Tutor Video Clinic room...')" class="px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-[11px] shadow transition-all cursor-pointer flex items-center gap-1">
+        <button onclick="window.location.hash='#clinic-confirmation'; if(window.AIBuddy){window.AIBuddy.showToast('Joining Strategy Clinic','Connecting encrypted strategy room with Leo...');}" class="px-3 py-1 rounded-lg bg-indigo-600 hover:bg-indigo-700 text-white font-bold text-[11px] shadow transition-all cursor-pointer flex items-center gap-1">
           <span class="material-symbols-outlined text-xs">videocam</span>
           Join Clinic
         </button>

@@ -47,17 +47,17 @@ const LearnlyRouter = {
     const container = document.getElementById('page-content');
     if (!container) return;
 
-    // DEV BYPASS: Mock auth state so user can view all UI changes without logging in
-    this.currentUser = { email: 'dev@learnly.com' };
-
     // Check Auth State
     if (window.firebase) {
-      const isLoggedIn = !!this.currentUser;
-      if (!isLoggedIn && name !== 'login') {
+      const hasActiveSession = !!this.currentUser || 
+        !!localStorage.getItem('learnly_active_role') || 
+        !!localStorage.getItem('learnly_active_subscription');
+
+      if (!hasActiveSession && name !== 'login') {
         window.location.hash = 'login';
         return;
       }
-      if (isLoggedIn && name === 'login') {
+      if (hasActiveSession && name === 'login') {
         window.location.hash = 'dashboard';
         return;
       }
@@ -92,6 +92,7 @@ const LearnlyRouter = {
     if (titleEl) {
       const titles = {
         'dashboard': 'Dashboard',
+        'learn-solve': 'Learn & Solve Studio',
         'practice-arena': 'Practice Arena',
         'mock-exams': 'Mock Exams',
         'analytics': 'Performance Analytics',
@@ -225,5 +226,16 @@ const LearnlyRouter = {
     const obj = {};
     params.forEach((v, k) => obj[k] = v);
     return obj;
+  },
+
+  logout() {
+    this.currentUser = null;
+    localStorage.removeItem('learnly_active_role');
+    localStorage.removeItem('learnly_active_subscription');
+    localStorage.removeItem('learnly_active_tutor');
+    if (window.firebase && window.firebase.auth) {
+      window.firebase.auth().signOut().catch(() => {});
+    }
+    window.location.hash = 'login';
   }
 };

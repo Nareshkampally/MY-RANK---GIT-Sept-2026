@@ -1,0 +1,76 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+    
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // User profiles: Users can read/write their own document
+    match /users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId);
+    }
+
+    // Question bank & test papers: Read-only for authenticated students, writes restricted to Admin SDK backend
+    match /questions/{questionId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    match /test_papers/{paperId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    // Vocabulary library: Read-only for authenticated students
+    match /vocab_words/{wordId} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    // Cohort leaderboard: Read-only for authenticated students
+    match /cohort_leaderboard/{entry} {
+      allow read: if isAuthenticated();
+      allow write: if false;
+    }
+
+    // Test attempts: Owner only
+    match /test_attempts/{attemptId} {
+      allow read: if isAuthenticated() && (resource == null || resource.data.user_id == request.auth.uid);
+      allow create: if isAuthenticated() && request.resource.data.user_id == request.auth.uid;
+      allow update, delete: if isAuthenticated() && resource.data.user_id == request.auth.uid;
+    }
+
+    // Mistake vault: Owner only
+    match /mistake_vault/{mistakeId} {
+      allow read: if isAuthenticated() && (resource == null || resource.data.user_id == request.auth.uid);
+      allow create: if isAuthenticated() && request.resource.data.user_id == request.auth.uid;
+      allow update, delete: if isAuthenticated() && resource.data.user_id == request.auth.uid;
+    }
+
+    // Clinic bookings: Owner only
+    match /clinic_bookings/{bookingId} {
+      allow read: if isAuthenticated() && (resource == null || resource.data.user_id == request.auth.uid);
+      allow create: if isAuthenticated() && request.resource.data.user_id == request.auth.uid;
+      allow update, delete: if isAuthenticated() && resource.data.user_id == request.auth.uid;
+    }
+
+    // Parent cheers: Owner only
+    match /parent_cheers/{cheerId} {
+      allow read: if isAuthenticated() && (resource == null || resource.data.user_id == request.auth.uid);
+      allow create: if isAuthenticated() && request.resource.data.user_id == request.auth.uid;
+      allow update, delete: if isAuthenticated() && resource.data.user_id == request.auth.uid;
+    }
+
+    // Default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

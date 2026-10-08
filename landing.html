@@ -2042,9 +2042,31 @@
         `Selected: (${selectedGroup1 || '_'}) and (${selectedGroup2 || '_'})`;
     }
 
+    function showLandingToast(title, message, isError = false) {
+      const existing = document.getElementById('landing-live-toast');
+      if (existing) existing.remove();
+
+      const toast = document.createElement('div');
+      toast.id = 'landing-live-toast';
+      toast.className = `fixed bottom-6 right-6 z-50 ${isError ? 'bg-rose-950/90 border-rose-500/50' : 'bg-slate-900/90 border-slate-700/60'} backdrop-blur-xl text-white px-5 py-4 rounded-2xl shadow-2xl border flex items-center gap-3 transition-all duration-300 animate-in fade-in slide-in-from-bottom-5`;
+      toast.innerHTML = `
+        <span class="material-symbols-outlined ${isError ? 'text-rose-400' : 'text-indigo-400'} text-2xl">${isError ? 'warning' : 'info'}</span>
+        <div>
+          <div class="font-bold text-xs">${title}</div>
+          <div class="text-[11px] text-slate-300">${message}</div>
+        </div>
+      `;
+      document.body.appendChild(toast);
+      setTimeout(() => {
+        toast.classList.add('opacity-0', 'translate-y-2');
+        setTimeout(() => toast.remove(), 400);
+      }, 3500);
+    }
+
     function checkDrillAnswer() {
       if (!selectedGroup1 || !selectedGroup2) {
-        alert("Please select one word from Group 1 and one word from Group 2!");
+        playAudioTone(240, 'triangle', 0.15);
+        showLandingToast('Selection Incomplete', 'Please select one word from Group 1 and one word from Group 2!', true);
         return;
       }
       playAudioTone(880, 'sine', 0.12);

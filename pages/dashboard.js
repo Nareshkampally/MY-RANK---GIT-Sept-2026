@@ -29,11 +29,15 @@ LearnlyRouter.register('dashboard', function() {
               <strong class="text-yellow-300">3D Spatial Nets</strong> — your weakest topic at 68%.
             </p>
             <div class="flex flex-wrap gap-3">
-              <button class="px-6 py-3 rounded-xl bg-white text-primary font-bold hover:bg-gray-50 transition-colors shadow-lg flex items-center gap-2 text-sm" data-navigate="practice-arena">
+              <button class="px-6 py-3 rounded-xl bg-white text-primary font-bold hover:bg-gray-50 transition-colors shadow-lg flex items-center gap-2 text-sm cursor-pointer" data-navigate="practice-arena">
                 <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">sports_esports</span>
                 Continue Studying
               </button>
-              <button class="px-6 py-3 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-colors flex items-center gap-2 text-sm backdrop-blur-md" data-navigate="study-planner">
+              <button class="px-6 py-3 rounded-xl bg-amber-400 text-indigo-950 font-black hover:bg-amber-300 transition-colors shadow-lg flex items-center gap-2 text-sm cursor-pointer" data-navigate="learn-solve">
+                <span class="material-symbols-outlined text-lg">lightbulb</span>
+                Learn &amp; Solve Studio
+              </button>
+              <button class="px-6 py-3 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-colors flex items-center gap-2 text-sm backdrop-blur-md cursor-pointer" data-navigate="study-planner">
                 <span class="material-symbols-outlined text-lg">calendar_month</span>
                 View Plan
               </button>

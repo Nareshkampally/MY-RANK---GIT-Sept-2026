@@ -160,6 +160,128 @@ LearnlyRouter.register('ai-learning', function() {
       }, 1500);
     }
     
+    const chatInput = document.getElementById('ai-chat-input');
+    const chatSend = document.getElementById('ai-chat-send');
+    const startLessonBtn = document.querySelector('button:has-text("Start Lesson"), .bg-gradient-to-br button');
+
+    function sendChatMessage() {
+      if (!chatInput) return;
+      const text = chatInput.value.trim();
+      if (!text) return;
+
+      // Append User message
+      const userMsg = document.createElement('div');
+      userMsg.className = 'flex gap-3 max-w-[85%] ml-auto justify-end page-enter';
+      userMsg.innerHTML = `
+        <div class="p-3.5 rounded-[2rem] rounded-tr-none bg-primary text-on-primary text-sm shadow-sm leading-relaxed">
+          ${text.replace(/</g, '&lt;').replace(/>/g, '&gt;')}
+        </div>
+      `;
+      chatHistory.appendChild(userMsg);
+      chatInput.value = '';
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+
+      // Show typing indicator
+      const typingIndicator = document.createElement('div');
+      typingIndicator.id = 'ai-typing-indicator';
+      typingIndicator.className = 'flex gap-3 max-w-[85%] page-enter';
+      typingIndicator.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+          <span class="material-symbols-outlined text-white text-sm">smart_toy</span>
+        </div>
+        <div class="p-3 rounded-2xl rounded-tl-none bg-surface-container-low text-on-surface text-xs flex items-center gap-2 text-slate-500 font-medium">
+          <span class="w-2 h-2 rounded-full bg-primary animate-bounce"></span>
+          <span class="w-2 h-2 rounded-full bg-primary animate-bounce [animation-delay:0.2s]"></span>
+          <span class="w-2 h-2 rounded-full bg-primary animate-bounce [animation-delay:0.4s]"></span>
+          <span>Karat AI is composing step-by-step guidance...</span>
+        </div>
+      `;
+      chatHistory.appendChild(typingIndicator);
+      chatHistory.scrollTop = chatHistory.scrollHeight;
+
+      // Dynamic Socratic responses based on keywords
+      setTimeout(() => {
+        const ind = document.getElementById('ai-typing-indicator');
+        if (ind) ind.remove();
+
+        const lower = text.toLowerCase();
+        let replyHtml = '';
+
+        if (lower.includes('net') || lower.includes('spatial') || lower.includes('cube') || lower.includes('fold')) {
+          replyHtml = `
+            <p>Great focus on <strong>Spatial Reasoning</strong>! Remember our 3-step Rule of Opposites:</p>
+            <ol class="list-decimal list-inside space-y-1 text-xs mt-1">
+              <li>In any 6-square T-net or cross-net, faces with <strong>one face between them</strong> are always opposites.</li>
+              <li>Opposite faces can <em>never</em> touch or share an edge in the assembled 3D cube.</li>
+              <li>Eliminate options that show two opposite faces next to each other!</li>
+            </ol>
+            <p class="mt-2 text-xs text-primary font-bold">Try applying this on the Spatial Mastery module or Mock #04!</p>
+          `;
+        } else if (lower.includes('math') || lower.includes('fraction') || lower.includes('ratio') || lower.includes('percent')) {
+          replyHtml = `
+            <p>Let's break this down methodically:</p>
+            <p class="mt-1">For fractions and ratios in 11+ exams, always find the <strong>Common Denominator</strong> or <strong>Value of One Part</strong> first.</p>
+            <div class="p-2.5 rounded-xl bg-primary/5 border border-primary/20 text-xs font-mono my-1">
+              Total Units = Ratio A + Ratio B<br/>
+              Value per Unit = Total Amount ÷ Total Units
+            </div>
+            <p class="text-xs">What numbers are given in your problem? Reply with the values and we will solve it together step-by-step!</p>
+          `;
+        } else if (lower.includes('vocab') || lower.includes('word') || lower.includes('synonym') || lower.includes('antonym')) {
+          replyHtml = `
+            <p>Vocabulary mastery is key for top CEM and GL scores!</p>
+            <p class="mt-1 text-xs">Whenever you encounter an unfamiliar word, look for Latin/Greek roots and the emotional prefix (e.g. <em>mal-</em> = bad, <em>bene-</em> = good).</p>
+            <p class="mt-1 text-xs">You can also practice the <strong>Vocab Vault</strong> in your practice area to lock in spaced-repetition retention.</p>
+          `;
+        } else {
+          replyHtml = `
+            <p>Excellent question, Leo! In 11+ preparation, accuracy comes from structured elimination.</p>
+            <p class="mt-1 text-xs">1. Identify the question type (GL Assessment vs CEM style).<br/>
+            2. Eliminate the 2 answers you know are definitely incorrect.<br/>
+            3. Compare the remaining 2 carefully for subtle details or units.</p>
+            <p class="mt-2 text-xs">Would you like me to generate a quick practice question on this topic?</p>
+          `;
+        }
+
+        const aiMsg = document.createElement('div');
+        aiMsg.className = 'flex gap-3 max-w-[85%] page-enter';
+        aiMsg.innerHTML = `
+          <div class="w-8 h-8 rounded-full bg-primary flex items-center justify-center shrink-0">
+            <span class="material-symbols-outlined text-white text-sm">smart_toy</span>
+          </div>
+          <div class="p-3.5 rounded-[2rem] rounded-tl-none bg-surface-container-low text-on-surface text-sm space-y-2 leading-relaxed shadow-sm">
+            ${replyHtml}
+          </div>
+        `;
+        chatHistory.appendChild(aiMsg);
+        chatHistory.scrollTop = chatHistory.scrollHeight;
+      }, 900);
+    }
+
+    if (chatSend) {
+      chatSend.addEventListener('click', sendChatMessage);
+    }
+
+    if (chatInput) {
+      chatInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+          e.preventDefault();
+          sendChatMessage();
+        }
+      });
+    }
+
+    // Connect recommended lesson button
+    const lessonBtn = document.querySelector('.bg-gradient-to-br button');
+    if (lessonBtn) {
+      lessonBtn.addEventListener('click', () => {
+        window.location.hash = '#practice-arena';
+        if (window.AIBuddy) {
+          window.AIBuddy.showToast('Starting Spatial Mastery', 'Loading 3D Net rotations and spatial practice in the Practice Arena...');
+        }
+      });
+    }
+
     if (uploadInput) {
       uploadInput.addEventListener('change', (e) => {
         if (e.target.files && e.target.files[0]) {

@@ -9,9 +9,7 @@ router.get('/', async (req, res) => {
   try {
     const { subject, limit = 50, paper_id } = req.query;
     const db = getFirestoreDb();
-    const parsedLimit = Math.min(Math.max(parseInt(limit) || 50, 5), 100);
-
-    let query = db.collection('questions');
+    const parsedLimit = Math.min(Math.max(parseInt(limit) || 50, 5), 200);
 
     const subjectMap = {
       maths: 'Mathematics',
@@ -24,38 +22,101 @@ router.get('/', async (req, res) => {
     };
 
     const targetSubject = subject ? subjectMap[subject.toLowerCase()] || subject : null;
+    let questions = [];
 
     if (paper_id) {
-      query = query.where('test_paper_id', '==', paper_id);
+      const snapshot = await db.collection('questions')
+        .where('test_paper_id', '==', paper_id)
+        .limit(parsedLimit)
+        .get();
+      questions = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
     } else if (targetSubject && targetSubject !== 'composite' && targetSubject !== 'all') {
-      query = query.where('subject', '==', targetSubject);
+      const snapshot = await db.collection('questions')
+        .where('subject', '==', targetSubject)
+        .limit(parsedLimit)
+        .get();
+      questions = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
+    } else {
+      // Balanced 4-subject distribution for composite/all
+      const subjects = ['Mathematics', 'Verbal Reasoning', 'Non-Verbal Reasoning', 'English'];
+      const perSubj = Math.ceil(parsedLimit / subjects.length);
+      
+      const snapshots = await Promise.all(
+        subjects.map(s => db.collection('questions').where('subject', '==', s).limit(perSubj).get())
+      );
+
+      snapshots.forEach(snap => {
+        snap.docs.forEach(doc => {
+          questions.push({ id: doc.id, ...doc.data() });
+        });
+      });
     }
 
-    const snapshot = await query.limit(parsedLimit).get();
-    let questions = snapshot.docs.map(doc => {
-      const data = doc.data();
-      return {
-        id: doc.id,
-        test_paper_id: data.test_paper_id,
-        question_number: data.question_number,
-        subject: data.subject,
-        stem: data.stem,
-        passage_context: data.passage_context,
-        options: data.options || [],
-        correct_answer: data.correct_answer,
-        explanation: data.explanation,
-        socratic_hints: data.socratic_hints
-      };
-    });
+    // Sort clean questions and filter out any placeholder/generated stems if authentic ones exist
+    const cleanQuestions = questions.filter(q => !q.stem?.startsWith('[Generated]'));
+    const finalPool = cleanQuestions.length >= Math.min(parsedLimit, 25) ? cleanQuestions : questions;
+
+    const formattedQuestions = finalPool.slice(0, parsedLimit).map(data => ({
+      id: data.id,
+      test_paper_id: data.test_paper_id,
+      question_number: data.question_number,
+      subject: data.subject,
+      stem: data.stem,
+      passage_context: data.passage_context || '',
+      options: data.options || [],
+      correct_answer: data.correct_answer,
+      explanation: data.explanation || '',
+      socratic_hints: data.socratic_hints || {}
+    }));
 
     res.json({
-      count: questions.length,
+      count: formattedQuestions.length,
       limit: parsedLimit,
-      questions
+      questions: formattedQuestions
     });
   } catch (err) {
     console.error('Failed to fetch questions:', err);
     res.status(500).json({ error: 'Failed to fetch questions' });
+  }
+});
+
+// GET /api/questions/random — return random balanced questions across subjects
+router.get('/random', async (req, res) => {
+  try {
+    const { limit = 20, subject } = req.query;
+    const db = getFirestoreDb();
+    const parsedLimit = Math.min(Math.max(parseInt(limit) || 20, 1), 100);
+
+    const subjects = subject 
+      ? [subject] 
+      : ['Mathematics', 'Verbal Reasoning', 'Non-Verbal Reasoning', 'English'];
+    const perSubj = Math.ceil(parsedLimit / subjects.length);
+
+    const snapshots = await Promise.all(
+      subjects.map(s => db.collection('questions').where('subject', '==', s).limit(perSubj + 5).get())
+    );
+
+    let pool = [];
+    snapshots.forEach(snap => {
+      snap.docs.forEach(doc => {
+        pool.push({ id: doc.id, ...doc.data() });
+      });
+    });
+
+    // Shuffle pool
+    for (let i = pool.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [pool[i], pool[j]] = [pool[j], pool[i]];
+    }
+
+    const selected = pool.slice(0, parsedLimit);
+    res.json({
+      count: selected.length,
+      questions: selected
+    });
+  } catch (err) {
+    console.error('Failed to fetch random questions:', err);
+    res.status(500).json({ error: 'Failed to fetch random questions' });
   }
 });
 

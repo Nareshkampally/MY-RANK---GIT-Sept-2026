@@ -48,6 +48,49 @@ LearnlyRouter.register('drill-cloze', function() {
       </div>
     </div>
   </div>`;
+}, function() {
+  const bubbles = document.querySelectorAll('.answer-bubble');
+  const nextBtn = document.querySelector('.answer-bubble')?.closest('.col-span-12')?.querySelector('button:last-child');
+  let selected = -1;
+
+  bubbles.forEach((b, idx) => {
+    b.onclick = () => {
+      selected = idx;
+      bubbles.forEach((btn, i) => {
+        if (i === idx) {
+          btn.className = 'answer-bubble w-full flex items-center gap-4 p-4 rounded-[2.5rem] border-2 border-primary bg-primary/10 shadow-md transition-all';
+          const iconSpan = btn.querySelector('span:first-child');
+          if (iconSpan) {
+            iconSpan.className = 'w-12 h-12 rounded-xl bg-primary text-white flex items-center justify-center text-lg font-black flex-shrink-0 shadow-sm';
+          }
+        } else {
+          btn.className = 'answer-bubble w-full flex items-center gap-4 p-4 rounded-[2.5rem] border-2 border-outline-variant/30 bg-surface hover:border-primary/50 transition-colors shadow-sm';
+          const iconSpan = btn.querySelector('span:first-child');
+          if (iconSpan) {
+            iconSpan.className = 'w-12 h-12 rounded-xl bg-surface-container-high text-on-surface-variant flex items-center justify-center text-lg font-extrabold flex-shrink-0 shadow-inner';
+          }
+        }
+      });
+
+      if (window.AIBuddy) {
+        if (idx === 0) {
+          window.AIBuddy.showToast('Spot on!', 'Option A resolves both "hardly a failure" (they managed) and "lack of equipment" (not entirely conclusive).');
+        } else {
+          window.AIBuddy.showToast('Review Qualifiers', 'Remember "hardly" negates failure. If it was hardly a failure, they managed to collect samples!');
+        }
+      }
+    };
+  });
+
+  if (nextBtn) {
+    nextBtn.onclick = () => {
+      if (selected === -1) {
+        if (window.AIBuddy) window.AIBuddy.showToast('Select an Answer', 'Please choose an option to complete the passage.');
+        return;
+      }
+      window.location.hash = '#drill-score';
+    };
+  }
 });
 
 // Drill #3: Section B Timed Re-run

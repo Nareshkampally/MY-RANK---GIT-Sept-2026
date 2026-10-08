@@ -22,7 +22,7 @@ LearnlyRouter.register('past-papers', function() {
         </p>
       </div>
       <div class="flex items-center gap-3 relative z-10 self-start md:self-auto">
-        <button class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold shadow-sm hover:bg-white/20 transition-colors" type="button" onclick="alert('Preparing batch download pack (12 PDF papers + OMR sheets)...')">
+        <button class="inline-flex items-center gap-2 px-5 py-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white text-sm font-bold shadow-sm hover:bg-white/20 transition-colors" type="button" onclick="if(window.AIBuddy){window.AIBuddy.showToast('Print Pack Queued','Preparing 12 authentic PDF past papers and blank OMR bubble sheets for printing...');}">
           <span class="material-symbols-outlined text-lg">print</span>
           Batch Print Pack
         </button>
@@ -214,7 +214,7 @@ LearnlyRouter.register('past-papers', function() {
               <a href="#mock-simulation" class="flex-1 py-2 text-center rounded-xl border border-outline-variant/20 bg-surface text-on-surface text-xs font-bold hover:bg-surface-container-lowest transition-colors shadow-sm">
                 Re-run
               </a>
-              <button onclick="alert('Downloading QE Boys 2024 Past Paper PDF...')" class="flex-1 py-2 rounded-xl border border-outline-variant/20 bg-surface text-on-surface text-xs font-bold hover:bg-surface-container-lowest transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <button onclick="if(window.AIBuddy){window.AIBuddy.showToast('Past Paper Download','Downloading QE Boys 2024 Examination PDF + official mark scheme...');}" class="flex-1 py-2 rounded-xl border border-outline-variant/20 bg-surface text-on-surface text-xs font-bold hover:bg-surface-container-lowest transition-colors flex items-center justify-center gap-1.5 shadow-sm">
                 <span class="material-symbols-outlined text-base">download</span> PDF
               </button>
             </div>
@@ -264,7 +264,7 @@ LearnlyRouter.register('past-papers', function() {
               Launch Timed Exam
             </a>
             <div class="flex gap-3">
-              <button onclick="alert('Downloading HBS 2024 Past Paper PDF...')" class="w-full py-2 rounded-xl border border-outline-variant/20 bg-surface text-on-surface text-xs font-bold hover:bg-surface-container-lowest transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <button onclick="if(window.AIBuddy){window.AIBuddy.showToast('Past Paper Download','Downloading HBS 2024 Stage 1 Examination PDF & Scoring Grid...');}" class="w-full py-2 rounded-xl border border-outline-variant/20 bg-surface text-on-surface text-xs font-bold hover:bg-surface-container-lowest transition-colors flex items-center justify-center gap-1.5 shadow-sm">
                 <span class="material-symbols-outlined text-base">download</span> Download PDF
               </button>
             </div>
@@ -317,7 +317,7 @@ LearnlyRouter.register('past-papers', function() {
               <a href="#mock-simulation" class="flex-1 py-2 text-center rounded-xl border border-outline-variant/20 bg-surface text-on-surface text-xs font-bold hover:bg-surface-container-lowest transition-colors shadow-sm">
                 Re-run
               </a>
-              <button onclick="alert('Downloading Westminster 2023 Paper PDF...')" class="flex-1 py-2 rounded-xl border border-outline-variant/20 bg-surface text-on-surface text-xs font-bold hover:bg-surface-container-lowest transition-colors flex items-center justify-center gap-1.5 shadow-sm">
+              <button onclick="if(window.AIBuddy){window.AIBuddy.showToast('Past Paper Download','Downloading Westminster Under 2023 Paper PDF + solutions guide...');}" class="flex-1 py-2 rounded-xl border border-outline-variant/20 bg-surface text-on-surface text-xs font-bold hover:bg-surface-container-lowest transition-colors flex items-center justify-center gap-1.5 shadow-sm">
                 <span class="material-symbols-outlined text-base">download</span> PDF
               </button>
             </div>

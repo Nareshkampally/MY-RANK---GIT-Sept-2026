@@ -1,7 +1,7 @@
 /* Learnly 11+ / MyRank 11+ — Dynamic Global Design System */
 /* Extracted from Stitch projects:
    1. Learnly 11+ Modern Prep (#4F46E5 Indigo Light)
-   2. MyRank 11+ Luminous Scholar (#C7FF24 Electric Lime Dark) */
+   2. MyRank 11+ Obsidian Scholar (Royal Indigo & Deep Slate Dark Mode) */
 
 :root, html[data-theme="learnly"] {
   --primary: #3525cd;
@@ -66,71 +66,110 @@
   --glass-bg: rgba(15, 23, 42, 0.4);
   --header-bg: rgba(248, 249, 255, 0.85);
   --sidebar-border: rgba(0, 0, 0, 0.06);
+
+  /* Claymorphism 3D Tokens (Light Mode) */
+  --clay-bg-card: #ffffff;
+  --clay-bg-subtle: #f8fafc;
+  --clay-shadow-card: 0 16px 34px -4px rgba(79, 70, 229, 0.09), 0 6px 14px -2px rgba(15, 23, 42, 0.04), inset 3px 3px 6px rgba(255, 255, 255, 0.95), inset -4px -5px 8px rgba(15, 23, 42, 0.05);
+  --clay-shadow-card-hover: 0 24px 44px -4px rgba(79, 70, 229, 0.16), 0 10px 18px -2px rgba(15, 23, 42, 0.06), inset 3.5px 3.5px 6px rgba(255, 255, 255, 1), inset -5px -6px 10px rgba(15, 23, 42, 0.07);
+  --clay-shadow-btn-primary: 0 10px 22px -2px rgba(79, 70, 229, 0.38), 0 4px 8px -1px rgba(79, 70, 229, 0.22), inset 2.5px 2.5px 4px rgba(255, 255, 255, 0.45), inset -3px -3px 6px rgba(30, 27, 75, 0.4);
+  --clay-shadow-btn-amber: 0 10px 22px -2px rgba(245, 158, 11, 0.38), 0 4px 8px -1px rgba(245, 158, 11, 0.22), inset 2.5px 2.5px 4px rgba(255, 255, 255, 0.65), inset -3px -3px 6px rgba(180, 83, 9, 0.35);
+  --clay-shadow-btn-emerald: 0 10px 22px -2px rgba(16, 185, 129, 0.38), 0 4px 8px -1px rgba(16, 185, 129, 0.22), inset 2.5px 2.5px 4px rgba(255, 255, 255, 0.55), inset -3px -3px 6px rgba(4, 120, 87, 0.35);
+  --clay-shadow-btn-white: 0 8px 18px -2px rgba(15, 23, 42, 0.08), 0 3px 6px -1px rgba(15, 23, 42, 0.04), inset 2.5px 2.5px 5px rgba(255, 255, 255, 1), inset -3px -3px 5px rgba(15, 23, 42, 0.06);
+  --clay-shadow-pill: 0 6px 14px -1px rgba(79, 70, 229, 0.12), 0 2px 4px rgba(15, 23, 42, 0.04), inset 2px 2px 4px rgba(255, 255, 255, 0.9), inset -2.5px -2.5px 5px rgba(15, 23, 42, 0.06);
+  --clay-shadow-pill-active: 0 8px 18px -2px rgba(79, 70, 229, 0.35), inset 2px 2px 4px rgba(255, 255, 255, 0.45), inset -3px -3px 5px rgba(30, 27, 75, 0.35);
+  --clay-shadow-inset: inset 3px 3px 7px rgba(15, 23, 42, 0.08), inset -3px -3px 6px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(15, 23, 42, 0.02);
+  --clay-btn-primary-bg: linear-gradient(145deg, #4f46e5, #4338ca);
+  --clay-btn-amber-bg: linear-gradient(145deg, #fbbf24, #f59e0b);
+  --clay-btn-emerald-bg: linear-gradient(145deg, #34d399, #10b981);
+  --clay-radius-card: 26px;
+  --clay-radius-btn: 9999px;
 }
 
-html[data-theme="myrank"] {
-  --primary: #c7ff24;
-  --primary-container: #bef512;
-  --on-primary: #111509;
-  --on-primary-container: #151f00;
-  --primary-fixed: #bef512;
-  --primary-fixed-dim: #a6d700;
-  --on-primary-fixed: #151f00;
-  --on-primary-fixed-variant: #3a4d00;
-  --inverse-primary: #4e6700;
+/* 2. MyRank 11+ Obsidian Scholar (Royal Indigo Dark Mode) */
+html[data-theme="myrank"],
+html.dark {
+  /* Obsidian & Midnight Slate — Premium Dark Mode (Linear / Stripe / Vercel aesthetic) */
+  --primary: #6366f1;
+  --primary-container: #4f46e5;
+  --on-primary: #ffffff;
+  --on-primary-container: #e0e7ff;
+  --primary-fixed: #818cf8;
+  --primary-fixed-dim: #6366f1;
+  --on-primary-fixed: #1e1b4b;
+  --on-primary-fixed-variant: #312e81;
+  --inverse-primary: #818cf8;
 
-  --secondary: #cbc5c3;
-  --secondary-container: #4c4847;
-  --on-secondary: #33302e;
-  --on-secondary-container: #bdb7b5;
-  --secondary-fixed: #e8e1df;
-  --secondary-fixed-dim: #cbc5c3;
-  --on-secondary-fixed: #1d1b1a;
-  --on-secondary-fixed-variant: #494644;
+  --secondary: #f59e0b;
+  --secondary-container: #b45309;
+  --on-secondary: #ffffff;
+  --on-secondary-container: #fef3c7;
+  --secondary-fixed: #fbbf24;
+  --secondary-fixed-dim: #f59e0b;
+  --on-secondary-fixed: #451a03;
+  --on-secondary-fixed-variant: #78350f;
 
-  --tertiary: #ffffff;
-  --tertiary-container: #dde2f6;
-  --on-tertiary: #2a303f;
-  --on-tertiary-container: #5e6475;
-  --tertiary-fixed: #dde2f6;
-  --tertiary-fixed-dim: #c1c6d9;
-  --on-tertiary-fixed: #151b29;
-  --on-tertiary-fixed-variant: #414756;
+  --tertiary: #10b981;
+  --tertiary-container: #047857;
+  --on-tertiary: #ffffff;
+  --on-tertiary-container: #d1fae5;
+  --tertiary-fixed: #34d399;
+  --tertiary-fixed-dim: #10b981;
+  --on-tertiary-fixed: #022c22;
+  --on-tertiary-fixed-variant: #064e3b;
 
-  --background: #111509;
-  --on-background: #e1e4d0;
-  --surface: #111509;
-  --on-surface: #e1e4d0;
-  --surface-dim: #111509;
-  --surface-bright: #373b2c;
-  --surface-variant: #333628;
-  --on-surface-variant: #c3caad;
-  --surface-container-lowest: #0c0f05;
-  --surface-container-low: #191d10;
-  --surface-container: #1d2114;
-  --surface-container-high: #282b1e;
-  --surface-container-highest: #333628;
-  --surface-tint: #a6d700;
-  --inverse-surface: #e1e4d0;
-  --inverse-on-surface: #2e3224;
-  --surface-elevated: #1C1917;
-  --surface-border: #292524;
-  --text-muted: #E7E5E4;
+  --background: #090d16;
+  --on-background: #f8fafc;
+  --surface: #0f172a;
+  --on-surface: #f8fafc;
+  --surface-dim: #090d16;
+  --surface-bright: #1e293b;
+  --surface-variant: #1e293b;
+  --on-surface-variant: #94a3b8;
+  --surface-container-lowest: #0b0f19;
+  --surface-container-low: #111827;
+  --surface-container: #172033;
+  --surface-container-high: #1e293b;
+  --surface-container-highest: #293548;
+  --surface-tint: #818cf8;
+  --inverse-surface: #f8fafc;
+  --inverse-on-surface: #0f172a;
+  --surface-elevated: #1e293b;
+  --surface-border: rgba(255, 255, 255, 0.08);
+  --text-muted: #64748b;
 
-  --outline: #8d947a;
-  --outline-variant: #434933;
-  --error: #ffb4ab;
-  --error-container: #93000a;
-  --on-error: #690005;
-  --on-error-container: #ffdad6;
+  --outline: #475569;
+  --outline-variant: rgba(255, 255, 255, 0.1);
+  --error: #f43f5e;
+  --error-container: #881337;
+  --on-error: #ffffff;
+  --on-error-container: #ffe4e6;
 
-  --elevation-1: 0 4px 20px -2px rgba(0, 0, 0, 0.5), 0 2px 6px -1px rgba(0, 0, 0, 0.3);
-  --elevation-2: 0 12px 32px -4px rgba(0, 0, 0, 0.7), 0 4px 12px -2px rgba(0, 0, 0, 0.5);
-  --elevation-3: 0 20px 48px -8px rgba(0, 0, 0, 0.9), 0 8px 20px -4px rgba(0, 0, 0, 0.6);
+  --elevation-1: 0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.25);
+  --elevation-2: 0 12px 28px -4px rgba(0, 0, 0, 0.6), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
+  --elevation-3: 0 20px 40px -8px rgba(0, 0, 0, 0.8), 0 8px 16px -4px rgba(0, 0, 0, 0.5);
 
-  --glass-bg: rgba(12, 15, 5, 0.75);
-  --header-bg: rgba(17, 21, 9, 0.85);
-  --sidebar-border: rgba(255, 255, 255, 0.08);
+  --glass-bg: rgba(15, 23, 42, 0.75);
+  --header-bg: rgba(11, 15, 25, 0.85);
+  --sidebar-border: rgba(255, 255, 255, 0.07);
+
+  /* Claymorphism 3D Tokens (Obsidian Dark Mode) */
+  --clay-bg-card: #131c2e;
+  --clay-bg-subtle: #0f1728;
+  --clay-shadow-card: 0 18px 38px -4px rgba(0, 0, 0, 0.65), 0 6px 16px -2px rgba(0, 0, 0, 0.45), inset 2px 2px 4px rgba(255, 255, 255, 0.08), inset -4px -5px 10px rgba(0, 0, 0, 0.55);
+  --clay-shadow-card-hover: 0 26px 50px -4px rgba(0, 0, 0, 0.8), 0 10px 22px -2px rgba(0, 0, 0, 0.55), inset 2.5px 2.5px 5px rgba(255, 255, 255, 0.14), inset -5px -6px 12px rgba(0, 0, 0, 0.65);
+  --clay-shadow-btn-primary: 0 10px 24px -2px rgba(99, 102, 241, 0.45), 0 4px 10px -1px rgba(99, 102, 241, 0.25), inset 2px 2px 4px rgba(255, 255, 255, 0.35), inset -3px -3px 6px rgba(15, 23, 42, 0.7);
+  --clay-shadow-btn-amber: 0 10px 24px -2px rgba(245, 158, 11, 0.4), 0 4px 10px -1px rgba(245, 158, 11, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.5), inset -3px -3px 6px rgba(69, 26, 3, 0.6);
+  --clay-shadow-btn-emerald: 0 10px 24px -2px rgba(16, 185, 129, 0.4), 0 4px 10px -1px rgba(16, 185, 129, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.4), inset -3px -3px 6px rgba(2, 44, 34, 0.6);
+  --clay-shadow-btn-white: 0 8px 20px -2px rgba(0, 0, 0, 0.5), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.12), inset -2.5px -2.5px 6px rgba(0, 0, 0, 0.5);
+  --clay-shadow-pill: 0 6px 16px -1px rgba(0, 0, 0, 0.5), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.12), inset -2.5px -2.5px 5px rgba(0, 0, 0, 0.5);
+  --clay-shadow-pill-active: 0 8px 22px -2px rgba(99, 102, 241, 0.45), inset 2px 2px 4px rgba(255, 255, 255, 0.35), inset -3px -3px 5px rgba(15, 23, 42, 0.7);
+  --clay-shadow-inset: inset 3px 3px 8px rgba(0, 0, 0, 0.7), inset -2px -2px 5px rgba(255, 255, 255, 0.05);
+  --clay-btn-primary-bg: linear-gradient(145deg, #6366f1, #4f46e5);
+  --clay-btn-amber-bg: linear-gradient(145deg, #fbbf24, #d97706);
+  --clay-btn-emerald-bg: linear-gradient(145deg, #10b981, #059669);
+  --clay-radius-card: 26px;
+  --clay-radius-btn: 9999px;
 }
 
 @layer base {
@@ -259,22 +298,26 @@ html[data-theme="myrank"] {
   border-radius: 0 2px 2px 0;
   background: var(--primary);
 }
-html[data-theme="myrank"] .nav-link.active {
+html[data-theme="myrank"] .nav-link.active,
+html.dark .nav-link.active {
   background: var(--primary);
-  color: var(--on-primary);
-  box-shadow: 0 4px 14px 0 rgba(199, 255, 36, 0.3);
+  color: #ffffff;
+  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.35);
   font-weight: 700;
 }
-html[data-theme="myrank"] .nav-link.active:hover {
-  background: var(--primary);
-  color: var(--on-primary);
+html[data-theme="myrank"] .nav-link.active:hover,
+html.dark .nav-link.active:hover {
+  background: var(--primary-container);
+  color: #ffffff;
 }
-html[data-theme="myrank"] .nav-link.active .nav-icon {
-  background: rgba(0, 0, 0, 0.1) !important;
-  color: var(--on-primary) !important;
-  border-color: rgba(0, 0, 0, 0.2) !important;
+html[data-theme="myrank"] .nav-link.active .nav-icon,
+html.dark .nav-link.active .nav-icon {
+  background: rgba(255, 255, 255, 0.2) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
 }
-html[data-theme="myrank"] .nav-link.active::before {
+html[data-theme="myrank"] .nav-link.active::before,
+html.dark .nav-link.active::before {
   background: var(--primary-fixed);
 }
 
@@ -385,8 +428,9 @@ html[data-theme="myrank"] .nav-link.active::before {
   border-color: var(--primary);
   box-shadow: 0 4px 14px 0 rgba(79, 70, 229, 0.35);
 }
-html[data-theme="myrank"] .answer-bubble.selected {
-  box-shadow: 0 4px 14px 0 rgba(199, 255, 36, 0.35);
+html[data-theme="myrank"] .answer-bubble.selected,
+html.dark .answer-bubble.selected {
+  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.35);
 }
 .answer-bubble.correct {
   background-color: #006e4b;
@@ -509,8 +553,9 @@ html[data-theme="myrank"] .answer-bubble.selected {
   color: var(--on-primary);
   box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
 }
-html[data-theme="myrank"] .question-dot.current {
-  box-shadow: 0 0 0 3px rgba(199, 255, 36, 0.4);
+html[data-theme="myrank"] .question-dot.current,
+html.dark .question-dot.current {
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.4);
 }
 .question-dot.unanswered {
   background-color: var(--surface-container-high);
@@ -588,4 +633,435 @@ html[data-theme="myrank"] .question-dot.current {
   body { background: white; }
   .print-only { display: block !important; }
 }
+
+/* ==========================================================================
+   Obsidian Dark Mode UI Refinements
+   Linear / Stripe / Vercel / Apple Developer inspired dark ergonomics
+   ========================================================================== */
+html[data-theme="myrank"] #main-sidebar,
+html.dark #main-sidebar {
+  background-color: var(--surface) !important;
+  border-right-color: var(--surface-border) !important;
+  color: var(--on-surface) !important;
+  box-shadow: 1px 0 24px rgba(0, 0, 0, 0.45) !important;
+}
+html[data-theme="myrank"] #main-sidebar .border-slate-100,
+html[data-theme="myrank"] #main-sidebar .border-slate-200,
+html.dark #main-sidebar .border-slate-100,
+html.dark #main-sidebar .border-slate-200 {
+  border-color: var(--surface-border) !important;
+}
+html[data-theme="myrank"] #main-sidebar .text-slate-900,
+html[data-theme="myrank"] #main-sidebar .text-slate-800,
+html.dark #main-sidebar .text-slate-900,
+html.dark #main-sidebar .text-slate-800 {
+  color: var(--on-surface) !important;
+}
+html[data-theme="myrank"] #main-sidebar .text-slate-500,
+html[data-theme="myrank"] #main-sidebar .text-slate-400,
+html.dark #main-sidebar .text-slate-500,
+html.dark #main-sidebar .text-slate-400 {
+  color: var(--on-surface-variant) !important;
+}
+html[data-theme="myrank"] #main-sidebar .hover\:bg-slate-50:hover,
+html.dark #main-sidebar .hover\:bg-slate-50:hover {
+  background-color: var(--surface-container-high) !important;
+  color: var(--on-surface) !important;
+}
+html[data-theme="myrank"] #main-sidebar .bg-slate-50,
+html.dark #main-sidebar .bg-slate-50 {
+  background-color: var(--surface-container-low) !important;
+}
+html[data-theme="myrank"] #main-sidebar .bg-white,
+html.dark #main-sidebar .bg-white {
+  background-color: var(--surface-container) !important;
+}
+
+/* Modals & Popups in Dark Mode */
+html[data-theme="myrank"] .bg-white.rounded-3xl,
+html[data-theme="myrank"] .bg-white.rounded-2xl,
+html[data-theme="myrank"] .bg-white.rounded-xl,
+html.dark .bg-white.rounded-3xl,
+html.dark .bg-white.rounded-2xl,
+html.dark .bg-white.rounded-xl {
+  background-color: var(--surface) !important;
+  border-color: var(--surface-border) !important;
+  color: var(--on-surface) !important;
+}
+
+/* Hardcoded slate borders & hover in modals/cards */
+html[data-theme="myrank"] .border-slate-200,
+html[data-theme="myrank"] .border-slate-100,
+html.dark .border-slate-200,
+html.dark .border-slate-100 {
+  border-color: var(--surface-border) !important;
+}
+html[data-theme="myrank"] .hover\:bg-slate-100:hover,
+html[data-theme="myrank"] .hover\:bg-slate-50:hover,
+html.dark .hover\:bg-slate-100:hover,
+html.dark .hover\:bg-slate-50:hover {
+  background-color: var(--surface-container-high) !important;
+}
+
+/* Native dark inputs & selection */
+html[data-theme="myrank"],
+html.dark {
+  color-scheme: dark;
+}
+html[data-theme="myrank"] ::selection,
+html.dark ::selection {
+  background: rgba(99, 102, 241, 0.4);
+  color: #ffffff;
+}
+
+/* ==========================================================================
+   CLAYMORPHISM 3D DESIGN SYSTEM & TACTILE UI OVERRIDES
+   Modern, soft inflated surfaces, specular light highlights & squishy buttons
+   ========================================================================== */
+
+/* ── 1. Clay Cards & Containers ── */
+.clay-card,
+.bg-surface-container-lowest.rounded-3xl,
+.bg-surface-container-lowest.rounded-2xl,
+#active-studio-card,
+.bg-white.rounded-3xl,
+.bg-white.rounded-2xl {
+  background: var(--clay-bg-card) !important;
+  box-shadow: var(--clay-shadow-card) !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.65) !important;
+  border-radius: var(--clay-radius-card) !important;
+  transition: transform 0.22s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.22s ease;
+}
+
+html[data-theme="myrank"] .clay-card,
+html[data-theme="myrank"] .bg-surface-container-lowest.rounded-3xl,
+html[data-theme="myrank"] .bg-surface-container-lowest.rounded-2xl,
+html[data-theme="myrank"] #active-studio-card,
+html[data-theme="myrank"] .bg-white.rounded-3xl,
+html[data-theme="myrank"] .bg-white.rounded-2xl,
+html.dark .clay-card,
+html.dark .bg-surface-container-lowest.rounded-3xl,
+html.dark .bg-surface-container-lowest.rounded-2xl,
+html.dark #active-studio-card,
+html.dark .bg-white.rounded-3xl,
+html.dark .bg-white.rounded-2xl {
+  background: var(--clay-bg-card) !important;
+  box-shadow: var(--clay-shadow-card) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+}
+
+.clay-card:hover,
+.bg-surface-container-lowest.rounded-3xl:hover,
+#active-studio-card:hover {
+  box-shadow: var(--clay-shadow-card-hover) !important;
+}
+
+/* ── 2. Clay Interactive Method Cards in Learn & Solve ── */
+.method-card {
+  border-radius: 20px !important;
+  background: var(--clay-bg-card) !important;
+  box-shadow: var(--clay-shadow-pill) !important;
+  border: 1.5px solid rgba(79, 70, 229, 0.1) !important;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease !important;
+}
+.method-card:hover {
+  transform: translateY(-2px) scale(1.01);
+  box-shadow: var(--clay-shadow-card) !important;
+  border-color: var(--primary) !important;
+}
+.method-card:active {
+  transform: translateY(1px) scale(0.99);
+}
+.method-card.active,
+.method-card.border-primary {
+  border-color: var(--primary) !important;
+  box-shadow: 0 10px 24px -2px rgba(79, 70, 229, 0.25), inset 2.5px 2.5px 4px rgba(255, 255, 255, 0.6), inset -3px -3px 5px rgba(79, 70, 229, 0.15) !important;
+}
+html[data-theme="myrank"] .method-card,
+html.dark .method-card {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+html[data-theme="myrank"] .method-card.active,
+html[data-theme="myrank"] .method-card.border-primary,
+html.dark .method-card.active,
+html.dark .method-card.border-primary {
+  border-color: var(--primary) !important;
+  box-shadow: 0 10px 26px -2px rgba(99, 102, 241, 0.35), inset 2px 2px 4px rgba(255, 255, 255, 0.18), inset -3px -3px 5px rgba(0, 0, 0, 0.6) !important;
+}
+
+/* ── 3. Tactile 3D Clay Buttons with Elastic Squish ── */
+.clay-btn,
+.btn-primary,
+button.bg-primary,
+a.bg-primary,
+button.bg-indigo-600,
+button.bg-indigo-500,
+#btn-read-aloud,
+#check-answer-btn {
+  background: var(--clay-btn-primary-bg) !important;
+  color: #ffffff !important;
+  border-radius: var(--clay-radius-btn) !important;
+  box-shadow: var(--clay-shadow-btn-primary) !important;
+  border: 1px solid rgba(255, 255, 255, 0.28) !important;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, filter 0.18s ease !important;
+}
+.clay-btn:hover,
+.btn-primary:hover,
+button.bg-primary:hover,
+button.bg-indigo-600:hover,
+#btn-read-aloud:hover,
+#check-answer-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+.clay-btn:active,
+.btn-primary:active,
+button.bg-primary:active,
+button.bg-indigo-600:active,
+#btn-read-aloud:active,
+#check-answer-btn:active {
+  transform: translateY(2px) scale(0.975) !important;
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3), inset 3px 3px 6px rgba(0, 0, 0, 0.35), inset -2px -2px 4px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Amber Clay Buttons */
+.clay-btn-amber,
+button.bg-amber-400,
+button.bg-amber-500 {
+  background: var(--clay-btn-amber-bg) !important;
+  color: #1e1b4b !important;
+  border-radius: var(--clay-radius-btn) !important;
+  box-shadow: var(--clay-shadow-btn-amber) !important;
+  border: 1px solid rgba(255, 255, 255, 0.45) !important;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease !important;
+}
+.clay-btn-amber:hover,
+button.bg-amber-400:hover,
+button.bg-amber-500:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+.clay-btn-amber:active,
+button.bg-amber-400:active,
+button.bg-amber-500:active {
+  transform: translateY(2px) scale(0.975) !important;
+  box-shadow: 0 4px 10px rgba(245, 158, 11, 0.3), inset 3px 3px 6px rgba(180, 83, 9, 0.4), inset -2px -2px 4px rgba(255, 255, 255, 0.3) !important;
+}
+
+/* Emerald Clay Buttons */
+.clay-btn-emerald,
+button.bg-emerald-500,
+button.bg-emerald-600 {
+  background: var(--clay-btn-emerald-bg) !important;
+  color: #ffffff !important;
+  border-radius: var(--clay-radius-btn) !important;
+  box-shadow: var(--clay-shadow-btn-emerald) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease !important;
+}
+.clay-btn-emerald:hover,
+button.bg-emerald-500:hover,
+button.bg-emerald-600:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.05);
+}
+.clay-btn-emerald:active,
+button.bg-emerald-500:active,
+button.bg-emerald-600:active {
+  transform: translateY(2px) scale(0.975) !important;
+  box-shadow: 0 4px 10px rgba(16, 185, 129, 0.3), inset 3px 3px 6px rgba(4, 120, 87, 0.4), inset -2px -2px 4px rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Soft White / Light Clay Buttons */
+button.bg-white {
+  background: var(--clay-bg-card) !important;
+  box-shadow: var(--clay-shadow-btn-white) !important;
+  border: 1px solid rgba(255, 255, 255, 0.7) !important;
+  border-radius: 16px !important;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease !important;
+}
+button.bg-white:hover {
+  transform: translateY(-2px);
+}
+button.bg-white:active {
+  transform: translateY(2px) scale(0.98) !important;
+}
+html[data-theme="myrank"] button.bg-white,
+html.dark button.bg-white {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+/* ── 4. Clay Subject Tab Pills in Learn & Solve ── */
+.ls-tab-btn {
+  border-radius: 9999px !important;
+  box-shadow: var(--clay-shadow-pill) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, background-color 0.2s ease !important;
+}
+.ls-tab-btn:hover {
+  transform: translateY(-1.5px);
+}
+.ls-tab-btn:active {
+  transform: translateY(1.5px) scale(0.98);
+}
+.ls-tab-btn.bg-primary {
+  background: var(--clay-btn-primary-bg) !important;
+  box-shadow: var(--clay-shadow-pill-active) !important;
+  color: #ffffff !important;
+}
+
+/* ── 5. 3D Inflated Level Pills (Q1 - Q10) ── */
+.level-pill {
+  border-radius: 9999px !important;
+  box-shadow: var(--clay-shadow-pill) !important;
+  border: 1px solid rgba(255, 255, 255, 0.4) !important;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease !important;
+}
+.level-pill:hover {
+  transform: translateY(-1.5px) scale(1.03);
+}
+.level-pill:active {
+  transform: translateY(1.5px) scale(0.97);
+}
+.level-pill.bg-primary {
+  background: var(--clay-btn-primary-bg) !important;
+  box-shadow: var(--clay-shadow-pill-active) !important;
+  color: #ffffff !important;
+}
+.level-pill.bg-emerald-500 {
+  background: var(--clay-btn-emerald-bg) !important;
+  box-shadow: var(--clay-shadow-btn-emerald) !important;
+  color: #ffffff !important;
+}
+
+/* ── 6. Clay Multiple-Choice Option Buttons ── */
+.twin-option-btn,
+.option-tile {
+  border-radius: 20px !important;
+  box-shadow: var(--clay-shadow-pill) !important;
+  background: var(--clay-bg-card) !important;
+  border: 1.5px solid rgba(79, 70, 229, 0.12) !important;
+  transition: transform 0.2s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.2s ease, border-color 0.2s ease, background 0.2s ease !important;
+}
+.twin-option-btn:hover,
+.option-tile:hover {
+  transform: translateY(-2px) scale(1.008);
+  box-shadow: var(--clay-shadow-card) !important;
+  border-color: var(--primary) !important;
+}
+.twin-option-btn:active,
+.option-tile:active {
+  transform: translateY(2px) scale(0.985);
+}
+.twin-option-btn.bg-emerald-50 {
+  background: linear-gradient(145deg, #d1fae5, #a7f3d0) !important;
+  border-color: #059669 !important;
+  color: #064e3b !important;
+  box-shadow: 0 8px 20px -2px rgba(16, 185, 129, 0.35), inset 2px 2px 4px rgba(255, 255, 255, 0.8), inset -3px -3px 5px rgba(5, 150, 105, 0.25) !important;
+}
+.twin-option-btn.bg-rose-50 {
+  background: linear-gradient(145deg, #ffe4e6, #fecdd3) !important;
+  border-color: #e11d48 !important;
+  color: #881337 !important;
+  box-shadow: 0 8px 20px -2px rgba(244, 63, 94, 0.3), inset 2px 2px 4px rgba(255, 255, 255, 0.8), inset -3px -3px 5px rgba(225, 29, 72, 0.25) !important;
+}
+html[data-theme="myrank"] .twin-option-btn,
+html.dark .twin-option-btn {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+}
+html[data-theme="myrank"] .twin-option-btn.bg-emerald-50,
+html.dark .twin-option-btn.bg-emerald-50 {
+  background: linear-gradient(145deg, #064e3b, #047857) !important;
+  color: #ecfdf5 !important;
+  border-color: #10b981 !important;
+  box-shadow: 0 8px 20px -2px rgba(16, 185, 129, 0.4), inset 2px 2px 4px rgba(255, 255, 255, 0.2), inset -3px -3px 5px rgba(0, 0, 0, 0.5) !important;
+}
+html[data-theme="myrank"] .twin-option-btn.bg-rose-50,
+html.dark .twin-option-btn.bg-rose-50 {
+  background: linear-gradient(145deg, #881337, #be123c) !important;
+  color: #fff1f2 !important;
+  border-color: #f43f5e !important;
+  box-shadow: 0 8px 20px -2px rgba(244, 63, 94, 0.4), inset 2px 2px 4px rgba(255, 255, 255, 0.2), inset -3px -3px 5px rgba(0, 0, 0, 0.5) !important;
+}
+
+/* ── 7. Clay Inset (Carved / Debossed) Inputs & Search Bars ── */
+.clay-inset,
+input[type="text"]:not(#search-input-unstyle),
+input[type="search"],
+#global-search-input {
+  box-shadow: var(--clay-shadow-inset) !important;
+  border-radius: 16px !important;
+  border: 1px solid rgba(15, 23, 42, 0.06) !important;
+  background: var(--surface-container-low) !important;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+input[type="text"]:focus,
+input[type="search"]:focus,
+#global-search-input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: var(--clay-shadow-inset), 0 0 0 3px rgba(79, 70, 229, 0.15) !important;
+}
+html[data-theme="myrank"] input[type="text"],
+html[data-theme="myrank"] input[type="search"],
+html[data-theme="myrank"] #global-search-input,
+html.dark input[type="text"],
+html.dark input[type="search"],
+html.dark #global-search-input {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  background: rgba(11, 15, 25, 0.6) !important;
+}
+
+/* ── 8. Clay Navigation & Sidebar Pill Overrides ── */
+#main-sidebar .nav-link {
+  border-radius: 16px !important;
+  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, background 0.18s ease !important;
+}
+#main-sidebar .nav-link:hover {
+  transform: translateX(3px);
+}
+#main-sidebar .nav-link.active,
+#main-sidebar .nav-link[data-path="learn-solve"].active,
+#main-sidebar .nav-link[data-path="dashboard"].active {
+  background: var(--clay-btn-primary-bg) !important;
+  color: #ffffff !important;
+  box-shadow: var(--clay-shadow-pill-active) !important;
+  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+}
+#main-sidebar .nav-link.active .nav-text,
+#main-sidebar .nav-link.active span:not(.material-symbols-outlined) {
+  color: #ffffff !important;
+  font-weight: 800 !important;
+}
+#main-sidebar .nav-link.active .nav-icon {
+  background: rgba(255, 255, 255, 0.25) !important;
+  color: #ffffff !important;
+  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.5) !important;
+}
+#main-sidebar .nav-link.active .nav-icon span {
+  color: #ffffff !important;
+}
+html[data-theme="myrank"] #main-sidebar .nav-link.active,
+html.dark #main-sidebar .nav-link.active {
+  background: var(--clay-btn-primary-bg) !important;
+  color: #ffffff !important;
+  border-color: rgba(255, 255, 255, 0.2) !important;
+  box-shadow: var(--clay-shadow-pill-active) !important;
+}
+
+/* ── 9. Clay Badge & Pill Accents ── */
+.clay-badge,
+span.rounded-full.bg-indigo-600,
+span.rounded-full.bg-primary {
+  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.5), inset -2px -2px 4px rgba(30, 27, 75, 0.3) !important;
+}
+
+/* ── 10. Smooth Clay Floating Animation for Heroes & Modals ── */
+@keyframes clayFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+.clay-float {
+  animation: clayFloat 4s ease-in-out infinite;
+}
+
 

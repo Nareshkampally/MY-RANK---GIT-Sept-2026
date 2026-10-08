@@ -18,7 +18,22 @@ app.use(helmet({
   contentSecurityPolicy: false, // Disabled for now to not break inline scripts/styles during migration
 }));
 app.use(compression()); // Gzip compression
-app.use(cors());
+// CORS Origin Restrictions
+const allowedOrigins = process.env.ALLOWED_ORIGINS 
+  ? process.env.ALLOWED_ORIGINS.split(',').map(s => s.trim()) 
+  : ['http://localhost:8080', 'http://127.0.0.1:8080'];
+
+app.use(cors({
+  origin: (origin, callback) => {
+    // Allow requests with no origin (like mobile apps, curl, same-origin)
+    if (!origin) return callback(null, true);
+    if (process.env.NODE_ENV !== 'production' || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    return callback(new Error('CORS blocked: Domain not authorized'));
+  },
+  credentials: true
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -30,9 +45,47 @@ const limiter = rateLimit({
 });
 app.use('/api', limiter);
 
-// Serve static frontend files directly (no caching in dev)
+// Security Middleware: Block direct access to sensitive files, credentials, rules, and server internals
+app.use((req, res, next) => {
+  const normalizedPath = path.normalize(req.path).replace(/^(\.\.[\/\\])+/, '');
+  const sensitivePatterns = [
+    /^\/\.env/i,
+    /^\/serviceAccountKey\.json/i,
+    /^\/server(\/|$)/i,
+    /\.sqlite/i,
+    /^\/\.git(\/|$)/i,
+    /^\/package(-lock)?\.json/i,
+    /^\/firebase\.json/i,
+    /^\/\.firebaserc/i,
+    /^\/firestore(\.rules|\.indexes\.json)/i,
+    /^\/\.docker/i,
+    /^\/scratch(\/|$)/i
+  ];
+  
+  if (sensitivePatterns.some(pattern => pattern.test(normalizedPath))) {
+    return res.status(403).json({ error: 'Forbidden: Access to sensitive file is denied' });
+  }
+  next();
+});
+
+// Serve static frontend files directly (no caching in dev/local)
+app.use((req, res, next) => {
+  res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+  res.set('Pragma', 'no-cache');
+  res.set('Expires', '0');
+  next();
+});
+
 app.use(express.static(ROOT_DIR, {
-  maxAge: '0', // Disabled cache for dev
+  maxAge: 0,
+  etag: false,
+  lastModified: false,
+  setHeaders: (res, path) => {
+    res.set('Cache-Control', 'no-store, no-cache, must-revalidate, proxy-revalidate');
+    res.set('Pragma', 'no-cache');
+    res.set('Expires', '0');
+  },
+  dotfiles: 'deny' // Strictly deny dotfiles
 }));
 
 const { verifyAuth } = require('./middleware/auth');

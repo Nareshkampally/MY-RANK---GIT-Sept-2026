@@ -57,6 +57,9 @@ LearnlyRouter.register('practice-arena', function() {
         
         <!-- Exam Tools Ribbon -->
         <div class="flex items-center gap-2 relative z-10">
+          <a href="#learn-solve" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-amber-400 hover:bg-amber-300 text-indigo-950 font-black text-xs shadow-md transition-all cursor-pointer" title="Open Step-by-Step Method Breakdown Studio">
+            <span class="material-symbols-outlined text-base">lightbulb</span><span>Learn &amp; Solve</span>
+          </a>
           <button id="open-hint-btn" class="flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-white/15 text-white font-bold text-xs shadow-sm transition-all hover:bg-white/25 border border-white/20 backdrop-blur-md cursor-pointer" type="button" title="Open AI Socratic Hint (Shortcut: H)">
             <span class="material-symbols-outlined text-base">psychology</span><span>Hint (H)</span>
           </button>
@@ -536,7 +539,21 @@ LearnlyRouter.register('practice-arena', function() {
     if (qSubjEl) qSubjEl.textContent = q.sectionName || q.subject || currentTest.subjectName;
     if (qTopicTag) qTopicTag.textContent = q.topicName || currentTest.topicName;
     if (qTitleEl) qTitleEl.textContent = `${q.sectionName || q.subject || '11+ Focus'}: ${q.topicName || 'Problem ' + (index + 1)}`;
-    if (passEl) passEl.innerHTML = q.passage_context || '<p>Analyze the problem and calculate carefully.</p>';
+    if (passEl) {
+      passEl.innerHTML = `
+        ${q.passage_context || '<p>Analyze the problem and calculate carefully.</p>'}
+        <div class="mt-4 pt-3 border-t border-outline-variant/20 flex items-center justify-between">
+          <span class="text-[11px] font-bold text-slate-500 flex items-center gap-1">
+            <span class="material-symbols-outlined text-xs text-amber-500">lightbulb</span>
+            Need step-by-step method?
+          </span>
+          <a href="#learn-solve" class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-amber-400 hover:bg-amber-300 text-indigo-950 text-xs font-black transition-all shadow-xs">
+            <span>Learn &amp; Solve (3D &amp; Pictorial)</span>
+            <span class="material-symbols-outlined text-xs">arrow_forward</span>
+          </a>
+        </div>
+      `;
+    }
     if (stemEl) stemEl.textContent = q.stem;
 
     const qNumBadge = document.getElementById('q-number-badge');
@@ -628,9 +645,113 @@ LearnlyRouter.register('practice-arena', function() {
     }, 1000);
   }
 
-  function initTest(subjectKey, topicId, count = currentTestLength) {
+  function formatTestFromApi(apiQuestions, subjectKey, topicId, targetCount) {
+    if (subjectKey === 'composite') {
+      const maths = apiQuestions.filter(q => q.subject === 'Mathematics');
+      const vr = apiQuestions.filter(q => q.subject === 'Verbal Reasoning');
+      const nvr = apiQuestions.filter(q => q.subject === 'Non-Verbal Reasoning');
+      const eng = apiQuestions.filter(q => q.subject === 'English');
+
+      const perSubj = Math.ceil(targetCount / 4);
+      const mQ = generateQuestionSet(maths.length ? maths : QUESTION_BANK.maths.baseQuestions, perSubj).map((q, i) => ({
+        ...q,
+        sectionIndex: 0,
+        sectionName: 'Section 1: Mathematics',
+        sectionQNum: i + 1,
+        topicName: q.topicName || 'Arithmetic & Logic'
+      }));
+      const vQ = generateQuestionSet(vr.length ? vr : QUESTION_BANK.vr.baseQuestions, perSubj).map((q, i) => ({
+        ...q,
+        sectionIndex: 1,
+        sectionName: 'Section 2: Verbal Reasoning',
+        sectionQNum: i + 1,
+        topicName: q.topicName || 'Verbal Reasoning'
+      }));
+      const nQ = generateQuestionSet(nvr.length ? nvr : QUESTION_BANK.nvr.baseQuestions, perSubj).map((q, i) => ({
+        ...q,
+        sectionIndex: 2,
+        sectionName: 'Section 3: Non-Verbal Reasoning',
+        sectionQNum: i + 1,
+        topicName: q.topicName || 'Spatial & Patterns'
+      }));
+      const eQ = generateQuestionSet(eng.length ? eng : QUESTION_BANK.english.baseQuestions, perSubj).map((q, i) => ({
+        ...q,
+        sectionIndex: 3,
+        sectionName: 'Section 4: English & SPaG',
+        sectionQNum: i + 1,
+        topicName: q.topicName || 'Comprehension & Grammar'
+      }));
+
+      const pool = [...mQ, ...vQ, ...nQ, ...eQ].slice(0, targetCount);
+      return {
+        id: `mock-composite-${targetCount}q`,
+        title: `Full 4-Subject Consortium Mock Exam (${targetCount} Questions)`,
+        subjectName: 'All 4 Subjects',
+        topicName: 'GL & CEM Composite Spec',
+        type: `${targetCount} Questions • Full 4-Section Mock`,
+        duration_mins: Math.round(targetCount * 0.75),
+        gradient: 'linear-gradient(135deg, #1e1b4b 0%, #4338ca 100%)',
+        sections: [
+          { name: 'Section 1: Maths', startIdx: 0, count: perSubj, icon: 'calculate' },
+          { name: 'Section 2: Verbal', startIdx: perSubj, count: perSubj, icon: 'psychology' },
+          { name: 'Section 3: Non-Verbal', startIdx: perSubj * 2, count: perSubj, icon: 'view_in_ar' },
+          { name: 'Section 4: English', startIdx: perSubj * 3, count: targetCount - (perSubj * 3), icon: 'menu_book' }
+        ],
+        questions: pool
+      };
+    }
+
+    const subjData = QUESTION_BANK[subjectKey] || QUESTION_BANK.maths;
+    const finalCount = targetCount || 50;
+    const halfCount = Math.floor(finalCount / 2);
+    const pool = generateQuestionSet(apiQuestions.length ? apiQuestions : subjData.baseQuestions, finalCount).map((q, i) => ({
+      ...q,
+      sectionIndex: i < halfCount ? 0 : 1,
+      sectionName: i < halfCount ? 'Section 1: Core Fundamentals' : 'Section 2: Advanced Reasoning',
+      sectionQNum: i < halfCount ? (i + 1) : (i - halfCount + 1),
+      topicName: q.topicName || (topicId && topicId !== 'all' ? topicId : 'Comprehensive Syllabus')
+    }));
+
+    return {
+      id: `mock-${subjectKey}-${finalCount}q`,
+      title: `${subjData.name} — Standard 11+ Mock (${finalCount} Questions)`,
+      subjectName: subjData.name,
+      topicName: topicId && topicId !== 'all' ? `Weak Area: ${topicId}` : 'Comprehensive Syllabus',
+      type: `${finalCount} Questions • Standard Mock`,
+      duration_mins: Math.round(finalCount * 0.8),
+      gradient: subjData.gradient,
+      sections: [
+        { name: 'Section 1: Core', startIdx: 0, count: halfCount, icon: 'menu_book' },
+        { name: 'Section 2: Advanced', startIdx: halfCount, count: finalCount - halfCount, icon: 'military_tech' }
+      ],
+      questions: pool
+    };
+  }
+
+  async function initTest(subjectKey, topicId, count = currentTestLength) {
     answers = {};
-    currentTest = buildTestQuestions(subjectKey, topicId, count);
+    if (loadingEl) loadingEl.classList.remove('hidden');
+    if (contentEl) contentEl.classList.add('hidden');
+
+    try {
+      let url = `/api/questions?limit=${count}`;
+      if (subjectKey && subjectKey !== 'composite') {
+        url += `&subject=${encodeURIComponent(subjectKey)}`;
+      }
+      const res = await fetch(url);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.questions && data.questions.length > 0) {
+          currentTest = formatTestFromApi(data.questions, subjectKey, topicId, count);
+        }
+      }
+    } catch (e) {
+      console.warn('Falling back to local question bank:', e);
+    }
+
+    if (!currentTest || !currentTest.questions || currentTest.questions.length === 0) {
+      currentTest = buildTestQuestions(subjectKey, topicId, count);
+    }
 
     // Update Header
     if (titleEl) titleEl.textContent = currentTest.title;
@@ -898,6 +1019,42 @@ LearnlyRouter.register('practice-arena', function() {
         const q = currentTest.questions[currentIndex];
         window.AIBuddy.openHintModal(q.id, answers[q.id] || null);
       }
+    };
+  }
+
+  // Listen / Audio Tutor (Ms. Clara) in Practice Arena
+  const speakPassageBtn = document.getElementById('speak-passage-btn');
+  if (speakPassageBtn) {
+    speakPassageBtn.onclick = () => {
+      if (!('speechSynthesis' in window)) return;
+      if (window.speechSynthesis.speaking) {
+        window.speechSynthesis.cancel();
+        speakPassageBtn.innerHTML = '<span class="material-symbols-outlined text-sm">volume_up</span><span>Listen</span>';
+        return;
+      }
+      const q = currentTest.questions[currentIndex];
+      const textToSpeak = `Scholar, here is the question: ${q.stem}. Relevant context: ${q.passage_context ? q.passage_context.replace(/<[^>]*>/g, '') : ''}`;
+      const utterance = new SpeechSynthesisUtterance(textToSpeak);
+      const voices = window.speechSynthesis.getVoices();
+      const femaleVoice = voices.find(v => 
+        (v.name.includes('Female') || v.name.includes('Samantha') || v.name.includes('Victoria') || 
+         v.name.includes('Karen') || v.name.includes('Zira') || v.name.includes('Sonia') ||
+         v.name.includes('Google UK English Female') || v.name.includes('Moira') || v.name.includes('Jenny')) &&
+        (v.lang.startsWith('en'))
+      ) || voices.find(v => v.lang.startsWith('en-GB')) || voices.find(v => v.lang.startsWith('en'));
+      if (femaleVoice) utterance.voice = femaleVoice;
+      utterance.pitch = 1.22;
+      utterance.rate = 0.90;
+      utterance.onstart = () => {
+        speakPassageBtn.innerHTML = '<span class="material-symbols-outlined text-sm">stop_circle</span><span>Pause Ms. Clara</span>';
+      };
+      utterance.onend = () => {
+        speakPassageBtn.innerHTML = '<span class="material-symbols-outlined text-sm">volume_up</span><span>Listen</span>';
+      };
+      utterance.onerror = () => {
+        speakPassageBtn.innerHTML = '<span class="material-symbols-outlined text-sm">volume_up</span><span>Listen</span>';
+      };
+      window.speechSynthesis.speak(utterance);
     };
   }
 

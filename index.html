@@ -35,7 +35,7 @@
   </script>
 
   <!-- Custom styles -->
-  <link rel="stylesheet" href="css/styles.css"/>
+  <link rel="stylesheet" href="css/styles.css?v=20261008_claymorphism"/>
 </head>
 <body class="flex h-screen overflow-hidden antialiased bg-background">
 
@@ -109,6 +109,13 @@
               <span class="material-symbols-outlined text-[1.1rem]" style="font-variation-settings:'FILL' 1">space_dashboard</span>
             </div>
             <span class="nav-text group-[.active]:font-bold transition-colors">Dashboard</span>
+          </a>
+          <a href="#learn-solve" class="nav-link flex items-center gap-3 px-3 py-2 rounded-xl text-sm group transition-all hover:bg-slate-50" data-path="learn-solve">
+            <div class="w-8 h-8 rounded-lg bg-indigo-500 text-white group-hover:bg-indigo-600 flex items-center justify-center shrink-0 nav-icon group-hover:scale-110 transition-all shadow-sm">
+              <span class="material-symbols-outlined text-[1.1rem]" style="font-variation-settings:'FILL' 1">lightbulb</span>
+            </div>
+            <span class="nav-text group-[.active]:font-bold transition-colors">Learn &amp; Solve</span>
+            <span class="ml-auto px-2 py-0.5 rounded-full bg-indigo-600 text-white text-[9px] font-black tracking-wider uppercase shadow-xs">CORE</span>
           </a>
           <a href="#subject-quests" class="nav-link flex items-center gap-3 px-3 py-2 rounded-xl text-sm group transition-all hover:bg-slate-50" data-path="subject-quests">
             <div class="w-8 h-8 rounded-lg bg-purple-100 text-purple-600 group-hover:bg-purple-200 group-hover:text-purple-700 flex items-center justify-center shrink-0 nav-icon group-hover:scale-110 transition-all shadow-sm">
@@ -284,7 +291,7 @@
           <div id="user-profile-name" class="text-sm font-bold text-slate-900 leading-tight truncate">Leo Sharma</div>
           <div class="text-[11px] text-slate-500 leading-tight">🔥 14 day streak</div>
         </div>
-        <button onclick="if(window.firebase) window.firebase.auth().signOut()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-rose-50 text-slate-400 group-hover:text-rose-500 transition-colors" title="Sign Out">
+        <button onclick="LearnlyRouter.logout()" class="w-8 h-8 flex items-center justify-center rounded-full hover:bg-rose-50 text-slate-400 group-hover:text-rose-500 transition-colors" title="Sign Out">
           <span class="material-symbols-outlined text-lg">logout</span>
         </button>
       </div>
@@ -342,13 +349,13 @@
   <script src="js/api-client.js"></script>
   <script src="js/session-watch.js"></script>
   <script src="js/ai-buddy.js"></script>
-  <script src="js/theme-manager.js"></script>
+  <script src="js/theme-manager.js?v=20261006_dark2"></script>
   <script src="js/router.js?v=1.3"></script>
   <script src="pages/login.js?v=2.5"></script>
   <script src="pages/dashboard.js?v=2.5"></script>
-  <script src="pages/practice-arena.js?v=2.5"></script>
+  <script src="pages/practice-arena.js?v=20261006_v3"></script>
   <script src="pages/mock-exams.js?v=2.5"></script>
-  <script src="pages/analytics.js?v=1.2"></script>
+  <script src="pages/analytics.js?v=20261006_dark2"></script>
   <script src="pages/trophy-room.js?v=1.2"></script>
   <script src="pages/parent-portal.js?v=1.2"></script>
   <script src="pages/scorecard.js?v=1.2"></script>
@@ -373,6 +380,7 @@
   <script src="pages/analytics-updated.js?v=1.2"></script>
   <script src="pages/trophy-room-updated.js?v=1.2"></script>
   <script src="pages/subject-quests.js?v=2.5"></script>
+  <script src="pages/learn-solve.js?v=20261006_v6_40methods_400questions"></script>
   <script src="pages/past-papers.js?v=1.2"></script>
   <script src="pages/leaderboard.js?v=1.2"></script>
   <script src="pages/vocab-vault.js?v=2.5"></script>
@@ -418,20 +426,8 @@
       const themeToggle = document.getElementById('theme-toggle-btn');
       if (themeToggle) {
         themeToggle.addEventListener('click', () => {
-          const current = document.documentElement.getAttribute('data-theme');
-          const next = current === 'myrank' ? 'learnly' : 'myrank';
-          document.documentElement.setAttribute('data-theme', next);
-          localStorage.setItem('learnly-theme', next);
-          const icon = themeToggle.querySelector('.material-symbols-outlined');
-          if (icon) icon.textContent = next === 'myrank' ? 'light_mode' : 'dark_mode';
+          LearnlyTheme.toggle();
         });
-        // restore saved theme
-        const saved = localStorage.getItem('learnly-theme');
-        if (saved) {
-          document.documentElement.setAttribute('data-theme', saved);
-          const icon = themeToggle.querySelector('.material-symbols-outlined');
-          if (icon) icon.textContent = saved === 'myrank' ? 'light_mode' : 'dark_mode';
-        }
       }
 
       // ── DYSLEXIA TOGGLE ─────────────────────────────────────────

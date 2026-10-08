@@ -35,7 +35,7 @@ const AIBuddy = (function() {
   // Web Speech API: Read aloud text
   function speakText(textToSpeak, onStartCallback, onEndCallback) {
     if (!('speechSynthesis' in window)) {
-      alert('Text-to-Speech is not supported in this browser.');
+      showToast('Audio Notice', 'Text-to-Speech is not supported in this browser.');
       return;
     }
 

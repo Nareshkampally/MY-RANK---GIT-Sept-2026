@@ -23,6 +23,10 @@ LearnlyRouter.register('mistake-mastery', function() {
         </div>
       </div>
       <div class="flex items-center gap-3 relative z-10">
+        <a href="#learn-solve" class="px-4 py-2 rounded-2xl bg-white text-rose-900 font-extrabold text-xs shadow-md hover:bg-white/90 transition-all flex items-center gap-1.5 cursor-pointer">
+          <span class="material-symbols-outlined text-sm text-amber-500">lightbulb</span>
+          <span>Learn &amp; Solve Methods →</span>
+        </a>
         <div class="px-4 py-2 rounded-2xl bg-white/20 backdrop-blur-md border border-white/30 flex items-center gap-2 shadow-sm">
           <div class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-pulse"></div>
           <span class="text-white font-bold text-sm tracking-wide" id="mistakes-count-badge">Loading errors...</span>
@@ -317,7 +321,7 @@ LearnlyRouter.register('mistake-mastery', function() {
     submitReattemptBtn.onclick = () => {
       const selected = document.querySelector('input[name="reattempt-radio"]:checked');
       if (!selected) {
-        alert('Please choose an answer option.');
+        if (window.AIBuddy) window.AIBuddy.showToast('Select Option', 'Please select an answer option to submit.');
         return;
       }
 

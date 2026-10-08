@@ -1,13 +1,13 @@
 // Learnly 11+ / MyRank 11+ — Theme & Edition Manager
-// Extracted from Google Stitch Projects:
-// 1. "Learnly 11+ Modern Prep" (Light Mode, Indigo #4F46E5)
-// 2. "MyRank 11+ Learning / Luminous Scholar" (Dark Mode, Electric Lime #C7FF24)
+// Modern Dual-Theme Design:
+// 1. "Learnly 11+ Modern Prep" (Light Mode, Clean Indigo #4F46E5)
+// 2. "MyRank 11+ Obsidian Scholar" (Dark Mode, Deep Obsidian Slate & Royal Indigo #6366F1)
 
 const LearnlyTheme = {
   CURRENT: 'learnly', // 'learnly' | 'myrank'
 
   init() {
-    const saved = localStorage.getItem('learnly_edition_theme');
+    const saved = localStorage.getItem('learnly_edition_theme') || localStorage.getItem('learnly-theme');
     if (saved === 'myrank' || saved === 'learnly') {
       this.CURRENT = saved;
     } else {
@@ -21,6 +21,7 @@ const LearnlyTheme = {
     if (theme !== 'learnly' && theme !== 'myrank') return;
     this.CURRENT = theme;
     localStorage.setItem('learnly_edition_theme', theme);
+    localStorage.setItem('learnly-theme', theme);
     this.applyTheme(theme, true);
   },
 
@@ -44,6 +45,15 @@ const LearnlyTheme = {
     // Update toggle switch button states
     this.updateToggleButtons(theme);
 
+    // Update theme-toggle-btn icon
+    const themeToggle = document.getElementById('theme-toggle-btn');
+    if (themeToggle) {
+      const icon = themeToggle.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.textContent = theme === 'myrank' ? 'light_mode' : 'dark_mode';
+      }
+    }
+
     // Broadcast event for charts and page components to re-render colors
     window.dispatchEvent(new CustomEvent('themechange', { detail: { theme } }));
   },
@@ -55,25 +65,25 @@ const LearnlyTheme = {
 
     if (theme === 'myrank') {
       if (titleEl) {
-        titleEl.textContent = 'MyRank 11+';
-        titleEl.style.color = '#c7ff24';
+        titleEl.textContent = 'Karat.Academy';
+        titleEl.style.color = '#f8fafc';
       }
       if (subtitleEl) {
-        subtitleEl.textContent = 'Luminous Scholar';
+        subtitleEl.textContent = '11+ Scholar';
       }
       if (brandIconEl) {
-        brandIconEl.innerHTML = `<div class="w-8 h-8 rounded-lg bg-[#c7ff24] flex items-center justify-center text-[#111509] font-black text-sm shadow-[0_0_12px_rgba(199,255,36,0.4)]">MR</div>`;
+        brandIconEl.innerHTML = `<div class="w-8 h-8 rounded-lg bg-indigo-600 flex items-center justify-center text-white font-black text-sm shadow-[0_0_12px_rgba(99,102,241,0.35)]">11+</div>`;
       }
     } else {
       if (titleEl) {
-        titleEl.textContent = 'Learnly 11+';
+        titleEl.textContent = 'Karat.Academy';
         titleEl.style.color = '';
       }
       if (subtitleEl) {
-        subtitleEl.textContent = 'Scholar Edition';
+        subtitleEl.textContent = '11+ Scholar';
       }
       if (brandIconEl) {
-        brandIconEl.innerHTML = `<img alt="Learnly 11+ Brand Logo" class="h-8 w-auto object-contain" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7HEuIV8rXxij6TrRi9z77NhdRSarsDFDi15cgUUgmWRWB74IrDneXs8gQEDdEK1dQhX28KkqoVJhox1PRU3xsfKYA2b6AOf2wiPXYpojve4dVZAo-JOyXZbaL1IcsYtLwE4D0thqG9YORfkljYSeEbOnMruvcb3LuLIqBwhrGFcPUjturAKdeYJ-PQ7wxvOyjQfGw1wePrq8yWkNN04lhDqK7IKkSD2-lubdUL0OzXDzMSKd9EH36Ig"/>`;
+        brandIconEl.innerHTML = `<div class="w-8 h-8 rounded-lg bg-gradient-to-br from-primary to-indigo-600 flex items-center justify-center text-white font-black text-sm shadow-md">11+</div>`;
       }
     }
   },
@@ -88,7 +98,7 @@ const LearnlyTheme = {
       myrankBtn.className = 'flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 cursor-pointer';
     } else {
       learnlyBtn.className = 'flex items-center gap-1.5 px-3 py-1 text-xs font-semibold rounded-full text-on-surface-variant hover:text-on-surface transition-all duration-200 cursor-pointer';
-      myrankBtn.className = 'flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-full bg-primary text-on-primary shadow-[0_0_12px_rgba(199,255,36,0.3)] transition-all duration-200 cursor-pointer';
+      myrankBtn.className = 'flex items-center gap-1.5 px-3 py-1 text-xs font-bold rounded-full bg-primary text-on-primary shadow-sm transition-all duration-200 cursor-pointer';
     }
   },
 
