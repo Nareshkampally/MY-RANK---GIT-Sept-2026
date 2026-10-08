@@ -4,172 +4,190 @@
    2. MyRank 11+ Obsidian Scholar (Royal Indigo & Deep Slate Dark Mode) */
 
 :root, html[data-theme="learnly"] {
-  --primary: #3525cd;
-  --primary-container: #4f46e5;
+  /* Clay.com Design System Tokens (Warm Cream Canvas & Saturated System) */
+  --primary: #0a0a0a;
+  --primary-active: #1f1f1f;
+  --primary-disabled: #e5e5e5;
+  --primary-container: #1a3a3a;
   --on-primary: #ffffff;
-  --on-primary-container: #dad7ff;
-  --primary-fixed: #e2dfff;
-  --primary-fixed-dim: #c3c0ff;
-  --on-primary-fixed: #0f0069;
-  --on-primary-fixed-variant: #3323cc;
-  --inverse-primary: #c3c0ff;
+  --on-primary-container: #ffffff;
+  --primary-fixed: #0a0a0a;
+  --primary-fixed-dim: #ffb084;
+  --on-primary-fixed: #ffffff;
+  --on-primary-fixed-variant: #0a0a0a;
+  --inverse-primary: #ffffff;
 
-  --secondary: #855300;
-  --secondary-container: #fea619;
+  --secondary: #ff4d8b;
+  --secondary-container: #f5f0e0;
   --on-secondary: #ffffff;
-  --on-secondary-container: #684000;
-  --secondary-fixed: #ffddb8;
-  --secondary-fixed-dim: #ffb95f;
-  --on-secondary-fixed: #2a1700;
-  --on-secondary-fixed-variant: #653e00;
+  --on-secondary-container: #0a0a0a;
+  --secondary-fixed: #ffb084;
+  --secondary-fixed-dim: #e8b94a;
+  --on-secondary-fixed: #0a0a0a;
+  --on-secondary-fixed-variant: #0a0a0a;
 
-  --tertiary: #005338;
-  --tertiary-container: #006e4b;
+  --tertiary: #1a3a3a;
+  --tertiary-container: #1a3a3a;
   --on-tertiary: #ffffff;
-  --on-tertiary-container: #67f4b7;
-  --tertiary-fixed: #6ffbbe;
-  --tertiary-fixed-dim: #4edea3;
-  --on-tertiary-fixed: #002113;
-  --on-tertiary-fixed-variant: #005236;
+  --on-tertiary-container: #ffffff;
+  --tertiary-fixed: #a4d4c5;
+  --tertiary-fixed-dim: #1a3a3a;
+  --on-tertiary-fixed: #ffffff;
+  --on-tertiary-fixed-variant: #1a3a3a;
 
-  --background: #f8fafc;
-  --on-background: #0f172a;
+  /* Clay Surfaces & Canvas */
+  --background: #fffaf0;
+  --on-background: #0a0a0a;
   --surface: #ffffff;
-  --on-surface: #0f172a;
-  --surface-dim: #cbd5e1;
-  --surface-bright: #ffffff;
-  --surface-variant: #f1f5f9;
-  --on-surface-variant: #475569;
+  --on-surface: #0a0a0a;
+  --surface-dim: #ebe6d6;
+  --surface-bright: #fffaf0;
+  --surface-variant: #f5f0e0;
+  --on-surface-variant: #3a3a3a;
   --surface-container-lowest: #ffffff;
-  --surface-container-low: #f8fafc;
-  --surface-container: #f1f5f9;
-  --surface-container-high: #e2e8f0;
-  --surface-container-highest: #cbd5e1;
-  --surface-tint: #4d44e3;
-  --inverse-surface: #213145;
-  --inverse-on-surface: #eaf1ff;
+  --surface-container-low: #faf5e8;
+  --surface-container: #f5f0e0;
+  --surface-container-high: #ebe6d6;
+  --surface-container-highest: #e5e5e5;
+  --surface-tint: #0a0a0a;
+  --inverse-surface: #1a2a2a;
+  --inverse-on-surface: #fffaf0;
   --surface-elevated: #ffffff;
-  --surface-border: #e2e8f0;
-  --text-muted: #64748b;
+  --surface-border: #e5e5e5;
+  --text-muted: #6a6a6a;
 
-  --outline: #94a3b8;
-  --outline-variant: #e2e8f0;
-  --error: #ba1a1a;
+  --outline: #e5e5e5;
+  --outline-variant: #e5e5e5;
+  --error: #ef4444;
   --error-container: #ffdad6;
   --on-error: #ffffff;
   --on-error-container: #93000a;
 
-  --elevation-1: 0 4px 20px -2px rgba(79, 70, 229, 0.06), 0 2px 6px -1px rgba(15, 23, 42, 0.04);
-  --elevation-2: 0 12px 32px -4px rgba(79, 70, 229, 0.12), 0 4px 12px -2px rgba(15, 23, 42, 0.06);
-  --elevation-3: 0 20px 48px -8px rgba(79, 70, 229, 0.18), 0 8px 20px -4px rgba(15, 23, 42, 0.08);
+  /* Clay Saturated Brand Swatches */
+  --clay-brand-pink: #ff4d8b;
+  --clay-brand-teal: #1a3a3a;
+  --clay-brand-lavender: #b8a4ed;
+  --clay-brand-peach: #ffb084;
+  --clay-brand-ochre: #e8b94a;
+  --clay-brand-mint: #a4d4c5;
+  --clay-canvas: #fffaf0;
+  --clay-surface-soft: #faf5e8;
+  --clay-surface-card: #f5f0e0;
+  --clay-surface-strong: #ebe6d6;
+  --clay-ink: #0a0a0a;
 
-  --glass-bg: rgba(15, 23, 42, 0.4);
-  --header-bg: rgba(248, 249, 255, 0.85);
-  --sidebar-border: rgba(0, 0, 0, 0.06);
+  --elevation-1: 0 4px 16px -2px rgba(10, 10, 10, 0.04), 0 2px 6px -1px rgba(10, 10, 10, 0.02);
+  --elevation-2: 0 10px 24px -4px rgba(10, 10, 10, 0.06), 0 4px 10px -2px rgba(10, 10, 10, 0.03);
+  --elevation-3: 0 18px 36px -6px rgba(10, 10, 10, 0.09), 0 6px 14px -3px rgba(10, 10, 10, 0.04);
 
-  /* Claymorphism 3D Tokens (Light Mode) */
+  --glass-bg: rgba(255, 250, 240, 0.85);
+  --header-bg: rgba(255, 250, 240, 0.92);
+  --sidebar-border: #e5e5e5;
+
+  /* Clay Tactile Tokens (Light Mode) */
   --clay-bg-card: #ffffff;
-  --clay-bg-subtle: #f8fafc;
-  --clay-shadow-card: 0 16px 34px -4px rgba(79, 70, 229, 0.09), 0 6px 14px -2px rgba(15, 23, 42, 0.04), inset 3px 3px 6px rgba(255, 255, 255, 0.95), inset -4px -5px 8px rgba(15, 23, 42, 0.05);
-  --clay-shadow-card-hover: 0 24px 44px -4px rgba(79, 70, 229, 0.16), 0 10px 18px -2px rgba(15, 23, 42, 0.06), inset 3.5px 3.5px 6px rgba(255, 255, 255, 1), inset -5px -6px 10px rgba(15, 23, 42, 0.07);
-  --clay-shadow-btn-primary: 0 10px 22px -2px rgba(79, 70, 229, 0.38), 0 4px 8px -1px rgba(79, 70, 229, 0.22), inset 2.5px 2.5px 4px rgba(255, 255, 255, 0.45), inset -3px -3px 6px rgba(30, 27, 75, 0.4);
-  --clay-shadow-btn-amber: 0 10px 22px -2px rgba(245, 158, 11, 0.38), 0 4px 8px -1px rgba(245, 158, 11, 0.22), inset 2.5px 2.5px 4px rgba(255, 255, 255, 0.65), inset -3px -3px 6px rgba(180, 83, 9, 0.35);
-  --clay-shadow-btn-emerald: 0 10px 22px -2px rgba(16, 185, 129, 0.38), 0 4px 8px -1px rgba(16, 185, 129, 0.22), inset 2.5px 2.5px 4px rgba(255, 255, 255, 0.55), inset -3px -3px 6px rgba(4, 120, 87, 0.35);
-  --clay-shadow-btn-white: 0 8px 18px -2px rgba(15, 23, 42, 0.08), 0 3px 6px -1px rgba(15, 23, 42, 0.04), inset 2.5px 2.5px 5px rgba(255, 255, 255, 1), inset -3px -3px 5px rgba(15, 23, 42, 0.06);
-  --clay-shadow-pill: 0 6px 14px -1px rgba(79, 70, 229, 0.12), 0 2px 4px rgba(15, 23, 42, 0.04), inset 2px 2px 4px rgba(255, 255, 255, 0.9), inset -2.5px -2.5px 5px rgba(15, 23, 42, 0.06);
-  --clay-shadow-pill-active: 0 8px 18px -2px rgba(79, 70, 229, 0.35), inset 2px 2px 4px rgba(255, 255, 255, 0.45), inset -3px -3px 5px rgba(30, 27, 75, 0.35);
-  --clay-shadow-inset: inset 3px 3px 7px rgba(15, 23, 42, 0.08), inset -3px -3px 6px rgba(255, 255, 255, 0.9), 0 1px 2px rgba(15, 23, 42, 0.02);
-  --clay-btn-primary-bg: linear-gradient(145deg, #4f46e5, #4338ca);
-  --clay-btn-amber-bg: linear-gradient(145deg, #fbbf24, #f59e0b);
-  --clay-btn-emerald-bg: linear-gradient(145deg, #34d399, #10b981);
-  --clay-radius-card: 26px;
-  --clay-radius-btn: 9999px;
+  --clay-bg-subtle: #faf5e8;
+  --clay-shadow-card: 0 10px 24px -2px rgba(10, 10, 10, 0.04), 0 3px 8px -1px rgba(10, 10, 10, 0.02), inset 2px 2px 4px rgba(255, 255, 255, 0.95), inset -3px -4px 6px rgba(10, 10, 10, 0.03);
+  --clay-shadow-card-hover: 0 18px 32px -4px rgba(10, 10, 10, 0.08), 0 6px 14px -2px rgba(10, 10, 10, 0.04), inset 2.5px 2.5px 5px rgba(255, 255, 255, 1), inset -4px -5px 8px rgba(10, 10, 10, 0.05);
+  --clay-shadow-btn-primary: 0 8px 20px -2px rgba(10, 10, 10, 0.3), 0 3px 6px -1px rgba(10, 10, 10, 0.15), inset 2px 2px 3px rgba(255, 255, 255, 0.25), inset -2.5px -2.5px 5px rgba(0, 0, 0, 0.4);
+  --clay-shadow-btn-amber: 0 8px 18px -2px rgba(232, 185, 74, 0.4), inset 2px 2px 4px rgba(255, 255, 255, 0.65), inset -2.5px -2.5px 5px rgba(180, 120, 20, 0.3);
+  --clay-shadow-btn-emerald: 0 8px 18px -2px rgba(34, 197, 94, 0.35), inset 2px 2px 4px rgba(255, 255, 255, 0.55), inset -2.5px -2.5px 5px rgba(20, 130, 60, 0.3);
+  --clay-shadow-btn-white: 0 6px 16px -2px rgba(10, 10, 10, 0.06), inset 2px 2px 4px rgba(255, 255, 255, 1), inset -2.5px -2.5px 4px rgba(10, 10, 10, 0.05);
+  --clay-shadow-pill: 0 4px 12px -1px rgba(10, 10, 10, 0.05), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.9), inset -2px -2px 4px rgba(10, 10, 10, 0.04);
+  --clay-shadow-pill-active: 0 6px 16px -2px rgba(10, 10, 10, 0.2), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.3), inset -2px -2px 4px rgba(0, 0, 0, 0.3);
+  --clay-shadow-inset: inset 2.5px 2.5px 5px rgba(10, 10, 10, 0.05), inset -2.5px -2.5px 5px rgba(255, 255, 255, 0.8);
+  --clay-btn-primary-bg: #0a0a0a;
+  --clay-btn-amber-bg: linear-gradient(145deg, #e8b94a, #d4a332);
+  --clay-btn-emerald-bg: linear-gradient(145deg, #22c55e, #16a34a);
+  --clay-radius-card: 24px;
+  --clay-radius-btn: 12px;
 }
 
-/* 2. MyRank 11+ Obsidian Scholar (Royal Indigo Dark Mode) */
+/* 2. Clay Dark Mode (Surface Dark #0a1a1a & Surface Dark Elevated #1a2a2a) */
 html[data-theme="myrank"],
 html.dark {
-  /* Obsidian & Midnight Slate — Premium Dark Mode (Linear / Stripe / Vercel aesthetic) */
-  --primary: #6366f1;
-  --primary-container: #4f46e5;
-  --on-primary: #ffffff;
-  --on-primary-container: #e0e7ff;
-  --primary-fixed: #818cf8;
-  --primary-fixed-dim: #6366f1;
-  --on-primary-fixed: #1e1b4b;
-  --on-primary-fixed-variant: #312e81;
-  --inverse-primary: #818cf8;
+  --primary: #ffffff;
+  --primary-active: #f0f0f0;
+  --primary-disabled: #3a3a3a;
+  --primary-container: #1a3a3a;
+  --on-primary: #0a0a0a;
+  --on-primary-container: #ffffff;
+  --primary-fixed: #ffffff;
+  --primary-fixed-dim: #ffb084;
+  --on-primary-fixed: #0a0a0a;
+  --on-primary-fixed-variant: #ffffff;
+  --inverse-primary: #0a0a0a;
 
-  --secondary: #f59e0b;
-  --secondary-container: #b45309;
+  --secondary: #ff4d8b;
+  --secondary-container: #243535;
   --on-secondary: #ffffff;
-  --on-secondary-container: #fef3c7;
-  --secondary-fixed: #fbbf24;
-  --secondary-fixed-dim: #f59e0b;
-  --on-secondary-fixed: #451a03;
-  --on-secondary-fixed-variant: #78350f;
+  --on-secondary-container: #ffffff;
+  --secondary-fixed: #ffb084;
+  --secondary-fixed-dim: #e8b94a;
+  --on-secondary-fixed: #0a0a0a;
+  --on-secondary-fixed-variant: #0a0a0a;
 
-  --tertiary: #10b981;
-  --tertiary-container: #047857;
-  --on-tertiary: #ffffff;
-  --on-tertiary-container: #d1fae5;
-  --tertiary-fixed: #34d399;
-  --tertiary-fixed-dim: #10b981;
-  --on-tertiary-fixed: #022c22;
-  --on-tertiary-fixed-variant: #064e3b;
+  --tertiary: #a4d4c5;
+  --tertiary-container: #1a3a3a;
+  --on-tertiary: #0a0a0a;
+  --on-tertiary-container: #ffffff;
+  --tertiary-fixed: #a4d4c5;
+  --tertiary-fixed-dim: #1a3a3a;
+  --on-tertiary-fixed: #0a0a0a;
+  --on-tertiary-fixed-variant: #1a3a3a;
 
-  --background: #090d16;
-  --on-background: #f8fafc;
-  --surface: #0f172a;
-  --on-surface: #f8fafc;
-  --surface-dim: #090d16;
-  --surface-bright: #1e293b;
-  --surface-variant: #1e293b;
-  --on-surface-variant: #94a3b8;
-  --surface-container-lowest: #0b0f19;
-  --surface-container-low: #111827;
-  --surface-container: #172033;
-  --surface-container-high: #1e293b;
-  --surface-container-highest: #293548;
-  --surface-tint: #818cf8;
-  --inverse-surface: #f8fafc;
-  --inverse-on-surface: #0f172a;
-  --surface-elevated: #1e293b;
-  --surface-border: rgba(255, 255, 255, 0.08);
-  --text-muted: #64748b;
+  --background: #0a1a1a;
+  --on-background: #ffffff;
+  --surface: #1a2a2a;
+  --on-surface: #ffffff;
+  --surface-dim: #0a1a1a;
+  --surface-bright: #243535;
+  --surface-variant: #1a2a2a;
+  --on-surface-variant: #a0a0a0;
+  --surface-container-lowest: #0d1e1e;
+  --surface-container-low: #112323;
+  --surface-container: #1a2a2a;
+  --surface-container-high: #243535;
+  --surface-container-highest: #2e4040;
+  --surface-tint: #ffffff;
+  --inverse-surface: #fffaf0;
+  --inverse-on-surface: #0a0a0a;
+  --surface-elevated: #243535;
+  --surface-border: #2a3a3a;
+  --text-muted: #809090;
 
-  --outline: #475569;
-  --outline-variant: rgba(255, 255, 255, 0.1);
-  --error: #f43f5e;
-  --error-container: #881337;
+  --outline: #2a3a3a;
+  --outline-variant: #243535;
+  --error: #ef4444;
+  --error-container: #451010;
   --on-error: #ffffff;
-  --on-error-container: #ffe4e6;
+  --on-error-container: #fecaca;
 
   --elevation-1: 0 4px 16px -2px rgba(0, 0, 0, 0.4), 0 2px 6px -1px rgba(0, 0, 0, 0.25);
   --elevation-2: 0 12px 28px -4px rgba(0, 0, 0, 0.6), 0 4px 12px -2px rgba(0, 0, 0, 0.4);
   --elevation-3: 0 20px 40px -8px rgba(0, 0, 0, 0.8), 0 8px 16px -4px rgba(0, 0, 0, 0.5);
 
-  --glass-bg: rgba(15, 23, 42, 0.75);
-  --header-bg: rgba(11, 15, 25, 0.85);
-  --sidebar-border: rgba(255, 255, 255, 0.07);
+  --glass-bg: rgba(10, 26, 26, 0.85);
+  --header-bg: rgba(10, 26, 26, 0.92);
+  --sidebar-border: #243535;
 
-  /* Claymorphism 3D Tokens (Obsidian Dark Mode) */
-  --clay-bg-card: #131c2e;
-  --clay-bg-subtle: #0f1728;
-  --clay-shadow-card: 0 18px 38px -4px rgba(0, 0, 0, 0.65), 0 6px 16px -2px rgba(0, 0, 0, 0.45), inset 2px 2px 4px rgba(255, 255, 255, 0.08), inset -4px -5px 10px rgba(0, 0, 0, 0.55);
-  --clay-shadow-card-hover: 0 26px 50px -4px rgba(0, 0, 0, 0.8), 0 10px 22px -2px rgba(0, 0, 0, 0.55), inset 2.5px 2.5px 5px rgba(255, 255, 255, 0.14), inset -5px -6px 12px rgba(0, 0, 0, 0.65);
-  --clay-shadow-btn-primary: 0 10px 24px -2px rgba(99, 102, 241, 0.45), 0 4px 10px -1px rgba(99, 102, 241, 0.25), inset 2px 2px 4px rgba(255, 255, 255, 0.35), inset -3px -3px 6px rgba(15, 23, 42, 0.7);
-  --clay-shadow-btn-amber: 0 10px 24px -2px rgba(245, 158, 11, 0.4), 0 4px 10px -1px rgba(245, 158, 11, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.5), inset -3px -3px 6px rgba(69, 26, 3, 0.6);
-  --clay-shadow-btn-emerald: 0 10px 24px -2px rgba(16, 185, 129, 0.4), 0 4px 10px -1px rgba(16, 185, 129, 0.2), inset 2px 2px 4px rgba(255, 255, 255, 0.4), inset -3px -3px 6px rgba(2, 44, 34, 0.6);
+  /* Clay Dark Mode Tactile Tokens */
+  --clay-bg-card: #1a2a2a;
+  --clay-bg-subtle: #112323;
+  --clay-shadow-card: 0 16px 36px -4px rgba(0, 0, 0, 0.55), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.08), inset -3px -4px 8px rgba(0, 0, 0, 0.5);
+  --clay-shadow-card-hover: 0 24px 48px -4px rgba(0, 0, 0, 0.7), inset 2px 2px 4px rgba(255, 255, 255, 0.12), inset -4px -5px 10px rgba(0, 0, 0, 0.6);
+  --clay-shadow-btn-primary: 0 8px 20px -2px rgba(0, 0, 0, 0.4), inset 2px 2px 3px rgba(255, 255, 255, 0.4), inset -2px -2px 4px rgba(0, 0, 0, 0.3);
+  --clay-shadow-btn-amber: 0 8px 20px -2px rgba(232, 185, 74, 0.3), inset 2px 2px 4px rgba(255, 255, 255, 0.3), inset -3px -3px 5px rgba(0, 0, 0, 0.5);
+  --clay-shadow-btn-emerald: 0 8px 20px -2px rgba(34, 197, 94, 0.3), inset 2px 2px 4px rgba(255, 255, 255, 0.3), inset -3px -3px 5px rgba(0, 0, 0, 0.5);
   --clay-shadow-btn-white: 0 8px 20px -2px rgba(0, 0, 0, 0.5), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.12), inset -2.5px -2.5px 6px rgba(0, 0, 0, 0.5);
-  --clay-shadow-pill: 0 6px 16px -1px rgba(0, 0, 0, 0.5), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.12), inset -2.5px -2.5px 5px rgba(0, 0, 0, 0.5);
-  --clay-shadow-pill-active: 0 8px 22px -2px rgba(99, 102, 241, 0.45), inset 2px 2px 4px rgba(255, 255, 255, 0.35), inset -3px -3px 5px rgba(15, 23, 42, 0.7);
-  --clay-shadow-inset: inset 3px 3px 8px rgba(0, 0, 0, 0.7), inset -2px -2px 5px rgba(255, 255, 255, 0.05);
-  --clay-btn-primary-bg: linear-gradient(145deg, #6366f1, #4f46e5);
-  --clay-btn-amber-bg: linear-gradient(145deg, #fbbf24, #d97706);
-  --clay-btn-emerald-bg: linear-gradient(145deg, #10b981, #059669);
-  --clay-radius-card: 26px;
-  --clay-radius-btn: 9999px;
+  --clay-shadow-pill: 0 4px 14px -1px rgba(0, 0, 0, 0.4), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.1), inset -2px -2px 4px rgba(0, 0, 0, 0.4);
+  --clay-shadow-pill-active: 0 6px 18px -2px rgba(0, 0, 0, 0.5), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.2), inset -2px -2px 4px rgba(0, 0, 0, 0.5);
+  --clay-shadow-inset: inset 2.5px 2.5px 6px rgba(0, 0, 0, 0.6), inset -1.5px -1.5px 4px rgba(255, 255, 255, 0.04);
+  --clay-btn-primary-bg: #ffffff;
+  --clay-btn-amber-bg: linear-gradient(145deg, #e8b94a, #b58d2a);
+  --clay-btn-emerald-bg: linear-gradient(145deg, #22c55e, #15803d);
+  --clay-radius-card: 24px;
+  --clay-radius-btn: 12px;
 }
 
 @layer base {
@@ -805,6 +823,16 @@ button.bg-indigo-500,
   border: 1px solid rgba(255, 255, 255, 0.28) !important;
   transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, filter 0.18s ease !important;
 }
+html[data-theme="myrank"] .clay-btn,
+html[data-theme="myrank"] .btn-primary,
+html[data-theme="myrank"] button.bg-primary,
+html[data-theme="myrank"] a.bg-primary,
+html.dark .clay-btn,
+html.dark .btn-primary,
+html.dark button.bg-primary,
+html.dark a.bg-primary {
+  color: #0a0a0a !important;
+}
 .clay-btn:hover,
 .btn-primary:hover,
 button.bg-primary:hover,
@@ -1011,51 +1039,161 @@ html.dark #global-search-input {
   background: rgba(11, 15, 25, 0.6) !important;
 }
 
-/* ── 8. Clay Navigation & Sidebar Pill Overrides ── */
+/* ── 8. Clay Navigation & Sidebar Components (from awesome-design-md) ── */
 #main-sidebar .nav-link {
-  border-radius: 16px !important;
-  transition: transform 0.18s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.18s ease, background 0.18s ease !important;
+  border-radius: 12px !important;
+  font-weight: 600 !important;
+  color: var(--on-surface-variant) !important;
+  transition: all 0.18s cubic-bezier(0.34, 1.56, 0.64, 1) !important;
 }
 #main-sidebar .nav-link:hover {
-  transform: translateX(3px);
+  background: var(--surface-container) !important;
+  color: var(--on-surface) !important;
+  transform: translateX(2px);
 }
 #main-sidebar .nav-link.active,
 #main-sidebar .nav-link[data-path="learn-solve"].active,
 #main-sidebar .nav-link[data-path="dashboard"].active {
-  background: var(--clay-btn-primary-bg) !important;
-  color: #ffffff !important;
-  box-shadow: var(--clay-shadow-pill-active) !important;
-  border: 1px solid rgba(255, 255, 255, 0.3) !important;
+  background: var(--surface-container) !important;
+  color: var(--on-surface) !important;
+  box-shadow: 0 2px 8px rgba(10, 10, 10, 0.05) !important;
+  border: 1px solid var(--outline) !important;
+  font-weight: 700 !important;
+  position: relative;
+}
+#main-sidebar .nav-link.active::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 25%;
+  height: 50%;
+  width: 4px;
+  background: var(--clay-brand-pink);
+  border-radius: 0 4px 4px 0;
 }
 #main-sidebar .nav-link.active .nav-text,
 #main-sidebar .nav-link.active span:not(.material-symbols-outlined) {
-  color: #ffffff !important;
-  font-weight: 800 !important;
+  color: var(--on-surface) !important;
+  font-weight: 700 !important;
 }
 #main-sidebar .nav-link.active .nav-icon {
-  background: rgba(255, 255, 255, 0.25) !important;
-  color: #ffffff !important;
-  box-shadow: inset 1px 1px 2px rgba(255, 255, 255, 0.5) !important;
+  background: var(--primary) !important;
+  color: var(--on-primary) !important;
+  box-shadow: 0 2px 6px rgba(10, 10, 10, 0.15) !important;
 }
 #main-sidebar .nav-link.active .nav-icon span {
-  color: #ffffff !important;
+  color: var(--on-primary) !important;
 }
 html[data-theme="myrank"] #main-sidebar .nav-link.active,
 html.dark #main-sidebar .nav-link.active {
-  background: var(--clay-btn-primary-bg) !important;
+  background: var(--surface-container-high) !important;
   color: #ffffff !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
-  box-shadow: var(--clay-shadow-pill-active) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+html[data-theme="myrank"] #main-sidebar .nav-link.active .nav-icon,
+html.dark #main-sidebar .nav-link.active .nav-icon {
+  background: #ffffff !important;
+  color: #0a1a1a !important;
+}
+html[data-theme="myrank"] #main-sidebar .nav-link.active .nav-icon span,
+html.dark #main-sidebar .nav-link.active .nav-icon span {
+  color: #0a1a1a !important;
 }
 
-/* ── 9. Clay Badge & Pill Accents ── */
-.clay-badge,
-span.rounded-full.bg-indigo-600,
-span.rounded-full.bg-primary {
-  box-shadow: 0 4px 10px rgba(79, 70, 229, 0.3), inset 1.5px 1.5px 3px rgba(255, 255, 255, 0.5), inset -2px -2px 4px rgba(30, 27, 75, 0.3) !important;
+/* ── 9. Clay Saturated Single-Color Cards (6-Color System) ── */
+.clay-card-pink {
+  background-color: var(--clay-brand-pink) !important;
+  color: #ffffff !important;
+  border-radius: 24px !important;
+}
+.clay-card-teal {
+  background-color: var(--clay-brand-teal) !important;
+  color: #ffffff !important;
+  border-radius: 24px !important;
+}
+.clay-card-lavender {
+  background-color: var(--clay-brand-lavender) !important;
+  color: #0a0a0a !important;
+  border-radius: 24px !important;
+}
+.clay-card-peach {
+  background-color: var(--clay-brand-peach) !important;
+  color: #0a0a0a !important;
+  border-radius: 24px !important;
+}
+.clay-card-ochre {
+  background-color: var(--clay-brand-ochre) !important;
+  color: #0a0a0a !important;
+  border-radius: 24px !important;
+}
+.clay-card-cream {
+  background-color: var(--clay-surface-card) !important;
+  color: #0a0a0a !important;
+  border-radius: 24px !important;
 }
 
-/* ── 10. Smooth Clay Floating Animation for Heroes & Modals ── */
+/* ── 10. Clay Buttons (12px Radius, 44px Height, Tactile Touch) ── */
+.clay-btn-primary {
+  background-color: #0a0a0a !important;
+  color: #ffffff !important;
+  border-radius: 12px !important;
+  min-height: 44px !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-shadow: 0 4px 14px rgba(10, 10, 10, 0.15) !important;
+  transition: all 0.18s ease !important;
+}
+.clay-btn-primary:hover {
+  background-color: #1f1f1f !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 18px rgba(10, 10, 10, 0.22) !important;
+}
+.clay-btn-secondary {
+  background-color: var(--clay-canvas) !important;
+  color: var(--on-surface) !important;
+  border: 1px solid var(--outline) !important;
+  border-radius: 12px !important;
+  min-height: 44px !important;
+  padding: 10px 20px !important;
+  font-weight: 600 !important;
+  font-size: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  transition: all 0.18s ease !important;
+}
+.clay-btn-secondary:hover {
+  background-color: var(--clay-surface-card) !important;
+  border-color: var(--on-surface) !important;
+}
+.clay-btn-on-color {
+  background-color: #ffffff !important;
+  color: #0a0a0a !important;
+  border-radius: 12px !important;
+  min-height: 44px !important;
+  padding: 10px 20px !important;
+  font-weight: 700 !important;
+  font-size: 14px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  gap: 8px !important;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.15) !important;
+  transition: all 0.18s ease !important;
+}
+.clay-btn-on-color:hover {
+  background-color: #fffaf0 !important;
+  transform: translateY(-1px) !important;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.2) !important;
+}
+
+/* ── 11. Smooth Clay Floating Animation for Heroes & Badges ── */
 @keyframes clayFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }

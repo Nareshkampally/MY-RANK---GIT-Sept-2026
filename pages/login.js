@@ -3,64 +3,68 @@ window.LearnlyLogin = (function() {
     return `
       <div class="fixed inset-0 z-[999] bg-background flex flex-col md:flex-row h-screen w-screen overflow-hidden">
         
-        <!-- Left Section (Branding & Graphic) -->
-        <div class="hidden md:flex md:w-1/2 lg:w-[55%] relative flex-col justify-between p-12 bg-gradient-to-br from-primary to-[#312e81] overflow-hidden">
-          <!-- Abstract Background Shapes -->
+        <!-- Left Section (Branding & Graphic - Clay Brand Teal) -->
+        <div class="hidden md:flex md:w-1/2 lg:w-[55%] relative flex-col justify-between p-12 bg-[#1a3a3a] text-white overflow-hidden border-r border-black/10">
+          <!-- Abstract Clay Background Accents -->
           <div class="absolute top-0 left-0 w-full h-full overflow-hidden z-0 opacity-20 pointer-events-none">
             <div class="absolute -top-[20%] -left-[10%] w-[70%] h-[70%] rounded-full bg-white blur-[120px]"></div>
-            <div class="absolute bottom-[10%] right-[10%] w-[50%] h-[50%] rounded-full bg-tertiary blur-[100px]"></div>
+            <div class="absolute bottom-[10%] right-[10%] w-[50%] h-[50%] rounded-full bg-[#ffb084] blur-[100px]"></div>
           </div>
           
           <div class="relative z-10">
             <div class="flex items-center gap-3">
-              <div class="w-12 h-12 rounded-2xl bg-white text-primary flex items-center justify-center shadow-2xl">
+              <div class="w-11 h-11 rounded-xl bg-white text-[#0a0a0a] flex items-center justify-center shadow-md">
                 <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1">school</span>
               </div>
               <div>
-                <h2 class="text-2xl font-black text-white tracking-tight leading-none">Karat.Academy</h2>
-                <div class="text-sm font-bold text-white/80 uppercase tracking-[0.2em]">11+ Scholar &amp; Tutor Portal</div>
+                <h2 class="text-2xl font-bold text-white tracking-tight leading-none">Karat.Academy</h2>
+                <div class="text-[10px] font-black text-[#ffb084] uppercase tracking-[0.2em] mt-1">11+ Scholar &amp; Tutor Portal</div>
               </div>
             </div>
           </div>
 
-          <div class="relative z-10 max-w-lg mt-24">
-            <h1 class="text-5xl lg:text-6xl font-black text-white leading-[1.1] mb-6">Master the 11+ with AI-Powered Intelligence.</h1>
-            <p class="text-xl text-white/80 font-medium leading-relaxed">Join thousands of scholars and expert 11+ specialist tutors preparing for top UK grammar and independent schools.</p>
+          <div class="relative z-10 max-w-lg mt-16">
+            <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 border border-white/15 text-[#ffb084] text-xs font-bold uppercase tracking-wider mb-4">
+              <span class="material-symbols-outlined text-sm">auto_awesome</span>
+              Clay-Powered 11+ Learning
+            </div>
+            <h1 class="text-4xl lg:text-5xl font-semibold text-white leading-[1.1] mb-5 tracking-tight">Master the 11+ with Concrete-Pictorial-Abstract Intelligence.</h1>
+            <p class="text-base text-white/80 font-normal leading-relaxed">Join thousands of scholars and certified 11+ specialist tutors preparing for top UK grammar and independent schools.</p>
           </div>
 
           <div class="relative z-10">
             <div class="flex items-center gap-4 text-white/90">
               <div class="flex -space-x-3">
-                <div class="w-10 h-10 rounded-full border-2 border-primary bg-blue-400"></div>
-                <div class="w-10 h-10 rounded-full border-2 border-primary bg-emerald-400"></div>
-                <div class="w-10 h-10 rounded-full border-2 border-primary bg-purple-400"></div>
+                <div class="w-9 h-9 rounded-full border-2 border-[#1a3a3a] bg-[#ff4d8b]"></div>
+                <div class="w-9 h-9 rounded-full border-2 border-[#1a3a3a] bg-[#e8b94a]"></div>
+                <div class="w-9 h-9 rounded-full border-2 border-[#1a3a3a] bg-[#b8a4ed]"></div>
               </div>
-              <p class="text-sm font-semibold">Trusted by 10,000+ ambitious families and certified tutors</p>
+              <p class="text-xs font-semibold text-white/80">Trusted by 10,000+ ambitious families and certified tutors</p>
             </div>
           </div>
         </div>
 
-        <!-- Right Section (Auth Form) -->
-        <div class="w-full md:w-1/2 lg:w-[45%] h-full bg-surface flex flex-col justify-center items-center p-6 md:p-12 relative overflow-y-auto">
+        <!-- Right Section (Auth Form - Clay Warm Cream) -->
+        <div class="w-full md:w-1/2 lg:w-[45%] h-full bg-[#fffaf0] dark:bg-[#0a1a1a] flex flex-col justify-center items-center p-6 md:p-12 relative overflow-y-auto">
           
           <!-- Mobile Branding -->
           <div class="flex md:hidden items-center gap-3 mb-10 absolute top-8 left-6">
-            <div class="w-10 h-10 rounded-xl bg-primary text-on-primary flex items-center justify-center">
+            <div class="w-10 h-10 rounded-xl bg-[#0a0a0a] text-white flex items-center justify-center">
               <span class="material-symbols-outlined" style="font-variation-settings:'FILL' 1">school</span>
             </div>
             <div>
-              <h2 class="text-xl font-black text-on-surface tracking-tight leading-none">Karat.Academy</h2>
+              <h2 class="text-xl font-bold text-on-surface tracking-tight leading-none">Karat.Academy</h2>
             </div>
           </div>
 
           <div class="w-full max-w-md">
             
-            <!-- ROLE SWITCHER TAB: STUDENT / SCHOLAR vs TUTOR / SPECIALIST -->
-            <div class="grid grid-cols-2 p-1 bg-slate-100 rounded-2xl mb-8 border border-slate-200">
-              <button id="role-tab-student" class="py-2.5 rounded-xl font-black text-xs transition-all shadow bg-white text-indigo-900 cursor-pointer">
+            <!-- ROLE SWITCHER TAB -->
+            <div class="grid grid-cols-2 p-1 bg-[#faf5e8] dark:bg-[#112323] rounded-xl mb-8 border border-[#e5e5e5] dark:border-[#243535]">
+              <button id="role-tab-student" class="py-2.5 rounded-lg font-bold text-xs transition-all shadow-xs bg-white dark:bg-[#1a2a2a] text-[#0a0a0a] dark:text-white cursor-pointer">
                 Student &amp; Parent
               </button>
-              <button id="role-tab-tutor" class="py-2.5 rounded-xl font-bold text-xs transition-all text-slate-500 hover:text-indigo-900 cursor-pointer">
+              <button id="role-tab-tutor" class="py-2.5 rounded-lg font-semibold text-xs transition-all text-[#6a6a6a] hover:text-[#0a0a0a] dark:text-[#a0a0a0] dark:hover:text-white cursor-pointer">
                 Tutor Clinic Specialist
               </button>
             </div>
@@ -68,7 +72,7 @@ window.LearnlyLogin = (function() {
             <!-- Student Auth View -->
             <div id="student-auth-view">
               <div class="text-center mb-6">
-                <h2 class="text-3xl font-black text-on-surface mb-2" id="auth-title">Welcome back</h2>
+                <h2 class="text-3xl font-bold text-on-surface mb-2 tracking-tight" id="auth-title">Welcome back</h2>
                 <p class="text-on-surface-variant text-sm" id="auth-subtitle">Sign in to continue your preparation journey.</p>
               </div>
 
@@ -85,24 +89,24 @@ window.LearnlyLogin = (function() {
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                       <span class="material-symbols-outlined text-on-surface-variant/60 text-xl">mail</span>
                     </div>
-                    <input type="email" id="auth-email" required class="w-full pl-11 pr-4 py-3 bg-surface-container-lowest border border-outline-variant/40 rounded-2xl text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium text-sm" placeholder="scholar@example.com">
+                    <input type="email" id="auth-email" required class="w-full pl-11 pr-4 py-3 bg-white dark:bg-[#1a2a2a] border border-[#e5e5e5] dark:border-[#243535] rounded-xl text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a] transition-all font-medium text-sm" placeholder="scholar@example.com">
                   </div>
                 </div>
 
                 <div>
                   <div class="flex items-center justify-between mb-1.5 ml-1">
                     <label class="block text-xs font-bold uppercase tracking-wider text-on-surface">Password</label>
-                    <a href="#" class="text-xs font-bold text-primary hover:underline">Forgot?</a>
+                    <a href="#" class="text-xs font-bold text-[#ff4d8b] hover:underline">Forgot?</a>
                   </div>
                   <div class="relative">
                     <div class="absolute inset-y-0 left-0 pl-4 flex items-center pointer-events-none">
                       <span class="material-symbols-outlined text-on-surface-variant/60 text-xl">lock</span>
                     </div>
-                    <input type="password" id="auth-password" required class="w-full pl-11 pr-4 py-3 bg-surface-container-lowest border border-outline-variant/40 rounded-2xl text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all font-medium text-sm" placeholder="••••••••">
+                    <input type="password" id="auth-password" required class="w-full pl-11 pr-4 py-3 bg-white dark:bg-[#1a2a2a] border border-[#e5e5e5] dark:border-[#243535] rounded-xl text-on-surface placeholder:text-on-surface-variant/40 focus:outline-none focus:border-[#0a0a0a] focus:ring-1 focus:ring-[#0a0a0a] transition-all font-medium text-sm" placeholder="••••••••">
                   </div>
                 </div>
 
-                <button type="submit" id="auth-submit-btn" class="w-full py-3 bg-primary hover:bg-primary/90 text-on-primary rounded-2xl font-bold text-base shadow-lg shadow-primary/25 transition-all active:scale-[0.98] mt-2 relative flex items-center justify-center cursor-pointer">
+                <button type="submit" id="auth-submit-btn" class="w-full py-3 bg-[#0a0a0a] hover:bg-[#1f1f1f] text-white rounded-xl font-bold text-sm shadow-md transition-all active:scale-[0.99] mt-2 relative flex items-center justify-center cursor-pointer min-h-[44px]">
                   <span id="auth-submit-text">Sign In</span>
                   <div id="auth-loading" class="hidden absolute right-4 w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin"></div>
                 </button>
@@ -111,7 +115,7 @@ window.LearnlyLogin = (function() {
               <div class="mt-6 text-center">
                 <p class="text-on-surface-variant text-xs font-medium">
                   <span id="auth-switch-text">Don't have an account?</span> 
-                  <button id="auth-switch-btn" class="text-primary font-bold hover:underline ml-1">Create one</button>
+                  <button id="auth-switch-btn" class="text-[#0a0a0a] dark:text-white font-bold hover:underline ml-1 cursor-pointer">Create one</button>
                 </p>
               </div>
             </div>

@@ -6,69 +6,69 @@ LearnlyRouter.register('dashboard', function() {
     <!-- ══ LEFT MAIN CONTENT ══ -->
     <div class="flex-1 flex flex-col gap-6 min-w-0">
 
-      <!-- HERO WELCOME BANNER -->
-      <section class="relative rounded-3xl overflow-hidden p-8" style="background: linear-gradient(135deg, #3525cd 0%, #4f46e5 50%, #6366f1 100%);">
-        <!-- Decorative elements -->
+      <!-- HERO WELCOME BANNER (CLAY BRAND TEAL) -->
+      <section class="relative rounded-3xl overflow-hidden p-8 bg-[#1a3a3a] text-white border border-white/10 shadow-lg">
+        <!-- Subtle clay atmospheric accents -->
         <div class="absolute -right-12 -top-12 w-64 h-64 bg-white/5 rounded-full blur-3xl pointer-events-none"></div>
-        <div class="absolute right-32 bottom-0 w-32 h-32 bg-white/5 rounded-full blur-2xl pointer-events-none"></div>
+        <div class="absolute right-32 bottom-0 w-32 h-32 bg-[#ffb084]/10 rounded-full blur-2xl pointer-events-none"></div>
         
         <!-- Live Badge -->
-        <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/15 border border-white/20 backdrop-blur-md mb-4">
+        <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/15 border border-white/20 backdrop-blur-md mb-4">
           <span class="relative flex h-2 w-2">
-            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
-            <span class="relative inline-flex rounded-full h-2 w-2 bg-green-400"></span>
+            <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#ffb084] opacity-75"></span>
+            <span class="relative inline-flex rounded-full h-2 w-2 bg-[#ffb084]"></span>
           </span>
-          <span class="text-white/90 text-xs font-bold uppercase tracking-wider">Exam Countdown Active</span>
+          <span class="text-white text-xs font-bold uppercase tracking-wider">Exam Countdown Active</span>
         </div>
 
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+        <div class="flex flex-col md:flex-row md:items-end justify-between gap-6 relative z-10">
           <div class="max-w-xl">
-            <h2 class="text-3xl font-extrabold text-white mb-2 leading-tight">Welcome back, Leo! 🚀</h2>
-            <p class="text-white/80 text-base leading-relaxed mb-5">
-              You're in the <strong class="text-white">Top 4%</strong> nationally. Today's AI recommendation: target 
-              <strong class="text-yellow-300">3D Spatial Nets</strong> — your weakest topic at 68%.
+            <h2 class="text-3xl font-extrabold text-white mb-2 leading-tight tracking-tight">Welcome back, Leo! 🚀</h2>
+            <p class="text-white/85 text-base leading-relaxed mb-5">
+              You're in the <strong class="text-white font-bold">Top 4%</strong> nationally. Today's AI recommendation: target 
+              <strong class="text-[#ffb084]">3D Spatial Nets</strong> — your weakest topic at 68%.
             </p>
             <div class="flex flex-wrap gap-3">
-              <button class="px-6 py-3 rounded-xl bg-white text-primary font-bold hover:bg-gray-50 transition-colors shadow-lg flex items-center gap-2 text-sm cursor-pointer" data-navigate="practice-arena">
+              <button class="px-5 py-2.5 rounded-xl bg-white text-[#0a0a0a] font-bold hover:bg-[#fffaf0] transition-all shadow-sm flex items-center gap-2 text-sm cursor-pointer" data-navigate="practice-arena">
                 <span class="material-symbols-outlined text-lg" style="font-variation-settings:'FILL' 1">sports_esports</span>
                 Continue Studying
               </button>
-              <button class="px-6 py-3 rounded-xl bg-amber-400 text-indigo-950 font-black hover:bg-amber-300 transition-colors shadow-lg flex items-center gap-2 text-sm cursor-pointer" data-navigate="learn-solve">
+              <button class="px-5 py-2.5 rounded-xl bg-[#ffb084] text-[#0a0a0a] font-black hover:bg-[#ffa06e] transition-all shadow-sm flex items-center gap-2 text-sm cursor-pointer" data-navigate="learn-solve">
                 <span class="material-symbols-outlined text-lg">lightbulb</span>
                 Learn &amp; Solve Studio
               </button>
-              <button class="px-6 py-3 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-colors flex items-center gap-2 text-sm backdrop-blur-md cursor-pointer" data-navigate="study-planner">
+              <button class="px-5 py-2.5 rounded-xl bg-white/15 text-white font-bold border border-white/20 hover:bg-white/25 transition-all flex items-center gap-2 text-sm backdrop-blur-md cursor-pointer" data-navigate="study-planner">
                 <span class="material-symbols-outlined text-lg">calendar_month</span>
                 View Plan
               </button>
             </div>
           </div>
           <!-- Countdown Widget -->
-          <div class="shrink-0 text-center bg-white/10 backdrop-blur-md rounded-[2.5rem] p-5 border border-white/20">
+          <div class="shrink-0 text-center bg-white/10 backdrop-blur-md rounded-2xl p-5 border border-white/20 min-w-[140px]">
             <div class="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">Days to Exam</div>
             <div class="text-5xl font-black text-white leading-none mb-1" id="dash-countdown">--</div>
-            <div class="text-white/60 text-xs">Jan 15, 2027</div>
+            <div class="text-white/70 text-xs">Jan 15, 2027</div>
             <div class="mt-3 w-full h-1.5 bg-white/20 rounded-full overflow-hidden">
-              <div class="h-full bg-yellow-300 rounded-full" id="dash-countdown-bar" style="width:0%"></div>
+              <div class="h-full bg-[#ffb084] rounded-full" id="dash-countdown-bar" style="width:0%"></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- STATS ROW -->
+      <!-- STATS ROW (CLAY 6-COLOR SATURATED CARDS) -->
       <section class="grid grid-cols-2 lg:grid-cols-4 gap-4">
         ${[
-          { label: 'SAS Score', value: '131', sub: '↑ +13 from start', icon: 'emoji_events', color: 'from-primary to-indigo-500', textColor: 'text-on-primary' },
-          { label: 'National Rank', value: 'Top 4%', sub: '96th percentile', icon: 'leaderboard', color: 'from-emerald-500 to-teal-500', textColor: 'text-white' },
-          { label: 'Accuracy', value: '89%', sub: '+4.2% this month', icon: 'verified', color: 'from-amber-500 to-orange-400', textColor: 'text-white' },
-          { label: 'Study Streak', value: '14 🔥', sub: 'Personal best!', icon: 'local_fire_department', color: 'from-rose-500 to-pink-500', textColor: 'text-white' },
+          { label: 'SAS Score', value: '131', sub: '↑ +13 from start', icon: 'emoji_events', bg: 'bg-[#1a3a3a]', text: 'text-white', subText: 'text-white/70' },
+          { label: 'National Rank', value: 'Top 4%', sub: '96th percentile', icon: 'leaderboard', bg: 'bg-[#e8b94a]', text: 'text-[#0a0a0a]', subText: 'text-[#0a0a0a]/75' },
+          { label: 'Accuracy', value: '89%', sub: '+4.2% this month', icon: 'verified', bg: 'bg-[#ff4d8b]', text: 'text-white', subText: 'text-white/80' },
+          { label: 'Study Streak', value: '14 🔥', sub: 'Personal best!', icon: 'local_fire_department', bg: 'bg-[#ffb084]', text: 'text-[#0a0a0a]', subText: 'text-[#0a0a0a]/75' },
         ].map(s => `
-        <div class="relative rounded-[2.5rem] p-5 bg-gradient-to-br ${s.color} shadow-lg overflow-hidden group hover:scale-[1.02] transition-transform cursor-pointer">
-          <div class="absolute -right-4 -bottom-4 w-20 h-20 bg-white/10 rounded-full"></div>
-          <span class="material-symbols-outlined ${s.textColor} text-2xl mb-2 block opacity-80" style="font-variation-settings:'FILL' 1">${s.icon}</span>
-          <div class="text-2xl font-extrabold ${s.textColor} leading-tight">${s.value}</div>
-          <div class="text-xs ${s.textColor} font-bold opacity-80 mt-0.5">${s.label}</div>
-          <div class="text-[10px] ${s.textColor} opacity-60 mt-0.5">${s.sub}</div>
+        <div class="relative rounded-2xl p-5 ${s.bg} shadow-sm overflow-hidden group hover:translate-y-[-2px] transition-transform cursor-pointer border border-black/5">
+          <div class="absolute -right-4 -bottom-4 w-16 h-16 bg-white/10 rounded-full pointer-events-none"></div>
+          <span class="material-symbols-outlined ${s.text} text-2xl mb-2 block opacity-90" style="font-variation-settings:'FILL' 1">${s.icon}</span>
+          <div class="text-2xl font-black ${s.text} leading-tight tracking-tight">${s.value}</div>
+          <div class="text-xs ${s.text} font-bold mt-0.5">${s.label}</div>
+          <div class="text-[10px] ${s.subText} font-medium mt-0.5">${s.sub}</div>
         </div>`).join('')}
       </section>
 
@@ -186,25 +186,24 @@ LearnlyRouter.register('dashboard', function() {
     <!-- ══ RIGHT SIDEBAR ══ -->
     <div class="xl:w-80 flex flex-col gap-5 shrink-0">
 
-      <!-- AI TUTOR CARD -->
-      <div class="rounded-3xl p-6 text-white shadow-xl relative overflow-hidden" style="background: linear-gradient(160deg, #1e1b4b 0%, #312e81 50%, #1e1b4b 100%);">
-        <div class="absolute top-0 right-0 w-32 h-32 bg-indigo-400/20 rounded-full blur-2xl pointer-events-none"></div>
+      <!-- AI TUTOR CARD (CLAY BRAND LAVENDER) -->
+      <div class="rounded-3xl p-6 bg-[#b8a4ed] text-[#0a0a0a] shadow-sm relative overflow-hidden border border-[#a691dc]">
         <div class="relative z-10">
           <div class="flex items-center gap-3 mb-4">
-            <div class="w-10 h-10 rounded-full bg-white/10 border border-white/20 flex items-center justify-center">
-              <span class="material-symbols-outlined text-indigo-300 text-xl" style="font-variation-settings:'FILL' 1">smart_toy</span>
+            <div class="w-10 h-10 rounded-xl bg-[#0a0a0a] text-white flex items-center justify-center shadow-sm">
+              <span class="material-symbols-outlined text-xl" style="font-variation-settings:'FILL' 1">smart_toy</span>
             </div>
             <div>
-              <div class="font-bold text-sm">AI Tutor Insight</div>
-              <div class="text-xs text-white/50">Personalized for you</div>
+              <div class="font-extrabold text-sm leading-tight text-[#0a0a0a]">AI Tutor Insight</div>
+              <div class="text-xs text-[#0a0a0a]/70">Personalized for you</div>
             </div>
           </div>
-          <div class="bg-white/5 rounded-[2.5rem] p-4 border border-white/10 mb-4">
-            <p class="text-white/90 text-sm leading-relaxed">
-              📊 <strong class="text-yellow-300">3D Spatial Nets</strong> is costing you ~6 SAS points. A focused 3-session drill programme this week could push your score past <strong class="text-green-300">135</strong>.
+          <div class="bg-white/40 rounded-2xl p-4 border border-white/50 mb-4 backdrop-blur-xs">
+            <p class="text-[#0a0a0a] text-sm leading-relaxed font-medium">
+              📊 <strong class="text-[#0a0a0a] font-bold">3D Spatial Nets</strong> is costing you ~6 SAS points. A focused 3-session drill programme this week could push your score past <strong class="text-[#1a3a3a] font-extrabold">135</strong>.
             </p>
           </div>
-          <button class="w-full py-2.5 bg-indigo-500 hover:bg-indigo-400 text-white rounded-xl font-bold text-sm transition-colors flex items-center justify-center gap-2" data-navigate="drill-spatial">
+          <button class="w-full py-3 bg-[#0a0a0a] hover:bg-[#1f1f1f] text-white rounded-xl font-bold text-sm transition-all flex items-center justify-center gap-2 shadow-sm cursor-pointer" data-navigate="drill-spatial">
             <span class="material-symbols-outlined text-lg">play_arrow</span> Start NVR Drill
           </button>
         </div>
