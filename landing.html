@@ -295,6 +295,11 @@
 
       <!-- Desktop Navigation Links (Clean, No-Wrap, Curated) -->
       <div class="hidden xl:flex items-center gap-6 text-sm font-semibold text-body">
+        <a href="#adventure" class="whitespace-nowrap hover:text-ink transition-colors flex items-center gap-1.5 text-brand-pink font-bold">
+          <span class="material-symbols-outlined text-sm">explore</span>
+          <span>The Quest</span>
+          <span class="w-1.5 h-1.5 rounded-full bg-brand-pink animate-pulse"></span>
+        </a>
         <a href="#features" class="whitespace-nowrap hover:text-ink transition-colors">Features</a>
         <a href="#syllabus" class="whitespace-nowrap hover:text-ink transition-colors flex items-center gap-1.5">
           <span>12 Modules</span>
@@ -331,6 +336,10 @@
     <!-- Mobile Slide-Down Menu Drawer -->
     <div id="mobile-nav-drawer" class="hidden xl:hidden bg-canvas border-b border-hairline px-4 py-4 space-y-2 animate-fade-in shadow-md">
       <div class="grid grid-cols-2 gap-2 text-xs font-bold text-ink">
+        <a href="#adventure" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-white border border-brand-pink/30 hover:bg-surface-soft flex items-center gap-2 text-brand-pink">
+          <span class="material-symbols-outlined text-base text-brand-pink">explore</span>
+          <span>The Quest</span>
+        </a>
         <a href="#features" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-surface-card border border-hairline hover:bg-surface-soft flex items-center gap-2">
           <span class="material-symbols-outlined text-base text-brand-pink">category</span>
           <span>Features</span>
@@ -350,6 +359,10 @@
         <a href="#testimonials" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-surface-card border border-hairline hover:bg-surface-soft flex items-center gap-2">
           <span class="material-symbols-outlined text-base text-brand-ochre">star</span>
           <span>Outcomes</span>
+        </a>
+        <a href="#comparison" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-surface-card border border-hairline hover:bg-surface-soft flex items-center gap-2">
+          <span class="material-symbols-outlined text-base text-blue-600">balance</span>
+          <span>Why Karat</span>
         </a>
         <a href="#pricing" onclick="toggleMobileNav()" class="p-2.5 rounded-xl bg-surface-card border border-hairline hover:bg-surface-soft flex items-center gap-2">
           <span class="material-symbols-outlined text-base text-emerald-600">payments</span>
@@ -627,6 +640,288 @@
         </div>
 
       </div>
+    </div>
+  </section>
+
+  <!-- ================= THE SCHOLAR'S ARCHIPELAGO: GAMIFIED 11+ ADVENTURE (ATOM LEARNING STORYTELLING) ================= -->
+  <section id="adventure" class="py-16 lg:py-24 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="space-y-12">
+      
+      <!-- Section Header -->
+      <div class="text-center max-w-3xl mx-auto space-y-4 reveal-on-scroll">
+        <span class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-brand-pink bg-brand-pink/15 border border-brand-pink/30 px-4 py-1.5 rounded-full">
+          <span class="material-symbols-outlined text-sm">explore</span>
+          The Gamified 11+ Universe
+        </span>
+        <h2 class="clay-display-lg text-3xl sm:text-5xl text-ink leading-tight">
+          The Scholar’s Archipelago: Where 11+ prep becomes an epic quest.
+        </h2>
+        <p class="text-base sm:text-lg text-body leading-relaxed">
+          Inspired by cognitive flow and intrinsic motivation. Instead of dreading 50-page paper booklets, children explore floating islands, unlock rare scholar artifacts, and build daily 15-minute habits they genuinely look forward to.
+        </p>
+      </div>
+
+      <!-- Main Archipelago Visual Canvas & Interactive Mission Hub -->
+      <div class="bg-surface-card border border-hairline rounded-[36px] p-6 sm:p-10 lg:p-12 shadow-md relative overflow-hidden reveal-on-scroll">
+        <!-- Ambient background glows -->
+        <div class="absolute -top-32 -right-32 w-96 h-96 bg-brand-pink/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute -bottom-32 -left-32 w-96 h-96 bg-brand-teal/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center relative z-10">
+          
+          <!-- Left 7-Col: 3D Clay Archipelago Quest Map with Interactive Floating Pins -->
+          <div class="lg:col-span-7 flex flex-col justify-center">
+            <div class="relative group w-full rounded-[30px] overflow-hidden border border-hairline shadow-2xl bg-ink">
+              <img 
+                src="assets/images/scholar-quest-archipelago.jpg" 
+                alt="The Karat 11+ Scholar Archipelago - 3D Clay Adventure Map with Concrete Logic, Timed Mocks, AI Diagnostics, and Speed Arena" 
+                class="w-full h-auto object-cover block transition-transform duration-700 group-hover:scale-[1.02]"
+                loading="lazy"
+              />
+              
+              <!-- Floating Map Overlay Banner (Top) -->
+              <div class="absolute top-4 left-4 right-4 flex items-center justify-between pointer-events-none">
+                <div class="bg-white/95 backdrop-blur-md border border-hairline rounded-2xl px-3.5 py-2 shadow-lg flex items-center gap-2.5 pointer-events-auto">
+                  <div class="w-7 h-7 rounded-lg bg-brand-pink text-white flex items-center justify-center font-bold text-xs shadow-2xs">
+                    <span class="material-symbols-outlined text-base">military_tech</span>
+                  </div>
+                  <div>
+                    <div class="text-[11px] font-extrabold text-ink leading-tight">Scholar Level 14</div>
+                    <div class="text-[9px] text-muted font-medium">Grand Geometer Rank</div>
+                  </div>
+                </div>
+
+                <div class="bg-white/95 backdrop-blur-md border border-hairline rounded-2xl px-3 py-2 shadow-lg flex items-center gap-2 pointer-events-auto">
+                  <span class="material-symbols-outlined text-amber-500 text-lg">monetization_on</span>
+                  <span class="text-xs font-black text-ink font-mono" id="scholar-gold-display">2,840 Gold</span>
+                </div>
+              </div>
+
+              <!-- Interactive Floating Island Hotspot Badges on Image (Bottom Overlay) -->
+              <div class="absolute bottom-4 left-4 right-4 bg-ink/80 backdrop-blur-md border border-white/10 rounded-2xl p-3 text-white flex flex-wrap sm:flex-nowrap items-center justify-between gap-2">
+                <div class="flex items-center gap-2">
+                  <span class="w-2.5 h-2.5 rounded-full bg-emerald-400 animate-ping"></span>
+                  <span class="text-xs font-bold text-white tracking-wide">4 Floating Continents Active</span>
+                </div>
+                <div class="text-[11px] text-white/80 font-medium">
+                  Select any island below to inspect active quest mechanics
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 5-Col: Dynamic Active Island Card & Lore -->
+          <div class="lg:col-span-5 space-y-6">
+            
+            <!-- Island Navigation Buttons (4 Pill Selectors) -->
+            <div class="grid grid-cols-2 gap-2.5">
+              <button type="button" onclick="selectArchipelagoIsle('concrete')" id="isle-btn-concrete" class="p-3 rounded-2xl text-left border border-ink bg-white shadow-xs transition-all flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-brand-pink/20 text-brand-pink flex items-center justify-center font-black shrink-0">1</div>
+                <div>
+                  <div class="text-xs font-bold text-ink leading-tight">Concrete Logic</div>
+                  <div class="text-[10px] text-muted">Singapore Strips</div>
+                </div>
+              </button>
+              <button type="button" onclick="selectArchipelagoIsle('citadel')" id="isle-btn-citadel" class="p-3 rounded-2xl text-left border border-hairline bg-surface-card hover:bg-white transition-all flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-brand-lavender/30 text-ink flex items-center justify-center font-black shrink-0">2</div>
+                <div>
+                  <div class="text-xs font-bold text-ink leading-tight">Mock Citadel</div>
+                  <div class="text-[10px] text-muted">British Big Ben</div>
+                </div>
+              </button>
+              <button type="button" onclick="selectArchipelagoIsle('radar')" id="isle-btn-radar" class="p-3 rounded-2xl text-left border border-hairline bg-surface-card hover:bg-white transition-all flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-brand-teal/20 text-brand-teal flex items-center justify-center font-black shrink-0">3</div>
+                <div>
+                  <div class="text-xs font-bold text-ink leading-tight">AI Diagnostics</div>
+                  <div class="text-[10px] text-muted">Radar Mountain</div>
+                </div>
+              </button>
+              <button type="button" onclick="selectArchipelagoIsle('arena')" id="isle-btn-arena" class="p-3 rounded-2xl text-left border border-hairline bg-surface-card hover:bg-white transition-all flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-brand-peach/30 text-ink flex items-center justify-center font-black shrink-0">4</div>
+                <div>
+                  <div class="text-xs font-bold text-ink leading-tight">Speed Arena</div>
+                  <div class="text-[10px] text-muted">Multiplayer Duels</div>
+                </div>
+              </button>
+            </div>
+
+            <!-- Active Isle Quest Box -->
+            <div id="active-isle-box" class="bg-white border border-hairline rounded-[28px] p-6 shadow-sm space-y-4">
+              <div class="flex items-center justify-between border-b border-hairline pb-3">
+                <div class="flex items-center gap-2.5">
+                  <span id="active-isle-icon" class="material-symbols-outlined text-2xl text-brand-pink">view_in_ar</span>
+                  <div>
+                    <h3 id="active-isle-title" class="font-extrabold text-ink text-lg leading-tight">Concrete Logic Isle</h3>
+                    <span id="active-isle-tag" class="text-[10px] font-bold text-brand-pink uppercase tracking-wider">CPA Manipulatives · NVR &amp; Maths</span>
+                  </div>
+                </div>
+                <span id="active-isle-reward" class="px-2.5 py-1 rounded-full text-[10px] font-black bg-amber-100 text-amber-800 border border-amber-300 flex items-center gap-1">
+                  <span class="material-symbols-outlined text-xs">monetization_on</span> +250 Gold
+                </span>
+              </div>
+
+              <p id="active-isle-desc" class="text-xs sm:text-sm text-body leading-relaxed">
+                Transform abstract 11+ Spatial Reasoning into tangible mechanics. Scholars rotate, unfold, and slice 3D net solids to master the dreaded GL cube questions without memorisation.
+              </p>
+
+              <!-- Live Mini-Quest Challenge Preview -->
+              <div class="p-4 rounded-2xl bg-surface-soft border border-hairline space-y-3">
+                <div class="flex items-center justify-between text-xs font-bold">
+                  <span class="text-ink flex items-center gap-1.5">
+                    <span class="material-symbols-outlined text-sm text-emerald-600">flag</span>
+                    <span id="active-quest-name">Quest: The 11 Foldable Hexominoes</span>
+                  </span>
+                  <span id="active-quest-status" class="text-emerald-700 font-mono text-[11px]">8 / 11 Cleared</span>
+                </div>
+                <!-- Progress bar -->
+                <div class="w-full h-2.5 bg-canvas rounded-full overflow-hidden border border-hairline">
+                  <div id="active-quest-bar" class="h-full bg-gradient-to-r from-brand-pink to-brand-peach rounded-full transition-all duration-500" style="width: 73%;"></div>
+                </div>
+                <div class="flex items-center justify-between text-[11px] text-muted">
+                  <span id="active-quest-perk">Artifact: Golden Geometer Compass</span>
+                  <span class="font-bold text-ink">Estimated: 12 mins</span>
+                </div>
+              </div>
+
+              <!-- CTA for Isle Quest -->
+              <div class="pt-1 flex items-center gap-3">
+                <a id="active-isle-link" href="index.html#learn-solve" class="clay-btn-primary flex-1 py-3 text-xs sm:text-sm justify-center">
+                  <span>Enter This Quest</span>
+                  <span class="material-symbols-outlined text-sm">arrow_forward</span>
+                </a>
+                <button type="button" onclick="playQuestChime()" class="w-12 h-12 rounded-2xl bg-surface-card border border-hairline hover:bg-surface-soft flex items-center justify-center text-ink shrink-0 transition-transform active:scale-95" title="Play Quest Theme Chime">
+                  <span class="material-symbols-outlined text-lg text-brand-pink">music_note</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Atom-Style Parent Peace-Of-Mind Reassurance -->
+            <div class="p-4 rounded-2xl bg-emerald-50 border border-emerald-200 flex items-start gap-3">
+              <span class="material-symbols-outlined text-emerald-700 text-xl shrink-0 mt-0.5">sentiment_satisfied</span>
+              <div class="text-xs leading-relaxed text-emerald-950">
+                <strong class="font-bold">Zero Dining Table Battles:</strong> Children self-motivate through gamified progress. Parents receive a 60-second WhatsApp milestone summary after every session.
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      <!-- "Choose Your Child's Quest" Interactive Routine Planner -->
+      <div class="bg-white border border-hairline rounded-[32px] p-6 sm:p-10 shadow-sm reveal-on-scroll delay-100">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          
+          <div class="lg:col-span-5 space-y-4">
+            <span class="text-[11px] font-bold uppercase tracking-wider text-muted bg-surface-card px-3 py-1 rounded-full border border-hairline">
+              Custom Habit Planner
+            </span>
+            <h3 class="font-extrabold text-ink text-2xl sm:text-3xl leading-snug">
+              Build an effortless daily 11+ routine in seconds.
+            </h3>
+            <p class="text-xs sm:text-sm text-body leading-relaxed">
+              Atom Learning proved that micro-consistency beats last-minute cramming. Select your child's stage to see how Karat replaces heavy weekend tutoring with a calm 15-minute daily habit.
+            </p>
+
+            <!-- Stage Selectors -->
+            <div class="space-y-3 pt-2">
+              <div class="text-xs font-bold text-ink">1. Current School Year:</div>
+              <div class="grid grid-cols-3 gap-2">
+                <button type="button" onclick="setQuestYear('y4')" id="qyear-btn-y4" class="p-2.5 rounded-xl border border-hairline bg-surface-card hover:bg-white text-center text-xs font-bold text-ink transition-all">
+                  Year 3 – 4<br><span class="text-[9px] text-muted font-normal">Foundations</span>
+                </button>
+                <button type="button" onclick="setQuestYear('y5')" id="qyear-btn-y5" class="p-2.5 rounded-xl border border-ink bg-white shadow-2xs text-center text-xs font-bold text-ink transition-all">
+                  Year 5<br><span class="text-[9px] text-brand-pink font-semibold">Core Ascent</span>
+                </button>
+                <button type="button" onclick="setQuestYear('y6')" id="qyear-btn-y6" class="p-2.5 rounded-xl border border-hairline bg-surface-card hover:bg-white text-center text-xs font-bold text-ink transition-all">
+                  Year 6<br><span class="text-[9px] text-muted font-normal">Mock Pinnacle</span>
+                </button>
+              </div>
+
+              <div class="text-xs font-bold text-ink pt-2">2. Daily Study Rhythm:</div>
+              <div class="grid grid-cols-2 gap-2">
+                <button type="button" onclick="setQuestPace('calm')" id="qpace-btn-calm" class="p-2.5 rounded-xl border border-ink bg-white shadow-2xs text-left text-xs font-bold text-ink transition-all flex items-center justify-between">
+                  <div>
+                    <div>15 Mins / Day</div>
+                    <div class="text-[10px] text-emerald-600 font-normal">Calm Sweet Spot</div>
+                  </div>
+                  <span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span>
+                </button>
+                <button type="button" onclick="setQuestPace('power')" id="qpace-btn-power" class="p-2.5 rounded-xl border border-hairline bg-surface-card hover:bg-white text-left text-xs font-bold text-body transition-all flex items-center justify-between">
+                  <div>
+                    <div>30 Mins / Day</div>
+                    <div class="text-[10px] text-brand-pink font-normal">Accelerated Sprint</div>
+                  </div>
+                  <span class="material-symbols-outlined text-sm text-muted">radio_button_unchecked</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Dynamic Output Card -->
+          <div class="lg:col-span-7 bg-surface-card border border-hairline rounded-[28px] p-6 sm:p-8 space-y-6">
+            <div class="flex items-center justify-between border-b border-hairline pb-4">
+              <div>
+                <span class="text-[10px] font-bold uppercase tracking-wider text-muted">Personalised Trajectory</span>
+                <h4 id="quest-plan-title" class="text-lg sm:text-xl font-black text-ink">Year 5 Core Scholar Odyssey</h4>
+              </div>
+              <span id="quest-plan-badge" class="px-3 py-1 rounded-full text-xs font-extrabold bg-brand-pink/20 text-brand-pink border border-brand-pink/30">
+                +19 SAS Projected
+              </span>
+            </div>
+
+            <!-- 3 Key Metric Blocks -->
+            <div class="grid grid-cols-3 gap-3">
+              <div class="p-3 sm:p-4 rounded-2xl bg-white border border-hairline text-center">
+                <div class="text-[10px] text-muted font-bold uppercase">Weekly Commitment</div>
+                <div id="quest-stat-hours" class="text-base sm:text-lg font-black text-ink mt-0.5">1.75 hrs</div>
+                <div class="text-[9px] text-emerald-600 font-semibold">vs 6 hrs tutoring</div>
+              </div>
+              <div class="p-3 sm:p-4 rounded-2xl bg-white border border-hairline text-center">
+                <div class="text-[10px] text-muted font-bold uppercase">Mastery Target</div>
+                <div id="quest-stat-topics" class="text-base sm:text-lg font-black text-ink mt-0.5">24 Topics / Mo</div>
+                <div class="text-[9px] text-brand-teal font-semibold">GL &amp; CEM Aligned</div>
+              </div>
+              <div class="p-3 sm:p-4 rounded-2xl bg-white border border-hairline text-center">
+                <div class="text-[10px] text-muted font-bold uppercase">Gold Earned</div>
+                <div id="quest-stat-coins" class="text-base sm:text-lg font-black text-amber-600 mt-0.5">4,200 Gold / Mo</div>
+                <div class="text-[9px] text-muted font-medium">Avatar Unlocks</div>
+              </div>
+            </div>
+
+            <!-- Weekly Milestone Path -->
+            <div class="space-y-2 text-xs">
+              <div class="font-bold text-ink flex items-center justify-between">
+                <span>Recommended Weekly Schedule:</span>
+                <span id="quest-schedule-desc" class="text-muted font-normal">Mon–Fri Quest, Sat Mock Sim</span>
+              </div>
+              <div class="grid grid-cols-7 gap-1.5 text-center text-[10px] font-bold">
+                <div class="p-2 rounded-xl bg-white border border-hairline text-ink">M<br><span class="text-[8px] text-brand-pink">Maths</span></div>
+                <div class="p-2 rounded-xl bg-white border border-hairline text-ink">T<br><span class="text-[8px] text-brand-lavender">Vocab</span></div>
+                <div class="p-2 rounded-xl bg-white border border-hairline text-ink">W<br><span class="text-[8px] text-brand-teal">VR/NVR</span></div>
+                <div class="p-2 rounded-xl bg-white border border-hairline text-ink">T<br><span class="text-[8px] text-brand-peach">Speed</span></div>
+                <div class="p-2 rounded-xl bg-white border border-hairline text-ink">F<br><span class="text-[8px] text-emerald-600">Vault</span></div>
+                <div class="p-2 rounded-xl bg-brand-pink text-white shadow-2xs font-black">S<br><span class="text-[8px] text-white">Mock</span></div>
+                <div class="p-2 rounded-xl bg-surface-soft border border-hairline text-muted">S<br><span class="text-[8px] text-muted">Rest</span></div>
+              </div>
+            </div>
+
+            <div class="pt-2 flex flex-col sm:flex-row items-center justify-between gap-3">
+              <div class="text-xs text-muted flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-sm text-emerald-600">verified</span>
+                <span>Includes 14-day free trial on all quest islands</span>
+              </div>
+              <a href="index.html#practice-arena" class="clay-btn-primary w-full sm:w-auto text-xs py-2.5 px-6">
+                <span>Start Your Quest Free</span>
+                <span class="material-symbols-outlined text-sm">arrow_forward</span>
+              </a>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
     </div>
   </section>
 
@@ -1965,6 +2260,116 @@
         </p>
       </div>
 
+      <!-- ================= THE TALE OF TWO JOURNEYS (ATOM-INSPIRED STORYTELLING CONTRAST) ================= -->
+      <div class="mb-14 bg-white border border-hairline rounded-[36px] p-6 sm:p-10 lg:p-12 shadow-md relative overflow-hidden reveal-on-scroll">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
+          
+          <!-- Left 6-Col: Generated 3D Clay Split-Screen Story Graphic -->
+          <div class="lg:col-span-6">
+            <div class="relative group rounded-[28px] overflow-hidden border border-hairline shadow-xl bg-ink">
+              <img 
+                src="assets/images/scholar-tale-two-journeys.jpg" 
+                alt="The Tale of Two 11+ Journeys: Chaotic paper stress on the left vs joyful Karat tablet mastery and grammar school offer on the right" 
+                class="w-full h-auto object-cover block transition-transform duration-700 group-hover:scale-[1.02]"
+                loading="lazy"
+              />
+              <div class="absolute bottom-3 left-3 right-3 bg-white/95 backdrop-blur-md border border-hairline rounded-xl p-2.5 text-center text-xs font-bold text-ink shadow-md">
+                Split Reality: Sunday Paperwork Frustration vs. The Confident Offer Celebration
+              </div>
+            </div>
+          </div>
+
+          <!-- Right 6-Col: Emotional Storytelling Breakdown -->
+          <div class="lg:col-span-6 space-y-5">
+            <span class="inline-flex items-center gap-1.5 text-xs font-bold uppercase tracking-widest text-brand-pink bg-brand-pink/10 border border-brand-pink/20 px-3.5 py-1 rounded-full">
+              <span class="material-symbols-outlined text-sm">auto_stories</span> The Real Story Behind 11+
+            </span>
+            <h3 class="font-extrabold text-ink text-2xl sm:text-4xl leading-tight">
+              From dining table friction to grammar school triumph.
+            </h3>
+            <p class="text-sm sm:text-base text-body leading-relaxed">
+              Every parent starts with high hopes, buying stacks of 10-year past papers and booking expensive tutors. But without diagnostic structure, the dining table turns into a pressure cooker.
+            </p>
+
+            <!-- Contrast Side-by-Side Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-1">
+              
+              <!-- Traditional Way -->
+              <div class="p-4 rounded-2xl bg-red-50/60 border border-red-200/70 space-y-2">
+                <div class="flex items-center gap-2 text-xs font-black text-red-900 uppercase tracking-wide">
+                  <span class="material-symbols-outlined text-sm text-red-600">close</span>
+                  The Paperwork Grind
+                </div>
+                <ul class="text-[11px] text-red-950/80 space-y-1.5 leading-tight">
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-red-500 font-bold">•</span>
+                    <span>Tears over messy handwriting and lost mark schemes</span>
+                  </li>
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-red-500 font-bold">•</span>
+                    <span>Red-pen grading that highlights failure, not curiosity</span>
+                  </li>
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-red-500 font-bold">•</span>
+                    <span>No birth-month SAS age standardisation</span>
+                  </li>
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-red-500 font-bold">•</span>
+                    <span>£75/hour tutors who offer subjective guesswork</span>
+                  </li>
+                </ul>
+              </div>
+
+              <!-- The Karat Odyssey -->
+              <div class="p-4 rounded-2xl bg-emerald-50/70 border border-emerald-200 space-y-2">
+                <div class="flex items-center gap-2 text-xs font-black text-emerald-900 uppercase tracking-wide">
+                  <span class="material-symbols-outlined text-sm text-emerald-600">check_circle</span>
+                  The Karat Odyssey
+                </div>
+                <ul class="text-[11px] text-emerald-950 space-y-1.5 leading-tight">
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-emerald-600 font-bold">•</span>
+                    <span>15-min self-directed quests kids genuinely love</span>
+                  </li>
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-emerald-600 font-bold">•</span>
+                    <span>Real-time voice hints from Clara when stuck</span>
+                  </li>
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-emerald-600 font-bold">•</span>
+                    <span>Predictive SAS calibrated to top grammar cutoffs</span>
+                  </li>
+                  <li class="flex items-start gap-1.5">
+                    <span class="text-emerald-600 font-bold">•</span>
+                    <span>Calm, proud March 1st National Offer Day</span>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+
+            <!-- Parent Audio Quote -->
+            <div class="p-3.5 rounded-2xl bg-surface-card border border-hairline flex items-center justify-between gap-3">
+              <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-full bg-brand-lavender text-ink font-bold flex items-center justify-center shrink-0 text-sm">
+                  SJ
+                </div>
+                <div>
+                  <div class="text-xs font-bold text-ink">"Our evenings became peaceful again."</div>
+                  <div class="text-[10px] text-muted">Dr. S. Joshi (Mother of Aarav · HBS Offer 2026)</div>
+                </div>
+              </div>
+              <button type="button" onclick="playTestimonialVoiceSnippet(this)" class="px-3 py-1.5 rounded-xl bg-white border border-hairline text-ink text-[11px] font-bold hover:bg-surface-soft transition-all flex items-center gap-1.5 shrink-0 shadow-2xs">
+                <span class="material-symbols-outlined text-sm text-brand-pink">volume_up</span>
+                <span>Listen</span>
+              </button>
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
       <!-- 5-Stage Learning Progression Banner (Adapted from Reference Capsules - Wide & Prominent) -->
       <div class="mb-14 bg-white border border-hairline rounded-[36px] p-8 sm:p-12 lg:p-14 shadow-md reveal-on-scroll">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-14 items-center">
@@ -3255,6 +3660,287 @@
         if ('speechSynthesis' in window) window.speechSynthesis.cancel();
         btn.setAttribute('data-playing', 'false');
         btn.innerHTML = '<span class="material-symbols-outlined text-sm">volume_up</span><span>Listen</span>';
+      }
+    }
+
+    /* ================= ARCHIPELAGO ISLE CONTROLLER ================= */
+    const ARCHIPELAGO_ISLES = {
+      concrete: {
+        title: "Concrete Logic Isle",
+        tag: "CPA Manipulatives · NVR & Maths",
+        icon: "view_in_ar",
+        reward: "+250 Gold",
+        desc: "Transform abstract 11+ Spatial Reasoning into tangible mechanics. Scholars rotate, unfold, and slice 3D net solids to master the dreaded GL cube questions without memorisation.",
+        questName: "Quest: The 11 Foldable Hexominoes",
+        questStatus: "8 / 11 Cleared",
+        questBar: "73%",
+        questPerk: "Artifact: Golden Geometer Compass",
+        link: "index.html#learn-solve"
+      },
+      citadel: {
+        title: "Mock Citadel of Time",
+        tag: "Authentic Timed Papers · Exam Hall Stamina",
+        icon: "timer",
+        reward: "+500 Gold",
+        desc: "Step inside the British Big Ben clocktower simulation. Full 100-question authentic GL & CEM mock papers with audio room ambience, ticking countdown, and pace warnings.",
+        questName: "Quest: 50-Min Speed Endurance Trial",
+        questStatus: "42 / 50 Mins Remaining",
+        questBar: "84%",
+        questPerk: "Artifact: Chrono Scholar Crown",
+        link: "index.html#mock-exams"
+      },
+      radar: {
+        title: "AI Diagnostics Mountain",
+        tag: "Predictive SAS Radar · Zero Weak Spots",
+        icon: "radar",
+        reward: "+300 Gold",
+        desc: "Ascend the glowing diagnostic observatory. The AI neural engine tracks answer latencies, isolates hidden misconceptions across 12 syllabus pillars, and maps exact SAS percentiles.",
+        questName: "Quest: 21-Type Verbal Reasoning Audit",
+        questStatus: "19 / 21 Mastered",
+        questBar: "91%",
+        questPerk: "Artifact: Radar Vision Monocle",
+        link: "index.html#analytics"
+      },
+      arena: {
+        title: "Speed Duel Battle Arena",
+        tag: "Live 1v1 Multiplayer · Peer Sparring",
+        icon: "swords",
+        reward: "+150 Gold / win",
+        desc: "Enter real-time head-to-head mental arithmetic and vocabulary duels with other 11+ aspirants across the UK. Fast-paced 60-second rounds build rapid recall under competitive fun.",
+        questName: "Quest: Top 5% National Duel Ladder",
+        questStatus: "14 Win Streak",
+        questBar: "95%",
+        questPerk: "Artifact: Champion's Aegis Shield",
+        link: "index.html#practice-arena"
+      }
+    };
+
+    let currentIsleKey = 'concrete';
+
+    function selectArchipelagoIsle(key) {
+      const data = ARCHIPELAGO_ISLES[key];
+      if (!data) return;
+      currentIsleKey = key;
+
+      // Update buttons
+      ['concrete', 'citadel', 'radar', 'arena'].forEach(k => {
+        const btn = document.getElementById(`isle-btn-${k}`);
+        if (!btn) return;
+        if (k === key) {
+          btn.className = 'p-3 rounded-2xl text-left border border-ink bg-white shadow-xs transition-all flex items-center gap-3';
+        } else {
+          btn.className = 'p-3 rounded-2xl text-left border border-hairline bg-surface-card hover:bg-white transition-all flex items-center gap-3';
+        }
+      });
+
+      // Update text & elements
+      const iconEl = document.getElementById('active-isle-icon');
+      const titleEl = document.getElementById('active-isle-title');
+      const tagEl = document.getElementById('active-isle-tag');
+      const rewardEl = document.getElementById('active-isle-reward');
+      const descEl = document.getElementById('active-isle-desc');
+      const questNameEl = document.getElementById('active-quest-name');
+      const questStatusEl = document.getElementById('active-quest-status');
+      const questBarEl = document.getElementById('active-quest-bar');
+      const questPerkEl = document.getElementById('active-quest-perk');
+      const linkEl = document.getElementById('active-isle-link');
+
+      if (iconEl) iconEl.textContent = data.icon;
+      if (titleEl) titleEl.textContent = data.title;
+      if (tagEl) tagEl.textContent = data.tag;
+      if (rewardEl) rewardEl.innerHTML = `<span class="material-symbols-outlined text-xs">monetization_on</span> ${data.reward}`;
+      if (descEl) descEl.textContent = data.desc;
+      if (questNameEl) questNameEl.textContent = data.questName;
+      if (questStatusEl) questStatusEl.textContent = data.questStatus;
+      if (questBarEl) questBarEl.style.width = data.questBar;
+      if (questPerkEl) questPerkEl.textContent = data.questPerk;
+      if (linkEl) linkEl.href = data.link;
+
+      playQuestChime();
+    }
+
+    /* Web Audio Chime for Island Navigation */
+    function playQuestChime() {
+      try {
+        const AudioCtx = window.AudioContext || window.webkitAudioContext;
+        if (!AudioCtx) return;
+        const ctx = new AudioCtx();
+        const now = ctx.currentTime;
+        
+        // Note 1 (E5)
+        const osc1 = ctx.createOscillator();
+        const gain1 = ctx.createGain();
+        osc1.type = 'sine';
+        osc1.frequency.setValueAtTime(659.25, now);
+        gain1.gain.setValueAtTime(0.08, now);
+        gain1.gain.exponentialRampToValueAtTime(0.001, now + 0.35);
+        osc1.connect(gain1);
+        gain1.connect(ctx.destination);
+        osc1.start(now);
+        osc1.stop(now + 0.35);
+
+        // Note 2 (B5)
+        const osc2 = ctx.createOscillator();
+        const gain2 = ctx.createGain();
+        osc2.type = 'triangle';
+        osc2.frequency.setValueAtTime(987.77, now + 0.1);
+        gain2.gain.setValueAtTime(0.07, now + 0.1);
+        gain2.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+        osc2.connect(gain2);
+        gain2.connect(ctx.destination);
+        osc2.start(now + 0.1);
+        osc2.stop(now + 0.45);
+      } catch (e) {
+        // AudioContext autoplay restrictions handled silently
+      }
+    }
+
+    /* ================= QUEST HABIT BUILDER CONTROLLER ================= */
+    let selectedQuestYear = 'y5';
+    let selectedQuestPace = 'calm';
+
+    const QUEST_PLANS = {
+      y4: {
+        calm: {
+          title: "Year 3–4 Foundation Discovery",
+          badge: "+14 SAS Baseline",
+          hours: "1.25 hrs",
+          topics: "16 Topics / Mo",
+          coins: "3,200 Gold / Mo",
+          desc: "Gentle curiosity quests: 10 mins Mon–Thu, Fun Vocab Fri"
+        },
+        power: {
+          title: "Year 3–4 Accelerated Foundation",
+          badge: "+18 SAS Projected",
+          hours: "2.5 hrs",
+          topics: "28 Topics / Mo",
+          coins: "5,800 Gold / Mo",
+          desc: "Dual-track foundation: 25 mins daily, Weekend Math Puzzle"
+        }
+      },
+      y5: {
+        calm: {
+          title: "Year 5 Core Scholar Odyssey",
+          badge: "+19 SAS Projected",
+          hours: "1.75 hrs",
+          topics: "24 Topics / Mo",
+          coins: "4,200 Gold / Mo",
+          desc: "Mon–Fri 15-min quest, Sat Mock Sim, Sun Rest"
+        },
+        power: {
+          title: "Year 5 High-Achiever Sprint",
+          badge: "+24 SAS Projected",
+          hours: "3.5 hrs",
+          topics: "38 Topics / Mo",
+          coins: "7,500 Gold / Mo",
+          desc: "30 mins daily comprehensive GL & CEM mastery"
+        }
+      },
+      y6: {
+        calm: {
+          title: "Year 6 Final Polish Odyssey",
+          badge: "+16 SAS Elevation",
+          hours: "2.0 hrs",
+          topics: "Full Syllabus Review",
+          coins: "5,000 Gold / Mo",
+          desc: "Targeted error elimination & weekly authentic mocks"
+        },
+        power: {
+          title: "Year 6 Super-Selective Pinnacle",
+          badge: "+26 SAS Peak Potential",
+          hours: "4.0 hrs",
+          topics: "Elite 132+ SAS Prep",
+          coins: "9,000 Gold / Mo",
+          desc: "Intensive past papers, CSSE math rigor, HBS/QE benchmarks"
+        }
+      }
+    };
+
+    function setQuestYear(yearKey) {
+      selectedQuestYear = yearKey;
+      ['y4', 'y5', 'y6'].forEach(y => {
+        const btn = document.getElementById(`qyear-btn-${y}`);
+        if (!btn) return;
+        if (y === yearKey) {
+          btn.className = 'p-2.5 rounded-xl border border-ink bg-white shadow-2xs text-center text-xs font-bold text-ink transition-all';
+        } else {
+          btn.className = 'p-2.5 rounded-xl border border-hairline bg-surface-card hover:bg-white text-center text-xs font-bold text-ink transition-all';
+        }
+      });
+      updateQuestPlanner();
+    }
+
+    function setQuestPace(paceKey) {
+      selectedQuestPace = paceKey;
+      const calmBtn = document.getElementById('qpace-btn-calm');
+      const powerBtn = document.getElementById('qpace-btn-power');
+      if (calmBtn && powerBtn) {
+        if (paceKey === 'calm') {
+          calmBtn.className = 'p-2.5 rounded-xl border border-ink bg-white shadow-2xs text-left text-xs font-bold text-ink transition-all flex items-center justify-between';
+          calmBtn.querySelector('.material-symbols-outlined').textContent = 'check_circle';
+          calmBtn.querySelector('.material-symbols-outlined').className = 'material-symbols-outlined text-sm text-emerald-600';
+          powerBtn.className = 'p-2.5 rounded-xl border border-hairline bg-surface-card hover:bg-white text-left text-xs font-bold text-body transition-all flex items-center justify-between';
+          powerBtn.querySelector('.material-symbols-outlined').textContent = 'radio_button_unchecked';
+          powerBtn.querySelector('.material-symbols-outlined').className = 'material-symbols-outlined text-sm text-muted';
+        } else {
+          powerBtn.className = 'p-2.5 rounded-xl border border-ink bg-white shadow-2xs text-left text-xs font-bold text-ink transition-all flex items-center justify-between';
+          powerBtn.querySelector('.material-symbols-outlined').textContent = 'check_circle';
+          powerBtn.querySelector('.material-symbols-outlined').className = 'material-symbols-outlined text-sm text-brand-pink';
+          calmBtn.className = 'p-2.5 rounded-xl border border-hairline bg-surface-card hover:bg-white text-left text-xs font-bold text-body transition-all flex items-center justify-between';
+          calmBtn.querySelector('.material-symbols-outlined').textContent = 'radio_button_unchecked';
+          calmBtn.querySelector('.material-symbols-outlined').className = 'material-symbols-outlined text-sm text-muted';
+        }
+      }
+      updateQuestPlanner();
+    }
+
+    function updateQuestPlanner() {
+      const plan = QUEST_PLANS[selectedQuestYear]?.[selectedQuestPace];
+      if (!plan) return;
+
+      const titleEl = document.getElementById('quest-plan-title');
+      const badgeEl = document.getElementById('quest-plan-badge');
+      const hoursEl = document.getElementById('quest-stat-hours');
+      const topicsEl = document.getElementById('quest-stat-topics');
+      const coinsEl = document.getElementById('quest-stat-coins');
+      const schedEl = document.getElementById('quest-schedule-desc');
+
+      if (titleEl) titleEl.textContent = plan.title;
+      if (badgeEl) badgeEl.textContent = plan.badge;
+      if (hoursEl) hoursEl.textContent = plan.hours;
+      if (topicsEl) topicsEl.textContent = plan.topics;
+      if (coinsEl) coinsEl.textContent = plan.coins;
+      if (schedEl) schedEl.textContent = plan.desc;
+    }
+
+    /* Testimonial Voice Snippet */
+    function playTestimonialVoiceSnippet(btn) {
+      if (!btn) return;
+      const isPlaying = btn.getAttribute('data-playing') === 'true';
+      if (!isPlaying) {
+        btn.setAttribute('data-playing', 'true');
+        btn.innerHTML = '<span class="material-symbols-outlined text-sm text-brand-pink animate-spin">sync</span><span>Playing...</span>';
+        if ('speechSynthesis' in window) {
+          const text = "Karat completely transformed our evenings. Instead of arguing over tear-stained test papers at the dining table, Aarav logged on every day for 15 minutes on his own. In March, we opened our Henrietta Barnett offer letter with absolute joy.";
+          const utterance = new SpeechSynthesisUtterance(text);
+          utterance.rate = 0.95;
+          utterance.pitch = 1.05;
+          utterance.lang = 'en-GB';
+          utterance.onend = () => {
+            btn.setAttribute('data-playing', 'false');
+            btn.innerHTML = '<span class="material-symbols-outlined text-sm text-brand-pink">volume_up</span><span>Listen</span>';
+          };
+          window.speechSynthesis.speak(utterance);
+        } else {
+          setTimeout(() => {
+            btn.setAttribute('data-playing', 'false');
+            btn.innerHTML = '<span class="material-symbols-outlined text-sm text-brand-pink">volume_up</span><span>Listen</span>';
+          }, 3000);
+        }
+      } else {
+        if ('speechSynthesis' in window) window.speechSynthesis.cancel();
+        btn.setAttribute('data-playing', 'false');
+        btn.innerHTML = '<span class="material-symbols-outlined text-sm text-brand-pink">volume_up</span><span>Listen</span>';
       }
     }
 
